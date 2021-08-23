@@ -1,0 +1,18 @@
+* 1- 	O que você pensa/acha sobre a atual situação da biblioteca?
+     	Você acha que ela atende às necessidades de quem a utiliza?
+	Você sente que existe melhorias a serem feitas? Se sim, quais?
+
+* 2- 	Tendo em vista esse cenário que acabou de descrever, qual sua visão sobre a usabilidade
+     	da biblioteca? E sobre a gestão?
+
+* 3- 	Você costuma consumir livros? Se sim, você tem alguma preferência (eBook ou físico)?
+	Você realiza alguma ativa extra serviço que envolva a leitura ou a busca por conhecimento utilizando livros?
+
+* 4-	O que você costuma ouvir dos feedbacks de usuários da biblioteca? 
+	O que ouve sobre o consumo de livros?
+
+* 5-    Para você, o quê ou quais fatores dificultam a gestão dos livros?
+
+* 6-    Se houvesse um sistema para auxilia-lo(a) na gestão.. Quais necessidades
+	você gostaria que esse sistema suprisse? Isso é, o que você gostaria que 
+	tivesse (funcionalidades).
