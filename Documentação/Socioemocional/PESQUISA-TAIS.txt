@@ -1,0 +1,14 @@
+1- Ela atende às necessidades de um admnistrador;
+
+2- É uma gestão fácil de ser realizada,
+   Dificil validar se foi feita a devolução de fatp, 
+
+4- O conhecimento vindo de livros são muitos bons
+
+5- Ela ouve que uma faculdade de tecnologia não possui tecnologia não faz sentido
+
+7- Melhorar o controle de entrada e retirada de livro, validar os códigos, integrar com o sistema de gestão;
+   Apontar aqueles que estão com atraso na devolução do livro (admin === aluno)
+CONTROLE DE ATRASO!
+    Colocar resenhas;
+    Sugestões

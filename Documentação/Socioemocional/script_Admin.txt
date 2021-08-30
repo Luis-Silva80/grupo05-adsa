@@ -16,3 +16,6 @@
 * 6-    Se houvesse um sistema para auxilia-lo(a) na gestão.. Quais necessidades
 	você gostaria que esse sistema suprisse? Isso é, o que você gostaria que 
 	tivesse (funcionalidades).
+
+
+* 7- 	O que de fato você precisa?
