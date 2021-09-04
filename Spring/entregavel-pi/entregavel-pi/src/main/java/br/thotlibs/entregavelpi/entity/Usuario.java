@@ -3,6 +3,7 @@ package br.thotlibs.entregavelpi.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 abstract public class Usuario {
 
@@ -29,6 +30,14 @@ abstract public class Usuario {
         this.listLivros= new ArrayList<Livro>();
 
     }
+
+
+    abstract public Optional buscarLivro(Integer id);
+    abstract public List<Livro> consultarLista();
+    abstract public String AlocarLivro(Integer id);
+    abstract public String devolverLivro(Integer id);
+    abstract public String renovarAlocacao(Integer id);
+
 
     public Integer getId() {
         return id;

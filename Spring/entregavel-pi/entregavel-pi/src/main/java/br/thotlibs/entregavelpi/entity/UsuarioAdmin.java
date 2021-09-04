@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-public class UsuarioAdmin extends Usuario implements Administravel, Utilizavel {
+public class UsuarioAdmin extends Usuario implements Administravel {
 
     public UsuarioAdmin(Integer id, String nome, String cpf, String email, String telefone, String senha, Boolean admin, Date dataNascimento) {
         super(id, nome, cpf, email, telefone, senha, admin, dataNascimento);
