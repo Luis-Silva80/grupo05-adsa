@@ -12,9 +12,7 @@ public class UsuarioDto {
     private LocalDateTime dataAtual = LocalDateTime.now();
     private String autenticadoEm;
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-    String hojeFormatado = dataAtual.format(formatter);
+    String hojeFormatado = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 
     public UsuarioDto(Usuario usuario) {
 

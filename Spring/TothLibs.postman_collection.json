@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "166d8195-f57c-4118-bcb0-3b84c4968e86",
+		"name": "TothLibs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "consultar autenticados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "cadastro usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"2525\",\r\n    \"nome\": \"Luis\",\r\n    \"cpf\": \"555555\",\r\n    \"email\": \"luis.silva@bandtec.com\",\r\n    \"telefone\": \"5511958020872\",\r\n    \"senha\": \"luis123\",\r\n    \"admin\": \"true\",\r\n    \"dataNascimento\": \"06/04/2002\",\r\n    \"listLivros\": {}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/usuarios/cadastroUsuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"cadastroUsuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consultar lista de usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "logoff",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/usuarios/autenticacao/Luis",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"autenticacao",
+								"Luis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autenticar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/usuarios//autenticacao//{senha}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"",
+								"autenticacao",
+								"",
+								"{senha}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Livros",
+			"item": [
+				{
+					"name": "cadastrar livro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/usuarios/cadastrarLivro",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"cadastrarLivro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consultar lista livros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

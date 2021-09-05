@@ -1,5 +1,7 @@
 package br.thotlibs.entregavelpi.entity;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +18,6 @@ abstract public class Usuario {
     private Boolean admin;
     private Date dataNascimento;
     private List<Livro> listLivros;
-
 
     public Usuario(Integer id, String nome, String cpf, String email, String telefone, String senha, Boolean admin, Date dataNascimento) {
         this.id = id;

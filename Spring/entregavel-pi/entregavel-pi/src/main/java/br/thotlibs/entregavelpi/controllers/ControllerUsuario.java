@@ -7,6 +7,7 @@ import br.thotlibs.entregavelpi.entity.UsuarioAdmin;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -75,8 +76,13 @@ public class ControllerUsuario {
             if (u.getNome().equals(nome)) {
                 if (u.getAutenticado()) {
 
+
+
                     retorno = String.format("Usuário %s saiu do sistema", u.getNome());
+
                     u.setAutenticado(false);
+
+
 
                 } else {
                     retorno = String.format("Usuário %s não autenticado", u.getNome());
@@ -88,27 +94,32 @@ public class ControllerUsuario {
 
     }
 
-    @PostMapping("/cadastrarLivro")
-    public Livro cadastrarLivro(@RequestBody Livro livro){
+    @PostMapping("/cadastrarLivro/{id}")
+    public String cadastrarLivro(@PathVariable Integer id, @RequestBody Livro livro){
 
-        livro.setDisponivel(true);
+        String retorno ="";
 
-        listLivros.add(livro);
-        return livro;
+        for (Usuario u : listUsuarios){
+            if (u.getId().equals(id)){
+                if (u.getAdmin()){
+                    listLivros.add(livro);
+                    livro.setDisponivel(true);
+                    retorno = String.format("Livro: %s cadastrado com sucesso!!", livro.getTitulo());
+
+                }else {
+                    retorno = "Somente os administradores podem cadastrar livros!!";
+                }
+            }
+        }
+
+        return retorno;
 
     }
 
     @GetMapping("/consultarListaLivros")
     public List<Livro> cadastrarLivro(){
 
-        List<Livro> listDisponiveis =  listLivros.stream()
-                .filter(livro -> livro.getDisponivel())
-                .collect(Collectors.toList());
-
-        System.out.println(listDisponiveis);
-
-        return listDisponiveis;
-
+        return listLivros;
 
     }
 
