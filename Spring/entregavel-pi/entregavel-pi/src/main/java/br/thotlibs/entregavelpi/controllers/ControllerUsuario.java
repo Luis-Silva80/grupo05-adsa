@@ -25,6 +25,17 @@ public class ControllerUsuario {
     @PostMapping("/cadastroAdmin")
     public Usuario cadastrarAdmin(@RequestBody UsuarioAdmin usuario) {
 
+        usuario.setAdmin(true);
+        listUsuarios.add(usuario);
+        return usuario;
+
+    }
+
+
+    @PostMapping("/cadastroAluno")
+    public Usuario cadastrarAluno(@RequestBody UsuarioAdmin usuario) {
+
+        usuario.setAdmin(false);
         listUsuarios.add(usuario);
         return usuario;
 
