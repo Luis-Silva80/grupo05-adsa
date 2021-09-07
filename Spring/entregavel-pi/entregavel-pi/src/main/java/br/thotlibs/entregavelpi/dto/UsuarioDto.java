@@ -11,6 +11,8 @@ public class UsuarioDto {
     private Boolean autenticado;
     private LocalDateTime dataAtual = LocalDateTime.now();
     private String autenticadoEm;
+    private String logoffRealizadoEm;
+
 
     String hojeFormatado = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 
@@ -40,5 +42,13 @@ public class UsuarioDto {
 
     public void setAutenticado(Boolean autenticado) {
         this.autenticado = autenticado;
+    }
+
+    public String getLogoffRealizadoEm() {
+        return logoffRealizadoEm;
+    }
+
+    public void setLogoff() {
+        this.logoffRealizadoEm = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 }

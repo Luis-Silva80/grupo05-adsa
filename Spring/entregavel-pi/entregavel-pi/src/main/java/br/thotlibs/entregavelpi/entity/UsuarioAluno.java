@@ -23,6 +23,11 @@ public class UsuarioAluno extends Usuario implements Utilizavel {
     }
 
     @Override
+    public String LocarLivro(Integer id) {
+        return null;
+    }
+
+    @Override
     public String AlocarLivro(Integer id) {
         return null;
     }

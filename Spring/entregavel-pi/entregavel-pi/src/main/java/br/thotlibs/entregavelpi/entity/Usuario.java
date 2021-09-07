@@ -35,7 +35,7 @@ abstract public class Usuario {
 
     abstract public Optional buscarLivro(Integer id);
     abstract public List<Livro> consultarLista();
-    abstract public String AlocarLivro(Integer id);
+    abstract public String LocarLivro(Integer id);
     abstract public String devolverLivro(Integer id);
     abstract public String renovarAlocacao(Integer id);
 
