@@ -1,7 +1,6 @@
 package br.thotlibs.entregavelpi.entity;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +25,7 @@ public class HistoricoAcoes {
 
         return listAcoes.stream()
                 .filter(acao -> acao.getNomeUsuario().equals(aluno))
-                .filter(acao2 -> acao2 instanceof Alocacao)
+                .filter(acao2 -> acao2 instanceof Locacao)
                 .collect(Collectors.toList());
 
     }

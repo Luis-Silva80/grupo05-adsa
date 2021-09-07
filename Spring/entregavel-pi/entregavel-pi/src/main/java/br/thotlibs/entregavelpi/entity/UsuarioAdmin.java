@@ -76,7 +76,7 @@ public class UsuarioAdmin extends Usuario implements Administravel {
     }
 
     @Override
-    public String AlocarLivro(Integer id) {
+    public String LocarLivro(Integer id) {
         return null;
     }
 

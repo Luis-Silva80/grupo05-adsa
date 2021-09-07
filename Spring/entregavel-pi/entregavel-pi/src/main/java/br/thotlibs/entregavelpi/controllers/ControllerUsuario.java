@@ -92,7 +92,7 @@ public class ControllerUsuario {
                     retorno = String.format("Usuário %s saiu do sistema", u.getNome());
 
                     u.setAutenticado(false);
-
+                    u.setLogoff();
 
 
                 } else {
