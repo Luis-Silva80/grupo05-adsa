@@ -6,8 +6,6 @@ import br.thotlibs.entregavelpi.entity.Usuario;
 import br.thotlibs.entregavelpi.entity.UsuarioAdmin;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -64,6 +62,7 @@ public class ControllerUsuario {
 
             }
         }
+
         return usuarioDto;
 
     }
@@ -88,7 +87,6 @@ public class ControllerUsuario {
                 if (u.getAutenticado()) {
 
 
-
                     retorno = String.format("Usuário %s saiu do sistema", u.getNome());
 
                     u.setAutenticado(false);
@@ -106,18 +104,18 @@ public class ControllerUsuario {
     }
 
     @PostMapping("/cadastrarLivro/{id}")
-    public String cadastrarLivro(@PathVariable Integer id, @RequestBody Livro livro){
+    public String cadastrarLivro(@PathVariable Integer id, @RequestBody Livro livro) {
 
-        String retorno ="";
+        String retorno = "";
 
-        for (Usuario u : listUsuarios){
-            if (u.getId().equals(id)){
-                if (u.getAdmin()){
+        for (Usuario u : listUsuarios) {
+            if (u.getId().equals(id)) {
+                if (u.getAdmin()) {
                     listLivros.add(livro);
                     livro.setDisponivel(true);
                     retorno = String.format("Livro: %s cadastrado com sucesso!!", livro.getTitulo());
 
-                }else {
+                } else {
                     retorno = "Somente os administradores podem cadastrar livros!!";
                 }
             }
@@ -128,9 +126,54 @@ public class ControllerUsuario {
     }
 
     @GetMapping("/consultarListaLivros")
-    public List<Livro> cadastrarLivro(){
+    public List<Livro> cadastrarLivro() {
 
         return listLivros;
+
+    }
+
+    @PostMapping("/reservarLivro/{idUsuario}/{idLivro}")
+    public String reservarLivro(@PathVariable Integer idUsuario,@PathVariable Integer idLivro) {
+
+        String retorno = "";
+
+        Livro alugado = buscarLivro(idLivro);
+
+        for (Usuario usuario : listUsuarios) {
+            if (usuario.getId().equals(idUsuario)) {
+
+                for(Livro livroAlugado : listLivros){
+                    if(livroAlugado.getId().equals(idLivro)){
+                        livroAlugado.setDisponivel(false);
+                    }
+                }
+
+                alugado.setDisponivel(false);
+                usuario.setListLivros(alugado);
+                usuario.LocarLivro(idLivro, idUsuario);
+                retorno = "Livro reservado com sucesso!!";
+            }else {
+                retorno = "Não foi possivel reservar o livro!!";
+            }
+        }
+
+        return retorno;
+
+    }
+
+    public Livro buscarLivro(Integer id) {
+
+        Livro livro = new Livro();
+
+        for (Livro l : listLivros) {
+            if (l.getId().equals(id)) {
+                livro.setId(l.getId());
+                livro.setAutor(l.getAutor());
+                livro.setTitulo(l.getTitulo());
+                livro.setDisponivel(l.getDisponivel());
+            }
+        }
+        return livro;
 
     }
 

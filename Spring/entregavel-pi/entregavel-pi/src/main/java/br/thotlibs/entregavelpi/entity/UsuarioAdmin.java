@@ -1,15 +1,15 @@
 package br.thotlibs.entregavelpi.entity;
 
 import br.thotlibs.entregavelpi.interfaces.Administravel;
-import br.thotlibs.entregavelpi.interfaces.Utilizavel;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 public class UsuarioAdmin extends Usuario implements Administravel {
 
-    public UsuarioAdmin(Integer id, String nome, String cpf, String email, String telefone, String senha, Boolean admin, Date dataNascimento) {
+    public UsuarioAdmin(Integer id, String nome, String cpf, String email, String telefone, String senha, Boolean admin, Date    dataNascimento) {
         super(id, nome, cpf, email, telefone, senha, admin, dataNascimento);
     }
 
@@ -55,7 +55,7 @@ public class UsuarioAdmin extends Usuario implements Administravel {
                 livro.setDisponivel(livroAlterar.getDisponivel());
                 livro.setTitulo(livroAlterar.getTitulo());
 
-                livroAlterado = new Livro(livro.getTitulo(), livro.getAutor(), livro.getDisponivel());
+                livroAlterado = new Livro(livro.getId(), livro.getTitulo(), livro.getAutor(), livro.getDisponivel());
             }
         }
 
@@ -76,7 +76,7 @@ public class UsuarioAdmin extends Usuario implements Administravel {
     }
 
     @Override
-    public String LocarLivro(Integer id) {
+    public String LocarLivro(Integer idLivro, Integer idUsuario) {
         return null;
     }
 

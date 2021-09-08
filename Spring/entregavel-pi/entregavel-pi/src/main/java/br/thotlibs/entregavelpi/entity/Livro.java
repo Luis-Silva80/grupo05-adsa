@@ -17,7 +17,8 @@ public class Livro {
     public Livro() {
     }
 
-    public Livro(String titulo, String autor, Boolean disponivel) {
+    public Livro(Integer id, String titulo, String autor, Boolean disponivel) {
+        this.id = id;
         this.titulo = titulo;
         this.autor = autor;
         this.disponivel = disponivel;
@@ -53,5 +54,15 @@ public class Livro {
 
     public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
+    }
+
+    @Override
+    public String toString() {
+        return "Livro{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", disponivel=" + disponivel +
+                '}';
     }
 }

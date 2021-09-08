@@ -5,8 +5,9 @@ import br.thotlibs.entregavelpi.interfaces.Utilizavel;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-public class UsuarioAluno extends Usuario implements Utilizavel {
+public class UsuarioAluno extends Usuario {
 
     public UsuarioAluno(Integer id, String nome, String cpf, String email, String telefone, String senha, Boolean admin, Date dataNascimento) {
         super(id, nome, cpf, email, telefone, senha, admin, dataNascimento);
@@ -14,7 +15,11 @@ public class UsuarioAluno extends Usuario implements Utilizavel {
 
     @Override
     public Optional buscarLivro(Integer id) {
-        return Optional.empty();
+
+        Optional<Livro> livroBusca = super.getListLivros().stream().filter(livro -> livro.getId() == id).findFirst();
+
+        return livroBusca;
+
     }
 
     @Override
@@ -22,15 +27,20 @@ public class UsuarioAluno extends Usuario implements Utilizavel {
         return null;
     }
 
-    @Override
-    public String LocarLivro(Integer id) {
-        return null;
-    }
 
     @Override
-    public String AlocarLivro(Integer id) {
-        return null;
+    public String LocarLivro(Integer idLivro, Integer idUsuario) {
+        try {
+
+            Livro livroLocado = (Livro) super.getListLivros().stream().filter(livro -> livro.getId().equals(idLivro));
+            livroLocado.setDisponivel(false);
+            return "Livro: " + livroLocado.getTitulo() + " locado com sucesso!";
+
+        }catch (Exception e){
+            return e.getMessage();
+        }
     }
+
 
     @Override
     public String devolverLivro(Integer id) {
