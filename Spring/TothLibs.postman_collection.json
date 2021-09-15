@@ -18,7 +18,7 @@
 					"response": []
 				},
 				{
-					"name": "cadastro usuario",
+					"name": "cadastro admin",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -95,6 +95,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "cadastro aluno",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"2525\",\r\n    \"nome\": \"Luscao\",\r\n    \"cpf\": \"252525\",\r\n    \"email\": \"lucas.silva@bandtec.com\",\r\n    \"telefone\": \"111111\",\r\n    \"senha\": \"lucas123\",\r\n    \"dataNascimento\": \"2002-04-06\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/usuarios/cadastroAluno",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"cadastroAluno"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -135,6 +163,27 @@
 						"method": "GET",
 						"header": [],
 						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "reservar livro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/usuarios/reservarLivro/2525/10000",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"reservarLivro",
+								"2525",
+								"10000"
+							]
+						}
 					},
 					"response": []
 				}
