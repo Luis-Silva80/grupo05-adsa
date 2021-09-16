@@ -1,0 +1,25 @@
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Courier New', Courier, monospace
+}
+
+// imports de outros arquivos de estilo
+@import 'components/header', 'components/footer', 'components/sidenav' ;
+
+// criar variáveis de cores tamanhos e oq mais for necessário aqui
+$fontWhite: #ffffff;
+$fontBlack: #000000;
+$bgWhite: #ffffff;
+$bgBlack: #000000;
+$fontSize16: 16px;
+$fontSize18: 18px;
+
+body{
+  background: $bgWhite;
+  &.dm{
+    background: $bgBlack;
+  }
+}
+
