@@ -2,6 +2,7 @@ function initInst(){
   $("#header").load("./templates/header.html");
   $("#footer").load("./templates/footer.html"); 
 };
+
 // function initApp() {
 //   $("#sideBar").load("./templates/sideBar.html");
 //   $("#footer").load("./templates/footer.html"); 
