@@ -1,0 +1,33 @@
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+.main{
+  // display: flex;
+  // justify-content: center;
+  &.container{
+    width: 80%;
+    margin: 0 auto;
+    background-color: red;
+  }
+
+  &_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &_input{
+      border-radius: 10px;
+      // border: ;
+    }
+    &_button{
+
+    }
+  }
+
+
+
+}
+
+

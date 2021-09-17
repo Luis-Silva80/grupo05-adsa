@@ -5,9 +5,6 @@
   font-family: 'Courier New', Courier, monospace
 }
 
-// imports de outros arquivos de estilo
-// @import 'components/header', 'components/footer', 'components/sidenav' ;
-
 // criar variáveis de cores tamanhos e oq mais for necessário aqui
 $fontWhite: #ffffff;
 $fontBlack: #000000;
@@ -16,10 +13,14 @@ $bgBlack: #000000;
 $fontSize16: 16px;
 $fontSize18: 18px;
 
-body{
-  background: $bgWhite;
-  &.dm{
-    background: $bgBlack;
-  }
+$lightBlue: #32b9cd;
+$darkBlue: #04378f;
+$lightGrey: #636a70;
+$white: #ffffff;
+$black: #07080a;
+
+.container {
+  width: 85%;
+  margin: 0 auto;
 }
 
