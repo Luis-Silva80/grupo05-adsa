@@ -5,11 +5,8 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
-body {
-  background: #ffffff;
-}
-
-body.dm {
-  background: #000000;
+.container {
+  width: 85%;
+  margin: 0 auto;
 }
 /*# sourceMappingURL=style.css.map */
