@@ -2,12 +2,31 @@
   margin: 0;
   padding: 0;
   outline: none;
+  font-family: monospace, Courier, 'Courier New';
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .main.container {
   width: 80%;
   margin: 0 auto;
-  background-color: red;
+}
+
+.main_title {
+  color: #32b9cd;
+  font-size: 30px;
+  margin-bottom: 20px;
 }
 
 .main_form {
@@ -21,9 +40,33 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 80%;
 }
 
 .main_form_input {
   border-radius: 10px;
+  border: 2px solid #04378f;
+  padding: 5px 20px;
+  margin: 5px 0;
+  width: 60%;
+}
+
+.main_form_textArea {
+  margin-top: 10px;
+  width: 60%;
+  padding: 0 20px;
+  border-radius: 10px;
+  border: 2px solid #04378f;
+}
+
+.main_form_button {
+  border-radius: 20px;
+  border: none;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #04378f;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
 }
 /*# sourceMappingURL=cadastroLivros.css.map */
