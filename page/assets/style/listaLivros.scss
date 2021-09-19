@@ -23,14 +23,17 @@ $black: #07080a;
     &_title{
       color: $lightBlue;
       font-size: 3rem;
-      margin-bottom: 20px;
     }
     &_nav{
         display: flex;
         align-items: center;
         width: 70%;
         justify-content: space-evenly;
-        margin-bottom: 30px;
+        position: sticky;
+        background: white;
+        padding: 10px;
+        top: 10px;
+        border-radius: 20px;
         &_input{
             min-width: 60%;
             font-size: 18px;
@@ -76,6 +79,10 @@ $black: #07080a;
                 color: $black;
             }
         }
+    }
+    &_callback{
+        margin: 20px 0;
+
     }
 
     

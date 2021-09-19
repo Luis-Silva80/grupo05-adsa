@@ -27,7 +27,6 @@
 .main_title {
   color: #32b9cd;
   font-size: 3rem;
-  margin-bottom: 20px;
 }
 
 .main_nav {
@@ -41,7 +40,12 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  margin-bottom: 30px;
+  position: -webkit-sticky;
+  position: sticky;
+  background: white;
+  padding: 10px;
+  top: 10px;
+  border-radius: 20px;
 }
 
 .main_nav_input {
@@ -91,6 +95,10 @@
 .main_nav_filter_value {
   background: white;
   color: #07080a;
+}
+
+.main_callback {
+  margin: 20px 0;
 }
 
 .main .resp {
