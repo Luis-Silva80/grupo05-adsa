@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/listaUsuarios.css">
+    <title>Usuários cadastrados</title>
+    <link rel="shortcut icon" href="./assets/imgs/iconBlack.png" />
+</head>
+<body>
+    <main class="main container">
+        <h1 class="main_title">Usuários cadastrados</h1>
+
+        <div class="main_nav">
+            <input class="main_nav_input" placeholder="Digite o nome do usuário" type="text" name="" id="">
+            <button class="main_nav_btn">Pesquisar</button>
+            <select class="main_nav_filter">
+                <option class="main_nav_filter_value" value="#">Filtrar por:</option>
+                <option class="main_nav_filter_value" value="pendencia">Pendência</option>
+                <option class="main_nav_filter_value" value="nomeDesc">Nome Desc</option>
+                <option class="main_nav_filter_value" value="nomeAsc">Nome Asc</option>
+            </select>
+        </div>
+
+        <table class="main_table">
+            <tr class="main_table_label">
+                <th></th>
+                <th class="main_table_label_title">Usuário</th>
+                <th class="main_table_label_title">Email</th>
+                <th class="main_table_label_title">Status</th>
+                <th class="main_table_label_title">Pendência</th>
+                <th></th>    
+                <th></th>    
+            </tr>
+
+            <tr class="main_table_user">
+              <td><img class="main_table_user_img" src="./assets/imgs/4043255-beard-hipster-male-man_113243.png" alt="user img"></td>
+              <td class="main_table_user_title">Lucas Alves</td>
+              <td class="main_table_user_title">lucas.email@gmail.com</td>
+              <td class="main_table_user_title">ativo</td>
+              <td class="main_table_user_title">nenhuma</td>
+              <td><img class="main_table_user_about" src="./assets/imgs/loupe.png"></td>
+              <td><img class="main_table_user_trash" src="./assets/imgs/trash.png"></td>
+            </tr>
+        </table>
+
+    </main>
+</body>
+    <script src="./assets/script/listaUsuarios.js"></script>
+</html>
