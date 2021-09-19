@@ -11,10 +11,6 @@ $lightGrey: #636a70;
 $white: #ffffff;
 $black: #07080a;
 
-body{
-    background: #ffe0e0;
-
-}
 .main{
     display: flex;
     flex-direction: column;
@@ -77,53 +73,47 @@ body{
             cursor: pointer;
             &_value{
                 background: white;
-                color: black;
+                color: $black;
             }
         }
     }
 
-    &_table{
-        width: 85%;
-        &_label{
-
-            &_title{
-                font-size: 25px;
-                text-align: center;
-            }
+    
+    .resp{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+       .book{
+        border-radius: 10px;
+        border: 2px solid $black;
+        width: 250px;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: $white;
+        &_img{
+            width: 220px;
+            margin: 10px 0;
         }
-        &_user{
-            position: relative;
-            &_img{
-                width: 50px;
-                height: 50px;
-            }
-            &_title{
-                font-size: 25px;
-                text-align: center;
-            }
-            &_about{
-                background: $darkBlue;
-                border-radius: 10px;
-                border: none;
-                width: 30px;
-                height: 30px;
-                padding: 5px;
-                cursor: pointer;
-            }
-            &_trash{
-                background: #8f0404;
-                border-radius: 10px;
-                border: none;
-                width: 30px;
-                height: 30px;
-                padding: 5px;
-                cursor: pointer;
-            }
+        &_title{
+            margin: 0 5px;
+            text-align: center;
         }
+        &_btn{
+            padding: 5px 10px;
+            background: $darkBlue;
+            color: $white;
+            border-radius: 10px;
+            border: 2px solid $black;
+            font-size: 18px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+       }
     }
-
-
-
 
 
 }
