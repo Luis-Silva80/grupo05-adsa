@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/style/cadastroLivros.css">
+  <title>Cadastro De Livros</title>
+</head>
+<body>
+  <main class="main container">
+    <h1 class="main_title">Adicionar Livro</h1>
+    <p class="main_parag">Preencha os campos abaixo para adicionar um novo livro ao sistema.</p>
+    <form action="" class="main_form" id="form">
+      <input type="text" name="title" required class="main_form_input" placeholder="Título">
+      <input type="text" name="author" required class="main_form_input" placeholder="Autor">
+      <input type="text" name="editor" required class="main_form_input" placeholder="Editora">
+      <input type="text" name="edition" required class="main_form_input" placeholder="Edição">
+      <textarea name="desc" required rows="5" class="main_form_textArea" placeholder="Descrição"></textarea>
+      <input type="number" name="quantity" required class="main_form_input quant" placeholder="quantidade">
+      <input type="submit" class="main_form_button" onclick="addBook(event)" id="formBtn" value="Cadastrar livro" >
+    </form>
+    <section id="resp" class="resp"></section>
+  </main>
+</body>
+<script src="./assets/script/jquery.min.js"></script>
+<script src="./assets/script/cadastroLivro.js"></script>
+</html>
