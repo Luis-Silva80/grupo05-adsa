@@ -44,10 +44,23 @@
   text-decoration: none;
   color: #fff;
   font-size: 1rem;
+  position: relative;
 }
 
-.header_categories_category_link:hover {
-  border-bottom: 2px solid #32B9CD;
+.header_categories_category_link::after {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  content: "";
+  height: 2px;
+  width: 0%;
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  background-color: #32B9CD;
+}
+
+.header_categories_category_link:hover::after {
+  width: 100%;
 }
 
 .header_login {
@@ -66,6 +79,7 @@
   background-color: #2C2C2C;
   border: 2px #32B9CD solid;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .header_login_button:hover {

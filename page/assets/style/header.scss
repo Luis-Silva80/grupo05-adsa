@@ -30,9 +30,24 @@
         text-decoration: none;
         color: #fff;
         font-size: 1rem;
+        position: relative;
+
+        &::after {
+          transition: 0.5s;
+          content: "";
+          height: 2px;
+          width: 0%;
+          position: absolute;
+          left: 0;
+          bottom: 0px;
+          background-color: #32B9CD;
+        }
 
         &:hover {
-          border-bottom: 2px solid #32B9CD;
+          &::after {
+            width: 100%;
+          }
+
         }
       }
     }
@@ -49,6 +64,7 @@
       background-color: #2C2C2C;
       border: 2px #32B9CD solid;
       cursor: pointer;
+      font-weight: 600;
 
       &:hover {
         transition: 0.5s;
