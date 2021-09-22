@@ -1,4 +1,4 @@
-package br.thotlibs.entregavelpi.Config;
+package b.com.tothlibs.apitothlib.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
