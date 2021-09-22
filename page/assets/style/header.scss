@@ -1,7 +1,11 @@
+$bgBlackHeader: #2C2C2C;
+$secundaryColor: #32B9CD;
+$colorWhite: #FFFF;
+
 .header {
   display: flex;
   justify-content: space-between;
-  background-color: #2C2C2C;
+  background-color: $bgBlackHeader;
 
   &_imageContainer {
     width: 150px;
@@ -18,7 +22,6 @@
   }
 
   &_categories {
-    list-style: none;
     width: 70%;
     display: flex;
     justify-content: space-between;
@@ -28,7 +31,7 @@
       
       &_link {
         text-decoration: none;
-        color: #fff;
+        color: $colorWhite;
         font-size: 1rem;
         position: relative;
 
@@ -40,7 +43,7 @@
           position: absolute;
           left: 0;
           bottom: 0px;
-          background-color: #32B9CD;
+          background-color: $secundaryColor;
         }
 
         &:hover {
@@ -60,16 +63,16 @@
     &_button {
       padding: 5px 25px;
       border-radius: 20px;
-      color: white;
-      background-color: #2C2C2C;
-      border: 2px #32B9CD solid;
+      color: $colorWhite;
+      background-color: $bgBlackHeader;
+      border: 2px $secundaryColor solid;
       cursor: pointer;
       font-weight: 600;
 
       &:hover {
         transition: 0.5s;
-        background-color: #32B9CD;
-        color: #2C2C2C;
+        background-color: $secundaryColor;
+        color: $bgBlackHeader;
       }
     }
   }

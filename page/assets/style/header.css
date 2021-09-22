@@ -27,7 +27,6 @@
 }
 
 .header_categories {
-  list-style: none;
   width: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -42,7 +41,7 @@
 
 .header_categories_category_link {
   text-decoration: none;
-  color: #fff;
+  color: #FFFF;
   font-size: 1rem;
   position: relative;
 }
@@ -75,7 +74,7 @@
 .header_login_button {
   padding: 5px 25px;
   border-radius: 20px;
-  color: white;
+  color: #FFFF;
   background-color: #2C2C2C;
   border: 2px #32B9CD solid;
   cursor: pointer;
