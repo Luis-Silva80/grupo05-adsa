@@ -5,9 +5,73 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  background-color: #2C2C2C;
 }
 
 .header_imageContainer {
-  background-color: red;
+  width: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header_imageContainer_link {
+  cursor: pointer;
+}
+
+.header_imageContainer_link_imageLogo {
+  width: 135px;
+}
+
+.header_categories {
+  list-style: none;
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header_categories_category_link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.header_categories_category_link:hover {
+  border-bottom: 2px solid #32B9CD;
+}
+
+.header_login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header_login_button {
+  padding: 5px 25px;
+  border-radius: 20px;
+  color: white;
+  background-color: #2C2C2C;
+  border: 2px #32B9CD solid;
+  cursor: pointer;
+}
+
+.header_login_button:hover {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: #32B9CD;
+  color: #2C2C2C;
 }
 /*# sourceMappingURL=header.css.map */

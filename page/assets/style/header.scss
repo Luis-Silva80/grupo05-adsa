@@ -1,23 +1,60 @@
 .header {
   display: flex;
   justify-content: space-between;
+  background-color: #2C2C2C;
 
   &_imageContainer {
-    background-color: red;
-  }
+    width: 150px;
+    display: flex;
+    align-items: center;
 
-  .header_categories {
+    &_link {
+      cursor: pointer;
 
-
-    .header_categories_category {
-
+      &_imageLogo {
+        width: 135px;
+      }
     }
   }
 
-  .header_login {
+  &_categories {
+    list-style: none;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    .header_login_button {
+    &_category {
+      
+      &_link {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
 
+        &:hover {
+          border-bottom: 2px solid #32B9CD;
+        }
+      }
+    }
+  }
+
+  &_login {
+    display: flex;
+    align-items: center;
+    
+    &_button {
+      padding: 5px 25px;
+      border-radius: 20px;
+      color: white;
+      background-color: #2C2C2C;
+      border: 2px #32B9CD solid;
+      cursor: pointer;
+
+      &:hover {
+        transition: 0.5s;
+        background-color: #32B9CD;
+        color: #2C2C2C;
+      }
     }
   }
 }
