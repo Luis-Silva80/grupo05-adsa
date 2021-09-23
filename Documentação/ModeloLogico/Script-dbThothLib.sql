@@ -6,6 +6,10 @@ use dbThothLib;
 
 select * from tbInstituicao;
 select * from tbPerfilUsuario;
+select * from tbBiblioteca;
+select * from tbLivros;
+select * from tbCategoria;
+select * from tbHistorico;
 
 create table  tbInstituicao (
 id int primary key auto_increment,
@@ -49,38 +53,41 @@ qtd_resenhas int,
 qtd_reservas int,
 qtd_estoque int,
 qtd_reservado_agora int,
-fk_tbBiblioteca int,
-foreign key (fk_tbBiblioteca) references tbBiblioteca(id)
+fk_tb_biblioteca int,
+foreign key (fk_tb_biblioteca) references tbBiblioteca(id)
 );
 
 create table tbCategoria (
 id int primary key auto_increment,
 nome varchar(70),
-fk_tbLivros int,
-foreign key (fk_tbLivros) references tbLivros(id)
+fk_tb_livros int,
+foreign key (fk_tb_livros) references tbLivros(id)
 );
 
+
 create table tbHistorico (
-fk_tbLivros int,
-fk_tbPerfilUsuario int,
+fk_tb_livros int,
+fk_tb_perfil_usuario int,
+foreign key(fk_tb_livros) references tbLivros(id),
+foreign key(fk_tb_perfil_usuario) references tbPerfilUsuario(id),
+id int primary key auto_increment,
 data_livro_historico datetime,
 nome_livro varchar(70),
 nome_perfil_usuario varchar(70),
-acao varchar(15),
-primary key(fk_tbLivros, fk_tbPerfilUsuario, data_livro_historico),
-foreign key(fk_tbLivros) references tbLivros(id),
-foreign key(fk_tbPerfilUsuario) references tbPerfilUsuario(id)
+acao varchar(15)
 );
 
+
 create table tbResenha(
+id int primary key auto_increment,
 data_publicacao datetime,
 conteudo_publicacao varchar(120),
-fk_tbLivros int,
-fk_tbPerfilUsuario int,
-primary key(fk_tbLivros, fk_tbPerfilUsuario, data_publicacao),
-foreign key (fk_tbLivros) references tbLivros(id),
-foreign key (fk_tbPerfilUsuario) references tbPerfilUsuario(id)
+fk_tb_livros int,
+fk_tb_perfil_usuario int,
+foreign key (fk_tb_livros) references tbLivros(id),
+foreign key (fk_tb_perfil_usuario) references tbPerfilUsuario(id)
 );
+
 
 -- select * from tbInstituicao;
 

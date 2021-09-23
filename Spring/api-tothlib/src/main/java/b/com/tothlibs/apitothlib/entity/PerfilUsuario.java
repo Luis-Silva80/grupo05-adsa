@@ -39,15 +39,14 @@ public class PerfilUsuario {
     @Column(name = "qtd_resenhas")
     private Integer qtdResenhas;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_tb_instituicao")
-    private Instituicao fkTbInstituicao;
+    @Column(name = "fk_tb_instituicao")
+    private Integer fkTbInstituicao;
 
-    public Instituicao getFkTbInstituicao() {
+    public Integer getFkTbInstituicao() {
         return fkTbInstituicao;
     }
 
-    public void setFkTbInstituicao(Instituicao fkTbInstituicao) {
+    public void setFkTbInstituicao(Integer fkTbInstituicao) {
         this.fkTbInstituicao = fkTbInstituicao;
     }
 
