@@ -1,100 +1,99 @@
 create database dbThothLib;
+-- drop database dbThothLib;
+-- drop table tbPerfilUsuario;
+-- delete from tbInstituicao where id = 2
 use dbThothLib;
 
+select * from tbInstituicao;
+select * from tbPerfilUsuario;
+
 create table  tbInstituicao (
-tbInstituicao_id int primary key auto_increment,
-tbInstituicao_razaoSocial varchar(70),
-tbInstituicao_cep  char(08),
-tbInstituicao_email varchar(70),
-tbInstituicao_telefone varchar(15)
-) auto_increment = 0;
-
-create table tbPerfilUsuario (
-
-tbPerfilUsuario_id int primary key auto_increment,
-tbPerfilUsuario_nome varchar(70),
-tbPerfilUsuario_cpf  char(11),
-tbPerfilUsuario_email varchar(70),
-tbPerfilUsuario_telefone varchar(14),
-tbPerfilUsuario_senha varchar(35),
-tbPerfilUsuario_admin boolean,
-tbPerfilUsuario_pontos bigint,
-tbPerfilUsuario_qtdLivrosLidos int,
-tbPerfilUsuario_qtdResenhas int,
-fk_tbPerfilUsuario_tbInstituicao int,
-foreign key (fk_tbPerfilUsuario_tbInstituicao) references tbInstituicao(tbInstituicao_id)
+id int primary key auto_increment,
+razao_social varchar(70),
+cep  char(08),
+email varchar(70),
+telefone varchar(15)
 );
 
+create table tbPerfilUsuario (
+id int primary key auto_increment,
+nome varchar(70),
+cpf  char(11),
+email varchar(70),
+telefone varchar(14),
+senha varchar(35),
+usuario_admin boolean,
+pontos bigint,
+qtd_livros_lidos int,
+qtd_resenhas int,
+fk_tb_instituicao int,
+foreign key (fk_tb_instituicao) references tbInstituicao(id)
+);
 
 create table tbBiblioteca (
-
-tbBiblioteca_id int primary key auto_increment,
-tbBiblioteca_qtdLivros int,
-fk_tbBiblioteca_tbPerfilUsuario int,
-foreign key (fk_tbBiblioteca_tbPerfilUsuario) references tbPerfilUsuario(tbPerfilUsuario_id)
+id int primary key auto_increment,
+qtd_livros int,
+fk_tb_perfil_usuario int,
+foreign key (fk_tb_perfil_usuario) references tbPerfilUsuario(id)
 );
 
 create table tbLivros (
-
-tbLivros_id int primary key auto_increment,
-tbLivros_titulo varchar(45),
-tbLivros_descricao varchar(120),
-tbLivros_autor varchar(45),
-tbLivros_edicao varchar(45),
-tbLivros_editora varchar(45),
-tbLivros_status varchar(15),
-tbLivros_qtdResenhas int,
-tbLivros_qtdReservas int,
-tbLivros_qtdEstoque int,
-tbLivros_qtdReservadoAgora int,
-fk_tbLivros_tbBiblioteca int,
-foreign key (fk_tbLivros_tbBiblioteca) references tbBiblioteca(tbBiblioteca_id)
+id int primary key auto_increment,
+titulo varchar(45),
+descricao varchar(120),
+autor varchar(45),
+edicao varchar(45),
+editora varchar(45),
+status_livro varchar(15),
+qtd_resenhas int,
+qtd_reservas int,
+qtd_estoque int,
+qtd_reservado_agora int,
+fk_tbBiblioteca int,
+foreign key (fk_tbBiblioteca) references tbBiblioteca(id)
 );
 
 create table tbCategoria (
-
-tbCategoria_id int primary key auto_increment,
-tbCategoria_nome varchar(70),
-fk_tbCategoria_tbLivros int,
-foreign key (fk_tbCategoria_tbLivros) references tbLivros(tbLivros_id)
+id int primary key auto_increment,
+nome varchar(70),
+fk_tbLivros int,
+foreign key (fk_tbLivros) references tbLivros(id)
 );
 
 create table tbHistorico (
-
-fk_tbHistorico_tbLivros int,
-fk_tbHistorico_tbPerfilUsuario int,
-tbHistorico_data datetime,
-tbHistorico_nomeLivro varchar(70),
-tbHistorico_nomePerfilUsuario varchar(70),
-tbHistorico_acao varchar(15),
-primary key(fk_tbHistorico_tbLivros, fk_tbHistorico_tbPerfilUsuario, tbHistorico_data),
-foreign key(fk_tbHistorico_tbLivros) references tbLivros(tbLivros_id),
-foreign key(fk_tbHistorico_tbPerfilUsuario) references tbPerfilUsuario(tbPerfilUsuario_id)
+fk_tbLivros int,
+fk_tbPerfilUsuario int,
+data_livro_historico datetime,
+nome_livro varchar(70),
+nome_perfil_usuario varchar(70),
+acao varchar(15),
+primary key(fk_tbLivros, fk_tbPerfilUsuario, data_livro_historico),
+foreign key(fk_tbLivros) references tbLivros(id),
+foreign key(fk_tbPerfilUsuario) references tbPerfilUsuario(id)
 );
 
 create table tbResenha(
-
-tbResenha_dataPublicacao datetime,
-tbResenha_conteudoPublicacao varchar(120),
-fk_tbResenha_tbLivros int,
-fk_tbResenha_tbPerfilUsuario int,
-primary key(fk_tbResenha_tbLivros, fk_tbResenha_tbPerfilUsuario,tbResenha_dataPublicacao),
-foreign key (fk_tbResenha_tbLivros) references tbLivros(tbLivros_id),
-foreign key (fk_tbResenha_tbPerfilUsuario) references tbPerfilUsuario(tbPerfilUsuario_id)
+data_publicacao datetime,
+conteudo_publicacao varchar(120),
+fk_tbLivros int,
+fk_tbPerfilUsuario int,
+primary key(fk_tbLivros, fk_tbPerfilUsuario, data_publicacao),
+foreign key (fk_tbLivros) references tbLivros(id),
+foreign key (fk_tbPerfilUsuario) references tbPerfilUsuario(id)
 );
 
-select * from tbInstituicao;
+-- select * from tbInstituicao;
 
-insert into tbInstituicao(tbInstituicao_razaoSocial, tbInstituicao_cep, tbInstituicao_email, tbInstituicao_telefone) values
-("Empresa do Dudu", "09836444", "empresaDoDudu@gmail.com.br", "11400289220");
+-- insert into tbInstituicao(tbInstituicao_razaoSocial, tbInstituicao_cep, tbInstituicao_email, tbInstituicao_telefone) values
+-- ("Empresa do Dudu", "09836444", "empresaDoDudu@gmail.com.br", "11400289220");
 
-select * from tbPerfilUsuario;
+-- select * from tbPerfilUsuario;
 
-insert into tbPerfilUsuario(tbPerfilUsuario_nome, tbPerfilUsuario_cpf, tbPerfilUsuario_email, tbPerfilUsuario_telefone,
- tbPerfilUsuario_senha, tbPerfilUsuario_admin, tbPerfilUsuario_pontos, tbPerfilUsuario_qtdLivrosLidos,
- tbPerfilUsuario_qtdResenhas, fk_tbPerfilUsuario_tbInstituicao) values
-("Hanan Ortiz", "11092878899" , "hanan.ortiz@email.com", "11978236659", "123456", true, 12455, 4, 10, 1);
+-- insert into tbPerfilUsuario(tbPerfilUsuario_nome, tbPerfilUsuario_cpf, tbPerfilUsuario_email, tbPerfilUsuario_telefone,
+-- tbPerfilUsuario_senha, tbPerfilUsuario_admin, tbPerfilUsuario_pontos, tbPerfilUsuario_qtdLivrosLidos,
+-- tbPerfilUsuario_qtdResenhas, fk_tbPerfilUsuario_tbInstituicao) values
+-- ("Hanan Ortiz", "11092878899" , "hanan.ortiz@email.com", "11978236659", "123456", true, 12455, 4, 10, 1);
 
-update tbPerfilUsuario set tbPerfilUsuario_admin = 1 where fk_tbPerfilUsuario_tbInstituicao = 1;
+-- update tbPerfilUsuario set tbPerfilUsuario_admin = 1 where fk_tbPerfilUsuario_tbInstituicao = 1;
 
 
