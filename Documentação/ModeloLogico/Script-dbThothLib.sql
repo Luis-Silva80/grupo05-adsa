@@ -10,6 +10,7 @@ select * from tbBiblioteca;
 select * from tbLivros;
 select * from tbCategoria;
 select * from tbHistorico;
+select * from tbResenha;
 
 create table  tbInstituicao (
 id int primary key auto_increment,
