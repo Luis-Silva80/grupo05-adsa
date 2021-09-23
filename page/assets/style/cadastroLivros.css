@@ -163,4 +163,10 @@
   width: 25px;
   cursor: pointer;
 }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 /*# sourceMappingURL=cadastroLivros.css.map */

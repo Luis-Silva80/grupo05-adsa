@@ -85,14 +85,30 @@ body{
     &_table{
         width: 85%;
         &_label{
-
-            &_title{
+            // display: flex;
+            // justify-content: space-between;
+            &_user{
+                font-size: 25px;
+                text-align: center;
+                width: 100px;
+            }
+            &_mail{
+                font-size: 25px;
+                text-align: center;
+            }
+            &_status{
+                font-size: 25px;
+                text-align: center;
+            }
+            &_pend{
                 font-size: 25px;
                 text-align: center;
             }
         }
         &_user{
-            position: relative;
+            // position: relative;
+            display: flex;
+
             &_img{
                 width: 50px;
                 height: 50px;

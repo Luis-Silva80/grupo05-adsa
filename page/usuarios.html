@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/footer.css">
     <link rel="stylesheet" href="./assets/style/listaUsuarios.css">
     <title>Usuários cadastrados</title>
     <link rel="shortcut icon" href="./assets/imgs/iconBlack.png" />
@@ -24,27 +25,24 @@
             </select>
         </div>
 
-        <table class="main_table">
-            <tr class="main_table_label">
-                <th></th>
-                <th class="main_table_label_title">Usuário</th>
-                <th class="main_table_label_title">Email</th>
-                <th class="main_table_label_title">Status</th>
-                <th class="main_table_label_title">Pendência</th>
-                <th></th>    
-                <th></th>    
-            </tr>
+        <section class="main_table">
+            <ul class="main_table_label">
+                <li class="main_table_label_user">Usuário</li>
+                <li class="main_table_label_mail">Email</li>
+                <li class="main_table_label_status">Status</li>
+                <li class="main_table_label_pend">Pendência</li>                
+            </ul>
 
-            <tr class="main_table_user">
-              <td><img class="main_table_user_img" src="./assets/imgs/4043255-beard-hipster-male-man_113243.png" alt="user img"></td>
-              <td class="main_table_user_title">Lucas Alves</td>
-              <td class="main_table_user_title">lucas.email@gmail.com</td>
-              <td class="main_table_user_title">ativo</td>
-              <td class="main_table_user_title">nenhuma</td>
-              <td><img class="main_table_user_about" src="./assets/imgs/loupe.png"></td>
-              <td><img class="main_table_user_trash" src="./assets/imgs/trash.png"></td>
-            </tr>
-        </table>
+            <ul class="main_table_user">
+              <li><img class="main_table_user_img" src="./assets/imgs/4043255-beard-hipster-male-man_113243.png" alt="user img"></li>
+              <li class="main_table_user_title">Lucas Alves</li>
+              <li class="main_table_user_title">lucas.email@gmail.com</li>
+              <li class="main_table_user_title">ativo</li>
+              <li class="main_table_user_title">nenhuma</li>
+              <li><img class="main_table_user_about" src="./assets/imgs/loupe.png"></li>
+              <li><img class="main_table_user_trash" src="./assets/imgs/trash.png"></li>
+            </ul>
+        </section>
 
     </main>
 

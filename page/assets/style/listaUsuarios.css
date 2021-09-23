@@ -101,13 +101,31 @@ body {
   width: 85%;
 }
 
-.main_table_label_title {
+.main_table_label_user {
+  font-size: 25px;
+  text-align: center;
+  width: 100px;
+}
+
+.main_table_label_mail {
+  font-size: 25px;
+  text-align: center;
+}
+
+.main_table_label_status {
+  font-size: 25px;
+  text-align: center;
+}
+
+.main_table_label_pend {
   font-size: 25px;
   text-align: center;
 }
 
 .main_table_user {
-  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .main_table_user_img {
