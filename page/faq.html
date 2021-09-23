@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/imgs/iconBlack.png" />
+    <title>FAQ</title>
+    <link rel="stylesheet" href="./assets/style/faq.css">
+</head>
+
+<body>
+
+    <main class="main container">
+
+        <h1 class="main_title">Perguntas Frequentes</h1>
+
+        <div class="main_box">
+
+            <div id="d1"  class="main_box_duplinha">
+            
+                <h2  class="main_box_duplinha_titles">Como faço para reservar um livro?</h2>
+                 <div id="bttn1" onclick="ativar(`bttn1`,`d1`)" class= "main_box_duplinha_accordion"></div>
+            
+                <p class="paragrafo">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip
+                    ex ea commodo consequat.</p>
+            </div>
+
+            <div id="d2"  class="main_box_duplinha">
+                <h2  class="main_box_duplinha_titles">Como faço para reservar um livro?</h2>
+                 <div id="bttn2" onclick="ativar(`bttn2`,`d2`)" class= "main_box_duplinha_accordion"></div>
+            
+                <p class="paragrafo">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip
+                    ex ea commodo consequat.</p>
+            </div>
+
+            
+            <div id="d3"  class="main_box_duplinha">
+            
+                <h2  class="main_box_duplinha_titles">Como faço para reservar um livro?</h2>
+                 <div id="bttn3" onclick="ativar(`bttn3`,`d3`)" class= "main_box_duplinha_accordion"></div>
+            
+                <p class="paragrafo">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip
+                    ex ea commodo consequat.</p>
+            </div>
+
+
+           
+
+    </main>
+
+</body>
+
+</html>
+
+<script>
+
+
+   
+
+
+    function ativar(idOnclick, idDiv){
+
+        var div = document.getElementById(`${idDiv}`);
+        var bttn = document.getElementById(`${idOnclick}`);
+
+        div.classList.toggle("active");
+        bttn.classList.toggle("active");
+    }
+
+    
+
+    // for (i = 0; i < acc.length; i++) {
+
+    //     console.log(i);
+    //     acc[i].addEventListener("click", function () {
+
+    //         this.classList.toggle("main_box_active");
+    //         var painel = document.getElementById(i);
+
+    //         if (painel.style.maxHeight) {
+
+    //             painel.style.maxHeight = null;
+
+    //         } else {
+
+    //             painel.style.maxHeight = painel.scrollHeight + "px";
+
+    //         [i].innerHTML = "&minus;";
+    //         }
+    //     });
+    // }
+</script>
