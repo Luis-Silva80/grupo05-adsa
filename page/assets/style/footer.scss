@@ -1,6 +1,9 @@
+$bgBlackHeader: #2C2C2C;
+$colorWhite: #FFFF;
+
 .footer {
     display: flex;
-    background-color: #2C2C2C;
+    background-color: $bgBlackHeader;
     justify-content: space-between;
 
     &_imageContainer{ 
@@ -16,7 +19,7 @@
         align-items: center;
 
         &_text {
-            color: #fff;
+            color: $colorWhite;
         }
     }
 
