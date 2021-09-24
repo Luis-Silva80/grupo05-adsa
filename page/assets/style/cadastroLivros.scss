@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   outline: none;
-  font-family: monospace, Courier, 'Courier New' ;
 }
 
 $lightBlue: #32b9cd;
@@ -126,4 +125,9 @@ $black: #07080a;
       cursor: pointer;
     }
   }
+}
+.footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

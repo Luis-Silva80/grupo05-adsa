@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro De Livros</title>
-  <link rel="shortcut icon" href="./assets/imgs/iconBlack.png" />
-  <link rel="stylesheet" href="./assets/style/cadastroLivros.css">
-  <link rel="stylesheet" href="./assets/style/footer.css">
-  <link rel="stylesheet" href="./assets/style/style.css">
-  <link rel="stylesheet" href="./assets/style/sidenav.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros cadastrados</title>
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/footer.css">
+    <link rel="stylesheet" href="./assets/style/listaLivros.css">
+    <link rel="stylesheet" href="./assets/style/footer.css">
+    <link rel="stylesheet" href="./assets/style/sidenav.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/imgs/iconBlack.png" />
 </head>
 <body>
   <aside class="sidenav">
@@ -40,20 +41,23 @@
     </div>
   </aside>
 
-  <main class="main container">
-    <h1 class="main_title">Adicionar Livro</h1>
-    <p class="main_parag">Preencha os campos abaixo para adicionar um novo livro ao sistema.</p>
-    <form action="" class="main_form" id="form">
-      <input type="text" name="title" required class="main_form_input" placeholder="Título">
-      <input type="text" name="author" required class="main_form_input" placeholder="Autor">
-      <input type="text" name="editor" required class="main_form_input" placeholder="Editora">
-      <input type="text" name="edition" required class="main_form_input" placeholder="Edição">
-      <textarea name="desc" required rows="5" class="main_form_textArea" placeholder="Descrição"></textarea>
-      <input type="number" name="quantity" required class="main_form_input quant" placeholder="quantidade">
-      <input type="submit" class="main_form_button" onclick="addBook(event)" id="formBtn" value="Cadastrar livro" >
-    </form>
-    <section id="resp" class="resp"></section>
-  </main>
+    <main class="main container">
+        <h1 class="main_title">Livros cadastrados</h1>
+
+        <div class="main_nav">
+            <input class="main_nav_input" placeholder="Digite o nome do livro" type="text" name="name" id="name">
+            <button class="main_nav_btn" onclick="search()">Pesquisar</button>
+            <select class="main_nav_filter">
+                <option class="main_nav_filter_value" value="#">Filtrar por:</option>
+                <option class="main_nav_filter_value" value="pendencia">Categoria</option>
+                <option class="main_nav_filter_value" value="nomeDesc">Nome Desc</option>
+                <option class="main_nav_filter_value" value="nomeAsc">Nome Asc</option>
+            </select>
+        </div>
+        <h3 id="searchCallback" class="main_callback"></h3>
+        <div id="resp" class="resp"></div>
+
+    </main>
 
   <footer class="footer container">
     <div class="footer_imageContainer">
@@ -84,6 +88,5 @@
     </div>
   </footer>
 </body>
-<script src="./assets/script/jquery.min.js"></script>
-<script src="./assets/script/cadastroLivro.js"></script>
+    <script src="./assets/script/listaLivros.js"></script>
 </html>

@@ -1,1 +1,49 @@
-/* No CSS *//*# sourceMappingURL=sidenav.css.map */
+.sidenav {
+  position: fixed;
+  background-color: #2C2C2C;
+  height: 80%;
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  z-index: 2;
+  padding: 5% 0 11% 0;
+}
+
+.sidenav_containerCategory {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.sidenav_containerCategory_link_icon {
+  width: 35px;
+  padding: 10px;
+}
+
+.sidenav_containerOptions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.sidenav_containerOptions_link_icon {
+  width: 35px;
+  padding: 10px;
+}
+/*# sourceMappingURL=sidenav.css.map */

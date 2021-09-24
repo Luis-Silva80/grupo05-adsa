@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuários cadastrados</title>
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/footer.css">
+    <link rel="stylesheet" href="./assets/style/listaUsuarios.css">
+    <link rel="stylesheet" href="./assets/style/footer.css">
+    <link rel="stylesheet" href="./assets/style/sidenav.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/imgs/iconBlack.png" />
+</head>
+<body>
+  <aside class="sidenav">
+    <div class="sidenav_containerCategory">
+      <a href="./perfilUsuario.html" class="sidenav_containerCategory_link">
+        <img src="./assets/imgs/user.png" class="sidenav_containerCategory_link_icon">
+      </a>
+      <a href="./listaLivros.html" class="sidenav_containerCategory_link">
+        <img src="./assets/imgs/book-shelf.png" class="sidenav_containerCategory_link_icon">
+      </a>
+      <a href="#" class="sidenav_containerCategory_link">
+        <img src="./assets/imgs/suggestion.png" class="sidenav_containerCategory_link_icon">
+      </a>
+      <a href="#" class="sidenav_containerCategory_link">
+        <img src="./assets/imgs/question.png" class="sidenav_containerCategory_link_icon">
+      </a>
+    </div>
+
+    <div class="sidenav_containerOptions">
+      <a href="#" class="sidenav_containerOptions_link">
+        <img src="./assets/imgs/settings.png" class="sidenav_containerOptions_link_icon">
+      </a>
+      <a href="#" class="sidenav_containerOptions_link">
+        <img src="./assets/imgs/logout.png" class="sidenav_containerOptions_link_icon">
+      </a>
+    </div>
+  </aside>
+
+    <main class="main container">
+        <h1 class="main_title">Usuários cadastrados</h1>
+
+        <div class="main_nav">
+            <input class="main_nav_input" placeholder="Digite o nome do usuário" type="text" name="" id="">
+            <button class="main_nav_btn">Pesquisar</button>
+            <select class="main_nav_filter">
+                <option class="main_nav_filter_value" value="#">Filtrar por:</option>
+                <option class="main_nav_filter_value" value="pendencia">Pendência</option>
+                <option class="main_nav_filter_value" value="nomeDesc">Nome Desc</option>
+                <option class="main_nav_filter_value" value="nomeAsc">Nome Asc</option>
+            </select>
+        </div>
+
+        <section class="main_table">
+            <ul class="main_table_label">
+                <li class="main_table_label_user">Usuário</li>
+                <li class="main_table_label_mail">Email</li>
+                <li class="main_table_label_status">Status</li>
+                <li class="main_table_label_pend">Pendência</li>                
+            </ul>
+
+            <ul class="main_table_user">
+              <li><img class="main_table_user_img" src="./assets/imgs/4043255-beard-hipster-male-man_113243.png" alt="user img"></li>
+              <li class="main_table_user_name">Lucas Alves</li>
+              <li class="main_table_user_email">lucas.email@gmail.com</li>
+              <li class="main_table_user_status">ativo</li>
+              <li class="main_table_user_pend">nenhuma</li>
+              <li><img class="main_table_user_about" src="./assets/imgs/loupe.png"></li>
+              <li><img class="main_table_user_trash" src="./assets/imgs/trash.png"></li>
+            </ul>
+        </section>
+
+    </main>
+
+  <footer class="footer container">
+    <div class="footer_imageContainer">
+      <a href="footer_imageContainer_link">
+        <img class="footer_imageContainer_link_imageLogo" src="./assets/imgs/logoWhiteWhite.png">
+      </a>
+    </div>
+    
+    <div class="footer_textContainer">
+      <p class="footer_textContainer_text">
+        Desenvolvido por TOTH LIBS © 2021
+      </p>
+    </div>
+
+    <div class="footer_icons">
+      <a href="https://github.com/Luis-Silva80/grupo05-adsa" class="footer_icons_link">
+        <img src="./assets/imgs/github.png" class="footer_icons_link_image">
+      </a>
+      <a href="#" class="footer_icons_link">
+        <img src="./assets/imgs/linkedin.png" class="footer_icons_link_image">
+      </a>
+      <a href="#" class="footer_icons_link">
+        <img src="./assets/imgs/whatsapp.png" class="footer_icons_link_image">
+      </a>
+      <a href="#" class="footer_icons_link">
+        <img src="./assets/imgs/youtube.png" class="footer_icons_link_image">
+      </a>
+    </div>
+  </footer>
+</body>
+    <script src="./assets/script/listaUsuarios.js"></script>
+</html>

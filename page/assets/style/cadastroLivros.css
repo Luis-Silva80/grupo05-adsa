@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   outline: none;
-  font-family: monospace, Courier, 'Courier New';
 }
 
 .main {
@@ -162,5 +161,11 @@
   right: 10px;
   width: 25px;
   cursor: pointer;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 /*# sourceMappingURL=cadastroLivros.css.map */

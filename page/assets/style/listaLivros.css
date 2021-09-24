@@ -5,10 +5,6 @@
   font-family: monospace, Courier, 'Courier New';
 }
 
-body {
-  background: #ffe0e0;
-}
-
 .main {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -31,7 +27,6 @@ body {
 .main_title {
   color: #32b9cd;
   font-size: 3rem;
-  margin-bottom: 20px;
 }
 
 .main_nav {
@@ -41,11 +36,16 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 70%;
+  width: 95%;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  margin-bottom: 30px;
+  position: -webkit-sticky;
+  position: sticky;
+  background: white;
+  padding: 10px;
+  top: 10px;
+  border-radius: 20px;
 }
 
 .main_nav_input {
@@ -94,89 +94,64 @@ body {
 
 .main_nav_filter_value {
   background: white;
-  color: black;
+  color: #07080a;
 }
 
-.main_table {
+.main_callback {
+  margin: 20px 0;
+}
+
+.main .resp {
   width: 100%;
-}
-
-.main_table_label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-.main_table_label_user {
-  font-size: 25px;
-  text-align: center;
-  width: 35%;
-}
-
-.main_table_label_mail {
-  font-size: 25px;
-  text-align: center;
-  width: 35%;
-}
-
-.main_table_label_status {
-  font-size: 25px;
-  width: 15%;
-  text-align: center;
-}
-
-.main_table_label_pend {
-  width: 15%;
-  font-size: 25px;
-  text-align: center;
-}
-
-.main_table_user {
+.main .resp .book {
+  border-radius: 10px;
+  border: 2px solid #07080a;
+  width: 250px;
+  margin: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #ffffff;
 }
 
-.main_table_user_img {
-  width: 50px;
-  height: 50px;
+.main .resp .book_img {
+  width: 220px;
+  margin: 10px 0;
 }
 
-.main_table_user_name {
-  font-size: 25px;
-  width: 32.5%;
+.main .resp .book_title {
+  margin: 0 5px;
+  text-align: center;
 }
 
-.main_table_user_email {
-  width: 35%;
-  font-size: 25px;
-}
-
-.main_table_user_status {
-  font-size: 25px;
-}
-
-.main_table_user_pend {
-  font-size: 25px;
-}
-
-.main_table_user_about {
+.main .resp .book_btn {
+  padding: 5px 10px;
   background: #04378f;
+  color: #ffffff;
   border-radius: 10px;
-  border: none;
-  width: 30px;
-  height: 30px;
-  padding: 5px;
+  border: 2px solid #07080a;
+  font-size: 18px;
+  margin: 10px 0;
   cursor: pointer;
 }
-
-.main_table_user_trash {
-  background: #8f0404;
-  border-radius: 10px;
-  border: none;
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  cursor: pointer;
-}
-/*# sourceMappingURL=listaUsuarios.css.map */
+/*# sourceMappingURL=listaLivros.css.map */
