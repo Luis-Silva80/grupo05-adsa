@@ -98,26 +98,35 @@ body {
 }
 
 .main_table {
-  width: 85%;
+  width: 100%;
+}
+
+.main_table_label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .main_table_label_user {
   font-size: 25px;
   text-align: center;
-  width: 100px;
+  width: 35%;
 }
 
 .main_table_label_mail {
   font-size: 25px;
   text-align: center;
+  width: 35%;
 }
 
 .main_table_label_status {
   font-size: 25px;
+  width: 15%;
   text-align: center;
 }
 
 .main_table_label_pend {
+  width: 15%;
   font-size: 25px;
   text-align: center;
 }
@@ -133,9 +142,22 @@ body {
   height: 50px;
 }
 
-.main_table_user_title {
+.main_table_user_name {
   font-size: 25px;
-  text-align: center;
+  width: 32.5%;
+}
+
+.main_table_user_email {
+  width: 35%;
+  font-size: 25px;
+}
+
+.main_table_user_status {
+  font-size: 25px;
+}
+
+.main_table_user_pend {
+  font-size: 25px;
 }
 
 .main_table_user_about {

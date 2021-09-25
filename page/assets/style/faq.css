@@ -3,6 +3,8 @@
   padding: 0;
   outline: none;
   font-family: monospace, Courier, 'Courier New';
+  font-weight: 500;
+  list-style-type: none;
 }
 
 .main {
@@ -27,10 +29,10 @@
 .main_title {
   color: #32b9cd;
   font-size: 3rem;
-  margin-bottom: 20px;
+  margin: 25px;
 }
 
-.main_box_duplinha {
+.main_question {
   z-index: 3;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -39,60 +41,57 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
-  border: #2C2C2C solid 1px;
+  border: #2c2c2c solid 1px;
   border-radius: 15px;
-  background-color: #2C2C2C;
+  background-color: #2c2c2c;
   height: 50px;
   overflow: hidden;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  margin-bottom: 20px;
+  position: relative;
 }
 
-.main_box_duplinha.active {
-  height: 100px;
+.main_question.active {
+  height: 115px;
 }
 
-.main_box_duplinha .paragrafo {
+.main_question_title {
+  color: whitesmoke;
+  margin: 10px 0 15px 15px;
+}
+
+.main_question_parag {
   background-color: whitesmoke;
   padding: 0 15px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.main_box_duplinha_titles {
-  color: whitesmoke;
-  margin-bottom: 25px;
-}
-
-.main_box_duplinha_accordion {
+.main_question_btn {
   cursor: pointer;
   position: absolute;
-  right: 20px;
+  right: 40px;
+  top: 10px;
   background-color: transparent;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border: none;
   background: url("../imgs/plus.png");
   background-size: cover;
 }
 
-.main_box_duplinha_accordion.active {
+.main_question_btn.active {
   background: url("../imgs/minus.png");
-}
-
-.main_box_painel {
-  background-color: white;
-  overflow: hidden;
-  border: #07080a 1px solid;
-  border-top: none;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  -webkit-transition: max-height 0.2s ease-out;
-  transition: max-height 0.2s ease-out;
+  background-size: cover;
 }
 /*# sourceMappingURL=faq.css.map */
