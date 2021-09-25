@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: monospace, Courier, 'Courier New';
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.main.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.main_title {
+  color: #32b9cd;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.main_box_duplinha {
+  z-index: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  border: #2C2C2C solid 1px;
+  border-radius: 15px;
+  background-color: #2C2C2C;
+  height: 50px;
+  overflow: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.main_box_duplinha.active {
+  height: 100px;
+}
+
+.main_box_duplinha .paragrafo {
+  background-color: whitesmoke;
+  padding: 0 15px;
+}
+
+.main_box_duplinha_titles {
+  color: whitesmoke;
+  margin-bottom: 25px;
+}
+
+.main_box_duplinha_accordion {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: url("../imgs/plus.png");
+  background-size: cover;
+}
+
+.main_box_duplinha_accordion.active {
+  background: url("../imgs/minus.png");
+}
+
+.main_box_painel {
+  background-color: white;
+  overflow: hidden;
+  border: #07080a 1px solid;
+  border-top: none;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  -webkit-transition: max-height 0.2s ease-out;
+  transition: max-height 0.2s ease-out;
+}
+/*# sourceMappingURL=faq.css.map */
