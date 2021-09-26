@@ -11,10 +11,7 @@ $lightGrey: #636a70;
 $white: #ffffff;
 $black: #07080a;
 
-body{
-    background: #ffe0e0;
 
-}
 .main{
     display: flex;
     flex-direction: column;
@@ -51,7 +48,7 @@ body{
             border: none;
             position: relative;
             cursor: pointer;
-            margin: 0 5px;
+            margin: 0 10px;
 
             &::after{
                 content: "";
@@ -84,56 +81,32 @@ body{
 
     &_table{
         width: 100%;
+        border-collapse: collapse;
         &_label{
-            display: flex;
-            // justify-content: space-between;
-            &_user{
+            &_element{
                 font-size: 25px;
-                text-align: center;
-                width: 35%;
-            }
-            &_mail{
-                font-size: 25px;
-                text-align: center;
-                width: 35%;
-
-            }
-            &_status{
-                font-size: 25px;
-
-                width: 15%;
-                text-align: center;
-            }
-            &_pend{
-                width: 15%;
-
-                font-size: 25px;
-                text-align: center;
             }
         }
         &_user{
             // position: relative;
-            display: flex;
-
+            // display: flex;
+            &_item{
+                text-align: center;
+                border-top: 1px solid $darkBlue;
+                border-bottom: 1px solid $darkBlue;
+                &.frst{
+                    border-left: 1px solid $darkBlue;
+                }
+                &.lst{
+                    border-right: 1px solid $darkBlue;
+                }
+            
+            }
             &_img{
                 width: 50px;
                 height: 50px;
             }
-            &_name{
-                font-size: 25px;
-                width: 32.5%;
-            }
-            &_email{
-                width: 35%;
-
-                font-size: 25px;
-            }
-            &_status{
-                font-size: 25px;
-            }
-            &_pend{
-                font-size: 25px;
-            }
+           
             &_about{
                 background: $darkBlue;
                 border-radius: 10px;
@@ -157,13 +130,52 @@ body{
 
 
 
+    &_popup{
+        display: none;
+        border: 2px solid $darkBlue;
+        border-radius: 10px;
+        padding: 10px;
+        width: 500px;
+        position: absolute;
+        top: 100px;
+        background: $white;
+        &.active{
+            display: flex;
+        }
+        &_img{
+            width: 175px;
+        }
+        &_close{
+            width: 20px;
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+        }
+        &_user{
+            margin-left: 10px;
+            width: 100%;
+            &_name{
+                font-size: 25px;
+            }
+        
+            &_box{
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+                &_btn{
+                    padding: 5px 15px;
+                    background: $darkBlue;
+                    color: $white;
+                    font-size: 18px;
+                    border-radius: 10px;
+                    border: none;
+                    cursor: pointer;
+                    margin: 0 10px;
+                }
+            }
+        }
 
+    }
 
 }
-
-
-
-
-
-
 

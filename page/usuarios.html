@@ -36,24 +36,41 @@
             </select>
         </div>
 
-        <section class="main_table">
-            <ul class="main_table_label">
-                <li class="main_table_label_user">Usuário</li>
-                <li class="main_table_label_mail">Email</li>
-                <li class="main_table_label_status">Status</li>
-                <li class="main_table_label_pend">Pendência</li>                
-            </ul>
-
-            <ul class="main_table_user">
-              <li><img class="main_table_user_img" src="./assets/imgs/4043255-beard-hipster-male-man_113243.png" alt="user img"></li>
-              <li class="main_table_user_name">Lucas Alves</li>
-              <li class="main_table_user_email">lucas.email@gmail.com</li>
-              <li class="main_table_user_status">ativo</li>
-              <li class="main_table_user_pend">nenhuma</li>
-              <li><img class="main_table_user_about" src="./assets/imgs/loupe.png"></li>
-              <li><img class="main_table_user_trash" src="./assets/imgs/trash.png"></li>
-            </ul>
+        <table class="main_table">
+            <tr class="main_table_label">
+              <th></th>
+              <th class="main_table_label_element">Usuário</th>
+              <th class="main_table_label_element">Email</th>
+              <th class="main_table_label_element">status</th>
+              <th class="main_table_label_element">Pendência</th>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr class="main_table_user">
+                <td class="main_table_user_item frst"><img class="main_table_user_img" src="./assets/imgs/perfilIcon.png" alt="user img"></td>
+                <td class="main_table_user_item">Lucas alves</td>
+                <td class="main_table_user_item">Lucas.alves@email.com.br</td>
+                <td class="main_table_user_item">Ativo</td>
+                <td class="main_table_user_item">Nenhuma</td>
+                <td class="main_table_user_item"><img class="main_table_user_about" onclick="callUser()" src="./assets/imgs/loupe.png"></td>
+                <td class="main_table_user_item lst"><img class="main_table_user_trash" src="./assets/imgs/trash.png"></td>
+            </tr>
+            <tr class="main_table_user">
+                <td class="main_table_user_item frst"><img class="main_table_user_img" src="./assets/imgs/perfilIcon.png" alt="user img"></td>
+                <td class="main_table_user_item">usuario afasfas</td>
+                <td class="main_table_user_item">usuariofasffas@email.com.br</td>
+                <td class="main_table_user_item">Ativo</td>
+                <td class="main_table_user_item">Nenhuma</td>
+                <td class="main_table_user_item"><img class="main_table_user_about" onclick="callUser()" src="./assets/imgs/loupe.png"></td>
+                <td class="main_table_user_item lst"><img class="main_table_user_trash" src="./assets/imgs/trash.png"></td>
+            </tr>
+        </table>
+        <section id="popup" class="main_popup">
+            <img class="main_popup_img" src="./assets/imgs/perfilIcon.png">
+            <img class="main_popup_close" src="./assets/imgs/close.png" onclick="callUser()">
+            <div class="main_popup_user" id="user"></div>
         </section>
+
 
     </main>
 
