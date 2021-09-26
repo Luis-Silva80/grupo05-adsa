@@ -129,4 +129,21 @@ public class PerfilUsuario {
     public void setId(Integer id) {
         this.id = id;
     }
+
+
+    @Override
+    public String toString() {
+        return "PerfilUsuario" +
+                "\nid=" + id +
+                "\n, nome='" + nome + '\'' +
+                "\n, cpf='" + cpf + '\'' +
+                "\n, email='" + email + '\'' +
+                "\n, telefone='" + telefone + '\'' +
+                "\n, senha='" + senha + '\'' +
+                "\n, usuarioAdmin=" + usuarioAdmin +
+                "\n, pontos=" + pontos +
+                "\n, qtdLivrosLidos=" + qtdLivrosLidos +
+                "\n, qtdResenhas=" + qtdResenhas +
+                "\n, fkTbInstituicao=" + fkTbInstituicao;
+    }
 }

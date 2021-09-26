@@ -43,7 +43,7 @@ public class    Livros {
     private Integer qtdReservadoAgora;
 
     @Column(name = "fk_tbBiblioteca")
-    private Integer fkTbbiblioteca;
+        private Integer fkTbbiblioteca;
 
     public Integer getFkTbbiblioteca() {
         return fkTbbiblioteca;
