@@ -1,9 +1,9 @@
 
-function getStoreId() {
-  let teste = localStorage.getItem('productId')
-  console.log("id aqui", teste);
-}
-window.onload = getStoreId()
+// function getStoreId() {
+//   let teste = localStorage.getItem('productId')
+//   console.log("id aqui", teste);
+// }
+// window.onload = getStoreId()
 
 function callUser() {
   let popup = document.getElementById("popup")
@@ -11,9 +11,9 @@ function callUser() {
 
   popup.classList.toggle("active")
 
-  user.innerHTML +=
+  user.innerHTML =
   `
-  <h3 class="main_popup_user_name">Usuário x</h3>
+  <h3 class="main_popup_user_name">${user.name}</h3>
   <p class="main_popup_user_email">Email: email aslaks</p>
   <p class="main_popup_user_book">Livro reservado: alskdakj</p>
   <p class="main_popup_user_reserv">Reservado em: ioajsdas</p>
