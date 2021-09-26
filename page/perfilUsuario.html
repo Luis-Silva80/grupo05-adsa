@@ -7,70 +7,132 @@
     <title>Perfil</title>
     <link rel="shortcut icon" href="./assets/imgs/iconBlack.png" />
     <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/prefilUsuario.css">
     <link rel="stylesheet" href="./assets/style/sidenav.css">
     <link rel="stylesheet" href="./assets/style/footer.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js" integrity="sha512-pBSlhNUvB+td6sjW1zmR6L7c7kVWR4octUPl4tfHmzO63424nxta8aLmficEcAAswQmRqTiToi63AazDurj/Sg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/babel" src="./assets/script/React/sidenav.js"></script>
+    <script type="text/babel" src="./assets/script/React/footer.js"></script>
+  </head>
 <body>
-    <aside class="sidenav">
-        <div class="sidenav_containerCategory">
-          <a href="./perfilUsuario.html" class="sidenav_containerCategory_link">
-            <img src="./assets/imgs/user.png" class="sidenav_containerCategory_link_icon">
-          </a>
-          <a href="./listaLivros.html" class="sidenav_containerCategory_link">
-            <img src="./assets/imgs/book-shelf.png" class="sidenav_containerCategory_link_icon">
-          </a>
-          <a href="#" class="sidenav_containerCategory_link">
-            <img src="./assets/imgs/suggestion.png" class="sidenav_containerCategory_link_icon">
-          </a>
-          <a href="#" class="sidenav_containerCategory_link">
-            <img src="./assets/imgs/question.png" class="sidenav_containerCategory_link_icon">
-          </a>
-        </div>
-    
-        <div class="sidenav_containerOptions">
-          <a href="#" class="sidenav_containerOptions_link">
-            <img src="./assets/imgs/settings.png" class="sidenav_containerOptions_link_icon">
-          </a>
-          <a href="#" class="sidenav_containerOptions_link">
-            <img src="./assets/imgs/logout.png" class="sidenav_containerOptions_link_icon">
-          </a>
-        </div>
-    </aside>
+    <aside class="sidenav" id="sidenav"></aside>
 
-    <main>
+    <main class="main container">
+
+      <div class="main_perfilInfo">
+        
+        <div class="main_perfilInfo_box">
+          <img src="./assets/imgs/perfilIcon.png" class="main_perfilInfo_box_icon">
+          <div class="main_perfilInfo_box_content">
+            <h3 class="main_perfilInfo_box_content_name">Matheus Alencar Garcia <img src="./assets/imgs/pencil.png" class="main_perfilInfo_box_content_name_icon"></h3>
+            <p class="main_perfilInfo_box_content_email">matheus.garcia@bandtec.com.br</p>
+            <div class="main_perfilInfo_box_content_box">
+              <p class="main_perfilInfo_box_content_box_ra">123123123</p>
+              <p class="main_perfilInfo_box_content_box_number">(11) 989892311</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="main_perfilInfo_perfilGame">
+          <p class="main_perfilInfo_perfilGame_level">Usuário Nível<span class="main_perfilInfo_perfilGame_level_number" id="perfilLevel">10</span></p>
+          
+          <div class="main_perfilInfo_perfilGame_progressBarGrey"><div class="main_perfilInfo_perfilGame_progressBarBlue"></div></div>
+
+          <div class="main_perfilInfo_perfilGame_status">
+            <div class="main_perfilInfo_perfilGame_status_box">
+              <img src="./assets/imgs/open-book-perfil.png" class="main_perfilInfo_perfilGame_status_box_image">
+              <p class="main_perfilInfo_perfilGame_status_box_content"><span class="main_perfilInfo_perfilGame_status_box_content_number" id="numberBooksReaded">12</span> livros lidos</p>
+            </div>
+
+            <div class="main_perfilInfo_perfilGame_status_box">
+              <img src="./assets/imgs/conversation.png" class="main_perfilInfo_perfilGame_status_box_image">
+              <p class="main_perfilInfo_perfilGame_status_box_content"><span class="main_perfilInfo_perfilGame_status_box_content_number" id="numberBooksReview">5</span> resenhas</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="main_listaLivros">
+
+        <div class="main_listaLivros_title">
+          <select class="main_listaLivros_title_filter">
+            <option class="main_listaLivros_title_filter_value" value="#">Filtrar por:</option>
+            <option class="main_listaLivros_title_filter_value" value="pendencia">Categoria</option>
+            <option class="main_listaLivros_title_filter_value" value="nomeDesc">Nome Desc</option>
+            <option class="main_listaLivros_title_filter_value" value="nomeAsc">Nome Asc</option>
+          </select>
+
+          <h2 class="main_listaLivros_title_text">Livros reservados</h2>
+        </div>
+
+        <ul class="main_listaLivros_lista">
+
+          <li class="main_listaLivros_lista_livro">
+            <img src="./assets/imgs/image-livro.png" class="main_listaLivros_lista_livro_image">
+            <div class="main_listaLivros_lista_livro_contentBox">
+              <h4 class="main_listaLivros_lista_livro_contentBox_name">Programando com javaScript</h4>
+              <p class="main_listaLivros_lista_livro_contentBox_devolution">Devolver até: <span id="devolutionDate">25/09/2021</span></p>
+              <button class="main_listaLivros_lista_livro_contentBox_button">Devolver</button>
+            </div>
+          </li>
+
+          <li class="main_listaLivros_lista_livro">
+            <img src="./assets/imgs/image-livro.png" class="main_listaLivros_lista_livro_image">
+            <div class="main_listaLivros_lista_livro_contentBox">
+              <h4 class="main_listaLivros_lista_livro_contentBox_name">Programando com javaScript</h4>
+              <p class="main_listaLivros_lista_livro_contentBox_devolution">Devolver até: <span id="devolutionDate">25/09/2021</span></p>
+              <button class="main_listaLivros_lista_livro_contentBox_button">Devolver</button>
+            </div>
+          </li>
+
+          <li class="main_listaLivros_lista_livro">
+            <img src="./assets/imgs/image-livro.png" class="main_listaLivros_lista_livro_image">
+            <div class="main_listaLivros_lista_livro_contentBox">
+              <h4 class="main_listaLivros_lista_livro_contentBox_name">Programando com javaScript</h4>
+              <p class="main_listaLivros_lista_livro_contentBox_devolution">Devolver até: <span id="devolutionDate">25/09/2021</span></p>
+              <button class="main_listaLivros_lista_livro_contentBox_button">Devolver</button>
+            </div>
+          </li>
+
+          <li class="main_listaLivros_lista_livro">
+            <img src="./assets/imgs/image-livro.png" class="main_listaLivros_lista_livro_image">
+            <div class="main_listaLivros_lista_livro_contentBox">
+              <h4 class="main_listaLivros_lista_livro_contentBox_name">Programando com javaScript</h4>
+              <p class="main_listaLivros_lista_livro_contentBox_devolution">Devolver até: <span id="devolutionDate">25/09/2021</span></p>
+              <button class="main_listaLivros_lista_livro_contentBox_button">Devolver</button>
+            </div>
+          </li>
+
+          <li class="main_listaLivros_lista_livro">
+            <img src="./assets/imgs/image-livro.png" class="main_listaLivros_lista_livro_image">
+            <div class="main_listaLivros_lista_livro_contentBox">
+              <h4 class="main_listaLivros_lista_livro_contentBox_name">Programando com javaScript</h4>
+              <p class="main_listaLivros_lista_livro_contentBox_devolution">Devolver até: <span id="devolutionDate">25/09/2021</span></p>
+              <button class="main_listaLivros_lista_livro_contentBox_button">Devolver</button>
+            </div>
+          </li>
+
+          <li class="main_listaLivros_lista_livro">
+            <img src="./assets/imgs/image-livro.png" class="main_listaLivros_lista_livro_image">
+            <div class="main_listaLivros_lista_livro_contentBox">
+              <h4 class="main_listaLivros_lista_livro_contentBox_name">Programando com javaScript</h4>
+              <p class="main_listaLivros_lista_livro_contentBox_devolution">Devolver até: <span id="devolutionDate">25/09/2021</span></p>
+              <button class="main_listaLivros_lista_livro_contentBox_button">Devolver</button>
+            </div>
+          </li>
+
+
+        </ul>
+      </div>
 
     </main>
 
-    <footer class="footer container">
-        <div class="footer_imageContainer">
-          <a href="footer_imageContainer_link">
-            <img class="footer_imageContainer_link_imageLogo" src="./assets/imgs/logoWhiteWhite.png">
-          </a>
-        </div>
-        
-        <div class="footer_textContainer">
-          <p class="footer_textContainer_text">
-            Desenvolvido por TOTH LIBS © 2021
-          </p>
-        </div>
-    
-        <div class="footer_icons">
-          <a href="https://github.com/Luis-Silva80/grupo05-adsa" class="footer_icons_link">
-            <img src="./assets/imgs/github.png" class="footer_icons_link_image">
-          </a>
-          <a href="#" class="footer_icons_link">
-            <img src="./assets/imgs/linkedin.png" class="footer_icons_link_image">
-          </a>
-          <a href="#" class="footer_icons_link">
-            <img src="./assets/imgs/whatsapp.png" class="footer_icons_link_image">
-          </a>
-          <a href="#" class="footer_icons_link">
-            <img src="./assets/imgs/youtube.png" class="footer_icons_link_image">
-          </a>
-        </div>
-    </footer>
+    <footer class="footer container" id="footer"></footer>
 </body>
 <script src="./assets/script/perfilUsuario.js"></script>
 </html>

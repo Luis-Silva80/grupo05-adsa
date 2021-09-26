@@ -13,33 +13,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/imgs/iconBlack.png" />
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js" integrity="sha512-pBSlhNUvB+td6sjW1zmR6L7c7kVWR4octUPl4tfHmzO63424nxta8aLmficEcAAswQmRqTiToi63AazDurj/Sg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/babel" src="./assets/script/React/sidenav.js"></script>
+    <script type="text/babel" src="./assets/script/React/footer.js"></script>
 </head>
 <body>
-  <aside class="sidenav">
-    <div class="sidenav_containerCategory">
-      <a href="./perfilUsuario.html" class="sidenav_containerCategory_link">
-        <img src="./assets/imgs/user.png" class="sidenav_containerCategory_link_icon">
-      </a>
-      <a href="./listaLivros.html" class="sidenav_containerCategory_link">
-        <img src="./assets/imgs/book-shelf.png" class="sidenav_containerCategory_link_icon">
-      </a>
-      <a href="#" class="sidenav_containerCategory_link">
-        <img src="./assets/imgs/suggestion.png" class="sidenav_containerCategory_link_icon">
-      </a>
-      <a href="#" class="sidenav_containerCategory_link">
-        <img src="./assets/imgs/question.png" class="sidenav_containerCategory_link_icon">
-      </a>
-    </div>
-
-    <div class="sidenav_containerOptions">
-      <a href="#" class="sidenav_containerOptions_link">
-        <img src="./assets/imgs/settings.png" class="sidenav_containerOptions_link_icon">
-      </a>
-      <a href="#" class="sidenav_containerOptions_link">
-        <img src="./assets/imgs/logout.png" class="sidenav_containerOptions_link_icon">
-      </a>
-    </div>
-  </aside>
+  <aside class="sidenav" id="sidenav"></aside>
 
     <main class="main container">
         <h1 class="main_title">Usuários cadastrados</h1>
@@ -55,55 +36,46 @@
             </select>
         </div>
 
-        <section class="main_table">
-            <ul class="main_table_label">
-                <li class="main_table_label_user">Usuário</li>
-                <li class="main_table_label_mail">Email</li>
-                <li class="main_table_label_status">Status</li>
-                <li class="main_table_label_pend">Pendência</li>                
-            </ul>
-
-            <ul class="main_table_user">
-              <li><img class="main_table_user_img" src="./assets/imgs/4043255-beard-hipster-male-man_113243.png" alt="user img"></li>
-              <li class="main_table_user_name">Lucas Alves</li>
-              <li class="main_table_user_email">lucas.email@gmail.com</li>
-              <li class="main_table_user_status">ativo</li>
-              <li class="main_table_user_pend">nenhuma</li>
-              <li><img class="main_table_user_about" src="./assets/imgs/loupe.png"></li>
-              <li><img class="main_table_user_trash" src="./assets/imgs/trash.png"></li>
-            </ul>
+        <table class="main_table">
+            <tr class="main_table_label">
+              <th></th>
+              <th class="main_table_label_element">Usuário</th>
+              <th class="main_table_label_element">Email</th>
+              <th class="main_table_label_element">status</th>
+              <th class="main_table_label_element">Pendência</th>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr class="main_table_user">
+                <td class="main_table_user_item frst"><img class="main_table_user_img" src="./assets/imgs/perfilIcon.png" alt="user img"></td>
+                <td class="main_table_user_item">Lucas alves</td>
+                <td class="main_table_user_item">Lucas.alves@email.com.br</td>
+                <td class="main_table_user_item">Ativo</td>
+                <td class="main_table_user_item">Nenhuma</td>
+                <td class="main_table_user_item"><img class="main_table_user_about" onclick="callUser()" src="./assets/imgs/loupe.png"></td>
+                <td class="main_table_user_item lst"><img class="main_table_user_trash" src="./assets/imgs/trash.png"></td>
+            </tr>
+            <tr class="main_table_user">
+                <td class="main_table_user_item frst"><img class="main_table_user_img" src="./assets/imgs/perfilIcon.png" alt="user img"></td>
+                <td class="main_table_user_item">usuario afasfas</td>
+                <td class="main_table_user_item">usuariofasffas@email.com.br</td>
+                <td class="main_table_user_item">Ativo</td>
+                <td class="main_table_user_item">Nenhuma</td>
+                <td class="main_table_user_item"><img class="main_table_user_about" onclick="callUser()" src="./assets/imgs/loupe.png"></td>
+                <td class="main_table_user_item lst"><img class="main_table_user_trash" src="./assets/imgs/trash.png"></td>
+            </tr>
+        </table>
+        <section id="popup" class="main_popup">
+            <img class="main_popup_img" src="./assets/imgs/perfilIcon.png">
+            <img class="main_popup_close" src="./assets/imgs/close.png" onclick="callUser()">
+            <div class="main_popup_user" id="user"></div>
         </section>
+
 
     </main>
 
-  <footer class="footer container">
-    <div class="footer_imageContainer">
-      <a href="footer_imageContainer_link">
-        <img class="footer_imageContainer_link_imageLogo" src="./assets/imgs/logoWhiteWhite.png">
-      </a>
-    </div>
+    <footer class="footer container" id="footer"></footer>
     
-    <div class="footer_textContainer">
-      <p class="footer_textContainer_text">
-        Desenvolvido por TOTH LIBS © 2021
-      </p>
-    </div>
-
-    <div class="footer_icons">
-      <a href="https://github.com/Luis-Silva80/grupo05-adsa" class="footer_icons_link">
-        <img src="./assets/imgs/github.png" class="footer_icons_link_image">
-      </a>
-      <a href="#" class="footer_icons_link">
-        <img src="./assets/imgs/linkedin.png" class="footer_icons_link_image">
-      </a>
-      <a href="#" class="footer_icons_link">
-        <img src="./assets/imgs/whatsapp.png" class="footer_icons_link_image">
-      </a>
-      <a href="#" class="footer_icons_link">
-        <img src="./assets/imgs/youtube.png" class="footer_icons_link_image">
-      </a>
-    </div>
-  </footer>
 </body>
     <script src="./assets/script/listaUsuarios.js"></script>
 </html>
