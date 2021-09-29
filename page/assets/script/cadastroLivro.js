@@ -1,49 +1,36 @@
+function submitForm(event) {
+    // Prevent the form from submitting.
+    event.preventDefault()
+    // Set url for submission and collect data.
+    const url = "https://example.com/..."
+    const formData = new FormData(event.target)
+    // Submit the data.
+    const request = new XMLHttpRequest()
+    request.open("POST", url)
+    request.send(formData)
+    // Log the data
+    const data = {}
+    formData.forEach((value, key) => (data[key] = value))
+    console.log(data)
+}
+
 function addBook(event) {
     event.preventDefault()
+    // let form = $("form").serializeArray();
+    // console.log("primeiro log",form);
 
-    let form = $("form").serializeArray();
-    console.log(form);
-    let bookName = form[0].value
-    console.log(bookName);
-
-    let formId =  document.getElementById("form")
-
-    let formData = new FormData();
-    formData.append(formId);
-
-
-
-    console.log(formData);
-
-    // formData.append('name', 'John');
-    // formData.append('password', 'John123');
+    var formData = new FormData(document.getElementById('form'));
+    // const data = {}
+    // formData.forEach((value, key) => (data[key] = value))
+    // console.log("teste",data)
     
-    // fetch("localhost:8080",{
-    //     body: formData,
-    //     method: "post"
-    // });
+    fetch("/login", {
+      method: "POST",
+      body: formData
+    });
 
-
-    // const options = {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json', Accept: 'application/vnd.vtex.ds.v10+json' }
-    // };
     // fetch(`https://codeby-cors.integrationby.com.br/https://www.googleapis.com/books/v1/volumes?q=${bookName}&maxResults=40`, options)
-    // .then(response => response.text())
-    // .then(result => {
-    //     let data = JSON.parse(result)
-    //     console.log(data);
-
-
-
-    // })
-    // .catch(err => console.error(err));
-
-
-
-
-    // }
-
+    
 
     exibeResp(false)
     function exibeResp(validation) {
