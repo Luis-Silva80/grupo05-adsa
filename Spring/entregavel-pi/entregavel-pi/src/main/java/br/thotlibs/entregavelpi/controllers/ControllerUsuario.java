@@ -161,9 +161,14 @@ public class ControllerUsuario {
 
     }
 
-    public Livro buscarLivro(Integer id) {
+    @GetMapping("buscarLivro/{id}")
+    public Livro buscarLivro(@PathVariable Integer id) {
 
         Livro livro = new Livro();
+
+
+//        return listLivros.stream().filter(livro1 -> livro1.getId().equals(id)).collect(Collectors.toList());
+
 
         for (Livro l : listLivros) {
             if (l.getId().equals(id)) {
@@ -173,6 +178,7 @@ public class ControllerUsuario {
                 livro.setDisponivel(l.getDisponivel());
             }
         }
+
         return livro;
 
     }
