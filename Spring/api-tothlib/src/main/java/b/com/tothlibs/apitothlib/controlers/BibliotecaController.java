@@ -5,9 +5,11 @@ import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -24,16 +26,22 @@ public class BibliotecaController {
     private PerfilUsuarioRepository repositoryUsuario;
 
     @GetMapping
-    public @ResponseBody
-    Iterable<Livros> getLivros() {
-        return repository.findAll();
+    public ResponseEntity getLivros() {
+
+        List<Livros> livros = repository.findAll();
+
+        if(livros.isEmpty()){
+            return ResponseEntity.status(204).build();
+        }else {
+            return ResponseEntity.status(200).body(livros);
+        }
+
     }
 
     @PostMapping("/{idUsuario}")
-    public @ResponseBody
-    Boolean postLivros(@PathVariable Integer idUsuario, @RequestBody Livros livros) {
+    public ResponseEntity postLivros(@PathVariable Integer idUsuario, @RequestBody Livros livros) {
 
-        Integer admin = repositoryUsuario.findAdmin(idUsuario);
+        Integer admin = repositoryUsuario.findAdminById(idUsuario);
 
         if (admin.equals(1)) {
 
@@ -43,11 +51,14 @@ public class BibliotecaController {
             livros.setStatusLivro("disponivel");
 
             repository.save(livros);
-            return true;
 
+            return ResponseEntity.status(201).build();
+        }else {
+            return ResponseEntity.status(404).build();
         }
 
-        return false;
 
     }
+
+
 }
