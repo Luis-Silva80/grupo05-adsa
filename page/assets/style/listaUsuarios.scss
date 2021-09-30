@@ -200,6 +200,9 @@ $black: #07080a;
                     border: none;
                     cursor: pointer;
                     margin: 0 10px;
+                    &.delete{
+                        background: #dd0606;
+                    }
                 }
             }
         }

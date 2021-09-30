@@ -37,11 +37,8 @@ function callUser(id) {
 
   popup.classList.toggle("active")
 
-  console.log("id do usuario aqui",id);
-  console.log("usuario",usersArr[id -1]);
   let userArr = usersArr[id -1];
 
-  // console.log(usersArr);
   user.innerHTML =
   `
     <h3 class="main_popup_user_name">${userArr.name}</h3>
@@ -62,19 +59,14 @@ function deleteUser(id) {
 
   popup.classList.toggle("active")
 
-  console.log("id do usuario aqui",id);
-  console.log("usuario",usersArr[id -1]);
   let userArr = usersArr[id -1];
-
-  // console.log(usersArr);
   user.innerHTML =
   `
     <h3 class="main_popup_user_name">Você tem certeza que deseja excluir</h3>
     <h3 class="main_popup_user_name">${userArr.name}?</h3>
     <p class="main_popup_user_email">Email: ${userArr.email}</p>
     <div class="main_popup_user_box">
-      <button class="main_popup_user_box_btn">Enviar email</button>
-      <button class="main_popup_user_box_btn">Prorrogar</button>
+      <button class="main_popup_user_box_btn delete">Excluir</button>
     </div>  
   `
 }

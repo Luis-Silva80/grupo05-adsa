@@ -236,6 +236,10 @@
   margin: 0 10px;
 }
 
+.main_popup_user_box_btn.delete {
+  background: #dd0606;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
