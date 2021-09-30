@@ -5,9 +5,9 @@
 // }
 // window.onload = getStoreId()
 var usersArr =  [
-  { "id": 1, "img": "./assets/imgs/perfilIcon.png", "name": "Lucas gasfa gagasg dgasasf ", "email": "lucas.emailgrandeihauser@email.com", "status": "Ativo", "pendencia": "00/00/00" },
+  { "id": 1, "img": "./assets/imgs/perfilIcon.png", "name": "Lucas gasfa gagasg dgasasf ", "email": "lucas.emailgrandeihauser@email.com", "status": "Ativo", "pendencia": null },
   { "id": 2, "img": "./assets/imgs/perfilIcon2.png", "name": "Matheus", "email": "matheus.user@email.com", "status": "Ativo", "pendencia": "01/01/01" },
-  { "id": 3, "img": "./assets/imgs/perfilIcon.png", "name": "Rafael", "email": "rafael.user@email.com", "status": "Ativo", "pendencia": "00/00/00" },
+  { "id": 3, "img": "./assets/imgs/perfilIcon.png", "name": "Rafael", "email": "rafael.user@email.com", "status": "Ativo", "pendencia": null },
   { "id": 4, "img": "./assets/imgs/perfilIcon2.png", "name": "Dudu", "email": "dudu.user@email.com", "status": "Inativo", "pendencia": "05/45/45" },
 ]
 
@@ -21,7 +21,7 @@ function loadUsers() {
         <td class="main_table_user_item name">${element.name}</td>
         <td class="main_table_user_item email">${element.email}</td>
         ${(element.status == "Inativo" ? `<td class='main_table_user_item inactive'>${element.status}</td>` : `<td class='main_table_user_item'>${element.status}</td>`)}
-        ${(element.pendencia == "00/00/00" ? `<td class='main_table_user_item'>nenhuma</td>` : `<td class='main_table_user_item inactive'>${element.pendencia}</td>`)}
+        ${(element.pendencia == null ? `<td class='main_table_user_item'>nenhuma</td>` : `<td class='main_table_user_item inactive'>${element.pendencia}</td>`)}
         <td class="main_table_user_item"><img class="main_table_user_about" onclick="callUser(${element.id})" src="./assets/imgs/loupe.png"></td>
         <td class="main_table_user_item lst"><img class="main_table_user_trash" onclick="deleteUser(${element.id})" src="./assets/imgs/trash.png"></td>
       </tr>
