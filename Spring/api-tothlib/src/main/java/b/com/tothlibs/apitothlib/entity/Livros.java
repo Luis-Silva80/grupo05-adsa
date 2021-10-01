@@ -6,7 +6,7 @@ import javax.persistence.*;
         @Index(name = "fk_tbBiblioteca", columnList = "fk_tbBiblioteca")
 })
 @Entity
-public class    Livros {
+public class Livros {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
