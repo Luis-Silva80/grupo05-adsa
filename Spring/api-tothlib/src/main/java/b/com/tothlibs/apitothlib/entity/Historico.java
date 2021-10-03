@@ -2,6 +2,7 @@ package b.com.tothlibs.apitothlib.entity;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Table(name = "tbhistorico", indexes = {
         @Index(name = "fk_tb_perfil_usuario", columnList = "fk_tb_perfil_usuario"),

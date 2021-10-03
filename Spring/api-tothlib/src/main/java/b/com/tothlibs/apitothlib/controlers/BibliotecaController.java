@@ -20,7 +20,8 @@ public class BibliotecaController {
 
     public static final Logger LOGGER = Logger.getLogger(String.valueOf(BibliotecaController.class));
 
-    UsuarioAdmin admin = new UsuarioAdmin();
+    @Autowired
+    private UsuarioAdmin admin;
 
     @Autowired
     private LivrosRepository repository;
@@ -31,11 +32,12 @@ public class BibliotecaController {
     @GetMapping
     public ResponseEntity getLivros() {
 
-        List<Livros> livros = repository.findAll();
+        List<Livros> livros = admin.consultaListaLivros();
 
-        if(livros.isEmpty()){
+
+        if (livros.isEmpty()) {
             return ResponseEntity.status(204).build();
-        }else {
+        } else {
             return ResponseEntity.status(200).body(livros);
         }
 
@@ -48,13 +50,13 @@ public class BibliotecaController {
 
         if (isAdmin.equals(1)) {
 
-            if(admin.cadastrarLivro(livros)){
+            if (admin.cadastrarLivro(livros)) {
                 return ResponseEntity.status(201).build();
-            }else {
+            } else {
                 return ResponseEntity.status(400).build();
             }
 
-        }else {
+        } else {
             return ResponseEntity.status(404).build();
         }
 
@@ -62,24 +64,50 @@ public class BibliotecaController {
 
     @PutMapping("/{id}")
     public ResponseEntity putLivro(@PathVariable int id,
-                                   @RequestBody Livros livroAtualizado){
+                                   @RequestBody Livros livroAtualizado) {
 
-        if(admin.alterarLivro(id,livroAtualizado)){
+        if (admin.alterarLivro(id, livroAtualizado)) {
             return ResponseEntity.status(200).build();
-        }else {
+        } else {
             return ResponseEntity.status(404).build();
         }
 
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity deleteLivro(Integer id){
+    public ResponseEntity deleteLivro(@PathVariable Integer id) {
 
-        if(admin.excluirLivro(id)){
+        if (admin.excluirLivro(id)) {
             return ResponseEntity.status(205).build();
+        } else {
+            return ResponseEntity.status(400).build();
+        }
+
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity buscarLivro(@PathVariable Integer id){
+
+        Livros livro = admin.buscarLivro(id);
+
+        if(livro != null){
+            return ResponseEntity.status(200).body(livro);
+        }else {
+            return ResponseEntity.status(404).build();
+        }
+
+    }
+
+    @PutMapping("reservar/{idLivro}/{idUsuario}")
+    public ResponseEntity reservarLivro(@PathVariable Integer idLivro,@PathVariable Integer idUsuario){
+
+        if(admin.reservar(idLivro,idUsuario)){
+
+            return ResponseEntity.status(200).build();
         }else {
             return ResponseEntity.status(400).build();
         }
+
 
     }
 
