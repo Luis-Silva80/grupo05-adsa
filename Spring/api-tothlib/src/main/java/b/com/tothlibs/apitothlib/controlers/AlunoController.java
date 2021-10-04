@@ -58,7 +58,7 @@ public class AlunoController {
 
     }
 
-    @GetMapping("/{idAluno}")
+    @GetMapping("/{idUsuario}")
     public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idUsuario){
 
         LOGGER.info("Retornando usuario desejado...");
