@@ -37,11 +37,16 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 70%;
+  width: 100%;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   margin-bottom: 30px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  padding: 10px;
+  background: white;
 }
 
 .main_nav_input {
@@ -95,7 +100,14 @@
 
 .main_table {
   width: 100%;
-  border-collapse: collapse;
+  border-spacing: 0px 10px;
+}
+
+.main_table_label {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  background: white;
 }
 
 .main_table_label_element {
@@ -104,20 +116,43 @@
 
 .main_table_user_item {
   text-align: center;
-  border-top: 1px solid #04378f;
-  border-bottom: 1px solid #04378f;
+  border-top: 2px solid #04378f;
+  border-bottom: 2px solid #04378f;
+  font-size: 20px;
+  max-width: 300px;
+}
+
+.main_table_user_item.name {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.main_table_user_item.email {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.main_table_user_item.inactive {
+  font-weight: 700;
+  color: #dd0606;
 }
 
 .main_table_user_item.frst {
-  border-left: 1px solid #04378f;
+  border-left: 2px solid #04378f;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
 }
 
 .main_table_user_item.lst {
-  border-right: 1px solid #04378f;
+  border-right: 2px solid #04378f;
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
 }
 
 .main_table_user_img {
-  width: 50px;
+  margin-top: 5px;
   height: 50px;
 }
 
@@ -129,6 +164,7 @@
   height: 30px;
   padding: 5px;
   cursor: pointer;
+  margin-top: 5px;
 }
 
 .main_table_user_trash {
@@ -139,6 +175,7 @@
   height: 30px;
   padding: 5px;
   cursor: pointer;
+  margin-top: 5px;
 }
 
 .main_popup {
@@ -147,8 +184,8 @@
   border-radius: 10px;
   padding: 10px;
   width: 500px;
-  position: absolute;
-  top: 100px;
+  position: fixed;
+  top: 150px;
   background: #ffffff;
 }
 
@@ -197,5 +234,18 @@
   border: none;
   cursor: pointer;
   margin: 0 10px;
+}
+
+.main_popup_user_box_btn.delete {
+  background: #dd0606;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #04378f;
+  border-radius: 10px;
 }
 /*# sourceMappingURL=listaUsuarios.css.map */

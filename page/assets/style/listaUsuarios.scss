@@ -29,9 +29,13 @@ $black: #07080a;
     &_nav{
         display: flex;
         align-items: center;
-        width: 70%;
+        width: 100%;
         justify-content: space-evenly;
         margin-bottom: 30px;
+        position: sticky;
+        top: 0px;
+        padding: 10px;
+        background: white;
         &_input{
             min-width: 60%;
             font-size: 18px;
@@ -81,8 +85,12 @@ $black: #07080a;
 
     &_table{
         width: 100%;
-        border-collapse: collapse;
+        border-spacing: 0px 10px;
+        // border-collapse: collapse;
         &_label{
+            position: sticky;
+            top: 50px;
+            background: white;
             &_element{
                 font-size: 25px;
             }
@@ -90,18 +98,39 @@ $black: #07080a;
         &_user{
             &_item{
                 text-align: center;
-                border-top: 1px solid $darkBlue;
-                border-bottom: 1px solid $darkBlue;
+                border-top: 2px solid $darkBlue;
+                border-bottom: 2px solid $darkBlue;
+                font-size: 20px;
+                max-width: 300px;
+                &.name{
+                    max-width: 200px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                &.email{
+                    max-width: 300px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                &.inactive{
+                    font-weight: 700;
+                    color: #dd0606;
+                }
                 &.frst{
-                    border-left: 1px solid $darkBlue;
+                    border-left: 2px solid $darkBlue;
+                    border-top-left-radius: 25px;
+                    border-bottom-left-radius: 25px;
                 }
                 &.lst{
-                    border-right: 1px solid $darkBlue;
+                    border-right: 2px solid $darkBlue;
+                    border-bottom-right-radius: 25px;
+                    border-top-right-radius: 25px;
+
                 }
             
             }
             &_img{
-                width: 50px;
+                margin-top: 5px;
                 height: 50px;
             }
            
@@ -113,6 +142,7 @@ $black: #07080a;
                 height: 30px;
                 padding: 5px;
                 cursor: pointer;
+                margin-top: 5px;
             }
             &_trash{
                 background: #8f0404;
@@ -122,6 +152,7 @@ $black: #07080a;
                 height: 30px;
                 padding: 5px;
                 cursor: pointer;
+                margin-top: 5px;
             }
         }
     }
@@ -134,8 +165,8 @@ $black: #07080a;
         border-radius: 10px;
         padding: 10px;
         width: 500px;
-        position: absolute;
-        top: 100px;
+        position: fixed;
+        top: 150px;
         background: $white;
         &.active{
             display: flex;
@@ -169,6 +200,9 @@ $black: #07080a;
                     border: none;
                     cursor: pointer;
                     margin: 0 10px;
+                    &.delete{
+                        background: #dd0606;
+                    }
                 }
             }
         }
@@ -176,3 +210,11 @@ $black: #07080a;
     }
 
 }
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: $darkBlue; 
+    border-radius: 10px;
+}
+  

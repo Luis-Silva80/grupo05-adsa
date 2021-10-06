@@ -36,7 +36,7 @@
             </select>
         </div>
 
-        <table class="main_table">
+        <table class="main_table" id="table">
             <tr class="main_table_label">
               <th></th>
               <th class="main_table_label_element">Usuário</th>
@@ -46,32 +46,13 @@
               <th></th>
               <th></th>
             </tr>
-            <tr class="main_table_user">
-                <td class="main_table_user_item frst"><img class="main_table_user_img" src="./assets/imgs/perfilIcon.png" alt="user img"></td>
-                <td class="main_table_user_item">Lucas alves</td>
-                <td class="main_table_user_item">Lucas.alves@email.com.br</td>
-                <td class="main_table_user_item">Ativo</td>
-                <td class="main_table_user_item">Nenhuma</td>
-                <td class="main_table_user_item"><img class="main_table_user_about" onclick="callUser()" src="./assets/imgs/loupe.png"></td>
-                <td class="main_table_user_item lst"><img class="main_table_user_trash" src="./assets/imgs/trash.png"></td>
-            </tr>
-            <tr class="main_table_user">
-                <td class="main_table_user_item frst"><img class="main_table_user_img" src="./assets/imgs/perfilIcon.png" alt="user img"></td>
-                <td class="main_table_user_item">usuario afasfas</td>
-                <td class="main_table_user_item">usuariofasffas@email.com.br</td>
-                <td class="main_table_user_item">Ativo</td>
-                <td class="main_table_user_item">Nenhuma</td>
-                <td class="main_table_user_item"><img class="main_table_user_about" onclick="callUser()" src="./assets/imgs/loupe.png"></td>
-                <td class="main_table_user_item lst"><img class="main_table_user_trash" src="./assets/imgs/trash.png"></td>
-            </tr>
+            
         </table>
         <section id="popup" class="main_popup">
             <img class="main_popup_img" src="./assets/imgs/perfilIcon.png">
             <img class="main_popup_close" src="./assets/imgs/close.png" onclick="callUser()">
             <div class="main_popup_user" id="user"></div>
         </section>
-
-
     </main>
 
     <footer class="footer container" id="footer"></footer>

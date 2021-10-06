@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TothLib - Cadastro</title>
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/slick.css">
+    <link rel="stylesheet" href="./assets/style/header.css ">
+    <link rel="stylesheet" href="./assets/style/cadastro.css">
+    <link rel="stylesheet" href="./assets/style/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="./assets/imgs/iconBlack.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js" integrity="sha512-pBSlhNUvB+td6sjW1zmR6L7c7kVWR4octUPl4tfHmzO63424nxta8aLmficEcAAswQmRqTiToi63AazDurj/Sg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/babel" src="./assets/script/React/header.js"></script>
+    <script type="text/babel" src="./assets/script/React/footer.js"></script>
+</head>
+
+<body>
+  <aside class="header container" id="header"></aside>
+
+  <main class="main container">
+    <h1 class="main_title">Cadastro</h1>
+    <p class="main_parag">Faça o seu cadastro na nossa plataforma para reservar o seus livros.</p>
+    <form action="" class="main_form" id="form" onsubmit="addBook(event)">
+      <input type="text" name="name" required class="main_form_input" placeholder="Nome: Lucas Alves Pereira ">
+      <input type="text" name="email" required class="main_form_input" placeholder="Email: usuario.exemplo@email.com">
+      <input type="text" name="ra" required class="main_form_input" placeholder="R.A: 01303087">
+      <input type="password" name="password" required class="main_form_input" placeholder="Senha: *************">
+      <input type="password" name="passwordConfirm" required class="main_form_input" placeholder="Senha: *************">
+      <input type="submit" class="main_form_button" id="formBtn" value="Cadastrar" >
+    </form>
+    <div class="main_box">
+      <p class="main_box_parag">Já tem uma conta?</p>
+      <a class="main_box_link" href="login.html">Logar</a>
+    </div>
+    <section id="resp" class="resp"></section>
+  </main>
+
+  <footer class="footer container" id="footer"></footer>
+</body>
+
+</html>
