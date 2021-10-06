@@ -78,3 +78,15 @@ $black: #07080a;
         }
     }
 }
+
+.sideContactUs::after {
+    content: "";
+    height: 7px;
+    width: 7px;
+    background-color: #fff;
+    position: absolute;
+    display: block;
+    top: 25px;
+    left: 6px;
+    border-radius: 15px;
+}
