@@ -1,7 +1,6 @@
 package br.thotlibs.entregavelpi.entity;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 abstract public class Acao {
 
