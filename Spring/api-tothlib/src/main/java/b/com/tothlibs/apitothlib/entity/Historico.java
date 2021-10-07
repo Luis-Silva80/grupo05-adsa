@@ -88,4 +88,17 @@ public class Historico {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Historico{" +
+                "id=" + id +
+                ", fkTbLivros=" + fkTbLivros +
+                ", fkTbPerfilUsuario=" + fkTbPerfilUsuario +
+                ", dataLivroHistorico=" + dataLivroHistorico +
+                ", nomeLivro='" + nomeLivro + '\'' +
+                ", nomePerfilUsuario='" + nomePerfilUsuario + '\'' +
+                ", acao='" + acao + '\'' +
+                '}';
+    }
 }
