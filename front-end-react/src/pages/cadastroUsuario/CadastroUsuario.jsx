@@ -60,10 +60,8 @@ function CadastroUsuario() {
                 </form>
                 <div className="main_box">
                     <p className="main_box_parag">Já tem uma conta?</p>
-                    <a className="main_box_link" href="login.html">Logar</a>
-                    {/* <Link to="/cadastroUsuario">
-                        <button></button>
-                    </Link> */}
+                    {/* <a className="main_box_link" href="login.html">Logar</a> */}
+                    <Link className="main_box_link" to="/login">Logar</Link>
                 </div>
                 <section id="resp" className="resp"></section>
             </main>
