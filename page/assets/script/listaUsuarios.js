@@ -5,10 +5,13 @@
 // }
 // window.onload = getStoreId()
 var usersArr =  [
-  { "id": 1, "img": "./assets/imgs/perfilIcon.png", "name": "Lucas gasfa gagasg dgasasf ", "email": "lucas.emailgrandeihauser@email.com", "status": "Ativo", "pendencia": null },
+  { "id": 1, "img": "./assets/imgs/perfilIcon.png", "name": "Lucas Alves", "email": "lucas.emailgrandeihauser@email.com", "status": "Ativo", "pendencia": null },
   { "id": 2, "img": "./assets/imgs/perfilIcon2.png", "name": "Matheus", "email": "matheus.user@email.com", "status": "Ativo", "pendencia": "01/01/01" },
   { "id": 3, "img": "./assets/imgs/perfilIcon.png", "name": "Rafael", "email": "rafael.user@email.com", "status": "Ativo", "pendencia": null },
   { "id": 4, "img": "./assets/imgs/perfilIcon2.png", "name": "Dudu", "email": "dudu.user@email.com", "status": "Inativo", "pendencia": "05/45/45" },
+  { "id": 5, "img": "./assets/imgs/perfilIcon.png", "name": "Hanan", "email": "hanan.chefe@email.com", "status": "Ativo", "pendencia": "02/05/74" },
+  { "id": 6, "img": "./assets/imgs/perfilIcon.png", "name": "Donizete", "email": "donizete.user@email.com", "status": "Ativo", "pendencia": null },
+  { "id": 7, "img": "./assets/imgs/perfilIcon2.png", "name": "Luizinho", "email": "luizinho.user@email.com", "status": "Ativo", "pendencia": "05/45/45" },
 ]
 
 function loadUsers() {
