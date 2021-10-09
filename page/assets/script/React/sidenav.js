@@ -5,16 +5,16 @@ function SidenavComponent() {
     return (
         <React.Fragment>
             <div className="sidenav_containerCategory">
-                <a href="./perfilUsuario.html" className="sidenav_containerCategory_link">
+                <a href="./perfilUsuario.html" className="sidenav_containerCategory_link sidePerfilIcon">
                     <img src="./assets/imgs/user.png" className="sidenav_containerCategory_link_icon" />
                 </a>
-                <a href="./listaLivros.html" className="sidenav_containerCategory_link">
+                <a href="./listaLivros.html" className="sidenav_containerCategory_link sideBookList">
                     <img src="./assets/imgs/book-shelf.png" className="sidenav_containerCategory_link_icon" />
                 </a>
-                <a href="#" className="sidenav_containerCategory_link">
+                <a href="./contato.html" className="sidenav_containerCategory_link sideContactUs">
                     <img src="./assets/imgs/suggestion.png" className="sidenav_containerCategory_link_icon" />
                 </a>
-                <a href="#" className="sidenav_containerCategory_link">
+                <a href="./faq.html" className="sidenav_containerCategory_link sidFaq">
                     <img src="./assets/imgs/question.png" className="sidenav_containerCategory_link_icon" />
                 </a>
             </div>

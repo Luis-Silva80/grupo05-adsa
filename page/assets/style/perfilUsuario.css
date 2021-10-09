@@ -204,25 +204,12 @@
   margin-bottom: 10px;
 }
 
-.main_listaLivros_lista_livro_li {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.main_listaLivros_lista_livro_li_image {
+.main_listaLivros_lista_livro_linkImg_image {
   width: 100%;
   max-width: 215px;
 }
 
-.main_listaLivros_lista_livro_li_contentBox {
+.main_listaLivros_lista_livro_contentBox {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -235,20 +222,20 @@
           align-items: center;
 }
 
-.main_listaLivros_lista_livro_li_contentBox_name {
+.main_listaLivros_lista_livro_contentBox_name {
   font-size: 25px;
   text-align: center;
   color: black;
 }
 
-.main_listaLivros_lista_livro_li_contentBox_devolution {
+.main_listaLivros_lista_livro_contentBox_devolution {
   font-size: 20px;
   padding: 10px 0;
   text-decoration: underline;
   color: red;
 }
 
-.main_listaLivros_lista_livro_li_contentBox_button {
+.main_listaLivros_lista_livro_contentBox_button {
   background: #04378f;
   color: #ffffff;
   padding: 5px 40px;
@@ -257,6 +244,7 @@
   border: none;
   position: relative;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .sidePerfilIcon::after {
@@ -270,4 +258,4 @@
   left: 6px;
   border-radius: 15px;
 }
-/*# sourceMappingURL=prefilUsuario.css.map */
+/*# sourceMappingURL=perfilUsuario.css.map */

@@ -27,6 +27,11 @@
           flex-direction: column;
 }
 
+.sidenav_containerCategory_link {
+  position: relative;
+  padding-left: 10px;
+}
+
 .sidenav_containerCategory_link_icon {
   width: 35px;
   padding: 10px;
@@ -40,6 +45,10 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.sidenav_containerOptions_link {
+  padding-left: 10px;
 }
 
 .sidenav_containerOptions_link_icon {
