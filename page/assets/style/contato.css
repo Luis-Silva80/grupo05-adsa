@@ -90,4 +90,16 @@
   border: 2px solid #04378f;
   margin: 28px 0;
 }
+
+.sideContactUs::after {
+  content: "";
+  height: 7px;
+  width: 7px;
+  background-color: #fff;
+  position: absolute;
+  display: block;
+  top: 25px;
+  left: 6px;
+  border-radius: 15px;
+}
 /*# sourceMappingURL=contato.css.map */

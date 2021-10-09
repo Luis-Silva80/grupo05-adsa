@@ -2,6 +2,16 @@
 import React, { useEffect } from 'react';
 import "./style.scss";
 
+/* 
+
+    return (
+        <>
+            Conteudo HTML(main)
+        </>
+    )
+    
+*/
+
 // import components
 import Footer from '../../components/footer/Footer';
 import SideBar from '../../components/sideBar/SideBar';

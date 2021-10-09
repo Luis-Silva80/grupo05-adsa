@@ -154,4 +154,16 @@
   margin: 10px 0;
   cursor: pointer;
 }
+
+.sideBookList::after {
+  content: "";
+  height: 7px;
+  width: 7px;
+  background-color: #fff;
+  position: absolute;
+  display: block;
+  top: 25px;
+  left: 6px;
+  border-radius: 15px;
+}
 /*# sourceMappingURL=listaLivros.css.map */

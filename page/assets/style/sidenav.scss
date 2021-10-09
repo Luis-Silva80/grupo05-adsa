@@ -17,9 +17,13 @@ $iconSize: 35px;
         flex-direction: column;
 
         &_link {
+            position: relative;
+            padding-left: 10px;
+            
             &_icon {
                 width: $iconSize;
                 padding: 10px;
+
             }
         }
     }
@@ -29,6 +33,8 @@ $iconSize: 35px;
         flex-direction: column;
 
         &_link {
+            padding-left: 10px;
+            
             &_icon {
                 width: $iconSize;
                 padding: 10px;
