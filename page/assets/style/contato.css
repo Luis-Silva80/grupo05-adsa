@@ -7,11 +7,10 @@
   list-style-type: none;
 }
 
-.container {
-  width: 85%;
-  padding: 10px 7.5%;
-}
-
+/* .container {
+    width: 85%;
+    padding: 10px 7.5%;
+} */
 .main_title {
   color: #32b9cd;
   text-align: center;
