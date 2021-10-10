@@ -1,0 +1,56 @@
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+$lightBlue: #32b9cd;
+$darkBlue: #04378f;
+$lightGrey: #636a70;
+$white: #ffffff;
+$black: #07080a;
+
+
+.homeMain{
+  display: flex;
+  justify-content: space-around;
+  margin: 55px 0;
+  &-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-title{
+      color: $lightBlue;
+      font-size: 75px;
+      align-self: flex-start;
+    }
+    &-parag{
+      font-size: 35px;
+      max-width: 300px;
+      margin: 10px 0 25px 0;
+    }
+    &-link{
+      text-decoration: none;
+      color: white;
+      background: $darkBlue;
+      padding: 5px 15px;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 20px;
+    }
+  }
+  &-img{
+    width: 650px;
+  }
+  &-graph{
+    position: absolute;
+    transform: rotate(-152deg);
+    left: -180px;
+    top: 300px;
+    z-index: -1;
+  }
+}
+
+
+
+
