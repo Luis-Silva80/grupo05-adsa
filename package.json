@@ -1,0 +1,8 @@
+{
+  "name": "grupo05-adsa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/LucasDonizete08/grupo05-adsa.git",
+  "author": "LucasDonizete08 <lucas.dsantos@bandtec.com.br>",
+  "license": "MIT"
+}
