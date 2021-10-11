@@ -3,6 +3,7 @@ package b.com.tothlibs.apitothlib.controlers;
 import b.com.tothlibs.apitothlib.dto.UsuarioDto;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class Autenticacao {
     private PerfilUsuarioRepository repository;
 
     @PostMapping("/{email}/{senha}")
+    @ApiOperation(value = "Realiza a autenticação na plataforma")
     public ResponseEntity autenticar(@PathVariable String email, @PathVariable String senha) {
 
         UsuarioDto usuarioDto = null;
@@ -45,6 +47,7 @@ public class Autenticacao {
     }
 
     @GetMapping("/usuariosLogados")
+    @ApiOperation(value = "Verificar os usuaris autenticados")
     public ResponseEntity consultarAutenticados() {
 
         List<UsuarioDto> autenticados = listAutenticados.stream()
@@ -61,6 +64,7 @@ public class Autenticacao {
 
 
     @DeleteMapping("/{nome}")
+    @ApiOperation(value = "Realiza o logout na plataforma")
     public ResponseEntity logoff(@PathVariable String nome) {
 
         String retorno = "";

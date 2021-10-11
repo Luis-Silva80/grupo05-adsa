@@ -59,7 +59,7 @@ public class BibliotecaController {
     }
 
     @GetMapping("/{idLivro}")
-    @ApiOperation(value = "Retorna um usuario por um ID especifico")
+    @ApiOperation(value = "Retorna um livro por um ID especifico")
     public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idLivro){
 
         LOGGER.info("Retornando usuario desejado...");
@@ -80,7 +80,7 @@ public class BibliotecaController {
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "Remove um livro pelo indice")
+    @ApiOperation(value = "Remove um livro pelo ID")
     public ResponseEntity deletaPorId(@PathVariable Integer id){
 
         repository.deleteById(id);

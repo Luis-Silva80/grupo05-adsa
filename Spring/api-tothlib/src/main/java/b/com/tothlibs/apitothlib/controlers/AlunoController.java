@@ -3,6 +3,7 @@ package b.com.tothlibs.apitothlib.controlers;
 import b.com.tothlibs.apitothlib.Exceptions.UsuarioNaoAdminException;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,10 +22,11 @@ public class AlunoController {
     private PerfilUsuarioRepository repository;
 
     @GetMapping
+    @ApiOperation(value = "Retorna a lista de alunos cadastrados")
     public ResponseEntity getAluno() {
         List<PerfilUsuario> alunos = repository.findAlunos();
 
-        if(alunos.isEmpty()){
+        if (alunos.isEmpty()) {
 
             LOGGER.info("Nenhum aluno encontrado");
             return ResponseEntity.status(204).build();
@@ -35,31 +37,26 @@ public class AlunoController {
             return ResponseEntity.status(200).body(alunos);
         }
     }
-    @PostMapping("/{idAdmin}")
-    public ResponseEntity postAluno(@PathVariable Integer idAdmin,@RequestBody PerfilUsuario aluno) throws UsuarioNaoAdminException {
 
-        Integer admin = repository.findAdminById(idAdmin);
+    @PostMapping()
+    @ApiOperation(value = "Realiza o cadastro de um novo aluno")
+    public ResponseEntity postAluno(@RequestBody PerfilUsuario aluno) throws UsuarioNaoAdminException {
 
+        aluno.setUsuarioAdmin(0);
+        aluno.setQtdLivrosLidos(0);
+        aluno.setPontos(0L);
+        aluno.setQtdResenhas(0);
 
-        if(admin.equals(1)){
-            aluno.setUsuarioAdmin(0);
-            aluno.setQtdLivrosLidos(0);
-            aluno.setPontos(0L);
-            aluno.setQtdResenhas(0);
+        repository.save(aluno);
 
-            repository.save(aluno);
-
-            LOGGER.info("Aluno " + aluno.getNome() + " cadastrado");
-            return ResponseEntity.status(201).build();
-
-        }else {
-            return ResponseEntity.status(404).build();
-        }
+        LOGGER.info("Aluno " + aluno.getNome() + " cadastrado");
+        return ResponseEntity.status(201).build();
 
     }
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idUsuario){
+    @ApiOperation(value = "Retorna um usuario com ID especifico")
+    public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idUsuario) {
 
         LOGGER.info("Retornando usuario desejado...");
         return ResponseEntity.of(repository.findById(idUsuario));

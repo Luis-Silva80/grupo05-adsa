@@ -4,6 +4,7 @@ import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.HistoricoRepository;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ public class HistoricoController {
     private HistoricoRepository repository;
 
     @GetMapping
+    @ApiOperation(value = "Retorna uma lista com o historico de ações na plataforma")
     public ResponseEntity pendencia() {
 
         List<Historico> listaDeHistorico = repository.findUserPendencia().stream()
