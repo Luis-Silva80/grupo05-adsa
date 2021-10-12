@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import './style.scss';
+import './style.scss';
 import perfil from '../../assets/perfilIcon.png';
 import pencil from '../../assets/pencil.png';
 import openBook from '../../assets/open-book-perfil.png';

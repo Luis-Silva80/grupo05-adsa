@@ -1,8 +1,8 @@
-*{
+* {
     margin: 0;
     padding: 0;
     outline: none;
-    font-family: monospace, Courier, 'Courier New' ;
+    font-family: monospace, Courier, "Courier New";
 }
 
 $lightBlue: #32b9cd;
@@ -11,20 +11,20 @@ $lightGrey: #636a70;
 $white: #ffffff;
 $black: #07080a;
 
-.main{
+.main {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    &.container{
-      width: 80%;
-      margin: 0 auto;
+    &.container {
+        width: 80%;
+        margin: 0 auto;
     }
-    &_title{
-      color: $lightBlue;
-      font-size: 3rem;
+    &_title {
+        color: $lightBlue;
+        font-size: 3rem;
     }
-    &_nav{
+    &_nav {
         display: flex;
         align-items: center;
         width: 95%;
@@ -34,14 +34,14 @@ $black: #07080a;
         padding: 10px;
         top: 10px;
         border-radius: 20px;
-        &_input{
+        &_input {
             min-width: 60%;
             font-size: 18px;
             padding: 5px 10px;
             border: 2px solid #909090;
             border-radius: 10px;
         }
-        &_btn{
+        &_btn {
             background: $darkBlue;
             color: $white;
             padding: 6px 10px 6px 45px;
@@ -52,9 +52,9 @@ $black: #07080a;
             cursor: pointer;
             margin: 0 5px;
 
-            &::after{
+            &::after {
                 content: "";
-                background: url("../imgs/loupe.png") no-repeat;
+                background: url("../../assets/loupe.png") no-repeat;
                 display: block;
                 width: 23px;
                 height: 23px;
@@ -65,7 +65,7 @@ $black: #07080a;
                 z-index: 0;
             }
         }
-        &_filter{
+        &_filter {
             background: $darkBlue;
             color: $white;
             padding: 5px 10px;
@@ -74,55 +74,51 @@ $black: #07080a;
             border: none;
             position: relative;
             cursor: pointer;
-            &_value{
+            &_value {
                 background: white;
                 color: $black;
             }
         }
     }
-    &_callback{
+    &_callback {
         margin: 20px 0;
-
     }
 
-    
-    .resp{
+    .resp {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-       .book{
-        border-radius: 10px;
-        border: 2px solid $black;
-        width: 250px;
-        margin: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background: $white;
-        &_img{
-            width: 220px;
-            margin: 10px 0;
-        }
-        &_title{
-            margin: 0 5px;
-            text-align: center;
-        }
-        &_btn{
-            padding: 5px 10px;
-            background: $darkBlue;
-            color: $white;
+        .book {
             border-radius: 10px;
             border: 2px solid $black;
-            font-size: 18px;
-            margin: 10px 0;
-            cursor: pointer;
+            width: 250px;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: $white;
+            &_img {
+                width: 220px;
+                margin: 10px 0;
+            }
+            &_title {
+                margin: 0 5px;
+                text-align: center;
+            }
+            &_btn {
+                padding: 5px 10px;
+                background: $darkBlue;
+                color: $white;
+                border-radius: 10px;
+                border: 2px solid $black;
+                font-size: 18px;
+                margin: 10px 0;
+                cursor: pointer;
+            }
         }
-       }
     }
-
-
 }
 
 .sideBookList::after {
