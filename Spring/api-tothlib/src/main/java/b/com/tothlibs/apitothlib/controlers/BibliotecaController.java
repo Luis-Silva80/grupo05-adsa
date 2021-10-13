@@ -4,6 +4,7 @@ import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
+import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("/livros")
+@RequestMapping("/biblioteca")
 @Api(value = "API REST")
 @CrossOrigin(origins = "*")
 public class BibliotecaController {
@@ -28,19 +30,23 @@ public class BibliotecaController {
     @Autowired
     private PerfilUsuarioRepository repositoryUsuario;
 
+    @Autowired
+    UsuarioAdmin admin;
+
     @GetMapping
     @ApiOperation(value = "Retorna uma lista de livros")
-    public @ResponseBody
-    Iterable<Livros> getLivros() {
-        return repository.findAll();
+    public ResponseEntity listaLivros() {
+
+        List<Livros> livros = repository.findAll();
+        return ResponseEntity.status(200).body(repository.findAll());
+
     }
 
-    @PostMapping("/{idLivro}")
-    public @ResponseBody
+    @PostMapping("/{idAdmin}")
     @ApiOperation(value = "Realiza um cadastro de um livro")
-    Boolean postLivros(@PathVariable Integer idUsuario, @RequestBody Livros idLivro) {
+    public ResponseEntity cadastrarLivro(@PathVariable Integer idAdmin, @RequestBody Livros idLivro) {
 
-        Integer admin = repositoryUsuario.findAdminById(idUsuario);
+        Integer admin = repositoryUsuario.findAdminById(idAdmin);
 
         if (admin.equals(1)) {
 
@@ -50,17 +56,17 @@ public class BibliotecaController {
             idLivro.setStatusLivro("disponivel");
 
             repository.save(idLivro);
-            return true;
+            return ResponseEntity.status(201).build();
 
         }
 
-        return false;
+        return ResponseEntity.status(400).build();
 
     }
 
     @GetMapping("/{idLivro}")
     @ApiOperation(value = "Retorna um livro por um ID especifico")
-    public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idLivro){
+    public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idLivro) {
 
         LOGGER.info("Retornando usuario desejado...");
         return ResponseEntity.of(repository.findById(idLivro));
@@ -69,7 +75,7 @@ public class BibliotecaController {
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Realiza uma alteração no cadastro de livros")
-    public ResponseEntity alteraLivro(@PathVariable Integer id, @RequestBody Livros livroAtualizado){
+    public ResponseEntity alteraLivro(@PathVariable Integer id, @RequestBody Livros livroAtualizado) {
         if (repository.existsById(id)) {
             livroAtualizado.setId(id);
             repository.save(livroAtualizado);
@@ -81,15 +87,40 @@ public class BibliotecaController {
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Remove um livro pelo ID")
-    public ResponseEntity deletaPorId(@PathVariable Integer id){
+    public ResponseEntity deletaPorId(@PathVariable Integer id) {
 
         repository.deleteById(id);
 
-        if(repository.existsById(id)){
+        if (repository.existsById(id)) {
             return ResponseEntity.status(400).build();
-        }else {
+        } else {
             return ResponseEntity.status(200).build();
         }
 
     }
+
+    @PutMapping("reservar/{idLivro}/{idUsuario}")
+    public ResponseEntity reservarLivro(@PathVariable Integer idLivro, @PathVariable Integer idUsuario) {
+
+
+        if (admin.reservar(idLivro, idUsuario)) {
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(400).build();
+        }
+
+
+    }
+
+    @PutMapping("retirar/{idRegistro}/{idUsuario}")
+    public ResponseEntity retirarLivro(@PathVariable Integer idRegistro, @PathVariable Integer idUsuario) {
+
+        if (admin.locarLivro(idRegistro, idUsuario)) {
+            return ResponseEntity.status(200).body("Livro retirado");
+        } else {
+            return ResponseEntity.status(400).body("Retirada não concluida");
+        }
+
+    }
+
 }

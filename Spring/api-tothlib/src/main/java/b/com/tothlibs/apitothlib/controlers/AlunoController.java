@@ -1,6 +1,6 @@
 package b.com.tothlibs.apitothlib.controlers;
 
-import b.com.tothlibs.apitothlib.Exceptions.UsuarioNaoAdminException;
+import b.com.tothlibs.apitothlib.Exceptions.UsuarioNaoEncontradoException;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
 import io.swagger.annotations.ApiOperation;
@@ -40,7 +40,7 @@ public class AlunoController {
 
     @PostMapping()
     @ApiOperation(value = "Realiza o cadastro de um novo aluno")
-    public ResponseEntity postAluno(@RequestBody PerfilUsuario aluno) throws UsuarioNaoAdminException {
+    public ResponseEntity postAluno(@RequestBody PerfilUsuario aluno) throws UsuarioNaoEncontradoException {
 
         aluno.setUsuarioAdmin(0);
         aluno.setQtdLivrosLidos(0);

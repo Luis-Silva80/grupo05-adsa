@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -102,19 +104,12 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
     @Override
     public Boolean reservar(Integer idLivro, Integer idUsuario) {
-
-        System.out.println(idLivro);
-        System.out.println(idUsuario);
-
         livro = new Livros();
         usuario = new PerfilUsuario();
 
         livro = repository.findById(idLivro).get();
 
         Integer qtdReservas = livro.getQtdReservas();
-
-
-        System.out.println(livro);
 
         usuario = repositoryUsuario.findById(idUsuario).get();
 
@@ -132,7 +127,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
                     return true;
 
-                }else {
+                } else {
                     return false;
                 }
             }
@@ -144,8 +139,58 @@ public class UsuarioAdmin implements Administravel, Usuario {
     }
 
     @Override
-    public Boolean locarLivro(Integer idLivro, Integer idUsuario) {
-        return null;
+    public Boolean locarLivro(Integer idRegistro, Integer idUsuario) {
+
+        usuario = new PerfilUsuario();
+        registro = repositoryHistorico.findById(idRegistro).get();
+
+        livro = repository.findById(registro.getFkTbLivros()).get();
+        Integer qtdReservadosAgora = livro.getQtdReservadoAgora();
+
+        if (livro != null) {
+
+            if (livro.getQtdReservas().equals(0)) {
+                return false;
+            } else {
+                if (livro.getQtdReservas() >= livro.getQtdEstoque()) {
+                    livro.setId(registro.getFkTbLivros());
+                    livro.setStatusLivro("Indisponivel");
+                    return false;
+                } else {
+                    if (qtdReservadosAgora.equals(livro.getQtdReservas())) {
+                        livro.setId(registro.getFkTbLivros());
+                        livro.setStatusLivro("Indisponivel");
+                        return false;
+                    } else {
+
+                        if (livro.getQtdReservadoAgora() >= livro.getQtdEstoque()) {
+                            livro.setId(registro.getFkTbLivros());
+                            livro.setStatusLivro("Indisponivel");
+                            return false;
+                        }
+
+                        if (registro.getId().equals(idRegistro)) {
+
+                            livro.setId(registro.getFkTbLivros());
+                            livro.setQtdReservadoAgora(qtdReservadosAgora + 1);
+                            livro.setQtdReservas(livro.getQtdReservas() - 1);
+
+                            repository.save(livro);
+                            criaResgistroComIdRegistro(idRegistro, registro.getFkTbLivros(), idUsuario, "Retirada");
+                            return true;
+                        } else {
+                            return false;
+                        }
+
+                    }
+                }
+            }
+
+        } else {
+            return false;
+        }
+
+
     }
 
     @Override
@@ -161,20 +206,33 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
     public void criaResgistro(Integer idLivro, Integer idUsuario, String tipoRegistro) {
 
-        livro = repository.findById(idLivro).get();
-        usuario = repositoryUsuario.findById(idUsuario).get();
         registro = new Historico();
-
-
-        System.out.println(usuario.getId());
-        System.out.println(livro.getId());
+        livro = repository.findById(idLivro).get();
 
         registro.setFkTbPerfilUsuario(usuario.getId());
         registro.setFkTbLivros(idLivro);
         registro.setAcao(tipoRegistro);
         registro.setNomePerfilUsuario(usuario.getNome());
         registro.setNomeLivro(livro.getTitulo());
-        registro.setDataLivroHistorico(Instant.now());
+        registro.setDataLivroHistorico(LocalDate.now());
+
+        repositoryHistorico.save(registro);
+
+    }
+
+    public void criaResgistroComIdRegistro(Integer idRegistro, Integer idLivro, Integer idUsuario, String tipoRegistro) {
+
+        usuario = repositoryUsuario.findById(idUsuario).get();
+        registro = new Historico();
+        livro = repository.findById(idLivro).get();
+
+        registro.setFkTbPerfilUsuario(usuario.getId());
+        registro.setFkTbLivros(idLivro);
+        registro.setAcao(tipoRegistro);
+        registro.setNomePerfilUsuario(usuario.getNome());
+        registro.setNomeLivro(livro.getTitulo());
+        registro.setDataLivroHistorico(LocalDate.now());
+        registro.setDataDevolucao(LocalDate.now().plusDays(10));
 
         repositoryHistorico.save(registro);
 
