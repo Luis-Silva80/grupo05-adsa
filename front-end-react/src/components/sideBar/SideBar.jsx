@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.scss";
 
+
 function SidenavComponent() {
     return (
         <>
