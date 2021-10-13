@@ -4,7 +4,7 @@ import "./style.scss";
 function SidenavComponent() {
     return (
         <>
-            <aside className="sidenav container">
+            <aside className="sidenav">
                 <div className="sidenav_containerCategory">
                     <a href="./perfilUsuario.html" className="sidenav_containerCategory_link">
                         <img src="./assets/imgs/user.png" className="sidenav_containerCategory_link_icon" />
