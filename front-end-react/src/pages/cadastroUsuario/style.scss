@@ -4,11 +4,12 @@ $lightGrey: #636a70;
 $white: #ffffff;
 $black: #07080a;
 
-.main{
+.main, #mainCadastroUsuario{
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  height: calc(100vh - 98px);
   &.container{
     width: 80%;
     margin: 0 auto;

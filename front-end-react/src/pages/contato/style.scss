@@ -1,12 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  outline: none;
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 500;
-  list-style-type: none;
-}
-
 // criar variáveis de cores tamanhos e oq mais for necessário aqui
 $fontWhite: #ffffff;
 $fontBlack: #000000;
@@ -26,7 +17,7 @@ $black: #07080a;
   padding: 10px 7.5%;
 } */
 
-.main {
+.main, #mainContato {
   &_title {
       color: $lightBlue;
       text-align: center;

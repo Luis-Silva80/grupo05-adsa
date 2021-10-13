@@ -1,4 +1,4 @@
-.main {
+.main, #mainCadastroUsuario {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10,19 +10,20 @@
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+  height: calc(100vh - 98px);
 }
 
-.main.container {
+.main.container, #mainCadastroUsuario.container {
   width: 80%;
   margin: 0 auto;
 }
 
-.main_title {
+.main_title, #mainCadastroUsuario_title {
   color: #32b9cd;
   font-size: 3rem;
 }
 
-.main_parag {
+.main_parag, #mainCadastroUsuario_parag {
   color: #636a70;
   font-size: 18px;
   margin: 10px 0;
@@ -31,7 +32,7 @@
   margin-bottom: 15px;
 }
 
-.main_form {
+.main_form, #mainCadastroUsuario_form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -46,7 +47,7 @@
   z-index: 1;
 }
 
-.main_form_input {
+.main_form_input, #mainCadastroUsuario_form_input {
   border-radius: 10px;
   border: 2px solid #04378f;
   padding: 5px 20px;
@@ -57,7 +58,7 @@
           box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.4);
 }
 
-.main_form_button {
+.main_form_button, #mainCadastroUsuario_form_button {
   border-radius: 5px;
   border: none;
   margin: 10px;
@@ -72,19 +73,19 @@
           box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.55);
 }
 
-.main_form_button:hover {
+.main_form_button:hover, #mainCadastroUsuario_form_button:hover {
   padding: 5.5px 60px;
   -webkit-box-shadow: 2px 5px 5px 0px rgba(0, 0, 0, 0.75);
           box-shadow: 2px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
-.main_forgot {
+.main_forgot, #mainCadastroUsuario_forgot {
   margin: 15px 0;
   text-decoration: none;
   color: #636a70;
 }
 
-.main_box {
+.main_box, #mainCadastroUsuario_box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -94,17 +95,17 @@
   width: 270px;
 }
 
-.main_box_link {
+.main_box_link, #mainCadastroUsuario_box_link {
   color: #04378f;
   font-size: 20px;
 }
 
-.main_box_parag {
+.main_box_parag, #mainCadastroUsuario_box_parag {
   color: #636a70;
   font-size: 20px;
 }
 
-.main .resp {
+.main .resp, #mainCadastroUsuario .resp {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -128,30 +129,30 @@
   transition: 0.5s;
 }
 
-.main .resp.active {
+.main .resp.active, #mainCadastroUsuario .resp.active {
   opacity: 1;
   z-index: 2;
 }
 
-.main .resp_title {
+.main .resp_title, #mainCadastroUsuario .resp_title {
   color: #32b9cd;
   font-size: 30px;
   margin-bottom: 20px;
   text-align: center;
 }
 
-.main .resp_text {
+.main .resp_text, #mainCadastroUsuario .resp_text {
   font-size: 20px;
   text-align: center;
   margin-bottom: 20px;
 }
 
-.main .resp_link {
+.main .resp_link, #mainCadastroUsuario .resp_link {
   font-size: 20px;
   text-align: center;
 }
 
-.main .resp_ctto {
+.main .resp_ctto, #mainCadastroUsuario .resp_ctto {
   font-size: 20px;
   text-align: center;
   background: #04378f;
@@ -161,7 +162,7 @@
   padding: 5px 10px;
 }
 
-.main .resp_img {
+.main .resp_img, #mainCadastroUsuario .resp_img {
   position: absolute;
   top: 10px;
   right: 10px;
