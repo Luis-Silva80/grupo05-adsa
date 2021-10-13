@@ -1,9 +1,9 @@
 $secundariColor: #04378F;
 $greyColor: #C8C8C8;
 
-.main {
+#rootPerfilUsuario{
 
-    &_perfilInfo {
+    .main_perfilInfo {
         display: flex;
         justify-content: space-between;
         margin: 30px 75px 0;
@@ -116,7 +116,7 @@ $greyColor: #C8C8C8;
     }
 
 
-    &_listaLivros {
+    .main_listaLivros {
         margin: 30px 75px 0;
 
         &_title {

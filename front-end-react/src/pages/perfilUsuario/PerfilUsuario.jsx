@@ -16,11 +16,9 @@ import imageLivro from     '../../assets/image-livro.png';
 function PerfilUsuario() {
 
     return (
-
         <>
-
             <SideBar/>
-            <main class="main container">
+            <main class="main container" id="rootPerfilUsuario">
 
                 <div class="main_perfilInfo">
 
@@ -140,14 +138,10 @@ function PerfilUsuario() {
 
                     </ul>
                 </div>
-
             </main>
             <Footer/>
-
         </>
-
     )
-
 }
 
 export default PerfilUsuario;

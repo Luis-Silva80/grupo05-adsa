@@ -57,7 +57,7 @@ function CadastroUsuario() {
     return (
         <>
             <SideBar />
-            <main className="main container">
+            <main className="main container" id="rootCadastroUsuario">
                 <h1 className="main_title">Cadastro</h1>
                 <p className="main_parag">Faça o seu cadastro na nossa plataforma para reservar o seus livros.</p>
                 <form action="" className="main_form" id="form" onSubmit={Submit}> 
