@@ -8,31 +8,31 @@ import questionIcon from "../../assets/question.png";
 import settingsIcon from "../../assets/settings.png";
 import logoutIcon from "../../assets/logout.png";
 
-function SidenavComponent() {
+function sideBarComponent() {
     return (
         <>
-            <aside className="sidenav">
-                <div className="sidenav_containerCategory">
-                    <a href="./perfilUsuario.html" className="sidenav_containerCategory_link">
-                        <img src={userIcon} className="sidenav_containerCategory_link_icon" />
+            <aside className="sideBar" id="rootSideBar">
+                <div className="sideBar_containerCategory">
+                    <a href="./perfilUsuario.html" className="sideBar_containerCategory_link">
+                        <img src={userIcon} className="sideBar_containerCategory_link_icon" />
                     </a>
-                    <a href="./listaLivros.html" className="sidenav_containerCategory_link">
-                        <img src={bookIcon} className="sidenav_containerCategory_link_icon" />
+                    <a href="./listaLivros.html" className="sideBar_containerCategory_link">
+                        <img src={bookIcon} className="sideBar_containerCategory_link_icon" />
                     </a>
-                    <a href="#" className="sidenav_containerCategory_link">
-                        <img src={suggestionIcon} className="sidenav_containerCategory_link_icon" />
+                    <a href="#" className="sideBar_containerCategory_link">
+                        <img src={suggestionIcon} className="sideBar_containerCategory_link_icon" />
                     </a>
-                    <a href="#" className="sidenav_containerCategory_link">
-                        <img src={questionIcon} className="sidenav_containerCategory_link_icon" />
+                    <a href="#" className="sideBar_containerCategory_link">
+                        <img src={questionIcon} className="sideBar_containerCategory_link_icon" />
                     </a>
                 </div>
             
-                <div className="sidenav_containerOptions">
-                    <a href="#" className="sidenav_containerOptions_link">
-                        <img src={settingsIcon} className="sidenav_containerOptions_link_icon" />
+                <div className="sideBar_containerOptions">
+                    <a href="#" className="sideBar_containerOptions_link">
+                        <img src={settingsIcon} className="sideBar_containerOptions_link_icon" />
                     </a>
-                    <a href="#" className="sidenav_containerOptions_link">
-                        <img src={logoutIcon} className="sidenav_containerOptions_link_icon" />
+                    <a href="#" className="sideBar_containerOptions_link">
+                        <img src={logoutIcon} className="sideBar_containerOptions_link_icon" />
                     </a>
                 </div>
             </aside>
@@ -40,4 +40,4 @@ function SidenavComponent() {
     );
 }
 
-export default SidenavComponent;
+export default sideBarComponent;

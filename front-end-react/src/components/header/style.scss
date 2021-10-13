@@ -2,12 +2,12 @@ $bgBlackHeader: #2C2C2C;
 $secundaryColor: #32B9CD;
 $colorWhite: #FFFF;
 
-.header {
+#rootHeader {
   display: flex;
   justify-content: space-between;
   background-color: $bgBlackHeader;
 
-  &_imageContainer {
+  .header_imageContainer {
     width: 150px;
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@ $colorWhite: #FFFF;
     }
   }
 
-  &_categories {
+  .header_categories {
     width: 70%;
     display: flex;
     justify-content: space-between;
@@ -56,7 +56,7 @@ $colorWhite: #FFFF;
     }
   }
 
-  &_login {
+  .header_login {
     display: flex;
     align-items: center;
     

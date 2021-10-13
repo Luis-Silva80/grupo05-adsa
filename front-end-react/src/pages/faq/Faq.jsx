@@ -9,7 +9,7 @@ function Faq() {
   return (
     <>
       <SideBar/>
-      <main className="main container" id="mainFaq">
+      <main className="main container" id="rootFaq">
         <h1 className="main_title">Perguntas Frequentes</h1>
 
         <div id="d1" className="main_question">

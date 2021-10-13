@@ -5,66 +5,66 @@ $darkGrey: #2c2c2c;
 $white: #ffffff;
 $black: #07080a;
 
-.main, #mainFaq {
+#rootFaq {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-&.container {
-    width: 80%;
-    margin: 0 auto;
-}
-&_title {
-    color: $lightBlue;
-    font-size: 3rem;
-    margin: 25px;
-}
+    .main.container {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .main_title {
+        color: $lightBlue;
+        font-size: 3rem;
+        margin: 25px;
+    }
 
-&_question {
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    border: $darkGrey solid 1px;
-    border-radius: 15px;
-    background-color: $darkGrey;
-    height: 50px;
-    overflow: hidden;
-    transition: 0.5s;
-    margin-bottom: 20px;
-    position: relative;
-    &.active {
-    height: 115px;
-    }
-    &_title {
-    color: whitesmoke;
-    margin: 10px 0 15px 15px;
-    }
-    &_parag {
-    background-color: whitesmoke;
-    padding: 0 15px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    }
-    &_btn {
-    cursor: pointer;
-    position: absolute;
-    right: 40px;
-    top: 10px;
-    background-color: transparent;
-    width: 30px;
-    height: 30px;
-    border: none;
-    background: url("../../assets/plus.png");
-    background-size: cover;
-    &.active {
-        background: url("../../assets/minus.png");
+    .main_question {
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        border: $darkGrey solid 1px;
+        border-radius: 15px;
+        background-color: $darkGrey;
+        height: 50px;
+        overflow: hidden;
+        transition: 0.5s;
+        margin-bottom: 20px;
+        position: relative;
+        &.active {
+        height: 115px;
+        }
+        &_title {
+        color: whitesmoke;
+        margin: 10px 0 15px 15px;
+        }
+        &_parag {
+        background-color: whitesmoke;
+        padding: 0 15px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        }
+        &_btn {
+        cursor: pointer;
+        position: absolute;
+        right: 40px;
+        top: 10px;
+        background-color: transparent;
+        width: 30px;
+        height: 30px;
+        border: none;
+        background: url("../../assets/plus.png");
         background-size: cover;
+        &.active {
+            background: url("../../assets/minus.png");
+            background-size: cover;
+        }
+        }
     }
-    }
-}
 }
 
 .sidFaq::after {

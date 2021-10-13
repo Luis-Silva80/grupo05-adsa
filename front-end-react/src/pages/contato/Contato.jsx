@@ -11,7 +11,7 @@ function Contato() {
     return (
         <>
             <SideBar />
-            <main className="main container" id="mainContato">
+            <main className="main container" id="rootContato">
                 <h1 className="main_title">Contato</h1>
                 <div className="main_text">
                     <p>
