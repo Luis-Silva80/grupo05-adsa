@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: monospace, Courier, "Courier New";
+}
+
+$lightBlue: #32b9cd;
+$darkBlue: #04378f;
+$lightGrey: #636a70;
+$white: #ffffff;
+$black: #07080a;
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    &.container {
+        width: 80%;
+        margin: 0 auto;
+    }
+    &_title {
+        color: $lightBlue;
+        font-size: 3rem;
+    }
+    &_nav {
+        display: flex;
+        align-items: center;
+        width: 95%;
+        justify-content: space-evenly;
+        position: sticky;
+        background: white;
+        padding: 10px;
+        top: 10px;
+        border-radius: 20px;
+        &_input {
+            min-width: 60%;
+            font-size: 18px;
+            padding: 5px 10px;
+            border: 2px solid #909090;
+            border-radius: 10px;
+        }
+        &_btn {
+            background: $darkBlue;
+            color: $white;
+            padding: 6px 10px 6px 45px;
+            border-radius: 10px;
+            font-size: 18px;
+            border: none;
+            position: relative;
+            cursor: pointer;
+            margin: 0 5px;
+
+            &::after {
+                content: "";
+                background: url("../../assets/loupe.png") no-repeat;
+                display: block;
+                width: 23px;
+                height: 23px;
+                position: absolute;
+                top: 5px;
+                background-size: contain;
+                left: 12px;
+                z-index: 0;
+            }
+        }
+        &_filter {
+            background: $darkBlue;
+            color: $white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 18px;
+            border: none;
+            position: relative;
+            cursor: pointer;
+            &_value {
+                background: white;
+                color: $black;
+            }
+        }
+    }
+    &_callback {
+        margin: 20px 0;
+    }
+
+    .resp {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .book {
+            border-radius: 10px;
+            border: 2px solid $black;
+            width: 250px;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: $white;
+            &_img {
+                width: 220px;
+                margin: 10px 0;
+            }
+            &_title {
+                margin: 0 5px;
+                text-align: center;
+            }
+            &_btn {
+                padding: 5px 10px;
+                background: $darkBlue;
+                color: $white;
+                border-radius: 10px;
+                border: 2px solid $black;
+                font-size: 18px;
+                margin: 10px 0;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.sideBookList::after {
+    content: "";
+    height: 7px;
+    width: 7px;
+    background-color: #fff;
+    position: absolute;
+    display: block;
+    top: 25px;
+    left: 6px;
+    border-radius: 15px;
+}

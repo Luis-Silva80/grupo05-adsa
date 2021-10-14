@@ -1,10 +1,6 @@
 package b.com.tothlibs.apitothlib.listas;
 
-
-import b.com.tothlibs.apitothlib.controlers.AlunoController;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
-import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
-import org.springframework.http.ResponseEntity;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -58,7 +54,6 @@ public class ListaDeObjetos<T> {
 
         return vetorDeUsuariosCrescente;
     }
-
 
 
     public static void gravaArquivoCsv(List<PerfilUsuario> lista, String nomeArquivo) {
@@ -132,8 +127,8 @@ public class ListaDeObjetos<T> {
 
             while (entrada.hasNext()) {
                 Integer id = entrada.nextInt();
-                String  nome = entrada.next();
-                String  email = entrada.next();
+                String nome = entrada.next();
+                String email = entrada.next();
                 Integer telefone = entrada.nextInt();
 
                 System.out.printf("%-5d;%-20s;%-45s;%15d\n", id, nome, email, telefone);
