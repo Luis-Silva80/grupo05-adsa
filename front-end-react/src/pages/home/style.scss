@@ -5,22 +5,24 @@ $white: #ffffff;
 $black: #07080a;
 
 #rootHome {
-  .homeMain{
+  overflow: hidden;
+  .main{
     display: flex;
     justify-content: space-around;
     height: 90vh;
-    border-bottom: 2px solid #ebe6e6;
+    border-bottom: 3px solid #ebe6e6;
     position: relative;
     &::after{
       content: "";
-      background: url("../../assets/graph.png");
+      background: url("../../assets/graph.png")no-repeat;
       height: inherit;
-      width: 50%;
+      width: 55%;
       position: absolute;
-      bottom: -275px;
-      left: -20%;
-      background-size: contain;
+      bottom: -40vh;
+      left: -25%;
+      background-size: cover;
       transform: rotate(-152deg);
+      background-position: center;
     }
     &-box{
       display: flex;
@@ -54,13 +56,6 @@ $black: #07080a;
       max-height: 500px;
       margin-top: 20vh;
     }
-    &-graph{
-      position: absolute;
-      transform: rotate(-152deg);
-      left: -20%;
-      bottom: -27vh;
-      height: 100%;
-    }
     &-arrowScroll{
       transform: rotate(90deg);
       height: 30px;
@@ -69,14 +64,29 @@ $black: #07080a;
       animation: arrowScroll 2s infinite;
     }
   }
-  .homeSection{
+  .about{
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
-    margin: 55px 0;
+    margin: 100px 0;
     position: relative;
     height: 100vh;
-    overflow: hidden;
+    border-bottom: 3px solid #ebe6e6;
+    &::after{
+      content: "";
+      background: url("../../assets/graph2.png")no-repeat;
+      height: inherit;
+      width: 100%;
+      position: absolute;
+      bottom: -35vh;
+      right: -35%;
+      background-size: 60%;
+      background-position: center;
+      transform: rotate(135deg);
+    }
+    &.reverse{
+      flex-direction: row;
+    }
     &-box{
       display: flex;
       flex-direction: column;
@@ -84,12 +94,55 @@ $black: #07080a;
       width: 35%;
       &-title{
         color: $lightBlue;
-        font-size: 75px;
+        font-size: 65px;
+        align-self: flex-start;
+        margin-bottom: 25px;
+      }
+      &-parag{
+        font-size: 30px;
+        width: 100%;
+        margin: 10px 0 25px 0;
+      }
+    }
+    &-img{
+      height: 70%;
+    }
+  }
+  .weDo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 100px 0;
+    position: relative;
+    height: 100vh;
+    border-bottom: 3px solid #ebe6e6;
+    &::after{
+      content: "";
+      background: url("../../assets/graph4.png")no-repeat;
+      height: inherit;
+      width: 100%;
+      position: absolute;
+      bottom: -40vh;
+      left: -50%;
+      background-size: 70%;
+      background-position: center;
+      transform: rotate(-104deg);
+    }
+    &.reverse{
+      flex-direction: row;
+    }
+    &-box{
+      display: flex;
+      flex-direction: column;
+      width: 35%;
+      &-title{
+        color: $lightBlue;
+        font-size: 60px;
         align-self: flex-start;
       }
       &-parag{
-        font-size: 35px;
-        width: 100%;
+        font-size: 30px;
+        width: 90%;
         margin: 10px 0 25px 0;
       }
     }
@@ -105,7 +158,6 @@ $black: #07080a;
       width: 55%;
     }
   }
-  
   
   
   @keyframes arrowScroll {
