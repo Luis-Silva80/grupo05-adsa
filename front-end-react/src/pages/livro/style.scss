@@ -9,9 +9,13 @@ $secundaryColor: #32B9CD;
       align-items: center;
 
       &_container {
-
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 50%;
           &_upBox {
               display: flex;
+              justify-content: space-between;
               &_imgBox {
 
                   &_img {

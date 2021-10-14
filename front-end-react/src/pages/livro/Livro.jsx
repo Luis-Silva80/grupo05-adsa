@@ -6,6 +6,7 @@ import SideBar from '../../components/sideBar/SideBar';
 
 import api from "../../services/api";
 import { Link } from 'react-router-dom';
+import livro from     '../../assets/image-livro.png';
 
 function Livro(){
 
@@ -17,7 +18,7 @@ function Livro(){
           <div className="main_container">
             <div className="main_container_upBox">
               <div className="main_container_upBox_imgBox">
-                <img src="./assets/imgs/image-livro.png" className="main_container_upBox_imgBox_img" />
+                <img src={livro} className="main_container_upBox_imgBox_img" />
               </div>
               <div className="main_container_upBox_content">
                 <h3 className="main_container_upBox_content_title">Programando com JavaScript</h3>
