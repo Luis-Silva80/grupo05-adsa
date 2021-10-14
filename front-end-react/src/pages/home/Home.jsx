@@ -1,7 +1,7 @@
 // React and hooks
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AOS from 'aos';
+// import AOS from 'aos';
 
 // import components
 import Header from '../../components/header/Header';
