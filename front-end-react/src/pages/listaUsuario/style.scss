@@ -4,202 +4,206 @@ $lightGrey: #636a70;
 $white: #ffffff;
 $black: #07080a;
 
-.main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    &.container {
-        width: 80%;
-        margin: 0 auto;
-    }
-    &_title {
-        color: $lightBlue;
-        font-size: 3rem;
-        margin-bottom: 20px;
-    }
-    &_nav {
+#rootListaUsuario {
+
+    .main {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        width: 100%;
-        justify-content: space-evenly;
-        margin-bottom: 30px;
-        position: sticky;
-        top: 0px;
-        padding: 10px;
-        background: white;
-        &_input {
-            min-width: 60%;
-            font-size: 18px;
-            padding: 5px 10px;
-            border: 2px solid #909090;
-            border-radius: 10px;
+        position: relative;
+        &.container {
+            width: 80%;
+            margin: 0 auto;
         }
-        &_btn {
-            background: $darkBlue;
-            color: $white;
-            padding: 6px 10px 6px 45px;
-            border-radius: 10px;
-            font-size: 18px;
-            border: none;
-            position: relative;
-            cursor: pointer;
-            margin: 0 10px;
-
-            &::after {
-                content: "";
-                background: url("../../assets/loupe.png") no-repeat;
-                display: block;
-                width: 23px;
-                height: 23px;
-                position: absolute;
-                top: 5px;
-                background-size: contain;
-                left: 12px;
-                z-index: 0;
-            }
+        &_title {
+            color: $lightBlue;
+            font-size: 3rem;
+            margin-bottom: 20px;
         }
-        &_filter {
-            background: $darkBlue;
-            color: $white;
-            padding: 5px 10px;
-            border-radius: 10px;
-            font-size: 18px;
-            border: none;
-            position: relative;
-            cursor: pointer;
-            &_value {
-                background: white;
-                color: black;
-            }
-        }
-    }
-
-    &_table {
-        width: 100%;
-        border-spacing: 0px 10px;
-        // border-collapse: collapse;
-        &_label {
-            position: sticky;
-            top: 50px;
-            background: white;
-            &_element {
-                font-size: 25px;
-            }
-        }
-        &_user {
-            &_item {
-                text-align: center;
-                border-top: 2px solid $darkBlue;
-                border-bottom: 2px solid $darkBlue;
-                font-size: 20px;
-                max-width: 300px;
-                &.name {
-                    max-width: 200px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-                &.email {
-                    max-width: 300px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-                &.inactive {
-                    font-weight: 700;
-                    color: #dd0606;
-                }
-                &.frst {
-                    border-left: 2px solid $darkBlue;
-                    border-top-left-radius: 25px;
-                    border-bottom-left-radius: 25px;
-                }
-                &.lst {
-                    border-right: 2px solid $darkBlue;
-                    border-bottom-right-radius: 25px;
-                    border-top-right-radius: 25px;
-                }
-            }
-            &_img {
-                margin-top: 5px;
-                height: 50px;
-            }
-
-            &_about {
-                background: $darkBlue;
-                border-radius: 10px;
-                border: none;
-                width: 30px;
-                height: 30px;
-                padding: 5px;
-                cursor: pointer;
-                margin-top: 5px;
-            }
-            &_trash {
-                background: #8f0404;
-                border-radius: 10px;
-                border: none;
-                width: 30px;
-                height: 30px;
-                padding: 5px;
-                cursor: pointer;
-                margin-top: 5px;
-            }
-        }
-    }
-
-    &_popup {
-        display: none;
-        border: 2px solid $darkBlue;
-        border-radius: 10px;
-        padding: 10px;
-        width: 500px;
-        position: fixed;
-        top: 150px;
-        background: $white;
-        &.active {
+        &_nav {
             display: flex;
-        }
-        &_img {
-            width: 175px;
-        }
-        &_close {
-            width: 20px;
-            position: absolute;
-            right: 10px;
-            cursor: pointer;
-        }
-        &_user {
-            margin-left: 10px;
+            align-items: center;
             width: 100%;
-            &_name {
-                font-size: 25px;
+            justify-content: space-evenly;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 0px;
+            padding: 10px;
+            background: white;
+            &_input {
+                min-width: 60%;
+                font-size: 18px;
+                padding: 5px 10px;
+                border: 2px solid #909090;
+                border-radius: 10px;
             }
+            &_btn {
+                background: $darkBlue;
+                color: $white;
+                padding: 6px 10px 6px 45px;
+                border-radius: 10px;
+                font-size: 18px;
+                border: none;
+                position: relative;
+                cursor: pointer;
+                margin: 0 10px;
 
-            &_box {
-                display: flex;
-                justify-content: center;
-                margin-top: 20px;
-                &_btn {
-                    padding: 5px 15px;
+                &::after {
+                    content: "";
+                    background: url("../../assets/loupe.png") no-repeat;
+                    display: block;
+                    width: 23px;
+                    height: 23px;
+                    position: absolute;
+                    top: 5px;
+                    background-size: contain;
+                    left: 12px;
+                    z-index: 0;
+                }
+            }
+            &_filter {
+                background: $darkBlue;
+                color: $white;
+                padding: 5px 10px;
+                border-radius: 10px;
+                font-size: 18px;
+                border: none;
+                position: relative;
+                cursor: pointer;
+                &_value {
+                    background: white;
+                    color: black;
+                }
+            }
+        }
+
+        &_table {
+            width: 100%;
+            border-spacing: 0px 10px;
+            // border-collapse: collapse;
+            &_label {
+                position: sticky;
+                top: 50px;
+                background: white;
+                &_element {
+                    font-size: 25px;
+                }
+            }
+            &_user {
+                &_item {
+                    text-align: center;
+                    border-top: 2px solid $darkBlue;
+                    border-bottom: 2px solid $darkBlue;
+                    font-size: 20px;
+                    max-width: 300px;
+                    &.name {
+                        max-width: 200px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    &.email {
+                        max-width: 300px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    &.inactive {
+                        font-weight: 700;
+                        color: #dd0606;
+                    }
+                    &.frst {
+                        border-left: 2px solid $darkBlue;
+                        border-top-left-radius: 25px;
+                        border-bottom-left-radius: 25px;
+                    }
+                    &.lst {
+                        border-right: 2px solid $darkBlue;
+                        border-bottom-right-radius: 25px;
+                        border-top-right-radius: 25px;
+                    }
+                }
+                &_img {
+                    margin-top: 5px;
+                    height: 50px;
+                }
+
+                &_about {
                     background: $darkBlue;
-                    color: $white;
-                    font-size: 18px;
                     border-radius: 10px;
                     border: none;
+                    width: 30px;
+                    height: 30px;
+                    padding: 5px;
                     cursor: pointer;
-                    margin: 0 10px;
-                    &.delete {
-                        background: #dd0606;
+                    margin-top: 5px;
+                }
+                &_trash {
+                    background: #8f0404;
+                    border-radius: 10px;
+                    border: none;
+                    width: 30px;
+                    height: 30px;
+                    padding: 5px;
+                    cursor: pointer;
+                    margin-top: 5px;
+                }
+            }
+        }
+
+        &_popup {
+            display: none;
+            border: 2px solid $darkBlue;
+            border-radius: 10px;
+            padding: 10px;
+            width: 500px;
+            position: fixed;
+            top: 150px;
+            background: $white;
+            &.active {
+                display: flex;
+            }
+            &_img {
+                width: 175px;
+            }
+            &_close {
+                width: 20px;
+                position: absolute;
+                right: 10px;
+                cursor: pointer;
+            }
+            &_user {
+                margin-left: 10px;
+                width: 100%;
+                &_name {
+                    font-size: 25px;
+                }
+
+                &_box {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 20px;
+                    &_btn {
+                        padding: 5px 15px;
+                        background: $darkBlue;
+                        color: $white;
+                        font-size: 18px;
+                        border-radius: 10px;
+                        border: none;
+                        cursor: pointer;
+                        margin: 0 10px;
+                        &.delete {
+                            background: #dd0606;
+                        }
                     }
                 }
             }
         }
     }
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: $darkBlue;
+        border-radius: 10px;
+    }
 }
-::-webkit-scrollbar {
-    width: 5px;
-}
-::-webkit-scrollbar-thumb {
-    background: $darkBlue;
-    border-radius: 10px;
-}
+

@@ -32,7 +32,7 @@ $colorWhite: #FFFF;
       &_link {
         text-decoration: none;
         color: $colorWhite;
-        font-size: 1rem;
+        font-size: 1.25rem;
         position: relative;
 
         &::after {
@@ -68,9 +68,9 @@ $colorWhite: #FFFF;
       border: 2px $secundaryColor solid;
       cursor: pointer;
       font-weight: 600;
-
+      font-size: 1.25rem;
+      transition: 0.5s;
       &:hover {
-        transition: 0.5s;
         background-color: $secundaryColor;
         color: $bgBlackHeader;
       }
