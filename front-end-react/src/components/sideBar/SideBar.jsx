@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.scss";
+import { Link } from 'react-router-dom';
 
 import userIcon from "../../assets/user.png";
 import bookIcon from "../../assets/book-shelf.png";
@@ -13,18 +14,18 @@ function sideBarComponent() {
         <>
             <aside className="sideBar" id="rootSideBar">
                 <div className="sideBar_containerCategory">
-                    <a href="./perfilUsuario.html" className="sideBar_containerCategory_link">
+                    <Link to="/perfilUsuario" className="sideBar_containerCategory_link">
                         <img src={userIcon} className="sideBar_containerCategory_link_icon" />
-                    </a>
-                    <a href="./listaLivros.html" className="sideBar_containerCategory_link">
+                    </Link>
+                    <Link to="/listaLivros" className="sideBar_containerCategory_link">
                         <img src={bookIcon} className="sideBar_containerCategory_link_icon" />
-                    </a>
-                    <a href="#" className="sideBar_containerCategory_link">
+                    </Link>
+                    <Link to="/contato" className="sideBar_containerCategory_link">
                         <img src={suggestionIcon} className="sideBar_containerCategory_link_icon" />
-                    </a>
-                    <a href="#" className="sideBar_containerCategory_link">
+                    </Link>
+                    <Link to="/faq" className="sideBar_containerCategory_link">
                         <img src={questionIcon} className="sideBar_containerCategory_link_icon" />
-                    </a>
+                    </Link>
                 </div>
             
                 <div className="sideBar_containerOptions">
