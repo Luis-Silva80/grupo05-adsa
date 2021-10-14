@@ -159,6 +159,13 @@ $black: #07080a;
     }
   }
   
+  @media only screen and (max-width: 600px) {
+    .main,.weDo,.about{
+      &::after{
+        display: none;
+      }
+    }
+  }
   
   @keyframes arrowScroll {
     0%{
