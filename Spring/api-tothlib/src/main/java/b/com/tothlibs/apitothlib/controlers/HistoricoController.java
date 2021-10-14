@@ -1,5 +1,6 @@
 package b.com.tothlibs.apitothlib.controlers;
 
+import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
 import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.repository.HistoricoRepository;
 import io.swagger.annotations.ApiOperation;
@@ -23,11 +24,9 @@ public class HistoricoController {
     @ApiOperation(value = "Retorna uma lista com o historico de ações na plataforma")
     public ResponseEntity pendencia() {
 
-        List<Historico> listaDeHistorico = repository.findUserPendencia().stream()
-                .filter(historico -> historico.getAcao().equals("Renovacao") ||
-                        historico.getAcao().equals("Locacao")).collect(Collectors.toList());
-
-
+        List<UsuariosPendentesDto> listaDeHistorico = repository.findUserPendencia().stream()
+                .filter(usuariosPendentesDto -> usuariosPendentesDto.getAcao().equals("Renovacao") ||
+                        usuariosPendentesDto.getAcao().equals("Retirada")).collect(Collectors.toList());
 
         return ResponseEntity.status(200).body(listaDeHistorico);
     }

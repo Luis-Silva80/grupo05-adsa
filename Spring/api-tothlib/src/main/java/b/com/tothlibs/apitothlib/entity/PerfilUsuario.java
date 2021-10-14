@@ -42,6 +42,17 @@ public class PerfilUsuario {
     @Column(name = "fk_tb_instituicao")
     private Integer fkTbInstituicao;
 
+    @Column(name = "livros_reservados")
+    private Integer livrosReservados;
+
+    public Integer getLivrosReservados() {
+        return livrosReservados;
+    }
+
+    public void setLivrosReservados(Integer livrosReservados) {
+        this.livrosReservados = livrosReservados;
+    }
+
     public Integer getFkTbInstituicao() {
         return fkTbInstituicao;
     }
