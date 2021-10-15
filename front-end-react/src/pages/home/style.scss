@@ -1,0 +1,295 @@
+$lightBlue: #32b9cd;
+$darkBlue: #04378f;
+$lightGrey: #636a70;
+$white: #ffffff;
+$black: #07080a;
+
+#rootHome {
+  overflow: hidden;
+  .main{
+    display: flex;
+    justify-content: space-around;
+    height: 90vh;
+    border-bottom: 3px solid #ebe6e6;
+    position: relative;
+    &::after{
+      content: "";
+      background: url("../../assets/graph.png")no-repeat;
+      height: inherit;
+      width: 55%;
+      position: absolute;
+      bottom: -40vh;
+      left: -25%;
+      background-size: cover;
+      transform: rotate(-152deg);
+      background-position: center;
+    }
+    &-box{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 12.5vh;
+      &-title{
+        color: $lightBlue;
+        font-size: 75px;
+        align-self: flex-start;
+      }
+      &-parag{
+        font-size: 40px;
+        max-width: 350px;
+        margin: 10px 0 50px 0;
+      }
+      &-link{
+        text-decoration: none;
+        color: white;
+        background: $darkBlue;
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 25px;
+        z-index: 1;
+        cursor: pointer;
+      }
+    }
+    &-img{
+      height: 55%;
+      max-height: 500px;
+      margin-top: 20vh;
+    }
+    &-arrowScroll{
+      transform: rotate(90deg);
+      height: 30px;
+      position: absolute;
+      bottom: 15vh;
+      animation: arrowScroll 2s infinite;
+    }
+  }
+  .about{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    margin: 100px 0;
+    position: relative;
+    height: 100vh;
+    border-bottom: 3px solid #ebe6e6;
+    &::after{
+      content: "";
+      background: url("../../assets/graph2.png")no-repeat;
+      height: inherit;
+      width: 100%;
+      position: absolute;
+      bottom: -35vh;
+      right: -35%;
+      background-size: 60%;
+      background-position: center;
+      transform: rotate(135deg);
+    }
+    &.reverse{
+      flex-direction: row;
+    }
+    &-box{
+      display: flex;
+      flex-direction: column;
+      
+      width: 35%;
+      &-title{
+        color: $lightBlue;
+        font-size: 65px;
+        align-self: flex-start;
+        margin-bottom: 25px;
+      }
+      &-parag{
+        font-size: 30px;
+        width: 100%;
+        margin: 10px 0 25px 0;
+      }
+    }
+    &-img{
+      height: 70%;
+    }
+  }
+  .weDo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 100px 0;
+    position: relative;
+    height: 100vh;
+    border-bottom: 3px solid #ebe6e6;
+    &::after{
+      content: "";
+      background: url("../../assets/graph4.png")no-repeat;
+      height: inherit;
+      width: 100%;
+      position: absolute;
+      bottom: -40vh;
+      left: -50%;
+      background-size: 70%;
+      background-position: center;
+      transform: rotate(-104deg);
+    }
+    &.reverse{
+      flex-direction: row;
+    }
+    &-box{
+      display: flex;
+      flex-direction: column;
+      width: 35%;
+      &-title{
+        color: $lightBlue;
+        font-size: 60px;
+        align-self: flex-start;
+      }
+      &-parag{
+        font-size: 30px;
+        width: 90%;
+        margin: 10px 0 25px 0;
+      }
+    }
+    &-img{
+      height: 70%;
+    }
+    &-graph{
+      position: absolute;
+      transform: rotate(135deg);
+      right: -200px;
+      top: 250px;
+      z-index: -1;
+      width: 55%;
+    }
+  }
+  
+  .homeSectionBenefit {
+    border-bottom: 3px solid #ebe6e6;
+    padding-bottom: 100px;
+    position: relative;
+
+    &_description {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &_title {
+        text-align: center;
+        color: #32b9cd;
+        font-size: 50px;
+        align-self: flex-start;
+        width: 100%;
+      }
+
+      &_paragraph {
+        text-align: center;
+        font-size: 20px;
+        width: 30%;
+      }
+    }
+
+    &_benefities {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    &::after {
+      content: "";
+      background: url("../../assets/graph3.png")no-repeat;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      bottom: -55vh;
+      right: -42%;
+      background-size: 70%;
+      background-position: center;
+      transform: rotate(63deg);
+    }
+  }
+
+  .homeSectionContactUs {
+    display: flex;
+    padding: 100px 100px;
+
+    &_img {
+      width: 500px;
+    }
+    &_box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      &_content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &_title {
+          text-align: center;
+          color: #32b9cd;
+          font-size: 50px;
+          align-self: flex-start;
+          width: 100%;
+        }
+        &_paragraph {
+          text-align: center;
+          font-size: 20px;
+          width: 52%;
+        }
+      }
+
+      &_inputs {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        &_title {
+          margin: 15px;
+          border: 3px solid #04378F;
+          border-radius: 10px;
+          padding: 8px;
+        }
+
+        &_description {
+          margin: 15px;
+          height: 150px;
+          border: 3px solid #04378F;
+          border-radius: 10px;
+          padding: 8px;
+        }
+      }
+
+      &_button {
+        text-decoration: none;
+        color: white;
+        background: #04378f;
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 20px;
+        z-index: 1;
+        cursor: pointer;
+        width: 20%;
+        text-align: center;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .main,.weDo,.about{
+      &::after{
+        display: none;
+      }
+    }
+  }
+  
+  @keyframes arrowScroll {
+    0%{
+      bottom:5vh;
+    }
+    50%{
+      bottom:10vh;
+    }
+    100%{
+      bottom:5vh;
+    }
+  }
+}

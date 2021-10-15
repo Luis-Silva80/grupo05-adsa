@@ -1,12 +1,12 @@
 $bgBlackHeader: #2C2C2C;
 $colorWhite: #FFFF;
 
-.footer {
+#rootFooter {
     display: flex;
     background-color: $bgBlackHeader;
     justify-content: space-between;
 
-    &_imageContainer{ 
+    .footer_imageContainer{
         &_link {
             &_imageLogo {
                 width: 135px;
@@ -14,7 +14,7 @@ $colorWhite: #FFFF;
         }
     }
 
-    &_textContainer {
+    .footer_textContainer {
         display: flex;
         align-items: center;
 
@@ -23,7 +23,7 @@ $colorWhite: #FFFF;
         }
     }
 
-    &_icons {
+    .footer_icons {
         display: flex;
         align-items: center;
 

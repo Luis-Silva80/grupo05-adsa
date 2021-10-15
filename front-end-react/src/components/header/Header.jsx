@@ -5,7 +5,7 @@ import logoImg from "../../assets/logoWhiteWhite.png";
 function Navbar() {
         return (
             <>
-                <header className="header container">
+                <header className="header container" id="rootHeader">
                     <div className="header_imageContainer">
                         <a href="" className="header_imageContainer_link">
                             <img className="header_imageContainer_link_imageLogo" src={logoImg} />
