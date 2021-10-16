@@ -9,7 +9,6 @@ public class UsuarioDto {
 
     private String nome;
     private Boolean autenticado;
-    private LocalDateTime dataAtual = LocalDateTime.now();
     private String autenticadoEm;
     private String logoffRealizadoEm;
 

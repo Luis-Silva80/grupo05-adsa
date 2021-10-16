@@ -93,8 +93,13 @@ public class PerfilUsuario {
         this.usuarioAdmin = usuarioAdmin;
     }
 
-    public String getSenha() {
-        return senha;
+//    public String getSenha() {
+//        return senha;
+//    }
+
+
+    public String retornaSenha(){
+        return this.senha;
     }
 
     public void setSenha(String senha) {

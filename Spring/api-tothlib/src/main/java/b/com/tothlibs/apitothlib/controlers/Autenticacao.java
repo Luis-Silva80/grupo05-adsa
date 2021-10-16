@@ -32,7 +32,7 @@ public class Autenticacao {
 
         for (PerfilUsuario u : listUsuarios) {
             if (u.getEmail().equals(email)) {
-                if (u.getSenha().equals(senha)) {
+                if (u.retornaSenha().equals(senha)) {
                     usuarioDto = new UsuarioDto(u);
                     listAutenticados.add(usuarioDto);
                 }
