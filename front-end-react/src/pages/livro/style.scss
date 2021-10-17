@@ -72,18 +72,6 @@ $secundaryColor: #32B9CD;
           &_downBox {
               display: flex;
               justify-content: space-between;
-              
-              &_button {
-                  background: #04378f;
-                  color: #ffffff;
-                  padding: 5px 40px;
-                  border-radius: 10px;
-                  font-size: 18px;
-                  border: none;
-                  position: relative;
-                  cursor: pointer;
-                  text-decoration: none;
-              }
           }
       }
       &_description {

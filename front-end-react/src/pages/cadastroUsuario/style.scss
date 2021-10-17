@@ -9,7 +9,8 @@ $black: #07080a;
   flex-direction: column;
   align-items: center;
   position: relative;
-  height: calc(100vh - 98px);
+  height: calc(100vh - 171px);
+  
   .main.container{
     width: 80%;
     margin: 0 auto;
@@ -66,7 +67,7 @@ $black: #07080a;
   }
   .main_box{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 270px;
     &_link{
       color: $darkBlue;

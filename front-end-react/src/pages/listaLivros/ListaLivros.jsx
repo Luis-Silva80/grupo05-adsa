@@ -67,7 +67,7 @@ function ListaLivros() {
     return (
         <>
             <SideBar />
-            <main class="main container">
+            <main class="main container" id="rootListaLivro">
                 <h1 class="main_title">Livros cadastrados</h1>
 
                 <div className="main_nav">

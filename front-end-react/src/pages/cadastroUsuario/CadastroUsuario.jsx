@@ -2,19 +2,9 @@
 import React, { useEffect } from 'react';
 import "./style.scss";
 
-/* 
-
-    return (
-        <>
-            Conteudo HTML(main)
-        </>
-    )
-    
-*/
-
 // import components
 import Footer from '../../components/footer/Footer';
-import SideBar from '../../components/sideBar/SideBar';
+import Header from '../../components/header/Header';
 
 // import api and links
 import api from "../../services/api";
@@ -56,7 +46,7 @@ function CadastroUsuario() {
 
     return (
         <>
-            <SideBar />
+            <Header />
             <main className="main container" id="rootCadastroUsuario">
                 <h1 className="main_title">Cadastro</h1>
                 <p className="main_parag">Faça o seu cadastro na nossa plataforma para reservar o seus livros.</p>
@@ -70,7 +60,6 @@ function CadastroUsuario() {
                 </form>
                 <div className="main_box">
                     <p className="main_box_parag">Já tem uma conta?</p>
-                    {/* <a className="main_box_link" href="login.html">Logar</a> */}
                     <Link className="main_box_link" to="/login">Logar</Link>
                 </div>
                 <section id="resp" className="resp"></section>

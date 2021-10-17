@@ -18,6 +18,8 @@ $black: #07080a;
 } */
 
 #rootContato {
+    height: calc(100vh - 97px);
+
     .main_title {
       color: $lightBlue;
       text-align: center;
