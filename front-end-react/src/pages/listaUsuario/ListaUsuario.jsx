@@ -9,13 +9,58 @@ import api from "../../services/api";
 // import components-
 import Footer from '../../components/footer/Footer';
 import SideBar from '../../components/sideBar/SideBar';
+import usuarioImg from     '../../assets/perfilIcon.png';
 
 function ListaUsuarios() {
 
     useEffect(() => {
         api
             .get("/aluno")
-            .then((response) => { console.log(response.data); })
+            .then((response) => {
+
+
+                console.log(response.data);
+
+                let table = document.getElementById("table");
+
+                // let user = document.getElementById("user")
+
+                response.data.forEach(element => {
+
+                    table.innerHTML +=
+                        `
+                        <tr class="main_table_user">
+                            <td class="main_table_user_item frst"><img class="main_table_user_img" src="${usuarioImg}" alt="user img"></td>
+                            <td class="main_table_user_item name">${element.nome}</td>
+                            <td class="main_table_user_item email">${element.email}</td>
+                            ${(element.status == "Inativo" ? `<td class='main_table_user_item inactive'>${element.status}</td>` : `<td class='main_table_user_item'>${element.status}</td>`)}
+                            ${(element.pendencia == null ? `<td class='main_table_user_item'>nenhuma</td>` : `<td class='main_table_user_item inactive'>${element.pendencia}</td>`)}
+                            <td class="main_table_user_item"><img class="main_table_user_about" onclick="callUser(${element.id})" src="./assets/imgs/loupe.png"></td>
+                            <td class="main_table_user_item lst"><img class="main_table_user_trash" onclick="deleteUser(${element.id})" src="./assets/imgs/trash.png"></td>
+                        </tr>
+                    `
+
+                });
+
+
+                // let popup = document.getElementById("popup")
+
+                // popup.classList.toggle("active")
+
+                // let userArr = usersArr[id -1];
+
+
+
+
+
+
+
+
+
+
+
+
+            })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
             });
