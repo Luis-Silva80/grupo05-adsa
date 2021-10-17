@@ -4,20 +4,21 @@ $lightGrey: #636a70;
 $white: #ffffff;
 $black: #07080a;
 
-.main{
+#rootCadastroUsuario{
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  &.container{
+  height: calc(100vh - 98px);
+  .main.container{
     width: 80%;
     margin: 0 auto;
   }
-  &_title{
+  .main_title{
     color: $lightBlue;
     font-size: 3rem;
   }
-  &_parag{
+  .main_parag{
     color: $lightGrey;
     font-size: 18px;
     margin: 10px 0;
@@ -25,7 +26,7 @@ $black: #07080a;
     text-align: center;
     margin-bottom: 15px;
   }
-  &_form{
+  .main_form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,12 +59,12 @@ $black: #07080a;
     }
     
   }
-  &_forgot{
+  .main_forgot{
     margin: 15px 0;
     text-decoration: none;
     color: $lightGrey;
   }
-  &_box{
+  .main_box{
     display: flex;
     justify-content: space-between;
     width: 270px;
