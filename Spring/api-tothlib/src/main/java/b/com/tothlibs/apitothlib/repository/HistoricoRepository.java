@@ -14,7 +14,7 @@ public interface HistoricoRepository extends JpaRepository<Historico, Integer> {
     @Query("SELECT NEW b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto(h, p.livrosReservados)" +
             " from Historico h" +
             " inner join PerfilUsuario p on h.fkTbPerfilUsuario = p.id " +
-            " where p.livrosReservados > 3 order by h.id desc")
+            " where h.acao = 'Retirada' or h.acao = 'Renovacao' and p.livrosReservados > 0 order by h.id desc")
     public List<UsuariosPendentesDto> findUserPendencia();
 
     @Query("SELECT h.dataLivroHistorico FROM Historico h where h.id = :id")

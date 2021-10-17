@@ -103,5 +103,18 @@ public class UsuariosPendentesDto {
         this.livrosReservados = livrosReservados;
     }
 
-
+    @Override
+    public String toString() {
+        return "UsuariosPendentesDto{" +
+                "id=" + id +
+                ", fkTbLivros=" + fkTbLivros +
+                ", fkTbPerfilUsuario=" + fkTbPerfilUsuario +
+                ", dataLivroHistorico=" + dataLivroHistorico +
+                ", nomeLivro='" + nomeLivro + '\'' +
+                ", nomePerfilUsuario='" + nomePerfilUsuario + '\'' +
+                ", acao='" + acao + '\'' +
+                ", dataDevolucao=" + dataDevolucao +
+                ", livrosReservados=" + livrosReservados +
+                '}';
+    }
 }

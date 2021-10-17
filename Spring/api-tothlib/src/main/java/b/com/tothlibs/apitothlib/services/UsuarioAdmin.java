@@ -120,9 +120,10 @@ public class UsuarioAdmin implements Administravel, Usuario {
                 if (qtdReservas < livro.getQtdEstoque()) {
                     livro.setId(idLivro);
                     livro.setQtdReservas(qtdReservas + 1);
-
                     repository.save(livro);
 
+                    usuario.setLivrosReservados(usuario.getLivrosReservados()+1);
+                    repositoryUsuario.save(usuario);
                     criaResgistro(livro.getId(), usuario.getId(), "Reserva");
 
                     return true;
