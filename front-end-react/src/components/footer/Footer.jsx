@@ -1,4 +1,7 @@
+import React from 'react';
 import "./style.scss";
+import { Link } from 'react-router-dom';
+
 import logoImg from "../../assets/logoWhiteWhite.png";
 import logoGit from "../../assets/github.png";
 import logoLinkedin from "../../assets/linkedin.png";
@@ -10,9 +13,9 @@ function Footer() {
         <>
             <footer className="footer container" id="rootFooter">
                 <div className="footer_imageContainer">
-                    <a href="footer_imageContainer_link">
+                    <Link to="/" className="footer_imageContainer_link">
                         <img className="footer_imageContainer_link_imageLogo" src={logoImg} />
-                    </a>
+                    </Link>
                     </div>
                     
                     <div className="footer_textContainer">
@@ -22,7 +25,7 @@ function Footer() {
                 </div>
             
                 <div className="footer_icons">
-                    <a href="https://github.com/Luis-Silva80/grupo05-adsa" className="footer_icons_link">
+                    <a href="https://github.com/Luis-Silva80/grupo05-adsa" target="_blank" className="footer_icons_link">
                         <img src={logoGit} className="footer_icons_link_image" />
                     </a>
                     <a href="#" className="footer_icons_link">
