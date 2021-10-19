@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.scss';
 import icon from '../../assets/perfilIcon.png'
 import closed from '../../assets/close.png'
+import trash from '../../assets/trash.png'
+import loupe from '../../assets/loupe.png'
 
 // import api and links
 import api from "../../services/api";
@@ -9,57 +11,21 @@ import api from "../../services/api";
 // import components-
 import Footer from '../../components/footer/Footer';
 import SideBar from '../../components/sideBar/SideBar';
+
 import usuarioImg from     '../../assets/perfilIcon.png';
 
 function ListaUsuarios() {
+
+    //const userData = [];
+
+    const [ userData, setUserData ] = useState([]);
 
     useEffect(() => {
         api
             .get("/aluno")
             .then((response) => {
-
-
+                setUserData(response.data);
                 console.log(response.data);
-
-                let table = document.getElementById("table");
-
-                // let user = document.getElementById("user")
-
-                response.data.forEach(element => {
-
-                    table.innerHTML +=
-                        `
-                        <tr class="main_table_user">
-                            <td class="main_table_user_item frst"><img class="main_table_user_img" src="${usuarioImg}" alt="user img"></td>
-                            <td class="main_table_user_item name">${element.nome}</td>
-                            <td class="main_table_user_item email">${element.email}</td>
-                            ${(element.status == "Inativo" ? `<td class='main_table_user_item inactive'>${element.status}</td>` : `<td class='main_table_user_item'>${element.status}</td>`)}
-                            ${(element.pendencia == null ? `<td class='main_table_user_item'>nenhuma</td>` : `<td class='main_table_user_item inactive'>${element.pendencia}</td>`)}
-                            <td class="main_table_user_item"><img class="main_table_user_about" onclick="callUser(${element.id})" src="./assets/imgs/loupe.png"></td>
-                            <td class="main_table_user_item lst"><img class="main_table_user_trash" onclick="deleteUser(${element.id})" src="./assets/imgs/trash.png"></td>
-                        </tr>
-                    `
-
-                });
-
-
-                // let popup = document.getElementById("popup")
-
-                // popup.classList.toggle("active")
-
-                // let userArr = usersArr[id -1];
-
-
-
-
-
-
-
-
-
-
-
-
             })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
@@ -67,6 +33,7 @@ function ListaUsuarios() {
     }, []);
 
     return (
+
         <>
             <SideBar />
             <section id="rootListaUsuario">
@@ -94,11 +61,40 @@ function ListaUsuarios() {
                             <th></th>
                             <th></th>
                         </tr>
+                        {userData.map(item => (
+                            <tr class="main_table_user">
+                                
+                                <td class="main_table_user_item frst"><img class="main_table_user_img" src={usuarioImg} alt="user img" /></td>
+                                <td class="main_table_user_item name">{item.nome}</td>
+                                <td class="main_table_user_item email">{item.email}</td>
+                                {item.status == "Inativo" ? (
+                                    <>
+                                        <td class='main_table_user_item inactive'>{item.status}</td>
+                                    </>
+                                ) : (
+                                    <>
+                                        <td class='main_table_user_item'>{item.status}</td>
+                                    </>
+                                )}
+                                {item.pendencia == null ? (
+                                    <>
+                                        <td class='main_table_user_item'>nenhuma</td>
+                                    </>
+                                ) : (
+                                    <>
+                                        <td class='main_table_user_item inactive'>{item.pendencia}</td>
+                                    </>
+                                )}
+                                <td class="main_table_user_item"><img class="main_table_user_about"  src={loupe} /></td>
+                                <td class="main_table_user_item lst"><img class="main_table_user_trash"  src={trash} /></td>
+
+                            </tr>
+                        ))}
 
                     </table>
                     <section id="popup" class="main_popup">
                         <img class="main_popup_img" src={icon} />
-                        <img class="main_popup_close" src={closed} onclick="callUser()" />
+                        <img class="main_popup_close" src={closed} onClick="callUser()" />
                         <div class="main_popup_user" id="user"></div>
                     </section>
                 </main>
