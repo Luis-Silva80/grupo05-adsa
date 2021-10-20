@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import BenefitCard from '../../components/benefitCard/BenefitCard';
+import LinkButton from '../../components/button/Button';
 
 // import css
 // import "https://unpkg.com/aos@2.3.1/dist/aos.css";
@@ -30,17 +31,17 @@ function Home() {
         <>
             <Header />
                 <section id="rootHome">
-                    <main className="main">
+                    <main className="main" id="main_section">
                         <div className="main-box">
                             <h1 className="main-box-title">ThothLib</h1>
                             <p className="main-box-parag">Especialistas em Softwares de gestão e ERP.</p>
-                            <Link className="main-box-link">Saiba mais</Link>
+                            <LinkButton className="main-box-link" path="" content="Saiba mais" />
                         </div>
                         <img className="main-img" src={mainImg} alt="TothLib main banner" />
                         <img className="main-arrowScroll" src={arrowScroll} alt="TothLib arrow scroll" />
                     </main>
                     {/* <section className="about" data-aos="fade-right"> */}
-                    <section className="about">
+                    <section className="about" id="about_section">
                         <div className="about-box">
                             <h3 className="about-box-title">Quem Somos</h3>
                             <p className="about-box-parag">Antes de tudo SOMOS UM TIME!</p>
@@ -49,7 +50,7 @@ function Home() {
                         <img className="about-img" src={quemSomos} alt="TothLib quem somos" />
                     </section>
                     {/* <section className="weDo reverse" data-aos="fade-left"> */}
-                    <section className="weDo reverse">
+                    <section className="weDo reverse" id="weDo_section">
                         <div className="weDo-box">
                             <h3 className="weDo-box-title">O que fazemos?</h3>
                             <p className="weDo-box-parag">Somos uma fábrica de softwares, especializados em gestão e controle de produtos. Nossos sístemas garantem mais segurança, controle, agilidade, e é escalável para diversos modelos de negócios.</p>
@@ -57,7 +58,7 @@ function Home() {
                         <img className="weDo-img" src={oqFazemos} alt="TothLib quem somos" />
                     </section>
 
-                    <section className="homeSectionBenefit container">
+                    <section className="homeSectionBenefit container" id="benefit_section">
                         <div className="homeSectionBenefit_description">
                             <h1 className="homeSectionBenefit_description_title">Benefícios</h1>
                             <p className="homeSectionBenefit_description_paragraph">Nossa aplicação agrega valor ao negócio, veja os principais benefícios abaixo.</p>
@@ -71,7 +72,7 @@ function Home() {
                         </div>
                     </section>
 
-                    <section className="homeSectionContactUs container">
+                    <section className="homeSectionContactUs container" id="contactUs_section">
                         <img className="homeSectionContactUs_img" src={contactUs} />
                         <div className="homeSectionContactUs_box">
                             <div className="homeSectionContactUs_box_content">
@@ -82,7 +83,7 @@ function Home() {
                                 <input className="homeSectionContactUs_box_inputs_title" type="text" placeholder="Título"/>
                                 <textarea className="homeSectionContactUs_box_inputs_description" type="text" placeholder="Decrição"/>
                             </div>
-                            <Link className="homeSectionContactUs_box_button">Enviar</Link>
+                            <LinkButton content="Enviar" className="homeSectionContactUs_box_button" />
                         </div>
                     </section>
 

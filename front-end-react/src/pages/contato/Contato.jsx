@@ -3,7 +3,8 @@ import "./style.scss";
 
 // import components-
 import Footer from '../../components/footer/Footer';
-import SideBar from '../../components/sideBar/SideBar';;
+import SideBar from '../../components/sideBar/SideBar';
+import LinkButton from '../../components/button/Button';
 
 // import img from '../../assets/';
 
@@ -32,9 +33,7 @@ function Contato() {
                     <label className="main_box_label">
                         O prazo de resposta é de até 48 horas!
                     </label>
-                    <button className="main_box_button">
-                        Enviar
-                    </button>
+                    <LinkButton content="Enviar" className="main_box_button" />
                 </div>
             </main>
             <Footer />

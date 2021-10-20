@@ -1,0 +1,384 @@
+#rootHome {
+  overflow: hidden;
+}
+
+#rootHome .main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 90vh;
+  border-bottom: 3px solid #ebe6e6;
+  position: relative;
+}
+
+#rootHome .main::after {
+  content: "";
+  background: url("../../assets/graph.png") no-repeat;
+  height: inherit;
+  width: 55%;
+  position: absolute;
+  bottom: -40vh;
+  left: -25%;
+  background-size: cover;
+  -webkit-transform: rotate(-152deg);
+          transform: rotate(-152deg);
+  background-position: center;
+}
+
+#rootHome .main-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 12.5vh;
+}
+
+#rootHome .main-box-title {
+  color: #32b9cd;
+  font-size: 75px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+#rootHome .main-box-parag {
+  font-size: 40px;
+  max-width: 350px;
+  margin: 10px 0 50px 0;
+}
+
+#rootHome .main-img {
+  height: 55%;
+  max-height: 500px;
+  margin-top: 20vh;
+}
+
+#rootHome .main-arrowScroll {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  height: 30px;
+  position: absolute;
+  bottom: 15vh;
+  -webkit-animation: arrowScroll 2s infinite;
+          animation: arrowScroll 2s infinite;
+}
+
+#rootHome .about {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 100px 0;
+  position: relative;
+  height: 100vh;
+  border-bottom: 3px solid #ebe6e6;
+}
+
+#rootHome .about::after {
+  content: "";
+  background: url("../../assets/graph2.png") no-repeat;
+  height: inherit;
+  width: 100%;
+  position: absolute;
+  bottom: -35vh;
+  right: -35%;
+  background-size: 60%;
+  background-position: center;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+#rootHome .about.reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#rootHome .about-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 35%;
+}
+
+#rootHome .about-box-title {
+  color: #32b9cd;
+  font-size: 65px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-bottom: 25px;
+}
+
+#rootHome .about-box-parag {
+  font-size: 30px;
+  width: 100%;
+  margin: 10px 0 25px 0;
+}
+
+#rootHome .about-img {
+  height: 70%;
+}
+
+#rootHome .weDo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 100px 0;
+  position: relative;
+  height: 100vh;
+  border-bottom: 3px solid #ebe6e6;
+}
+
+#rootHome .weDo::after {
+  content: "";
+  background: url("../../assets/graph4.png") no-repeat;
+  height: inherit;
+  width: 100%;
+  position: absolute;
+  bottom: -40vh;
+  left: -50%;
+  background-size: 70%;
+  background-position: center;
+  -webkit-transform: rotate(-104deg);
+          transform: rotate(-104deg);
+}
+
+#rootHome .weDo.reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#rootHome .weDo-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 35%;
+}
+
+#rootHome .weDo-box-title {
+  color: #32b9cd;
+  font-size: 60px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+#rootHome .weDo-box-parag {
+  font-size: 30px;
+  width: 90%;
+  margin: 10px 0 25px 0;
+}
+
+#rootHome .weDo-img {
+  height: 70%;
+}
+
+#rootHome .weDo-graph {
+  position: absolute;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  right: -200px;
+  top: 250px;
+  z-index: -1;
+  width: 55%;
+}
+
+#rootHome .homeSectionBenefit {
+  border-bottom: 3px solid #ebe6e6;
+  padding-bottom: 100px;
+  position: relative;
+}
+
+#rootHome .homeSectionBenefit_description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#rootHome .homeSectionBenefit_description_title {
+  text-align: center;
+  color: #32b9cd;
+  font-size: 50px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  width: 100%;
+}
+
+#rootHome .homeSectionBenefit_description_paragraph {
+  text-align: center;
+  font-size: 20px;
+  width: 30%;
+}
+
+#rootHome .homeSectionBenefit_benefities {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#rootHome .homeSectionBenefit::after {
+  content: "";
+  background: url("../../assets/graph3.png") no-repeat;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: -55vh;
+  right: -42%;
+  background-size: 70%;
+  background-position: center;
+  -webkit-transform: rotate(63deg);
+          transform: rotate(63deg);
+}
+
+#rootHome .homeSectionContactUs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 100px 100px;
+}
+
+#rootHome .homeSectionContactUs_img {
+  width: 500px;
+}
+
+#rootHome .homeSectionContactUs_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#rootHome .homeSectionContactUs_box_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#rootHome .homeSectionContactUs_box_content_title {
+  text-align: center;
+  color: #32b9cd;
+  font-size: 50px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  width: 100%;
+}
+
+#rootHome .homeSectionContactUs_box_content_paragraph {
+  text-align: center;
+  font-size: 20px;
+  width: 52%;
+}
+
+#rootHome .homeSectionContactUs_box_inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+}
+
+#rootHome .homeSectionContactUs_box_inputs_title {
+  margin: 15px;
+  border: 3px solid #04378F;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+#rootHome .homeSectionContactUs_box_inputs_description {
+  margin: 15px;
+  height: 150px;
+  border: 3px solid #04378F;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+  #rootHome .main::after, #rootHome .weDo::after, #rootHome .about::after {
+    display: none;
+  }
+}
+
+@-webkit-keyframes arrowScroll {
+  0% {
+    bottom: 5vh;
+  }
+  50% {
+    bottom: 10vh;
+  }
+  100% {
+    bottom: 5vh;
+  }
+}
+
+@keyframes arrowScroll {
+  0% {
+    bottom: 5vh;
+  }
+  50% {
+    bottom: 10vh;
+  }
+  100% {
+    bottom: 5vh;
+  }
+}
+/*# sourceMappingURL=style.css.map */

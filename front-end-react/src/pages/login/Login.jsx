@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import "./style.scss";
 
 import Footer from '../../components/footer/Footer';
-import SideBar from '../../components/sideBar/SideBar';
+import Header from '../../components/header/Header';
 
 import api from "../../services/api";
 import { Link } from 'react-router-dom';
@@ -32,7 +32,7 @@ function Login() {
 
   return (
     <>
-      <SideBar />
+      <Header />
 
       <section id="rootLogin">
         <main className="main container">
@@ -46,7 +46,7 @@ function Login() {
           <a className="main_forgot" href="#">Esqueci a minha senha</a>
           <div className="main_box">
             <p className="main_box_parag">Ainda não tem conta?</p>
-            <a classNameName="main_box_link" href="cadastro.html">Cadastrar</a>
+            <Link to="/cadastroUsuario" className="main_box_link" href="cadastro.html">Cadastrar</Link>
           </div>
           <section id="resp" className="resp"></section>
         </main>

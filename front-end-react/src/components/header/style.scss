@@ -28,6 +28,7 @@ $colorWhite: #FFFF;
     align-items: center;
 
     &_category {
+      cursor: pointer;
       
       &_link {
         text-decoration: none;
@@ -70,6 +71,8 @@ $colorWhite: #FFFF;
       font-weight: 600;
       font-size: 1.25rem;
       transition: 0.5s;
+      text-decoration: none;
+      
       &:hover {
         background-color: $secundaryColor;
         color: $bgBlackHeader;

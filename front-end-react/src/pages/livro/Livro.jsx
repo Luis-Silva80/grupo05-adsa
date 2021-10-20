@@ -3,6 +3,7 @@ import "./style.scss";
 
 import Footer from '../../components/footer/Footer';
 import SideBar from '../../components/sideBar/SideBar';
+import LinkButton from '../../components/button/Button';
 
 import api from "../../services/api";
 import { Link } from 'react-router-dom';
@@ -51,9 +52,9 @@ function Livro(){
               </div>
             </div>
             <div className="main_container_downBox">
-              <a href="#" className="main_container_downBox_button">Reservar</a>
-              <a href="#" className="main_container_downBox_button">Comprar</a>
-              <a href="#" className="main_container_downBox_button">Baixar</a>
+              <LinkButton content="Reservar" className="main_container_downBox_button" />
+              <LinkButton content="Comprar" className="main_container_downBox_button" />
+              <LinkButton content="Baixar" className="main_container_downBox_button" />
             </div>
           </div>
           <div className="main_description">
