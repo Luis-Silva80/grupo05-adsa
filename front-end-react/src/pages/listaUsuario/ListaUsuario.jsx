@@ -67,24 +67,12 @@ function ListaUsuarios() {
                                 <td class="main_table_user_item frst"><img class="main_table_user_img" src={usuarioImg} alt="user img" /></td>
                                 <td class="main_table_user_item name">{item.nome}</td>
                                 <td class="main_table_user_item email">{item.email}</td>
-                                {item.status == "Inativo" ? (
-                                    <>
-                                        <td class='main_table_user_item inactive'>{item.status}</td>
-                                    </>
-                                ) : (
-                                    <>
-                                        <td class='main_table_user_item'>{item.status}</td>
-                                    </>
-                                )}
-                                {item.pendencia == null ? (
-                                    <>
-                                        <td class='main_table_user_item'>nenhuma</td>
-                                    </>
-                                ) : (
-                                    <>
-                                        <td class='main_table_user_item inactive'>{item.pendencia}</td>
-                                    </>
-                                )}
+                                {item.status == "Inativo" 
+                                ? (<td class='main_table_user_item inactive'>{item.status}</td>) 
+                                : (<td class='main_table_user_item'>{item.status}</td>)}
+                                {item.pendencia == null 
+                                ? (<td class='main_table_user_item'>nenhuma</td>) 
+                                : (<td class='main_table_user_item inactive'>{item.pendencia}</td>)}
                                 <td class="main_table_user_item"><img class="main_table_user_about"  src={loupe} /></td>
                                 <td class="main_table_user_item lst"><img class="main_table_user_trash"  src={trash} /></td>
 
