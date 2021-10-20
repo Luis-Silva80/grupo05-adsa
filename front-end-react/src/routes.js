@@ -12,6 +12,7 @@ import ListaUsuarios from "./pages/listaUsuario/ListaUsuario";
 import PerfilUsuario from "./pages/perfilUsuario/PerfilUsuario";
 import Login from "./pages/login/Login";
 import NotFound from "./pages/notFound/NotFound";
+import CadastroLivro from "./pages/cadastroLivro/CadastroLivro";
 
 
 export default function Routes() {
@@ -27,6 +28,7 @@ export default function Routes() {
                 <Route path="/livro" exact component={Livro}/>
                 <Route path="/contato" exact component={Contato} />
                 <Route path="/faq" exact component={Faq} />
+                <Route path="/cadastroLivro" exact component={CadastroLivro}/>
                 <Route path="*" exact component={NotFound} />
             </Switch>
         </BrowserRouter>
