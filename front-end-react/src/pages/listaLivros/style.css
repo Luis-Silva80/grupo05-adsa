@@ -1,0 +1,163 @@
+#rootListaLivro .main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+#rootListaLivro .main.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#rootListaLivro .main_title {
+  color: #32b9cd;
+  font-size: 3rem;
+  text-align: center;
+}
+
+#rootListaLivro .main_nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 95%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  position: -webkit-sticky;
+  position: sticky;
+  background: white;
+  padding: 10px;
+  top: 10px;
+  border-radius: 20px;
+}
+
+#rootListaLivro .main_nav_input {
+  min-width: 60%;
+  font-size: 18px;
+  padding: 5px 10px;
+  border: 2px solid #909090;
+  border-radius: 10px;
+}
+
+#rootListaLivro .main_nav_btn {
+  background: #04378f;
+  color: #ffffff;
+  padding: 6px 10px 6px 45px;
+  border-radius: 10px;
+  font-size: 18px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+#rootListaLivro .main_nav_btn::after {
+  content: "";
+  background: url("../../assets/loupe.png") no-repeat;
+  display: block;
+  width: 23px;
+  height: 23px;
+  position: absolute;
+  top: 5px;
+  background-size: contain;
+  left: 12px;
+  z-index: 0;
+}
+
+#rootListaLivro .main_nav_filter {
+  background: #04378f;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 18px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+}
+
+#rootListaLivro .main_nav_filter_value {
+  background: white;
+  color: #07080a;
+}
+
+#rootListaLivro .main_callback {
+  margin: 20px 0;
+}
+
+#rootListaLivro .main .resp {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#rootListaLivro .main .resp .book {
+  border-radius: 10px;
+  border: 2px solid #07080a;
+  width: 250px;
+  margin: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #ffffff;
+}
+
+#rootListaLivro .main .resp .book_img {
+  width: 220px;
+  margin: 10px 0;
+}
+
+#rootListaLivro .main .resp .book_title {
+  margin: 0 5px;
+  text-align: center;
+}
+
+#rootListaLivro .main .resp .book_btn {
+  padding: 5px 10px;
+  background: #04378f;
+  color: #ffffff;
+  border-radius: 10px;
+  border: 2px solid #07080a;
+  font-size: 18px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.sideBookList::after {
+  content: "";
+  height: 7px;
+  width: 7px;
+  background-color: #fff;
+  position: absolute;
+  display: block;
+  top: 25px;
+  left: 6px;
+  border-radius: 15px;
+}
+/*# sourceMappingURL=style.css.map */

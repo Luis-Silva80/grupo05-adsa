@@ -1,0 +1,176 @@
+#rootLogin .main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  height: calc(100vh - 171px);
+}
+
+#rootLogin .main.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#rootLogin .main_title {
+  color: #32b9cd;
+  font-size: 3rem;
+}
+
+#rootLogin .main_parag {
+  color: #636a70;
+  font-size: 18px;
+  margin: 10px 0;
+  max-width: 350px;
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+#rootLogin .main_form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50%;
+  z-index: 1;
+}
+
+#rootLogin .main_form_input {
+  border-radius: 10px;
+  border: 2px solid #04378f;
+  padding: 5px 20px;
+  font-size: 18px;
+  width: 100%;
+  margin: 15px 0;
+  -webkit-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.4);
+          box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.4);
+}
+
+#rootLogin .main_form_button {
+  border-radius: 5px;
+  border: none;
+  margin-top: 30px;
+  padding: 5px 55px;
+  background: #04378f;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.55);
+          box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.55);
+}
+
+#rootLogin .main_form_button:hover {
+  padding: 5.5px 60px;
+  -webkit-box-shadow: 2px 5px 5px 0px rgba(0, 0, 0, 0.75);
+          box-shadow: 2px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+#rootLogin .main_forgot {
+  margin: 15px 0;
+  text-decoration: none;
+  color: #636a70;
+}
+
+#rootLogin .main_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 345px;
+}
+
+#rootLogin .main_box_link {
+  color: #04378f;
+  font-size: 20px;
+}
+
+#rootLogin .main_box_parag {
+  color: #636a70;
+  font-size: 20px;
+}
+
+#rootLogin .main .resp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 20%;
+  border: 2px solid #07080a;
+  border-radius: 15px;
+  background: #ffffff;
+  max-width: 500px;
+  opacity: 0;
+  z-index: 0;
+  padding: 50px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+#rootLogin .main .resp.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+#rootLogin .main .resp_title {
+  color: #32b9cd;
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#rootLogin .main .resp_text {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#rootLogin .main .resp_link {
+  font-size: 20px;
+  text-align: center;
+}
+
+#rootLogin .main .resp_ctto {
+  font-size: 20px;
+  text-align: center;
+  background: #04378f;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+#rootLogin .main .resp_img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 25px;
+  cursor: pointer;
+}
+
+#rootLogin .footer {
+  position: absolute;
+  bottom: 0;
+}
+/*# sourceMappingURL=style.css.map */

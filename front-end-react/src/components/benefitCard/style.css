@@ -1,0 +1,45 @@
+.benefitCard_container {
+  width: 26%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 24px;
+  height: 275px;
+}
+
+.benefitCard_container_main {
+  border: 3px solid #2C2C2C;
+  border-radius: 15px;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 10px;
+}
+
+.benefitCard_container_main_img {
+  width: 75px;
+}
+
+.benefitCard_container_main_title {
+  color: #32b9cd;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.benefitCard_container_main_description {
+  text-align: center;
+}
+/*# sourceMappingURL=style.css.map */
