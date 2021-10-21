@@ -28,7 +28,7 @@ function CadastroUsuario() {
 
         api({
             method: 'post',
-            url: '/aluno/1',
+            url: '/aluno',
             data: formData,
         }).then(function (response) {
             console.log(response.data)
