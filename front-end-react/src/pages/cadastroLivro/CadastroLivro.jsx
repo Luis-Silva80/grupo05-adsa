@@ -12,19 +12,19 @@ function CadastroLivro() {
         event.preventDefault();
 
         const formData = {
-            title: document.getElementById("title").value,
-            author: document.getElementById("author").value,
-            editor: document.getElementById("editor").value,
-            edition: document.getElementById("edition").value,
-            desc: document.getElementById("desc").value,
-            quantity: document.getElementById("quantity").value
+            titulo: document.getElementById("title").value,
+            autor: document.getElementById("author").value,
+            editora: document.getElementById("editor").value,
+            edicao: document.getElementById("edition").value,
+            descricao: document.getElementById("desc").value,
+            qtdEstoque: document.getElementById("quantity").value
         };
 
         console.log(formData);
 
         api({
             method: 'post',
-            url: '/livros/1/5',
+            url: '/livros/1',
             data: formData,
         }).then(function (response) {
             console.log(response.data)
