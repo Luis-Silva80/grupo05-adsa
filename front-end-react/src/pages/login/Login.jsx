@@ -46,7 +46,7 @@ function Login() {
           <a className="main_forgot" href="#">Esqueci a minha senha</a>
           <div className="main_box">
             <p className="main_box_parag">Ainda não tem conta?</p>
-            <Link to="/cadastroUsuario" className="main_box_link" href="cadastro.html">Cadastrar</Link>
+            <Link to="/cadastroUsuario" className="main_box_link">Cadastrar</Link>
           </div>
           <section id="resp" className="resp"></section>
         </main>

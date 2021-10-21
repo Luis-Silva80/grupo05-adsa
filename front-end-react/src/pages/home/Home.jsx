@@ -58,12 +58,12 @@ function Home() {
                         <img className="weDo-img" src={oqFazemos} alt="TothLib quem somos" />
                     </section>
 
-                    <section className="homeSectionBenefit container" id="benefit_section">
-                        <div className="homeSectionBenefit_description">
-                            <h1 className="homeSectionBenefit_description_title">Benefícios</h1>
-                            <p className="homeSectionBenefit_description_paragraph">Nossa aplicação agrega valor ao negócio, veja os principais benefícios abaixo.</p>
+                    <section className="benefit container" id="benefit_section">
+                        <div className="benefit_description">
+                            <h1 className="benefit_description_title">Benefícios</h1>
+                            <p className="benefit_description_paragraph">Nossa aplicação agrega valor ao negócio, veja os principais benefícios abaixo.</p>
                         </div>
-                        <div className="homeSectionBenefit_benefities">
+                        <div className="benefit_benefities">
                             <BenefitCard image={dollarBenefit} title="Custo benefício" description="Vamos proporcionar economia e tem um benefício proporcional." />
                             <BenefitCard image={bookBenefit} title="Organização" description="Vamos proporcionar uma organização no fluxo inteiro." />
                             <BenefitCard image={webProgrammingBenefit} title="Automatização" description="Aplicação completamente automatizada, com pouca interação humana." />
@@ -72,18 +72,18 @@ function Home() {
                         </div>
                     </section>
 
-                    <section className="homeSectionContactUs container" id="contactUs_section">
-                        <img className="homeSectionContactUs_img" src={contactUs} />
-                        <div className="homeSectionContactUs_box">
-                            <div className="homeSectionContactUs_box_content">
-                                <h1 className="homeSectionContactUs_box_content_title">Fale conosco</h1>
-                                <p className="homeSectionContactUs_box_content_paragraph">Sua opinião é muito inportante para nós! Entre em contato preenchendo os campos abaixo.</p>
+                    <section className="contact container" id="contactUs_section">
+                        <img className="contact_img" src={contactUs} />
+                        <div className="contact_box">
+                            <div className="contact_box_content">
+                                <h1 className="contact_box_content_title">Fale conosco</h1>
+                                <p className="contact_box_content_paragraph">Sua opinião é muito inportante para nós! Entre em contato preenchendo os campos abaixo.</p>
                             </div>
-                            <div className="homeSectionContactUs_box_inputs">
-                                <input className="homeSectionContactUs_box_inputs_title" type="text" placeholder="Título"/>
-                                <textarea className="homeSectionContactUs_box_inputs_description" type="text" placeholder="Decrição"/>
+                            <div className="contact_box_inputs">
+                                <input className="contact_box_inputs_title" type="text" placeholder="Título"/>
+                                <textarea className="contact_box_inputs_description" type="text" placeholder="Decrição"/>
                             </div>
-                            <LinkButton content="Enviar" className="homeSectionContactUs_box_button" />
+                            <LinkButton content="Enviar" className="contact_box_button" />
                         </div>
                     </section>
 
