@@ -29,6 +29,7 @@ $black: #07080a;
             padding: 10px;
             top: 10px;
             border-radius: 20px;
+            z-index: 2;
             &_input {
                 min-width: 60%;
                 font-size: 18px;
@@ -77,41 +78,52 @@ $black: #07080a;
         }
         &_callback {
             margin: 20px 0;
+            text-align: center;
         }
-    
-        .resp {
-            width: 100%;
+    }
+    .resp {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        &_book {
+            border-radius: 10px;
+            border: 2px solid $black;
+            width: 250px;
+            margin: 20px;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            .book {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: $white;
+            position: relative;
+            &_img {
+                width: 220px;
+                margin: 10px 0;
+            }
+            &_tag{
+                position: absolute;
+                background: $darkBlue;
+                color: white;
+                border-radius: 10px;
+                top: 10px;
+                left: 10px;
+                padding: 5px 10px;
+                text-decoration: none;
+            }
+            &_title {
+                margin: 0 5px;
+                text-align: center;
+            }
+            &_btn {
+                padding: 5px 10px;
+                background: $darkBlue;
+                color: $white;
                 border-radius: 10px;
                 border: 2px solid $black;
-                width: 250px;
-                margin: 20px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                background: $white;
-                &_img {
-                    width: 220px;
-                    margin: 10px 0;
-                }
-                &_title {
-                    margin: 0 5px;
-                    text-align: center;
-                }
-                &_btn {
-                    padding: 5px 10px;
-                    background: $darkBlue;
-                    color: $white;
-                    border-radius: 10px;
-                    border: 2px solid $black;
-                    font-size: 18px;
-                    margin: 10px 0;
-                    cursor: pointer;
-                }
+                font-size: 18px;
+                margin: 10px 0;
+                cursor: pointer;
             }
         }
     }
