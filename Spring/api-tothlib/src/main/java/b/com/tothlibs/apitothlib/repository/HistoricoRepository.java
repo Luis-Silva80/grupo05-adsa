@@ -20,6 +20,11 @@ public interface HistoricoRepository extends JpaRepository<Historico, Integer> {
     @Query("SELECT h.dataLivroHistorico FROM Historico h where h.id = :id")
     public LocalDate findDataRegistro(@Param("id") Integer id);
 
+    @Query("SELECT h.dataDevolucao FROM Historico h where h.id = :id")
+    public LocalDate findDataDevolucao(@Param("id") Integer id);
+
+    public Historico findTopByOrderByIdDesc();
+
 //    SELECT TOP (2) * FROM [dbo].[tbHistorico]
 //    where fk_tb_perfil_usuario = 3
 //    and

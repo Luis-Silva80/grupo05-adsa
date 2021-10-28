@@ -102,9 +102,10 @@ public class BibliotecaController {
     @PutMapping("reservar/{idLivro}/{idUsuario}")
     public ResponseEntity reservarLivro(@PathVariable Integer idLivro, @PathVariable Integer idUsuario) {
 
+        Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
-        if (admin.reservar(idLivro, idUsuario)) {
-            return ResponseEntity.status(200).build();
+        if (idRegistro != null) {
+            return ResponseEntity.status(200).body("ID para retirada: " + idRegistro);
         } else {
             return ResponseEntity.status(400).build();
         }
@@ -115,10 +116,26 @@ public class BibliotecaController {
     @PutMapping("retirar/{idRegistro}/{idUsuario}")
     public ResponseEntity retirarLivro(@PathVariable Integer idRegistro, @PathVariable Integer idUsuario) {
 
-        if (admin.locarLivro(idRegistro, idUsuario)) {
-            return ResponseEntity.status(200).body("Livro retirado");
+
+        Integer novoRegistro = admin.locarLivro(idRegistro, idUsuario);
+
+        if (novoRegistro != null) {
+            return ResponseEntity.status(200).body("ID da retirada: " + novoRegistro);
         } else {
             return ResponseEntity.status(400).body("Retirada não concluida");
+        }
+
+    }
+
+    @PutMapping("renovar/{idRegistro}/{idUsuario}")
+    public ResponseEntity renovarLivro(@PathVariable Integer idRegistro, @PathVariable Integer idUsuario) {
+
+        Integer novoCodRegistro = admin.renovarAlocacao(idRegistro, idUsuario);
+
+        if (idRegistro != null) {
+            return ResponseEntity.status(200).body("Novo ID de retirada: " + novoCodRegistro);
+        } else {
+            return ResponseEntity.status(400).body("Renovação não concluida");
         }
 
     }
