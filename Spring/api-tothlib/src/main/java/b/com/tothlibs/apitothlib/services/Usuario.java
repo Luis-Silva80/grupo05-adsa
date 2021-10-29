@@ -11,6 +11,6 @@ public interface Usuario {
     abstract public Integer reservar(Integer idLivro, Integer idUsuario);
     abstract public Integer locarLivro(Integer idRegistro, Integer idUsuario);
     abstract public Integer renovarAlocacao(Integer id, Integer idUsuario);
-    abstract public Boolean devolverLivro(Integer id, Integer idUsuario);
+    abstract public Integer devolverLivro(Integer idRegistro, Integer idUsuario);
 
 }

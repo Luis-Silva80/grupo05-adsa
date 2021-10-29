@@ -171,6 +171,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
                             return null;
                         }
 
+                        //alterar verificação para se o registro existe ao invéz de se o registro com aquele ID existe pois a segunda opção está redundante
                         if (registro.getId().equals(idRegistro)) {
 
                             livro.setId(registro.getFkTbLivros());
@@ -221,8 +222,44 @@ public class UsuarioAdmin implements Administravel, Usuario {
     }
 
     @Override
-    public Boolean devolverLivro(Integer idLivro, Integer idUsuario) {
-        return null;
+    public Integer devolverLivro(Integer idRegistro, Integer idUsuario) {
+
+
+        if (repositoryHistorico.existsById(idRegistro)) {
+
+            Historico registroAntigo = repositoryHistorico.findById(idRegistro).get();
+            Integer idLivroNoRegistro = registroAntigo.getFkTbLivros();
+
+            livro = repository.findById(idLivroNoRegistro).get();
+            usuario = repositoryUsuario.findById(idUsuario).get();
+
+            if (!livro.getQtdReservadoAgora().equals(0)) {
+                if (registroAntigo.getAcao().equals("Renovacao") || registroAntigo.getAcao().equals("Retirada")) {
+
+                    livro.setId(idLivroNoRegistro);
+                    livro.setQtdReservadoAgora(livro.getQtdReservadoAgora() - 1);
+
+                    usuario.setId(idUsuario);
+                    usuario.setQtdLivrosLidos(usuario.getQtdLivrosLidos()+1);
+                    usuario.setLivrosReservados(usuario.getLivrosReservados()-1);
+
+                    criaResgistro(idLivroNoRegistro, idUsuario, "Devolucao");
+                    Historico ultimoRegistro = repositoryHistorico.findTopByOrderByIdDesc();
+
+                    repositoryUsuario.save(usuario);
+                    repository.save(livro);
+                    return ultimoRegistro.getId();
+                } else {
+                    return null;
+                }
+
+            } else {
+                return null;
+            }
+
+        } else {
+            return null;
+        }
     }
 
 
@@ -231,6 +268,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
         registro = new Historico();
         livro = repository.findById(idLivro).get();
 
+        usuario = repositoryUsuario.findById(idUsuario).get();
         registro.setFkTbPerfilUsuario(usuario.getId());
         registro.setFkTbLivros(idLivro);
         registro.setAcao(tipoRegistro);

@@ -140,4 +140,17 @@ public class BibliotecaController {
 
     }
 
+    @PutMapping("devolver/{idRegistro}/{idUsuario}")
+    public ResponseEntity devolverLivro(@PathVariable Integer idRegistro, @PathVariable Integer idUsuario) {
+
+        Integer novoCodRegistro = admin.devolverLivro(idRegistro, idUsuario);
+
+        if (novoCodRegistro != null) {
+            return ResponseEntity.status(200).body("Novo ID de retirada: " + novoCodRegistro);
+        } else {
+            return ResponseEntity.status(404).body("Registro de retirada não encontrado!!");
+        }
+
+    }
+
 }
