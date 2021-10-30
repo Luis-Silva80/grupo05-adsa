@@ -80,6 +80,10 @@ $black: #07080a;
             margin: 20px 0;
             text-align: center;
         }
+        &_alert{
+            position: absolute;
+            top: 100px;
+        }
     }
     .resp {
         width: 100%;

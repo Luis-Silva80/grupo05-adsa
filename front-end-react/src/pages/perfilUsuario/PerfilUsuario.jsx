@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import api from "../../services/api";
+
 
 //Importanto componentes e o css
 import './style.scss';
 import SideBar from '../../components/sideBar/SideBar';
 import Footer from '../../components/footer/Footer';
+import BookCard from '../../components/bookCard/BookCard';
 
 //IMAGENS
 
@@ -11,9 +14,24 @@ import perfilIcon from     '../../assets/perfilIcon.png';
 import pencil from         '../../assets/pencil.png';
 import conversation from   '../../assets/conversation.png';
 import openBookPerfil from '../../assets/open-book-perfil.png';
-import imageLivro from     '../../assets/image-livro.png';
+import imageLivro from     '../../assets/book.png';
 
 function PerfilUsuario() {
+
+    
+    const [ userData, setUserData ] = useState([]);
+
+    useEffect(() => {
+        api
+            .get("/aluno/")
+            .then((response) => {
+                setUserData(response.data);
+                console.log(response.data);
+            })
+            .catch((err) => {
+                console.error("ops! ocorreu um erro" + err);
+            });
+    }, []);
 
     return (
         <>
@@ -68,74 +86,14 @@ function PerfilUsuario() {
                     </div>
 
                     <ul class="main_listaLivros_lista">
-
-                        <li class="main_listaLivros_lista_livro">
-                            <a href="./livro.html" class="main_listaLivros_lista_livro_linkImg">
-                                <img src={imageLivro} class="main_listaLivros_lista_livro_linkImg_image"/>
-                            </a>
-                            <div class="main_listaLivros_lista_livro_contentBox">
-                                <h4 class="main_listaLivros_lista_livro_contentBox_name">Programando com javaScript</h4>
-                                <p class="main_listaLivros_lista_livro_contentBox_devolution">Devolver até: <span id="devolutionDate">25/09/2021</span></p>
-                                <a href="#" class="main_listaLivros_lista_livro_contentBox_button">Devolver</a>
-                            </div>
-                        </li>
-
-                        <li class="main_listaLivros_lista_livro">
-                            <a href="./livro.html" class="main_listaLivros_lista_livro_linkImg">
-                            <img src={imageLivro} class="main_listaLivros_lista_livro_linkImg_image"/>
-                            </a>
-                            <div class="main_listaLivros_lista_livro_contentBox">
-                                <h4 class="main_listaLivros_lista_livro_contentBox_name">Programando com javaScript</h4>
-                                <p class="main_listaLivros_lista_livro_contentBox_devolution">Devolver até: <span id="devolutionDate">25/09/2021</span></p>
-                                <a href="#" class="main_listaLivros_lista_livro_contentBox_button">Devolver</a>
-                            </div>
-                        </li>
-
-                        <li class="main_listaLivros_lista_livro">
-                            <a href="./livro.html" class="main_listaLivros_lista_livro_linkImg">
-                            <img src={imageLivro} class="main_listaLivros_lista_livro_linkImg_image"/>
-                            </a>
-                            <div class="main_listaLivros_lista_livro_contentBox">
-                                <h4 class="main_listaLivros_lista_livro_contentBox_name">Programando com javaScript</h4>
-                                <p class="main_listaLivros_lista_livro_contentBox_devolution">Devolver até: <span id="devolutionDate">25/09/2021</span></p>
-                                <a href="#" class="main_listaLivros_lista_livro_contentBox_button">Devolver</a>
-                            </div>
-                        </li>
-
-                        <li class="main_listaLivros_lista_livro">
-                            <a href="./livro.html" class="main_listaLivros_lista_livro_linkImg">
-                            <img src={imageLivro} class="main_listaLivros_lista_livro_linkImg_image"/>
-                            </a>
-                            <div class="main_listaLivros_lista_livro_contentBox">
-                                <h4 class="main_listaLivros_lista_livro_contentBox_name">Programando com javaScript</h4>
-                                <p class="main_listaLivros_lista_livro_contentBox_devolution">Devolver até: <span id="devolutionDate">25/09/2021</span></p>
-                                <a href="#" class="main_listaLivros_lista_livro_contentBox_button">Devolver</a>
-                            </div>
-                        </li>
-
-                        <li class="main_listaLivros_lista_livro">
-                            <a href="./livro.html" class="main_listaLivros_lista_livro_linkImg">
-                            <img src={imageLivro} class="main_listaLivros_lista_livro_linkImg_image"/>
-                            </a>
-                            <div class="main_listaLivros_lista_livro_contentBox">
-                                <h4 class="main_listaLivros_lista_livro_contentBox_name">Programando com javaScript</h4>
-                                <p class="main_listaLivros_lista_livro_contentBox_devolution">Devolver até: <span id="devolutionDate">25/09/2021</span></p>
-                                <a href="#" class="main_listaLivros_lista_livro_contentBox_button">Devolver</a>
-                            </div>
-                        </li>
-
-                        <li class="main_listaLivros_lista_livro">
-                            <a href="./livro.html" class="main_listaLivros_lista_livro_linkImg">
-                            <img src={imageLivro} class="main_listaLivros_lista_livro_linkImg_image"/>
-                            </a>
-                            <div class="main_listaLivros_lista_livro_contentBox">
-                                <h4 class="main_listaLivros_lista_livro_contentBox_name">Programando com javaScript</h4>
-                                <p class="main_listaLivros_lista_livro_contentBox_devolution">Devolver até: <span id="devolutionDate">25/09/2021</span></p>
-                                <a href="#" class="main_listaLivros_lista_livro_contentBox_button">Devolver</a>
-                            </div>
-                        </li>
-
-
+                        <BookCard image={imageLivro} title="Programando com javascript" date="10/02/2021" />
+                        <BookCard image={imageLivro} title="Programando com javascript" date="10/02/2021" />
+                        <BookCard image={imageLivro} title="Programando com javascript" date="10/02/2021" />
+                        <BookCard image={imageLivro} title="Programando com javascript" date="10/02/2021" />
+                        <BookCard image={imageLivro} title="Programando com javascript" date="10/02/2021" />
+                        <BookCard image={imageLivro} title="Programando com javascript" date="10/02/2021" />
+                        <BookCard image={imageLivro} title="Programando com javascript" date="10/02/2021" />
+                        <BookCard image={imageLivro} title="Programando com javascript" date="10/02/2021" />
                     </ul>
                 </div>
             </main>
