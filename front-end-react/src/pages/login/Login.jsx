@@ -31,10 +31,8 @@ function Login() {
 
 
   return (
-    <>
+    <div id="rootLogin"y>
       <Header />
-
-      <section id="rootLogin">
         <main className="main container">
           <h1 className="main_title">Login</h1>
           <p className="main_parag">Preencha os campos abaixo para acessar a sua conta.</p>
@@ -50,10 +48,8 @@ function Login() {
           </div>
           <section id="resp" className="resp"></section>
         </main>
-      </section>
-
       <Footer />
-    </>
+    </div>
   );
 }
 export default Login;
