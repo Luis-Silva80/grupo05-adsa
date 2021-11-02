@@ -100,9 +100,9 @@ function ListaLivros() {
   }
 
   return (
-    <>
+    <div id="rootListaLivro">
       <SideBar />
-      <main className="main container" id="rootListaLivro" >
+      <main className="main container" >
         <h1 className="main_title">Livros cadastrados</h1>
 
         <div className="main_nav">
@@ -123,7 +123,7 @@ function ListaLivros() {
         {/* <span className='main_alert'>Digite ao menos 3 letras</span> */}
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ package b.com.tothlibs.apitothlib.entity;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Table(name = "tbhistorico", indexes = {
@@ -22,7 +23,7 @@ public class Historico {
     private Integer fkTbPerfilUsuario;
 
     @Column(name = "data_livro_historico")
-    private Instant dataLivroHistorico;
+    private LocalDate dataLivroHistorico;
 
     @Column(name = "nome_livro", length = 70)
     private String nomeLivro;
@@ -32,6 +33,9 @@ public class Historico {
 
     @Column(name = "acao", length = 15)
     private String acao;
+
+    @Column(name = "data_devolucao")
+    private LocalDate dataDevolucao;
 
     public String getAcao() {
         return acao;
@@ -57,11 +61,11 @@ public class Historico {
         this.nomeLivro = nomeLivro;
     }
 
-    public Instant getDataLivroHistorico() {
+    public LocalDate getDataLivroHistorico() {
         return dataLivroHistorico;
     }
 
-    public void setDataLivroHistorico(Instant dataLivroHistorico) {
+    public void setDataLivroHistorico(LocalDate dataLivroHistorico) {
         this.dataLivroHistorico = dataLivroHistorico;
     }
 
@@ -87,6 +91,14 @@ public class Historico {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public LocalDate getDataDevolucao() {
+        return dataDevolucao;
+    }
+
+    public void setDataDevolucao(LocalDate dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
     }
 
     @Override
