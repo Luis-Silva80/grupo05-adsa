@@ -2,6 +2,7 @@ package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ public class AdminController {
     private PerfilUsuarioRepository repository;
 
     @GetMapping
+    @ApiOperation(value = "Retorna uma lista de usuarios administradores")
     public ResponseEntity adminAluno() {
 
         List<PerfilUsuario> usuarios = repository.findAll();
@@ -34,6 +36,7 @@ public class AdminController {
     }
 
     @PostMapping()
+    @ApiOperation(value = "Realiza o cadastro de um administrador")
     public ResponseEntity adminAluno(@RequestBody PerfilUsuario admin) {
 
         admin.setUsuarioAdmin(1);
@@ -47,11 +50,12 @@ public class AdminController {
         return ResponseEntity.status(201).build();
     }
 
-    @GetMapping("/{idUsuario}")
-    public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idUsuario) {
+    @GetMapping("/{idAdmin}")
+    @ApiOperation(value = "Retorna um administrador com ID especifico")
+    public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idAdmin) {
 
         LOGGER.info("Retornando usuario desejado...");
-        return ResponseEntity.of(repository.findById(idUsuario));
+        return ResponseEntity.of(repository.findById(idAdmin));
 
     }
 }
