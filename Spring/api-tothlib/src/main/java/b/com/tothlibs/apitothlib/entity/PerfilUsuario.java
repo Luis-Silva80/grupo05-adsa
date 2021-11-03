@@ -1,6 +1,7 @@
 package b.com.tothlibs.apitothlib.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "tbperfilusuario", indexes = {
         @Index(name = "fk_tb_instituicao", columnList = "fk_tb_instituicao")

@@ -9,44 +9,72 @@
 			"name": "Usuarios",
 			"item": [
 				{
-					"name": "consultar autenticados",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": null
-					},
-					"response": []
-				},
-				{
-					"name": "cadastro admin",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"2525\",\r\n    \"nome\": \"Luis\",\r\n    \"cpf\": \"555555\",\r\n    \"email\": \"luis.silva@bandtec.com\",\r\n    \"telefone\": \"5511958020872\",\r\n    \"senha\": \"luis123\",\r\n    \"admin\": \"true\",\r\n    \"dataNascimento\": \"06/04/2002\",\r\n    \"listLivros\": {}\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "admin",
+					"item": [
+						{
+							"name": "cadastro admin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Thais\",\r\n    \"cpf\": \"455555555\",\r\n    \"email\":\"thais.silva@bandte.com\",\r\n    \"telefone\":\"11464654645\",\r\n    \"senha\":\"thaisBandtec\",\r\n    \"fkTbInstituicao\":\"1\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/admin/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin",
+										""
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "localhost:8080/usuarios/cadastroUsuario",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"cadastroUsuario"
-							]
+						{
+							"name": "consultar lista de usuarios",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/admin",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "consultar lista de usuarios",
+					"name": "aluno",
+					"item": [
+						{
+							"name": "lista de usuarios",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": null
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "consultar autenticados",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -103,7 +131,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"2525\",\r\n    \"nome\": \"Luscao\",\r\n    \"cpf\": \"252525\",\r\n    \"email\": \"lucas.silva@bandtec.com\",\r\n    \"telefone\": \"111111\",\r\n    \"senha\": \"lucas123\",\r\n    \"dataNascimento\": \"2002-04-06\"\r\n}",
+							"raw": "{\r\n    \"nome\": \"Nicole\",\r\n    \"cpf\": \"100720\",\r\n    \"email\":\"nicole.silva@bandte.com\",\r\n    \"telefone\":\"nickz\",\r\n    \"senha\":\"morto123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -111,14 +139,32 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/usuarios/cadastroAluno",
+							"raw": "localhost:8080/aluno/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios",
-								"cadastroAluno"
+								"aluno",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consulta usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/aluno",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"aluno"
 							]
 						}
 					},
@@ -130,13 +176,71 @@
 			"name": "Livros",
 			"item": [
 				{
-					"name": "cadastrar livro",
+					"name": "consultar lista livros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/biblioteca",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retirar livro",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/biblioteca/retirar/31/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"retirar",
+								"31",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar livro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/biblioteca/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastroNovo",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\r\n    \"titulo\": \"Java Programin I\",\r\n    \"descricao\": \"Esse livro é para certificação java\",\r\n    \"autor\":\"Guilherme Silveira\",\r\n    \"edicao\":\"10\",\r\n    \"editora\":\"Caleum\",\r\n    \"qtdEstoque\":\"15\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -144,44 +248,103 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/usuarios/cadastrarLivro",
+							"raw": "localhost:8080/biblioteca/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios",
-								"cadastrarLivro"
+								"biblioteca",
+								"1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "consultar lista livros",
+					"name": "alterar livro",
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [],
-						"url": null
-					},
-					"response": []
-				},
-				{
-					"name": "reservar livro",
-					"request": {
-						"method": "POST",
-						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Nome alterado\",\r\n    \"descricao\": \"esse livro foi alterado pelo postman\",\r\n    \"autor\":\"Luis\",\r\n    \"edicao\":\"2525\",\r\n    \"editora\":\"records\",\r\n    \"qtdEstoque\":\"20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:8080/usuarios/reservarLivro/2525/10000",
+							"raw": "localhost:8080/biblioteca/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios",
-								"reservarLivro",
-								"2525",
-								"10000"
+								"biblioteca",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletetar livro",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/biblioteca/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reservar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/biblioteca/reservar/6/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"reservar",
+								"6",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "renovar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/biblioteca/renovar/30/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"renovar",
+								"30",
+								"3"
 							]
 						}
 					},

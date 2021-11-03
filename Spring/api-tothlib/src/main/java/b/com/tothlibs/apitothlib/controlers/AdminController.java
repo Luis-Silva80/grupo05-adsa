@@ -1,6 +1,10 @@
 package b.com.tothlibs.apitothlib.controlers;
 
+import b.com.tothlibs.apitothlib.dto.UsuarioInfo;
+import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
+import b.com.tothlibs.apitothlib.repository.HistoricoRepository;
+import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,12 @@ public class AdminController {
 
     @Autowired
     private PerfilUsuarioRepository repository;
+
+    @Autowired
+    private HistoricoRepository repositoryHistorico;
+
+    @Autowired
+    private LivrosRepository repositoryLivro;
 
     @GetMapping
     @ApiOperation(value = "Retorna uma lista de usuarios administradores")
@@ -54,8 +64,29 @@ public class AdminController {
     @ApiOperation(value = "Retorna um administrador com ID especifico")
     public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idAdmin) {
 
-        LOGGER.info("Retornando usuario desejado...");
-        return ResponseEntity.of(repository.findById(idAdmin));
+        PerfilUsuario usuario = repository.findById(idAdmin).get();
 
+        List<Integer> listId = repositoryHistorico.findFkLivrosByIdUsuario(idAdmin);
+        UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
+
+        for (Integer i : listId){
+            Livros livro = repositoryLivro.findById(i).get();
+            if(!containsName(usuarioInfo.getLivrosLidos(), livro.getId())){
+                usuarioInfo.getLivrosLidos().add(livro);
+            }
+        }
+
+        LOGGER.info("Retornando usuario desejado...");
+
+        if(usuarioInfo != null){
+            return ResponseEntity.status(200).body(usuarioInfo);
+        }else {
+            return ResponseEntity.status(404).build();
+        }
+
+    }
+
+    public boolean containsName(final List<Livros> list, final Integer id){
+        return list.stream().map(Livros::getId).filter(id::equals).findFirst().isPresent();
     }
 }
