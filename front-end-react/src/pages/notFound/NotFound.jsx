@@ -12,18 +12,16 @@ import notFoundImg from '../../assets/erro404.gif';
 function NotFound() {
 
   return (
-    <>
+    <div id="rootNotFound">
       <Header />
-      <section id="rootNotFound">
         <main className="main container">
           <h1 className="main_title">Ops! Parece que a página não foi encontrada.</h1>
           <img className="" src={notFoundImg} alt="Page not found"/>
           <p className="main_parag">Caso algo não pareça certo, entre em <Link to="/contato">contato</Link></p>
           <Link to="/" className="main_btn">Voltar</Link>
         </main>
-      </section>
       <Footer />
-    </>
+    </div>
   );
 }
 
