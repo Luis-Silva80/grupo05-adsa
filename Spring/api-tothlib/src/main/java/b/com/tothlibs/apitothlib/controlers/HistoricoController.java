@@ -37,9 +37,11 @@ public class HistoricoController {
     public ResponseEntity pendencia() throws IOException {
 
 
-                List<UsuariosPendentesDto> listaDeHistorico = repository.findUserPendencia().stream()
-                        .filter(usuariosPendentesDto -> usuariosPendentesDto.getAcao().equals("Renovacao") ||
-                                usuariosPendentesDto.getAcao().equals("Retirada")).collect(Collectors.toList());
+//                List<UsuariosPendentesDto> listaDeHistorico = repository.findUserPendencia().stream()
+//                        .filter(usuariosPendentesDto -> usuariosPendentesDto.getAcao().equals("Renovacao") ||
+//                                usuariosPendentesDto.getAcao().equals("Retirada")).collect(Collectors.toList());
+
+        List<UsuariosPendentesDto> listaDeHistorico = repository.findUserPendencia();
 
         listaObj = new ListaObj(listaDeHistorico.size());
 
