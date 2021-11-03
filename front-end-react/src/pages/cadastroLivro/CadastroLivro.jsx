@@ -24,7 +24,7 @@ function CadastroLivro() {
 
         api({
             method: 'post',
-            url: '/livros/1',
+            url: '/biblioteca/1',
             data: formData,
         }).then(function (response) {
             console.log(response.data)

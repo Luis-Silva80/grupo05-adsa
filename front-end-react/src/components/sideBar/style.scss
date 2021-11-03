@@ -19,7 +19,7 @@ $iconSize: 35px;
         &_link {
             &_icon {
                 width: $iconSize;
-                padding: 10px;
+                padding: 18px 10px;
             }
         }
     }
@@ -31,8 +31,15 @@ $iconSize: 35px;
         &_link {
             &_icon {
                 width: $iconSize;
-                padding: 10px;
+                padding: 18px 10px;
             }
         }
     }
+}
+
+.active:after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
 }
