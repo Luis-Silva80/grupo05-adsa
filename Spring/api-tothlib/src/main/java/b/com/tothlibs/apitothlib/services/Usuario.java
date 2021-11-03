@@ -8,9 +8,9 @@ public interface Usuario {
 
     abstract public Livros buscarLivro(Integer id);
     abstract public List<Livros> consultaListaLivros();
-    abstract public Boolean reservar(Integer idLivro, Integer idUsuario);
-    abstract public Boolean locarLivro(Integer idRegistro, Integer idUsuario);
-    abstract public Boolean renovarAlocacao(Integer id, Integer idUsuario);
-    abstract public Boolean devolverLivro(Integer id, Integer idUsuario);
+    abstract public Integer reservar(Integer idLivro, Integer idUsuario);
+    abstract public Integer locarLivro(Integer idRegistro, Integer idUsuario);
+    abstract public Integer renovarAlocacao(Integer id, Integer idUsuario);
+    abstract public Integer devolverLivro(Integer idRegistro, Integer idUsuario);
 
 }
