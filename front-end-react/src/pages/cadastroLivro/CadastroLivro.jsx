@@ -24,7 +24,7 @@ function CadastroLivro() {
 
         api({
             method: 'post',
-            url: '/livros/1',
+            url: '/bibliotecas/1',
             data: formData,
         }).then(function (response) {
             console.log(response.data)
@@ -33,7 +33,7 @@ function CadastroLivro() {
 
     useEffect(() => {
         api
-            .get("/livros")
+            .get("/bibliotecas")
             .then((response) => { console.log(response.data); })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
