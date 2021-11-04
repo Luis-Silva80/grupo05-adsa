@@ -32,7 +32,7 @@ public class AdminController {
 
     @GetMapping
     @ApiOperation(value = "Retorna uma lista de usuarios administradores")
-    public ResponseEntity adminAluno() {
+    public ResponseEntity getAluno() {
 
         List<PerfilUsuario> usuarios = repository.findAll();
 
@@ -47,7 +47,7 @@ public class AdminController {
 
     @PostMapping()
     @ApiOperation(value = "Realiza o cadastro de um administrador")
-    public ResponseEntity adminAluno(@RequestBody PerfilUsuario admin) {
+    public ResponseEntity postAluno(@RequestBody PerfilUsuario admin) {
 
         admin.setUsuarioAdmin(1);
         admin.setQtdLivrosLidos(0);

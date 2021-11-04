@@ -157,17 +157,20 @@ public class UsuarioAdmin implements Administravel, Usuario {
                 if (livro.getQtdReservas() >= livro.getQtdEstoque()) {
                     livro.setId(registro.getFkTbLivros());
                     livro.setStatusLivro("Indisponivel");
+                    repository.save(livro);
                     return null;
                 } else {
                     if (qtdReservadosAgora.equals(livro.getQtdReservas())) {
                         livro.setId(registro.getFkTbLivros());
                         livro.setStatusLivro("Indisponivel");
+                        repository.save(livro);
                         return null;
                     } else {
 
                         if (livro.getQtdReservadoAgora() >= livro.getQtdEstoque()) {
                             livro.setId(registro.getFkTbLivros());
                             livro.setStatusLivro("Indisponivel");
+                            repository.save(livro);
                             return null;
                         }
 

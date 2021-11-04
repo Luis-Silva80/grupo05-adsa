@@ -98,8 +98,6 @@ public class Autenticacao {
             return ResponseEntity.status(204).body(retorno);
         }
 
-
-
     }
 
 

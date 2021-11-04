@@ -2,6 +2,7 @@ package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
+import b.com.tothlibs.apitothlib.listas.GravaArquivos;
 import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
 import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
@@ -66,7 +67,7 @@ public class BibliotecaController {
 
     @GetMapping("/{idLivro}")
     @ApiOperation(value = "Retorna um livro por um ID especifico")
-    public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idLivro) {
+    public ResponseEntity exibeLivroById(@PathVariable Integer idLivro) {
 
         LOGGER.info("Retornando usuario desejado...");
         return ResponseEntity.of(repository.findById(idLivro));
@@ -150,6 +151,15 @@ public class BibliotecaController {
         } else {
             return ResponseEntity.status(404).body("Registro de retirada não encontrado!!");
         }
+
+    }
+
+    @GetMapping("/gravarArqTxt/livros")
+    public ResponseEntity gravaTxt() {
+
+        List<Livros> listaDeLivros = repository.findAll();
+        GravaArquivos gravadorDeArquivoTxt = new GravaArquivos(listaDeLivros, "Livros");
+        return ResponseEntity.status(200).body("Arquivo gerado com sucesso");
 
     }
 
