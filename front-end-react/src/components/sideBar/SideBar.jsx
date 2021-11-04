@@ -10,11 +10,18 @@ import settingsIcon from "../../assets/settings.png";
 import logoutIcon from "../../assets/logout.png";
 
 function sideBarComponent() {
+
+    function userIconFunc() {
+        const icon = document.querySelector(".sideBar_containerCategory_link_icon");
+        console.log(icon);
+        icon.style.className="sideBar_containerCategory_link_icon active"
+    }
+
     return (
         <>
             <aside className="sideBar" id="rootSideBar">
                 <div className="sideBar_containerCategory">
-                    <Link to="/perfilUsuario" className="sideBar_containerCategory_link">
+                    <Link onClick={userIconFunc} to="/perfilUsuario" className="sideBar_containerCategory_link">
                         <img src={userIcon} className="sideBar_containerCategory_link_icon" />
                     </Link>
                     <Link to="/listaLivros" className="sideBar_containerCategory_link">
