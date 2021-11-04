@@ -33,7 +33,7 @@ function CadastroLivro() {
 
     useEffect(() => {
         api
-            .get("/livros")
+            .get("/bibliotecas")
             .then((response) => { console.log(response.data); })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
