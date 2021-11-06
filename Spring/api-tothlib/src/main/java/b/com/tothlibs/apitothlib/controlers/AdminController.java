@@ -53,6 +53,7 @@ public class AdminController {
         admin.setQtdLivrosLidos(0);
         admin.setPontos(0L);
         admin.setQtdResenhas(0);
+        admin.setLivrosReservados(0);
 
         repository.save(admin);
 

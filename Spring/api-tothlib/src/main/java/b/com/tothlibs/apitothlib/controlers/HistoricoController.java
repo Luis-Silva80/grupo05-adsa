@@ -4,6 +4,7 @@ import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
 import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.listas.ListaObj;
 import b.com.tothlibs.apitothlib.repository.HistoricoRepository;
+import b.com.tothlibs.apitothlib.utils.Mensagem;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -27,10 +28,26 @@ import java.util.stream.Collectors;
 @RequestMapping("/historico")
 public class HistoricoController {
 
+    private Mensagem mensagem;
+
     @Autowired
     private HistoricoRepository repository;
 
     ListaObj listaObj = null;
+
+    @GetMapping
+    public ResponseEntity getHistorico(){
+
+        List<Historico> historico = repository.findAll();
+
+        if(!historico.isEmpty()){
+            return ResponseEntity.status(200).body(historico);
+        }else {
+            mensagem = new Mensagem(01,"Registros não encontrados");
+            return ResponseEntity.status(404).build();
+        }
+
+    }
 
     @GetMapping("/pendentes")
     @ApiOperation(value = "Retorna uma lista com o historico usuarios pendentes na plataforma")

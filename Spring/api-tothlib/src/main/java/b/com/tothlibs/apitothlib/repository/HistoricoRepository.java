@@ -28,14 +28,4 @@ public interface HistoricoRepository extends JpaRepository<Historico, Integer> {
 
     @Query("SELECT h.fkTbLivros FROM Historico h where h.fkTbPerfilUsuario = :idUsuario")
     public List<Integer> findFkLivrosByIdUsuario(@Param("idUsuario") Integer idUsuario);
-
-//    SELECT TOP (2) * FROM [dbo].[tbHistorico]
-//    where fk_tb_perfil_usuario = 3
-//    and
-//    acao = 'Renovacao'
-//    or
-//            acao = 'Locacao'
-//    order by id desc;
-//WHERE h.fk_tb_perfil_usuario = :fk_tb_perfil_usuario" +
-//            " and h.acao = 'Renovacao' or acao = 'Locacao' order by h.id desc
 }

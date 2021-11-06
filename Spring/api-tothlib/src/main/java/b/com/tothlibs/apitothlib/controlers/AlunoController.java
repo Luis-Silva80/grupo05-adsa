@@ -51,16 +51,17 @@ public class AlunoController {
 
     @PostMapping()
     @ApiOperation(value = "Realiza o cadastro de um novo aluno")
-    public ResponseEntity postAluno(@RequestBody PerfilUsuario aluno) throws UsuarioNaoEncontradoException {
+    public ResponseEntity postAluno(@RequestBody PerfilUsuario novoAluno) throws UsuarioNaoEncontradoException {
 
-        aluno.setUsuarioAdmin(0);
-        aluno.setQtdLivrosLidos(0);
-        aluno.setPontos(0L);
-        aluno.setQtdResenhas(0);
+        novoAluno.setUsuarioAdmin(0);
+        novoAluno.setQtdLivrosLidos(0);
+        novoAluno.setPontos(0L);
+        novoAluno.setQtdResenhas(0);
+        novoAluno.setLivrosReservados(0);
 
-        repository.save(aluno);
+        repository.save(novoAluno);
 
-        LOGGER.info("Aluno " + aluno.getNome() + " cadastrado");
+        LOGGER.info("Aluno " + novoAluno.getNome() + " cadastrado");
         return ResponseEntity.status(201).build();
 
     }
@@ -87,6 +88,22 @@ public class AlunoController {
         }else {
             return ResponseEntity.status(404).build();
         }
+
+    }
+
+    @PutMapping("/{idAluno}")
+    public ResponseEntity putAluno(@PathVariable Integer idAluno, @RequestBody PerfilUsuario usuarioAlterado){
+
+        if(repository.existsById(idAluno)){
+
+            usuarioAlterado.setId(idAluno);
+
+            repository.save(usuarioAlterado);
+
+            return ResponseEntity.status(200).build();
+        }
+
+        return ResponseEntity.status(404).build();
 
     }
 

@@ -272,6 +272,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
         livro = repository.findById(idLivro).get();
 
         usuario = repositoryUsuario.findById(idUsuario).get();
+
         registro.setFkTbPerfilUsuario(usuario.getId());
         registro.setFkTbLivros(idLivro);
         registro.setAcao(tipoRegistro);
