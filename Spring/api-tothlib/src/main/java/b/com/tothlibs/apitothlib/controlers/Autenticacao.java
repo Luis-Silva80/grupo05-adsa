@@ -26,6 +26,8 @@ public class Autenticacao {
     @ApiOperation(value = "Realiza a autenticação na plataforma")
     public ResponseEntity autenticar(@PathVariable String email, @PathVariable String senha) {
 
+        PerfilUsuario user = repository.findByEmail(email);
+
         UsuarioDto usuarioDto = null;
 
         List<PerfilUsuario> listUsuarios = repository.findAll();
@@ -40,9 +42,7 @@ public class Autenticacao {
             }
         }
 
-        String resp = String.format("Usuário %s autenticado com sucesso", usuarioDto.getNome());
-
-        return ResponseEntity.status(200).body(resp);
+        return ResponseEntity.status(200).body(user.getId());
 
     }
 
@@ -63,17 +63,17 @@ public class Autenticacao {
     }
 
 
-    @DeleteMapping("/{nome}")
+    @DeleteMapping("/{id}")
     @ApiOperation(value = "Realiza o logout na plataforma")
-    public ResponseEntity logoff(@PathVariable String nome) {
+    public ResponseEntity logoff(@PathVariable String id) {
 
         String retorno = "";
         Boolean isAutentic = false;
 
-        PerfilUsuario usuario = repository.findByNome(nome);
+        PerfilUsuario usuario = repository.findByNome(id);
 
         for (UsuarioDto u : listAutenticados) {
-            if (u.getNome().equals(nome)) {
+            if (u.getNome().equals(id)) {
                 if (u.getAutenticado()) {
 
 

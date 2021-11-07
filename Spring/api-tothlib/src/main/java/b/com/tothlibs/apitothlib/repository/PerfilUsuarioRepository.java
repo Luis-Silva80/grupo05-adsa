@@ -21,4 +21,6 @@ public interface PerfilUsuarioRepository extends JpaRepository<PerfilUsuario, In
 
     public PerfilUsuario findByNome(String nome);
 
+    public PerfilUsuario findByEmail(String email);
+
 }
