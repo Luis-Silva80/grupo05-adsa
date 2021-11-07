@@ -39,8 +39,8 @@ public class Livros {
     @Column(name = "qtd_estoque")
     private Integer qtdEstoque;
 
-    @Column(name = "qtd_reservado_agora")
-    private Integer qtdReservadoAgora;
+    @Column(name = "qtd_reservados_agora")
+    private Integer qtdReservadosAgora;
 
     @Column(name = "fk_tbBiblioteca")
         private Integer fkTbbiblioteca;
@@ -54,11 +54,11 @@ public class Livros {
     }
 
     public Integer getQtdReservadoAgora() {
-        return qtdReservadoAgora;
+        return qtdReservadosAgora;
     }
 
     public void setQtdReservadoAgora(Integer qtdReservadoAgora) {
-        this.qtdReservadoAgora = qtdReservadoAgora;
+        this.qtdReservadosAgora = qtdReservadoAgora;
     }
 
     public Integer getQtdEstoque() {

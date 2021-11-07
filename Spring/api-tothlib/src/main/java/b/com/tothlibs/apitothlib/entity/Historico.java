@@ -28,7 +28,7 @@ public class Historico {
     @Column(name = "nome_livro", length = 70)
     private String nomeLivro;
 
-    @Column(name = "nome_perfil_usuario", length = 70)
+    @Column(name = "nome_aluno", length = 70)
     private String nomePerfilUsuario;
 
     @Column(name = "acao", length = 15)

@@ -95,10 +95,8 @@ public class Autenticacao {
             return ResponseEntity.status(200).body(retorno);
         }else {
 
-            return ResponseEntity.status(204).body(retorno);
+            return ResponseEntity.status(200).body(retorno);
         }
-
-
 
     }
 
