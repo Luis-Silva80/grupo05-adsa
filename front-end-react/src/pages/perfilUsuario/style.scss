@@ -44,6 +44,7 @@ $greyColor: #C8C8C8;
                     &_ra {
                         font-size: 1.25rem;
                         font-weight: 500;
+                        margin-right: 15px;
                     }
     
                     &_number {
@@ -131,7 +132,7 @@ $greyColor: #C8C8C8;
                 border: none;
                 position: relative;
                 cursor: pointer;
-                width: 12%;
+                width: 15%;
 
                 &_value {
                     background: white;
@@ -140,7 +141,7 @@ $greyColor: #C8C8C8;
             }
 
             &_text {
-                width: 76%;
+                width: 70%;
                 text-align: center;
                 font-size: 1.875rem;
             }
@@ -160,17 +161,11 @@ $greyColor: #C8C8C8;
                 border: 2px solid #737373;
                 border-radius: 10px;
                 padding: 10px;
-                width: calc(33.3% - 50px);
+                width: 25%;
+                max-width: 235px;
                 text-decoration: none;
-                margin-bottom: 10px;
-
-                &_linkImg {
-                    &_image {
-                        width: 100%;
-                        max-width: 215px;
-                    }
-                }
-
+                margin: 10px;
+                
                 &_contentBox {
                     display: flex;
                     flex-direction: column;
@@ -182,11 +177,19 @@ $greyColor: #C8C8C8;
                         color: black;
                     }
 
-                    &_devolution {
+                    &_status {
                         font-size: 20px;
                         padding: 10px 0;
                         text-decoration: underline;
-                        color: red;
+                        &.devolution{
+                            color: red;
+                        }
+                        &.returned{
+                            color: blue;
+                        }
+                        &.inUse{
+                            color: green;
+                        }
                     }
 
                     &_button {
