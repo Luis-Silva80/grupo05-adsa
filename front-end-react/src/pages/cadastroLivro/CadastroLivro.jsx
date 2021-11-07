@@ -33,13 +33,14 @@ function CadastroLivro() {
 
     useEffect(() => {
         api
-            .get("/livros")
+            .get("/bibliotecas")
             .then((response) => { console.log(response.data); })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
             });
     }, []);
 
+    // <td class="main_table_user_item" value={item.id} onClick={() =>localStorage.setItem('userId', item.id)} ><img class="main_table_user_about" src={loupe}/></td>
 
     return (
         <>
