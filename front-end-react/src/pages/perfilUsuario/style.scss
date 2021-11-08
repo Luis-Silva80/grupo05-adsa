@@ -1,0 +1,222 @@
+$secundariColor: #04378F;
+$greyColor: #C8C8C8;
+
+#rootPerfilUsuario{
+
+    .main_perfilInfo {
+        display: flex;
+        justify-content: space-between;
+        margin: 30px 75px 0;
+
+        &_box {
+            display: flex;
+            
+            &_icon {
+                height: 135px;
+            }
+    
+            &_content {
+                display: flex;
+                flex-direction: column;
+                margin-left: 10px;
+
+                &_name {
+                    font-size: 1.438rem;
+                    font-weight: 600;
+
+                    &_icon {
+                        width: 30px;
+                        margin-left: 10px;
+                        cursor: pointer;
+                    }
+                }
+    
+                &_email {
+                    padding: 15px 0;
+                    font-size: 1.25rem;
+                    font-weight: 500;
+                }
+    
+                &_box {
+                    display: flex;
+                    justify-content: space-between;
+                    
+                    &_ra {
+                        font-size: 1.25rem;
+                        font-weight: 500;
+                        margin-right: 15px;
+                    }
+    
+                    &_number {
+                        font-size: 1.25rem;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+
+        &_perfilGame {
+    
+            &_level {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 1.55rem;
+                font-weight: 500;
+                
+                &_number {
+                    font-size: 1.875rem;
+                    color: $secundariColor;
+                    font-weight: 600;
+                }
+            }
+    
+            &_progressBarGrey {
+                width: 100%;
+                height: 5px;
+                background: $greyColor;
+                border-radius: 15px;
+
+            }
+
+            &_progressBarBlue {
+                background: $secundariColor;
+                width: 80%;
+                height: 5px;
+                border-radius: 15px;
+            }
+    
+            &_status {
+                display: flex;
+
+                &_box {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 15px;
+
+                    &_image {
+                        width: 55px;
+                    }
+    
+                    &_content {
+                        font-size: 1.25rem;
+                        font-weight: 500;
+                        margin-top: 15px;
+                        
+                        &_number {
+                            color: $secundariColor;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+   
+    }
+
+
+    .main_listaLivros {
+        margin: 30px 75px 0;
+
+        &_title {
+            display: flex;
+
+            &_filter {
+                background: #04378f;
+                color: #ffffff;
+                padding: 5px 10px;
+                border-radius: 10px;
+                font-size: 18px;
+                border: none;
+                position: relative;
+                cursor: pointer;
+                width: 15%;
+
+                &_value {
+                    background: white;
+                    color: #07080a;
+                }
+            }
+
+            &_text {
+                width: 70%;
+                text-align: center;
+                font-size: 1.875rem;
+            }
+        }
+
+        &_lista {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+
+            &_livro {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 2px solid #737373;
+                border-radius: 10px;
+                padding: 10px;
+                width: 25%;
+                max-width: 235px;
+                text-decoration: none;
+                margin: 10px;
+                
+                &_contentBox {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    &_name {
+                        font-size: 25px;
+                        text-align: center;
+                        color: black;
+                    }
+
+                    &_status {
+                        font-size: 20px;
+                        padding: 10px 0;
+                        text-decoration: underline;
+                        &.devolution{
+                            color: red;
+                        }
+                        &.returned{
+                            color: blue;
+                        }
+                        &.inUse{
+                            color: green;
+                        }
+                    }
+
+                    &_button {
+                        background: #04378f;
+                        color: #ffffff;
+                        padding: 5px 40px;
+                        border-radius: 10px;
+                        font-size: 18px;
+                        border: none;
+                        position: relative;
+                        cursor: pointer;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.sidePerfilIcon::after {
+    content: "";
+    height: 7px;
+    width: 7px;
+    background-color: #fff;
+    position: absolute;
+    display: block;
+    top: 25px;
+    left: 6px;
+    border-radius: 15px;
+}

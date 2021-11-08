@@ -1,0 +1,44 @@
+$bgBlackSidenav: #2C2C2C;
+$iconSize: 35px;
+
+.sidenav {
+    position: fixed;
+    background-color: $bgBlackSidenav;
+    height: 80%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+    padding: 5% 0 11% 0;
+
+    &_containerCategory {
+        display: flex;
+        flex-direction: column;
+
+        &_link {
+            position: relative;
+            padding-left: 10px;
+            
+            &_icon {
+                width: $iconSize;
+                padding: 10px;
+
+            }
+        }
+    }
+
+    &_containerOptions {
+        display: flex;
+        flex-direction: column;
+
+        &_link {
+            padding-left: 10px;
+            
+            &_icon {
+                width: $iconSize;
+                padding: 10px;
+            }
+        }
+    }
+}

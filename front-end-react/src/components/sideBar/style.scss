@@ -1,0 +1,45 @@
+$bgBlacksideBar: #2C2C2C;
+$iconSize: 35px;
+
+#rootSideBar {
+    position: fixed;
+    background-color: $bgBlacksideBar;
+    height: 80%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+    padding: 5% 0 11% 0;
+
+    .sideBar_containerCategory {
+        display: flex;
+        flex-direction: column;
+
+        &_link {
+            &_icon {
+                width: $iconSize;
+                padding: 18px 10px;
+            }
+        }
+    }
+
+    .sideBar_containerOptions {
+        display: flex;
+        flex-direction: column;
+
+        &_link {
+            &_icon {
+                width: $iconSize;
+                padding: 18px 10px;
+            }
+        }
+    }
+}
+
+.active:after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+}

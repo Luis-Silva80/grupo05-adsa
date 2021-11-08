@@ -1,0 +1,133 @@
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+$lightBlue: #32b9cd;
+$darkBlue: #04378f;
+$lightGrey: #636a70;
+$white: #ffffff;
+$black: #07080a;
+
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  &.container{
+    width: 80%;
+    margin: 0 auto;
+  }
+  &_title{
+    color: $lightBlue;
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  &_parag{
+    color: $black;
+    font-size: 20px;
+    margin: 10px 0;
+  }
+  &_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 55%;
+    z-index: 1;
+    &_input{
+      border-radius: 10px;
+      border: 2px solid $darkBlue;
+      padding: 5px 20px;
+      margin: 5px 0;
+      font-size: 18px;
+      width: 100%;
+      box-shadow: 2px 2px 6px 0px rgba(0, 0, 0,0.40);
+      &.quant{
+        max-width: 150px;
+      }
+    }
+    &_textArea{
+      margin: 5px 0;
+      width: 100%;
+      padding: 0 20px;
+      border-radius: 10px;
+      border: 2px solid $darkBlue;
+      font-size: 18px;
+      box-shadow: 2px 2px 6px 0px rgba(0, 0, 0,0.40);
+    }
+    &_button{
+      border-radius: 15px;
+      border: none;
+      margin-top: 30px;
+      padding: 10px 15px;
+      background: $darkBlue;
+      color: $white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: 0.5s;
+      box-shadow: 1px 3px 3px 0px rgba(0, 0, 0,0.55);
+
+      &:hover{
+        padding: 10px 20px;
+        font-size: 1.6rem;
+        box-shadow: 2px 6px 6px 0px rgba(0, 0, 0,0.75);
+      }
+    }
+  }
+  .resp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 20%;
+    border: 2px solid $black;
+    border-radius: 15px;
+    background: $white;
+    max-width: 500px;
+    opacity: 0;
+    z-index: 0;
+    padding: 50px;
+    transition: 0.5s;
+    &.active{
+      opacity: 1;
+      z-index: 2;    
+    }
+    &_title{
+      color: $lightBlue;
+      font-size: 30px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    &_text{
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    &_link{
+      font-size: 20px;
+      text-align: center;
+    }
+    &_ctto{
+      font-size: 20px;
+      text-align: center;
+      background: $darkBlue;
+      color: $white;
+      border: none;
+      border-radius: 10px;
+      padding: 5px 10px;
+    }
+    &_img{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 25px;
+      cursor: pointer;
+    }
+  }
+}
+.footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

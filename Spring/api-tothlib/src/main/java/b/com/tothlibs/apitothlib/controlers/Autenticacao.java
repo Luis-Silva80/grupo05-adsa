@@ -43,12 +43,12 @@ public class Autenticacao {
 
                 }
             }
-
-
             return ResponseEntity.status(200).body(user.getId());
         }else {
             return ResponseEntity.status(404).build();
         }
+
+       
 
     }
 
@@ -71,15 +71,14 @@ public class Autenticacao {
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Realiza o logout na plataforma")
-    public ResponseEntity logoff(@PathVariable Integer id) {
-
+    public ResponseEntity logoff(@PathVariable String id) {
         String retorno = "";
         Boolean isAutentic = false;
-
         PerfilUsuario usuario = repository.findById(id).get();
 
         for (UsuarioDto u : listAutenticados) {
             if (u.pegarId().equals(id)) {
+
                 if (u.getAutenticado()) {
 
                     retorno = String.format("Usuário %s saiu do sistema", u.getNome());

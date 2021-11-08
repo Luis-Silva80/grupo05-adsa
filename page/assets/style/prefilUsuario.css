@@ -1,0 +1,273 @@
+.main_perfilInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 30px 75px 0;
+}
+
+.main_perfilInfo_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main_perfilInfo_box_icon {
+  height: 135px;
+}
+
+.main_perfilInfo_box_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 10px;
+}
+
+.main_perfilInfo_box_content_name {
+  font-size: 1.438rem;
+  font-weight: 600;
+}
+
+.main_perfilInfo_box_content_name_icon {
+  width: 30px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.main_perfilInfo_box_content_email {
+  padding: 15px 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.main_perfilInfo_box_content_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main_perfilInfo_box_content_box_ra {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.main_perfilInfo_box_content_box_number {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.main_perfilInfo_perfilGame_level {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 1.55rem;
+  font-weight: 500;
+}
+
+.main_perfilInfo_perfilGame_level_number {
+  font-size: 1.875rem;
+  color: #04378F;
+  font-weight: 600;
+}
+
+.main_perfilInfo_perfilGame_progressBarGrey {
+  width: 100%;
+  height: 5px;
+  background: #C8C8C8;
+  border-radius: 15px;
+}
+
+.main_perfilInfo_perfilGame_progressBarBlue {
+  background: #04378F;
+  width: 80%;
+  height: 5px;
+  border-radius: 15px;
+}
+
+.main_perfilInfo_perfilGame_status {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main_perfilInfo_perfilGame_status_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px;
+}
+
+.main_perfilInfo_perfilGame_status_box_image {
+  width: 55px;
+}
+
+.main_perfilInfo_perfilGame_status_box_content {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.main_perfilInfo_perfilGame_status_box_content_number {
+  color: #04378F;
+  font-weight: 700;
+}
+
+.main_listaLivros {
+  margin: 30px 75px 0;
+}
+
+.main_listaLivros_title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main_listaLivros_title_filter {
+  background: #04378f;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 18px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  width: 12%;
+}
+
+.main_listaLivros_title_filter_value {
+  background: white;
+  color: #07080a;
+}
+
+.main_listaLivros_title_text {
+  width: 76%;
+  text-align: center;
+  font-size: 1.875rem;
+}
+
+.main_listaLivros_lista {
+  margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main_listaLivros_lista_livro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 2px solid #737373;
+  border-radius: 10px;
+  padding: 10px;
+  width: calc(33.3% - 50px);
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.main_listaLivros_lista_livro_li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main_listaLivros_lista_livro_li_image {
+  width: 100%;
+  max-width: 215px;
+}
+
+.main_listaLivros_lista_livro_li_contentBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main_listaLivros_lista_livro_li_contentBox_name {
+  font-size: 25px;
+  text-align: center;
+  color: black;
+}
+
+.main_listaLivros_lista_livro_li_contentBox_devolution {
+  font-size: 20px;
+  padding: 10px 0;
+  text-decoration: underline;
+  color: red;
+}
+
+.main_listaLivros_lista_livro_li_contentBox_button {
+  background: #04378f;
+  color: #ffffff;
+  padding: 5px 40px;
+  border-radius: 10px;
+  font-size: 18px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.sidePerfilIcon::after {
+  content: "";
+  height: 7px;
+  width: 7px;
+  background-color: #fff;
+  position: absolute;
+  display: block;
+  top: 25px;
+  left: 6px;
+  border-radius: 15px;
+}
+/*# sourceMappingURL=prefilUsuario.css.map */

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros cadastrados</title>
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/footer.css">
+    <link rel="stylesheet" href="./assets/style/listaLivros.css">
+    <link rel="stylesheet" href="./assets/style/footer.css">
+    <link rel="stylesheet" href="./assets/style/sidenav.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/imgs/iconBlack.png" />
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js" integrity="sha512-pBSlhNUvB+td6sjW1zmR6L7c7kVWR4octUPl4tfHmzO63424nxta8aLmficEcAAswQmRqTiToi63AazDurj/Sg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/babel" src="./assets/script/React/sidenav.js"></script>
+    <script type="text/babel" src="./assets/script/React/footer.js"></script>
+</head>
+<body>
+  <aside class="sidenav" id="sidenav"></aside>
+
+    <main class="main container">
+        <h1 class="main_title">Livros cadastrados</h1>
+
+        <div class="main_nav">
+            <input class="main_nav_input" placeholder="Digite o nome do livro" type="text" name="name" id="name">
+            <button class="main_nav_btn" onclick="search()">Pesquisar</button>
+            <select class="main_nav_filter">
+                <option class="main_nav_filter_value" value="#">Filtrar por:</option>
+                <option class="main_nav_filter_value" value="pendencia">Categoria</option>
+                <option class="main_nav_filter_value" value="nomeDesc">Nome Desc</option>
+                <option class="main_nav_filter_value" value="nomeAsc">Nome Asc</option>
+            </select>
+        </div>
+        <h3 id="searchCallback" class="main_callback"></h3>
+        <div id="resp" class="resp"></div>
+
+    </main>
+
+    <footer class="footer container" id="footer"></footer>
+    
+</body>
+    <script src="./assets/script/listaLivros.js"></script>
+</html>

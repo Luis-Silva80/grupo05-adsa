@@ -1,0 +1,36 @@
+$bgBlackHeader: #2C2C2C;
+$colorWhite: #FFFF;
+
+#rootFooter {
+    display: flex;
+    background-color: $bgBlackHeader;
+    justify-content: space-between;
+
+    .footer_imageContainer{
+        &_link {
+            &_imageLogo {
+                width: 135px;
+            }
+        }
+    }
+
+    .footer_textContainer {
+        display: flex;
+        align-items: center;
+
+        &_text {
+            color: $colorWhite;
+        }
+    }
+
+    .footer_icons {
+        display: flex;
+        align-items: center;
+
+        &_link {
+            &_image {
+                padding: 10px;
+            }
+        }
+    }
+}

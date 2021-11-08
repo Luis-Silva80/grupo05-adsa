@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro De Livros</title>
+  <link rel="shortcut icon" href="./assets/imgs/iconBlack.png" />
+  <link rel="stylesheet" href="./assets/style/cadastroLivros.css">
+  <link rel="stylesheet" href="./assets/style/footer.css">
+  <link rel="stylesheet" href="./assets/style/style.css">
+  <link rel="stylesheet" href="./assets/style/sidenav.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js" integrity="sha512-pBSlhNUvB+td6sjW1zmR6L7c7kVWR4octUPl4tfHmzO63424nxta8aLmficEcAAswQmRqTiToi63AazDurj/Sg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/babel" src="./assets/script/React/sidenav.js"></script>
+  <script type="text/babel" src="./assets/script/React/footer.js"></script>
+</head>
+<body>
+  <aside class="sidenav" id="sidenav"></aside>
+
+  <main class="main container">
+    <h1 class="main_title">Adicionar Livro</h1>
+    <p class="main_parag">Preencha os campos abaixo para adicionar um novo livro ao sistema.</p>
+    <form action="" class="main_form" id="form" onsubmit="addBook(event)">
+      <input type="text" name="title" required class="main_form_input" placeholder="Título">
+      <input type="text" name="author" required class="main_form_input" placeholder="Autor">
+      <input type="text" name="editor" required class="main_form_input" placeholder="Editora">
+      <input type="text" name="edition" required class="main_form_input" placeholder="Edição">
+      <textarea name="desc" required rows="5" class="main_form_textArea" placeholder="Descrição"></textarea>
+      <input type="number" name="quantity" required class="main_form_input quant" placeholder="quantidade">
+      <input type="submit" class="main_form_button" id="formBtn" value="Cadastrar livro" >
+    </form>
+    <section id="resp" class="resp"></section>
+  </main>
+
+  <footer class="footer container" id="footer"></footer>
+</body>
+<script src="./assets/script/jquery.min.js"></script>
+<script src="./assets/script/cadastroLivro.js"></script>
+</html>

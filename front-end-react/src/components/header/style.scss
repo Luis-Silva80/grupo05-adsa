@@ -1,0 +1,82 @@
+$bgBlackHeader: #2C2C2C;
+$secundaryColor: #32B9CD;
+$colorWhite: #FFFF;
+
+#rootHeader {
+  display: flex;
+  justify-content: space-between;
+  background-color: $bgBlackHeader;
+
+  .header_imageContainer {
+    width: 150px;
+    display: flex;
+    align-items: center;
+
+    &_link {
+      cursor: pointer;
+
+      &_imageLogo {
+        width: 135px;
+      }
+    }
+  }
+
+  .header_categories {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_category {
+      cursor: pointer;
+      
+      &_link {
+        text-decoration: none;
+        color: $colorWhite;
+        font-size: 1.25rem;
+        position: relative;
+
+        &::after {
+          transition: 0.5s;
+          content: "";
+          height: 2px;
+          width: 0%;
+          position: absolute;
+          left: 0;
+          bottom: 0px;
+          background-color: $secundaryColor;
+        }
+
+        &:hover {
+          &::after {
+            width: 100%;
+          }
+
+        }
+      }
+    }
+  }
+
+  .header_login {
+    display: flex;
+    align-items: center;
+    
+    &_button {
+      padding: 5px 25px;
+      border-radius: 20px;
+      color: $colorWhite;
+      background-color: $bgBlackHeader;
+      border: 2px $secundaryColor solid;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.25rem;
+      transition: 0.5s;
+      text-decoration: none;
+      
+      &:hover {
+        background-color: $secundaryColor;
+        color: $bgBlackHeader;
+      }
+    }
+  }
+}
