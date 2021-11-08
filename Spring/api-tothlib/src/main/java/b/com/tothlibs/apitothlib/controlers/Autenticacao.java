@@ -26,23 +26,29 @@ public class Autenticacao {
     @ApiOperation(value = "Realiza a autenticação na plataforma")
     public ResponseEntity autenticar(@PathVariable String email, @PathVariable String senha) {
 
-        UsuarioDto usuarioDto = null;
 
-        List<PerfilUsuario> listUsuarios = repository.findAll();
+        PerfilUsuario user = repository.findByEmail(email);
 
-        for (PerfilUsuario u : listUsuarios) {
-            if (u.getEmail().equals(email)) {
-                if (u.retornaSenha().equals(senha)) {
-                    usuarioDto = new UsuarioDto(u);
-                    listAutenticados.add(usuarioDto);
+        if(user != null){
+            UsuarioDto usuarioDto = null;
+
+            List<PerfilUsuario> listUsuarios = repository.findAll();
+
+            for (PerfilUsuario u : listUsuarios) {
+                if (u.getEmail().equals(email)) {
+                    if (u.retornaSenha().equals(senha)) {
+                        usuarioDto = new UsuarioDto(u);
+                        listAutenticados.add(usuarioDto);
+                    }
+
                 }
-
             }
+
+
+            return ResponseEntity.status(200).body(user.getId());
+        }else {
+            return ResponseEntity.status(404).build();
         }
-
-        String resp = String.format("Usuário %s autenticado com sucesso", usuarioDto.getNome());
-
-        return ResponseEntity.status(200).body(resp);
 
     }
 
@@ -63,19 +69,18 @@ public class Autenticacao {
     }
 
 
-    @DeleteMapping("/{nome}")
+    @DeleteMapping("/{id}")
     @ApiOperation(value = "Realiza o logout na plataforma")
-    public ResponseEntity logoff(@PathVariable String nome) {
+    public ResponseEntity logoff(@PathVariable Integer id) {
 
         String retorno = "";
         Boolean isAutentic = false;
 
-        PerfilUsuario usuario = repository.findByNome(nome);
+        PerfilUsuario usuario = repository.findById(id).get();
 
         for (UsuarioDto u : listAutenticados) {
-            if (u.getNome().equals(nome)) {
+            if (u.pegarId().equals(id)) {
                 if (u.getAutenticado()) {
-
 
                     retorno = String.format("Usuário %s saiu do sistema", u.getNome());
 
