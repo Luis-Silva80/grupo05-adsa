@@ -26,23 +26,29 @@ public class Autenticacao {
     @ApiOperation(value = "Realiza a autenticação na plataforma")
     public ResponseEntity autenticar(@PathVariable String email, @PathVariable String senha) {
 
+
         PerfilUsuario user = repository.findByEmail(email);
 
-        UsuarioDto usuarioDto = null;
+        if(user != null){
+            UsuarioDto usuarioDto = null;
 
-        List<PerfilUsuario> listUsuarios = repository.findAll();
+            List<PerfilUsuario> listUsuarios = repository.findAll();
 
-        for (PerfilUsuario u : listUsuarios) {
-            if (u.getEmail().equals(email)) {
-                if (u.retornaSenha().equals(senha)) {
-                    usuarioDto = new UsuarioDto(u);
-                    listAutenticados.add(usuarioDto);
+            for (PerfilUsuario u : listUsuarios) {
+                if (u.getEmail().equals(email)) {
+                    if (u.retornaSenha().equals(senha)) {
+                        usuarioDto = new UsuarioDto(u);
+                        listAutenticados.add(usuarioDto);
+                    }
+
                 }
-
             }
+            return ResponseEntity.status(200).body(user.getId());
+        }else {
+            return ResponseEntity.status(404).build();
         }
 
-        return ResponseEntity.status(200).body(user.getId());
+       
 
     }
 
@@ -66,16 +72,14 @@ public class Autenticacao {
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Realiza o logout na plataforma")
     public ResponseEntity logoff(@PathVariable String id) {
-
         String retorno = "";
         Boolean isAutentic = false;
-
-        PerfilUsuario usuario = repository.findByNome(id);
+        PerfilUsuario usuario = repository.findById(id).get();
 
         for (UsuarioDto u : listAutenticados) {
-            if (u.getNome().equals(id)) {
-                if (u.getAutenticado()) {
+            if (u.pegarId().equals(id)) {
 
+                if (u.getAutenticado()) {
 
                     retorno = String.format("Usuário %s saiu do sistema", u.getNome());
 

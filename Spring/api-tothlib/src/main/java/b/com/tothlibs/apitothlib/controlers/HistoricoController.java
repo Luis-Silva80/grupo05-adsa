@@ -53,11 +53,6 @@ public class HistoricoController {
     @ApiOperation(value = "Retorna uma lista com o historico usuarios pendentes na plataforma")
     public ResponseEntity pendencia() throws IOException {
 
-
-//                List<UsuariosPendentesDto> listaDeHistorico = repository.findUserPendencia().stream()
-//                        .filter(usuariosPendentesDto -> usuariosPendentesDto.getAcao().equals("Renovacao") ||
-//                                usuariosPendentesDto.getAcao().equals("Retirada")).collect(Collectors.toList());
-
         List<UsuariosPendentesDto> listaDeHistorico = repository.findUserPendencia();
 
         listaObj = new ListaObj(listaDeHistorico.size());
@@ -65,10 +60,6 @@ public class HistoricoController {
         for (int i = 0;i < listaDeHistorico.size();i++){
             listaObj.adicionaElemento(listaDeHistorico.get(i));
         }
-
-
-        System.out.println("Exibindo a lista no OBj");
-        listaObj.exibeLista();
 
         gravaArquivoCsv(listaObj);
 
