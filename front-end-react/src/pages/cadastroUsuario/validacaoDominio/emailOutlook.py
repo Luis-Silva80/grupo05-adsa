@@ -1,14 +1,9 @@
 import smtplib
-import ssl
-from   email.mime.multipart import MIMEMultipart
-from   email.mime.text      import MIMEText
-from flask                  import Flask, request
+from   random                  import randrange
+from   email.mime.multipart    import MIMEMultipart
+from   email.mime.text         import MIMEText
+from   flask                   import Flask, request
 import json
-
-
-
-
-
 
 
 app = Flask(__name__)
@@ -17,6 +12,10 @@ app = Flask(__name__)
 # 1 - AQUI É FEITO O START DO SERVIDOR SMTP
 @app.route("/emailSender", methods = ['POST'])
 def envia_email():
+
+    numero_para_validacao = randrange(100000, 999999)
+
+    print(numero_para_validacao)
 
     email_sender = request.json["email"]
 
@@ -62,4 +61,4 @@ def valida_email():
     print("ola")
 
    
-valida_email()
+envia_email()
