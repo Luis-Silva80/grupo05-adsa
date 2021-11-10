@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 public class UsuarioDto {
 
+    private Integer id;
     private String nome;
     private Boolean autenticado;
     private String autenticadoEm;
@@ -16,11 +17,19 @@ public class UsuarioDto {
     String hojeFormatado = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 
     public UsuarioDto(PerfilUsuario usuario) {
-
+        this.id = usuario.getId();
         this.nome = usuario.getNome();
         this.autenticado = true;
         this.autenticadoEm = hojeFormatado;
 
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {

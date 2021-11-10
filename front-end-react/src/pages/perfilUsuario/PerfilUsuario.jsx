@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from "../../services/api";
+import autentication from "../../services/autentication";
 
 
 //Importanto componentes e o css
@@ -21,12 +22,14 @@ function PerfilUsuario() {
     const userId = localStorage.getItem('userId')
     const [ userInfo, setUserInfo ] = useState([]);
 
-    useEffect(() => {
-        api
-            .get(`/aluno/${userId}`)
-            .then((response) => {
-                setUserInfo(response.data);
-                console.log(response.data);
+    useEffect(async () => {
+        console.log(autentication);
+        
+        await api
+        .get(`/aluno/${userId}`)
+        .then((response) => {
+            setUserInfo(response.data);
+            console.log(response.data);
             })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
