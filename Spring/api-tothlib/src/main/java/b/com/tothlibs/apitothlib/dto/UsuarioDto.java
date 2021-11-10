@@ -24,7 +24,7 @@ public class UsuarioDto {
 
     }
 
-    public Integer pegarId() {
+    public Integer getId() {
         return id;
     }
 
