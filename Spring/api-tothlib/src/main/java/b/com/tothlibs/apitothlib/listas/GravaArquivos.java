@@ -36,8 +36,11 @@ public class GravaArquivos<T> {
 
             if (this.lista.get(0) instanceof Livros) {
 
-                nomeArquivo += dataFormatada.toString();
+                nomeArquivo += "-" +  dataFormatada.toString();
+                nomeArquivo += ".txt";
+                System.out.println("CHEGUEI AQUI");
                 List<Livros> listaDeLivros = (List<Livros>) this.lista;
+
                 gravaArquivoTxtLivros(listaDeLivros, nomeArquivo);
 
             } else if (this.lista.get(0) instanceof UsuariosPendentesDto) {
@@ -54,7 +57,6 @@ public class GravaArquivos<T> {
     public static void gravaRegistro(String nomeDeArquivo, String registro) {
 
         BufferedWriter saida = null;
-
         // Abre o arquivo
         try {
 
@@ -106,20 +108,7 @@ public class GravaArquivos<T> {
 
         for (Livros l : listaDeLivros) {
 
-            corpo = "01";
-            corpo += String.format("%-6.6S", l.getId());
-            corpo += String.format("%-45.45S", l.getTitulo());
-            corpo += String.format("%-45.45S", l.getDescricao());
-            corpo += String.format("%-45.45S", l.getAutor());
-            corpo += String.format("%-45.45s", l.getEdicao()); // 99,99
-            corpo += String.format("%-45.45S", l.getEditora());
-            corpo += String.format("%-20.20S", l.getStatusLivro());
-            corpo += String.format("%06d", l.getQtdResenhas());
-            corpo += String.format("%03d", l.getQtdReservas());
-            corpo += String.format("%03d", l.getQtdEstoque());
-            corpo += String.format("%03d", l.getQtdReservadoAgora());
-
-            gravaRegistro(nomeDeAqruivo, corpo);
+            gravaRegistro(nomeDeAqruivo, formataRegistroLivroTipo1(corpo,l));
 
             contaRegistroTipo1++;
 
@@ -174,7 +163,7 @@ public class GravaArquivos<T> {
 
     }
 
-    public String formataRegistroLivroTipo1(String corpo, Livros l) {
+    public static String formataRegistroLivroTipo1(String corpo, Livros l) {
 
         corpo = "01";
         corpo += String.format("%-6.6S", l.getId());
