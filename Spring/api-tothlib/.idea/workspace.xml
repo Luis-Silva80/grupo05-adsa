@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="138a9052-f229-4f22-afe8-51aa3117e171" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Documentação/EngenhariaDeSoftware/Mod_Status_Report-PI20202.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/../../Documentação/EngenhariaDeSoftware/Mod_Status_Report-PI20202.pptx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JpaRepository" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="JPA Inspector" value="true" />
+        <entry key="JPA Palette" value="true" />
+        <entry key="JPA Structure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="JPA Inspector" value="false" />
+        <entry key="JPA Palette" value="false" />
+        <entry key="JPA Structure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1zHwsKBOcyHEzpJG3yj0jEKNf93" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="database.main" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Bandtec\Backup-bandtec\Terceiro-Semestre\PI\grupo05-adsa\Spring\api-tothlib\src\main\java\b\com\tothlibs\apitothlib\entity" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="b.com.tothlibs.apitothlib.listas" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ApiTothlibApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="api-tothlib" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="b.com.tothlibs.apitothlib.ApiTothlibApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="138a9052-f229-4f22-afe8-51aa3117e171" name="Changes" comment="" />
+      <created>1633818536708</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633818536708</updated>
+      <workItem from="1633818542449" duration="1992000" />
+      <workItem from="1633960438196" duration="1385000" />
+      <workItem from="1633961869593" duration="354000" />
+      <workItem from="1633962243935" duration="3617000" />
+      <workItem from="1633975607744" duration="2219000" />
+      <workItem from="1633978148014" duration="439000" />
+      <workItem from="1633978612338" duration="4279000" />
+      <workItem from="1634161328315" duration="8017000" />
+      <workItem from="1634326479553" duration="3769000" />
+      <workItem from="1634332293436" duration="290000" />
+      <workItem from="1634334217548" duration="316000" />
+      <workItem from="1634336361010" duration="691000" />
+      <workItem from="1634415915614" duration="1943000" />
+      <workItem from="1634499789854" duration="10228000" />
+      <workItem from="1634769193640" duration="424000" />
+      <workItem from="1634998325928" duration="31000" />
+      <workItem from="1635379612845" duration="120000" />
+      <workItem from="1635379787617" duration="5695000" />
+      <workItem from="1635536347763" duration="7323000" />
+      <workItem from="1635600446243" duration="155000" />
+      <workItem from="1635600624522" duration="201000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

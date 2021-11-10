@@ -2,7 +2,10 @@
 <project version="4">
   <component name="JpaBuddyIdeaProjectConfig">
     <option name="defaultUnitInitialized" value="true" />
+<<<<<<< HEAD
     <option name="reverseEngineeringLastDbConnectionId" value="f9b0ce3b-b272-41cf-a36d-3040ad9997e3" />
     <option name="reLastEntityCreationPackage" value="src/main/java/b/com/tothlibs/apitothlib/entity" />
+=======
+>>>>>>> af28287456a4b64f064c0bc9cb2a60ee1630ac49
   </component>
 </project>
