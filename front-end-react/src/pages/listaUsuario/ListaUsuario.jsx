@@ -13,10 +13,15 @@ import api from "../../services/api";
 // import components-
 import Footer from '../../components/footer/Footer';
 import SideBar from '../../components/sideBar/SideBar';
+import Autentication from "../../services/autentication";
+import AutenticationAdmin from "../../services/autenticationAdmin";
 
 import usuarioImg from     '../../assets/perfilIcon.png';
 
 function ListaUsuarios() {
+
+    Autentication();
+    AutenticationAdmin();
 
     //const userData = [];
 

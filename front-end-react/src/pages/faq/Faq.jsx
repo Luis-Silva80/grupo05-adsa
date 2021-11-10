@@ -4,8 +4,11 @@ import "./style.scss";
 // import components
 import Footer from '../../components/footer/Footer';
 import SideBar from '../../components/sideBar/SideBar';
+import Autentication from "../../services/autentication";
 
 function Question({idonClick, idDiv, text, title}) {
+
+  Autentication();
 
   function ativar() {
     var div = document.getElementById(`${idDiv}`);

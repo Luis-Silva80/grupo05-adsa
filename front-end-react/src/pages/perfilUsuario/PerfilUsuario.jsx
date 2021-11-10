@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from "../../services/api";
-import autentication from "../../services/autentication";
+import Autentication from "../../services/autentication";
+import { useHistory } from 'react-router-dom';
 
 
 //Importanto componentes e o css
@@ -19,17 +20,17 @@ import imageLivro from '../../assets/book.png';
 
 function PerfilUsuario() {
 
+    Autentication();
+    
     const userId = localStorage.getItem('userId')
     const [ userInfo, setUserInfo ] = useState([]);
-
+    
     useEffect(async () => {
-        console.log(autentication);
         
         await api
         .get(`/aluno/${userId}`)
         .then((response) => {
             setUserInfo(response.data);
-            console.log(response.data);
             })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
