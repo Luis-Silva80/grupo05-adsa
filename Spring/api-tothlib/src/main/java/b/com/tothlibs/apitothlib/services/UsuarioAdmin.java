@@ -181,6 +181,12 @@ public class UsuarioAdmin implements Administravel, Usuario {
                             livro.setQtdReservadoAgora(qtdReservadosAgora + 1);
                             livro.setQtdReservas(livro.getQtdReservas() - 1);
 
+                            if(livro.getQtdReservadoAgora().equals(livro.getQtdEstoque())){
+                                livro.setStatusLivro("Indisponivel");
+                            }else {
+                                livro.setStatusLivro("Disponivel");
+                            }
+
                             repository.save(livro);
                             criaResgistroComIdRegistro(idRegistro, registro.getFkTbLivros(), idUsuario, "Retirada");
 

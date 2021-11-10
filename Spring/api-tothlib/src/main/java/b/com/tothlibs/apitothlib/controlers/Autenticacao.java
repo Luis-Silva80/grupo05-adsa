@@ -77,7 +77,7 @@ public class Autenticacao {
 //        PerfilUsuario usuario = repository.findById(id).get();
 
         for (UsuarioDto u : listAutenticados) {
-            if (u.getId().equals(id)) {
+            if (!u.getId().equals(id)) {
 
                 if (u.getAutenticado()) {
 
@@ -94,12 +94,12 @@ public class Autenticacao {
             }
         }
 
-        if(!isAutentic){
+        if(isAutentic){
 
             return ResponseEntity.status(200).body(retorno);
         }else {
 
-            return ResponseEntity.status(200).body(retorno);
+            return ResponseEntity.status(204).body(retorno);
         }
 
     }
