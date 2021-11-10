@@ -36,8 +36,11 @@ public class GravaArquivos<T> {
 
             if (this.lista.get(0) instanceof Livros) {
 
-                nomeArquivo += dataFormatada.toString();
+                nomeArquivo += "-" +  dataFormatada.toString();
+                nomeArquivo += ".txt";
+                System.out.println("CHEGUEI AQUI");
                 List<Livros> listaDeLivros = (List<Livros>) this.lista;
+
                 gravaArquivoTxtLivros(listaDeLivros, nomeArquivo);
 
             } else if (this.lista.get(0) instanceof UsuariosPendentesDto) {
