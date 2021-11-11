@@ -13,6 +13,7 @@ import PerfilUsuario from "./pages/perfilUsuario/PerfilUsuario";
 import Login from "./pages/login/Login";
 import NotFound from "./pages/notFound/NotFound";
 import CadastroLivro from "./pages/cadastroLivro/CadastroLivro";
+import RankingUsuarios from "./pages/rankingUsuarios/RankingUsuarios";
 
 
 export default function Routes() {
@@ -24,6 +25,7 @@ export default function Routes() {
                 <Route path="/login" exact component={Login}/>
                 <Route path="/listaUsuarios" exact component={ListaUsuarios} />
                 <Route path="/perfilUsuario" exact component={PerfilUsuario}/>
+                <Route path="/rankingUsuarios" exact component={RankingUsuarios}/>
                 <Route path="/listaLivros" exact component={ListaLivros} />
                 <Route path="/livro" exact component={Livro}/>
                 <Route path="/contato" exact component={Contato} />

@@ -1,3 +1,7 @@
+// desativa o carai do eslint
+/* eslint-disable */
+
+
 import React, { useEffect, useState } from 'react';
 import api from "../../services/api";
 import Autentication from "../../services/autentication";
@@ -31,6 +35,8 @@ function PerfilUsuario() {
         .get(`/aluno/${userId}`)
         .then((response) => {
             setUserInfo(response.data);
+            console.log("DATA:", response.data);
+
             })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
@@ -41,6 +47,9 @@ function PerfilUsuario() {
         <>
             <SideBar />
             <main className="main container" id="rootPerfilUsuario">           
+
+            
+
 
                 <div className="main_perfilInfo">
                     <div className="main_perfilInfo_box">
@@ -86,19 +95,20 @@ function PerfilUsuario() {
                     </div>
 
                     <ul className="main_listaLivros_lista">
-                        {/* {userInfo.livrosLidos.map(item => (
-                            <BookCard image={imageLivro} title={item.titulo} date="10/02/2021" />
-                        ))} */}
-                        
-                        <BookCard image={imageLivro} title="Programando com javascript" date="10/02/2021" />
-                        <BookCard image={imageLivro} title="Programando com javascript" date="10/02/2021" />
-                        <BookCard image={imageLivro} title="Programando com javascript" date="10/02/2021" />
+                    {    
+                        userInfo.livrosLidos === undefined ?
+                            console.log("Carregando lista de livros...") :
+                            userInfo.livrosLidos.map(item => (
+                            console.log("livros lidos: ", item),
+                            <BookCard  image={imageLivro} title={item.titulo} date="10/02/2021" />                                    
+                        ))                                  
+                    }            
                     </ul>
                 </div>
             </main>
             <Footer />
         </>
-    )
+    )    
 }
 
 export default PerfilUsuario;
