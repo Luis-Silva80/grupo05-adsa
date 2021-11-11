@@ -1,24 +1,17 @@
 import React from 'react';
 import "./style.scss";
+import Autentication from "../../services/autentication";
 // import { Link } from 'react-router-dom';
 
 // import components-
 import Footer from '../../components/footer/Footer';
 import SideBar from '../../components/sideBar/SideBar';
 import indisponivel from "../../assets/fotoIndisponivel.png"
-// function productShelf() {
-//     return(
-//         <>
-//             <div class="book">
-//                 <img class="book_img" src="${element.volumeInfo.imageLinks.thumbnail}" />
-//                 <h3 class="book_title">${element.volumeInfo.title}</h3>
-//                 <Link to="/cadastroUsuario" class="book_btn">Ver mais</Link>
-//             </div>
-//         </>
-//     );
-// }
 
 function ListaLivros() {
+
+  Autentication();
+
   const options = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json', Accept: 'application/vnd.vtex.ds.v10+json' }

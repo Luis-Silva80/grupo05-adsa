@@ -159,6 +159,9 @@ public class BibliotecaController {
 
         List<Livros> listaDeLivros = repository.findAll();
         GravaArquivos gravadorDeArquivoTxt = new GravaArquivos(listaDeLivros, "Livros");
+
+        gravadorDeArquivoTxt.verificaTipoArquivo();
+
         return ResponseEntity.status(200).body("Arquivo gerado com sucesso");
 
     }

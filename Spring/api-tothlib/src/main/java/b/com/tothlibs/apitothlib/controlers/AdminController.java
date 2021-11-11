@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin")
@@ -34,14 +35,15 @@ public class AdminController {
     @ApiOperation(value = "Retorna uma lista de usuarios administradores")
     public ResponseEntity getAluno() {
 
-        List<PerfilUsuario> usuarios = repository.findAll();
+        List<PerfilUsuario> usuariosAdmin = repository.findAll().stream().filter(usuario -> usuario.getUsuarioAdmin()
+                .equals(1)).collect(Collectors.toList());
 
-        if (usuarios.isEmpty()) {
+        if (usuariosAdmin.isEmpty()) {
             LOGGER.info("Nenhum usuario encontrado");
             return ResponseEntity.status(204).build();
         } else {
             LOGGER.info("Retornando lista de usuarios");
-            return ResponseEntity.status(200).body(usuarios);
+            return ResponseEntity.status(200).body(usuariosAdmin);
         }
     }
 
@@ -80,7 +82,11 @@ public class AdminController {
         LOGGER.info("Retornando usuario desejado...");
 
         if(usuarioInfo != null){
-            return ResponseEntity.status(200).body(usuarioInfo);
+            if(usuario.getUsuarioAdmin().equals(1)){
+                return ResponseEntity.status(200).body(usuarioInfo);
+            }else {
+                return ResponseEntity.status(204).build();
+            }
         }else {
             return ResponseEntity.status(404).build();
         }

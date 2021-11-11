@@ -2,11 +2,17 @@ import React, { useEffect } from 'react';
 import "./style.scss";
 import SideBar from '../../components/sideBar/SideBar';
 import Footer from "../../components/footer/Footer";
+import Autentication from "../../services/autentication";
+import AutenticationAdmin from "../../services/autenticationAdmin";
 
 import api from "../../services/api";
 import { Link } from 'react-router-dom';
 
 function CadastroLivro() {
+
+    Autentication();
+    AutenticationAdmin();
+
     function Submit(event) {
 
         event.preventDefault();

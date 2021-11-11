@@ -5,10 +5,14 @@ import "./style.scss";
 import Footer from '../../components/footer/Footer';
 import SideBar from '../../components/sideBar/SideBar';
 import LinkButton from '../../components/button/Button';
+import Autentication from "../../services/autentication";
 
 // import img from '../../assets/';
 
 function Contato() {
+
+    Autentication();
+
     return (
         <>
             <SideBar />
