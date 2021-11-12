@@ -108,7 +108,7 @@ function PerfilUsuario() {
             </main>
             <Footer />
         </>
-    )    
+    );
 }
 
 export default PerfilUsuario;
