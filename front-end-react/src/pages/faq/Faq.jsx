@@ -32,9 +32,9 @@ function Question({idonClick, idDiv, text, title}) {
 function Faq() {
 
   return (
-    <>
+    <div id="rootFaq">
       <SideBar/>
-      <main className="main container" id="rootFaq">
+      <main className="main" >
         <h1 className="main_title">Perguntas Frequentes</h1>
 
         <Question idonClick="btn1" idDiv="d1" title="Como faço para reservar um livro?" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempora commodo consequat."/>
@@ -46,7 +46,7 @@ function Faq() {
 
       </main>
       <Footer/>
-    </>
+    </div>
   );
 }
 

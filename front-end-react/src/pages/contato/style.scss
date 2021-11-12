@@ -18,13 +18,13 @@ $black: #07080a;
 } */
 
 #rootContato {
-    height: calc(100vh - 97px);
-
-    .main_title {
+  .main {
+    height: 90vh;
+    &_title {
       color: $lightBlue;
       text-align: center;
       font-size: 3rem;
-      margin-top: 20px;
+      padding-top: 20px;
     }
     .main_text {
       display: flex;
@@ -71,6 +71,7 @@ $black: #07080a;
         margin: 28px 0;
       }
     }
+  }
 }
 
 .sideContactUs::after {

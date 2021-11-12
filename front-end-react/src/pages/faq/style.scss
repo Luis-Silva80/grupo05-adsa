@@ -6,11 +6,11 @@ $white: #ffffff;
 $black: #07080a;
 
 #rootFaq {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    .main.container {
+    .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
         width: 80%;
         margin: 0 auto;
     }
@@ -35,34 +35,34 @@ $black: #07080a;
         margin-bottom: 20px;
         position: relative;
         &.active {
-        height: 115px;
+            height: 115px;
         }
         &_title {
-        color: whitesmoke;
-        margin: 10px 0 15px 15px;
+            color: whitesmoke;
+            margin: 10px 0 15px 15px;
         }
         &_parag {
-        background-color: whitesmoke;
-        padding: 0 15px;
-        height: 60px;
-        display: flex;
-        align-items: center;
+            background-color: whitesmoke;
+            padding: 0 15px;
+            height: 60px;
+            display: flex;
+            align-items: center;
         }
         &_btn {
-        cursor: pointer;
-        position: absolute;
-        right: 40px;
-        top: 10px;
-        background-color: transparent;
-        width: 30px;
-        height: 30px;
-        border: none;
-        background: url("../../assets/plus.png");
-        background-size: cover;
-        &.active {
-            background: url("../../assets/minus.png");
+            cursor: pointer;
+            position: absolute;
+            right: 40px;
+            top: 10px;
+            background-color: transparent;
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: url("../../assets/plus.png");
             background-size: cover;
-        }
+            &.active {
+                background: url("../../assets/minus.png");
+                background-size: cover;
+            }
         }
     }
 }
