@@ -22,7 +22,7 @@ import pencil from '../../assets/pencil.png';
 import conversation from '../../assets/conversation.png';
 import openBookPerfil from '../../assets/open-book-perfil.png';
 import imageLivro from '../../assets/book.png';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 
 function PerfilUsuario() {
 
