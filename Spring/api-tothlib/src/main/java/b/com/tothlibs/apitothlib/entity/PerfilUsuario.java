@@ -1,6 +1,10 @@
 package b.com.tothlibs.apitothlib.entity;
 
+import org.hibernate.query.criteria.internal.predicate.BooleanExpressionPredicate;
+
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Table(name = "tbperfilusuario", indexes = {
@@ -45,6 +49,30 @@ public class PerfilUsuario {
 
     @Column(name = "livros_reservados")
     private Integer livrosReservados;
+
+    @Column(name = "status_ativo")
+    private Boolean statusAtivo;
+
+    @Column(name = "data_inativacao")
+    private LocalDate dataInativacao;
+
+    public Boolean getStatusAtivo() {
+        return statusAtivo;
+    }
+
+    public void setStatusAtivo(Boolean statusAtivo) {
+        this.statusAtivo = statusAtivo;
+    }
+
+    public LocalDate pegarDataAtivacao() {
+        return dataInativacao;
+    }
+
+    public void setDataAtivacao(LocalDate dataAtivacao) {
+        this.dataInativacao = dataAtivacao;
+    }
+
+
 
     public Integer getLivrosReservados() {
         return livrosReservados;
@@ -99,7 +127,7 @@ public class PerfilUsuario {
 //    }
 
 
-    public String retornaSenha(){
+    public String retornaSenha() {
         return this.senha;
     }
 
@@ -146,7 +174,6 @@ public class PerfilUsuario {
     public void setId(Integer id) {
         this.id = id;
     }
-
 
 
 }

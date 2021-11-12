@@ -49,17 +49,18 @@ public class AdminController {
 
     @PostMapping()
     @ApiOperation(value = "Realiza o cadastro de um administrador")
-    public ResponseEntity postAluno(@RequestBody PerfilUsuario admin) {
+    public ResponseEntity postAluno(@RequestBody PerfilUsuario novoAdmin) {
 
-        admin.setUsuarioAdmin(1);
-        admin.setQtdLivrosLidos(0);
-        admin.setPontos(0L);
-        admin.setQtdResenhas(0);
-        admin.setLivrosReservados(0);
+        novoAdmin.setUsuarioAdmin(1);
+        novoAdmin.setQtdLivrosLidos(0);
+        novoAdmin.setPontos(0L);
+        novoAdmin.setQtdResenhas(0);
+        novoAdmin.setLivrosReservados(0);
+        novoAdmin.setStatusAtivo(true);
 
-        repository.save(admin);
+        repository.save(novoAdmin);
 
-        LOGGER.info("Aluno " + admin.getNome() + " cadastrado");
+        LOGGER.info("Aluno " + novoAdmin.getNome() + " cadastrado");
         return ResponseEntity.status(201).build();
     }
 

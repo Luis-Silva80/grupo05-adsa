@@ -90,12 +90,12 @@ public class BibliotecaController {
     @ApiOperation(value = "Remove um livro pelo ID")
     public ResponseEntity deletaPorId(@PathVariable Integer id) {
 
-        repository.deleteById(id);
-
         if (repository.existsById(id)) {
-            return ResponseEntity.status(400).build();
-        } else {
+
+            repository.deleteById(id);
             return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
         }
 
     }

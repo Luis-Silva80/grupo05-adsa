@@ -153,4 +153,10 @@ public class HistoricoController {
 
     }
 
+    public static void montaPilhaUsuarioPendente(){
+
+
+
+    }
+
 }
