@@ -3,9 +3,12 @@ $colorWhite: #FFFF;
 
 #rootFooter {
     display: flex;
-    background-color: $bgBlackHeader;
-    justify-content: space-between;
-
+    background-color: #2C2C2C;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+    height: 10vh;
+    
     .footer_imageContainer{
         &_link {
             &_imageLogo {

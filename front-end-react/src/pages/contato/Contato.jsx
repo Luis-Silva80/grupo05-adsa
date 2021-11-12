@@ -14,9 +14,9 @@ function Contato() {
     Autentication();
 
     return (
-        <>
+        <div id="rootContato">
             <SideBar />
-            <main className="main container" id="rootContato">
+            <main className="main" >
                 <h1 className="main_title">Contato</h1>
                 <div className="main_text">
                     <p>
@@ -41,7 +41,7 @@ function Contato() {
                 </div>
             </main>
             <Footer />
-        </>
+        </div>
     );
 }
 

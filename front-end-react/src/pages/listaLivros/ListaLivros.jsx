@@ -6,6 +6,9 @@ import Autentication from "../../services/autentication";
 // import components-
 import Footer from '../../components/footer/Footer';
 import SideBar from '../../components/sideBar/SideBar';
+import Loading from '../../components/loading/Loading';
+
+
 import indisponivel from "../../assets/fotoIndisponivel.png"
 
 function ListaLivros() {

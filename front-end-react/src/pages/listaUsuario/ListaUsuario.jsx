@@ -16,7 +16,9 @@ import SideBar from '../../components/sideBar/SideBar';
 import Autentication from "../../services/autentication";
 import AutenticationAdmin from "../../services/autenticationAdmin";
 
-import usuarioImg from     '../../assets/perfilIcon.png';
+import usuarioImg from '../../assets/perfilIcon.png';
+import Loading from '../../components/loading/Loading';
+
 
 function ListaUsuarios() {
 
@@ -25,7 +27,7 @@ function ListaUsuarios() {
 
     //const userData = [];
 
-    const [ userData, setUserData ] = useState([]);
+    const [userData, setUserData] = useState([]);
 
     useEffect(() => {
         api
@@ -38,7 +40,7 @@ function ListaUsuarios() {
                 console.error("ops! ocorreu um erro" + err);
             });
     }, []);
-    
+
 
     // function findUser() {
     //     userData.forEach(element => {
@@ -46,12 +48,14 @@ function ListaUsuarios() {
     //     });
     // }
 
-    
+
     return (
-        
+
         <div id="rootListaUsuario">
             <SideBar />
-                <main class="main container">
+            {userData.length === 0 ?
+                <Loading /> :
+                <main class="main">
                     <h1 class="main_title">Usuários cadastrados</h1>
 
                     <div class="main_nav">
@@ -77,25 +81,25 @@ function ListaUsuarios() {
                             <th></th>
                         </tr>
                         {userData.map(item => (
-                            
+
                             <tr class="main_table_user">
-                                
+
                                 <td class="main_table_user_item frst"><img class="main_table_user_img" src={usuarioImg} alt="user img" /></td>
                                 <td class="main_table_user_item name">{item.nome}</td>
                                 <td class="main_table_user_item email">{item.email}</td>
-                                {item.status == "Inativo" 
-                                ? (<td class='main_table_user_item inactive'>{item.status}</td>) 
-                                : (<td class='main_table_user_item'>{item.status}</td>)}
-                                {item.pendencia == null 
-                                ? (<td class='main_table_user_item'>nenhuma</td>) 
-                                : (<td class='main_table_user_item inactive'>{item.pendencia}</td>)}
+                                {item.status == "Inativo"
+                                    ? (<td class='main_table_user_item inactive'>{item.status}</td>)
+                                    : (<td class='main_table_user_item'>{item.status}</td>)}
+                                {item.pendencia == null
+                                    ? (<td class='main_table_user_item'>nenhuma</td>)
+                                    : (<td class='main_table_user_item inactive'>{item.pendencia}</td>)}
                                 <td class="main_table_user_item" value={item.id} onClick={() => storeId(item.id)} >
-                                    
-                                <Link to="/perfilUsuario"><img class="main_table_user_about" src={loupe}/></Link>
+
+                                    <Link to="/perfilUsuario"><img class="main_table_user_about" src={loupe} /></Link>
                                 </td>
-                                    
-                                    
-                                <td class="main_table_user_item lst"><img class="main_table_user_trash"  src={trash} /></td>
+
+
+                                <td class="main_table_user_item lst"><img class="main_table_user_trash" src={trash} /></td>
 
 
                             </tr>
@@ -108,12 +112,13 @@ function ListaUsuarios() {
                         <div class="main_popup_user" id="user"></div>
                     </section>
                 </main>
+            }
             <Footer />
         </div>
     );
     function storeId(value) {
-    localStorage.setItem('userId', value)
-  }
+        localStorage.setItem('userId', value)
+    }
 }
 
 export default ListaUsuarios;
