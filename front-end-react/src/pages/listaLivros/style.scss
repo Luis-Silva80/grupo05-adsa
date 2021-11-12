@@ -10,10 +10,9 @@ $black: #07080a;
         flex-direction: column;
         align-items: center;
         position: relative;
-        &.container {
-            width: 80%;
-            margin: 0 auto;
-        }
+        width: 80%;
+        margin: 0 auto;
+        min-height: 90vh;
         &_title {
             color: $lightBlue;
             font-size: 3rem;
@@ -22,8 +21,8 @@ $black: #07080a;
         &_nav {
             display: flex;
             align-items: center;
-            width: 95%;
-            justify-content: space-evenly;
+            width: 100%;
+            justify-content: space-between;
             position: sticky;
             background: white;
             padding: 10px;
@@ -47,7 +46,7 @@ $black: #07080a;
                 position: relative;
                 cursor: pointer;
                 margin: 0 5px;
-    
+                text-decoration: none;
                 &::after {
                     content: "";
                     background: url("../../assets/loupe.png") no-repeat;
@@ -90,50 +89,7 @@ $black: #07080a;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        &_book {
-            border-radius: 10px;
-            border: 2px solid $black;
-            width: 250px;
-            margin: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: $white;
-            position: relative;
-            &_img {
-                width: 220px;
-                margin: 10px 0;
-            }
-            &_tag{
-                position: absolute;
-                background: $darkBlue;
-                color: white;
-                border-radius: 10px;
-                top: 10px;
-                left: 10px;
-                padding: 5px 10px;
-                text-decoration: none;
-            }
-            &_title {
-                margin: 0 5px;
-                text-align: center;
-            }
-            &_btn {
-                padding: 5px 10px;
-                background: $darkBlue;
-                color: $white;
-                border-radius: 10px;
-                border: 2px solid $black;
-                font-size: 18px;
-                margin: 10px 0;
-                cursor: pointer;
-            }
-        }
-    }
-    .footer {
-        position: absolute;
-        bottom: 0;
+        
     }
 }
 
