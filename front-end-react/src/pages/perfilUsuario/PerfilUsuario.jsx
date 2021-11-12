@@ -28,8 +28,9 @@ function PerfilUsuario() {
 
     Autentication();
 
-    const userId = localStorage.getItem('userId')
+    const userId = parseInt(localStorage.getItem('userId'))
     const [userInfo, setUserInfo] = useState([]);
+    const [bookInfo, setBookInfo] = useState([]);
 
     useEffect(async () => {
 
@@ -37,22 +38,33 @@ function PerfilUsuario() {
             .get(`/aluno/${userId}`)
             .then((response) => {
                 setUserInfo(response.data);
-                console.log("DATA:", response.data);
-
+                console.log("User data:", response.data);
             })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
             });
     }, []);
 
+    useEffect(async () => {
+        await api
+            .get('/historico')
+            .then((response) => {
+                setBookInfo(response.data);
+                console.log("Livro data:", response.data);
+            })
+            .catch((err) => {
+                console.error("ops! ocorreu um erro" + err);
+            });
+    }, []);
+
+
     return (
         <div id="rootPerfilUsuario">
             <SideBar />
 
-            {   userInfo.length === 0 ?
+            {userInfo.length === 0 ?
                 <Loading /> :
                 <main className="main" >
-                    {console.log("user info",userInfo)}
                     <div className="main_perfilInfo">
                         <div className="main_perfilInfo_box">
                             <img src={perfilIcon} className="main_perfilInfo_box_icon" />
@@ -97,6 +109,15 @@ function PerfilUsuario() {
                         </div>
 
                         <ul className="main_listaLivros_lista">
+                            {/* {
+                                bookInfo.map(item => (
+                                    item.fkTbPerfilUsuario === userId &&
+                                    console.log("livro do user", item),
+                                    <BookCard image={imageLivro} titulo={item.nomeLivro} acao="devolver" date="10/02/2021" />
+                                ))
+                            }
+
+                             */}
                             { userInfo.livrosLidos.length === 0 ?
                                 <div>
                                     <h3>Você ainda não reservou nenhum livro!</h3>
@@ -105,7 +126,7 @@ function PerfilUsuario() {
                                 :
                                 userInfo.livrosLidos.map(item => (
                                     console.log("livros lidos: ", item),
-                                    <BookCard image={imageLivro} title={item.titulo} date="10/02/2021" />
+                                    <BookCard image={imageLivro} titulo={item.titulo} acao="devolver" date="10/02/2021" />    
                                 ))
                             }
                         </ul>
