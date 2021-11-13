@@ -3,7 +3,7 @@ package b.com.tothlibs.apitothlib.entity;
 import javax.persistence.*;
 
 @Table(name = "tblivros", indexes = {
-        @Index(name = "fk_tbBiblioteca", columnList = "fk_tbBiblioteca")
+        @Index(name = "fk_tb_biblioteca", columnList = "fk_tb_biblioteca")
 })
 @Entity
 public class Livros {
@@ -42,15 +42,26 @@ public class Livros {
     @Column(name = "qtd_reservados_agora")
     private Integer qtdReservadosAgora;
 
-    @Column(name = "fk_tbBiblioteca")
-        private Integer fkTbbiblioteca;
+    @Column(name = "fk_tb_biblioteca")
+    private Integer fkTbBiblioteca;
+
+    @Column(name = "linguagem")
+    private String linguagem;
+
+    public String getLinguagem() {
+        return linguagem;
+    }
+
+    public void setLinguagem(String linguagem) {
+        this.linguagem = linguagem;
+    }
 
     public Integer getFkTbbiblioteca() {
-        return fkTbbiblioteca;
+        return fkTbBiblioteca;
     }
 
     public void setFkTbbiblioteca(Integer fkTbbiblioteca) {
-        this.fkTbbiblioteca = fkTbbiblioteca;
+        this.fkTbBiblioteca = fkTbbiblioteca;
     }
 
     public Integer getQtdReservadoAgora() {

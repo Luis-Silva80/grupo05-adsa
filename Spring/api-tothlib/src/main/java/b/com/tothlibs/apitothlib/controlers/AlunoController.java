@@ -4,16 +4,20 @@ import b.com.tothlibs.apitothlib.Exceptions.UsuarioNaoEncontradoException;
 import b.com.tothlibs.apitothlib.dto.UsuarioInfo;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
+import b.com.tothlibs.apitothlib.listas.PilhaObj;
 import b.com.tothlibs.apitothlib.repository.HistoricoRepository;
 import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -22,6 +26,10 @@ import java.util.logging.Logger;
 public class AlunoController {
 
     public static final Logger LOGGER = Logger.getLogger(String.valueOf(AlunoController.class));
+
+    PilhaObj<PerfilUsuario> pilhaUsuariosDeletados;
+    List<PerfilUsuario> listaTemporariaDeletados = new ArrayList<>();
+
 
     @Autowired
     private PerfilUsuarioRepository repository;
@@ -58,6 +66,7 @@ public class AlunoController {
         novoAluno.setPontos(0L);
         novoAluno.setQtdResenhas(0);
         novoAluno.setLivrosReservados(0);
+        novoAluno.setStatusAtivo(true);
 
         repository.save(novoAluno);
 
@@ -75,26 +84,26 @@ public class AlunoController {
         List<Integer> listId = repositoryHistorico.findFkLivrosByIdUsuario(idUsuario);
         UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
 
-        for (Integer i : listId){
+        for (Integer i : listId) {
             Livros livro = repositoryLivro.findById(i).get();
-            if(!containsName(usuarioInfo.getLivrosLidos(), livro.getId())){
+            if (!containsName(usuarioInfo.getLivrosLidos(), livro.getId())) {
                 usuarioInfo.getLivrosLidos().add(livro);
             }
         }
         LOGGER.info("Retornando usuario desejado...");
 
-        if(usuarioInfo != null){
+        if (usuarioInfo != null) {
             return ResponseEntity.status(200).body(usuarioInfo);
-        }else {
+        } else {
             return ResponseEntity.status(404).build();
         }
 
     }
 
     @PutMapping("/{idAluno}")
-    public ResponseEntity putAluno(@PathVariable Integer idAluno, @RequestBody PerfilUsuario usuarioAlterado){
+    public ResponseEntity putAluno(@PathVariable Integer idAluno, @RequestBody PerfilUsuario usuarioAlterado) {
 
-        if(repository.existsById(idAluno)){
+        if (repository.existsById(idAluno)) {
 
             usuarioAlterado.setId(idAluno);
 
@@ -107,7 +116,100 @@ public class AlunoController {
 
     }
 
-    public boolean containsName(final List<Livros> list, final Integer id){
+    @PatchMapping("/{idAluno}")
+    @ApiOperation(value = "Remove um aluno pelo ID")
+    public ResponseEntity deletaPorId(@PathVariable Integer idAluno) {
+
+        PerfilUsuario alunoInativo = repository.findById(idAluno).get();
+
+
+        if (alunoInativo != null) {
+
+            alteraStatus(alunoInativo, "deletar");
+
+            return ResponseEntity.status(200).body(alunoInativo);
+        } else {
+
+            return ResponseEntity.status(404).build();
+        }
+
+    }
+
+    @PostMapping("/desfazer")
+    @ApiOperation(value = "Desfaz a exclusão do ultimo aluno deletado")
+    public ResponseEntity desfazerDelete() {
+        System.out.println("-------------------");
+        pilhaUsuariosDeletados = new PilhaObj(listaTemporariaDeletados.size());
+        if(pilhaUsuariosDeletados.isEmpty()){
+            listaTemporariaDeletados
+                    .stream()
+                    .forEach(perfilUsuario -> pilhaUsuariosDeletados.push(perfilUsuario));
+        }
+
+        pilhaUsuariosDeletados.exibe();
+
+        if (listaTemporariaDeletados.size() == 0) {
+
+            return ResponseEntity.status(204).build();
+
+        } else {
+            System.out.println("removendo o topo da pilha" +pilhaUsuariosDeletados.peek());
+            alteraStatus(pilhaUsuariosDeletados.peek(),"desfazer");
+
+            listaTemporariaDeletados.remove(pilhaUsuariosDeletados.peek());
+
+            pilhaUsuariosDeletados.pop();
+            pilhaUsuariosDeletados.exibe();
+
+            return ResponseEntity.status(200).build();
+
+        }
+
+    }
+
+    @GetMapping("/teste")
+    public ResponseEntity teste(){
+
+
+        listaTemporariaDeletados
+                .stream()
+                .forEach(perfilUsuario -> verificarDataInativacao(perfilUsuario));
+
+        return ResponseEntity.status(200).build();
+
+    }
+
+    public void verificarDataInativacao(PerfilUsuario p) {
+
+        if (p.getStatusAtivo().equals(0)) {
+            if (LocalDate.now().isAfter(p.pegarDataAtivacao().plusDays(30))) {
+                System.out.println("è mais que trinta");
+//                repository.deleteById(p.getId());
+            } else {
+                System.out.println("hanan moscou");
+            }
+
+        }
+
+    }
+
+
+    public void alteraStatus(PerfilUsuario p, String status){
+
+        if(status.equals("deletar")){
+            p.setStatusAtivo(false);
+            p.setDataAtivacao(LocalDate.now());
+            listaTemporariaDeletados.add(p);
+        }else {
+            p.setStatusAtivo(true);
+            p.setDataAtivacao(null);
+        }
+
+        p.setFkTbInstituicao(1);
+        repository.save(p);
+    }
+
+    public boolean containsName(final List<Livros> list, final Integer id) {
         return list.stream().map(Livros::getId).filter(id::equals).findFirst().isPresent();
     }
 }
