@@ -35,8 +35,7 @@ public class AdminController {
     @ApiOperation(value = "Retorna uma lista de usuarios administradores")
     public ResponseEntity getAluno() {
 
-        List<PerfilUsuario> usuariosAdmin = repository.findAll().stream().filter(usuario -> usuario.getUsuarioAdmin()
-                .equals(1)).collect(Collectors.toList());
+        List<PerfilUsuario> usuariosAdmin = repository.findAdmin();
 
         if (usuariosAdmin.isEmpty()) {
             LOGGER.info("Nenhum usuario encontrado");

@@ -175,5 +175,13 @@ public class PerfilUsuario {
         this.id = id;
     }
 
-
+    @Override
+    public String toString() {
+        return "PerfilUsuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", statusAtivo=" + statusAtivo +
+                ", dataInativacao=" + dataInativacao +
+                '}';
+    }
 }

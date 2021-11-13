@@ -55,6 +55,7 @@ public class BibliotecaController {
             idLivro.setQtdReservas(0);
             idLivro.setQtdReservadoAgora(0);
             idLivro.setStatusLivro("disponivel");
+            idLivro.setFkTbbiblioteca(2);
 
             repository.save(idLivro);
             return ResponseEntity.status(201).build();

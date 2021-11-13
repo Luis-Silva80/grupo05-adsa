@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -115,22 +116,16 @@ public class AlunoController {
 
     }
 
-    @PostMapping("/{idAluno}")
+    @PatchMapping("/{idAluno}")
     @ApiOperation(value = "Remove um aluno pelo ID")
     public ResponseEntity deletaPorId(@PathVariable Integer idAluno) {
 
-        PerfilUsuario alunoInativo = new PerfilUsuario();
+        PerfilUsuario alunoInativo = repository.findById(idAluno).get();
 
-        if (repository.existsById(idAluno)) {
 
-            alunoInativo.setId(idAluno);
-            alunoInativo.setStatusAtivo(false);
-            alunoInativo.setDataAtivacao(LocalDate.now());
-            alunoInativo.setFkTbInstituicao(1);
+        if (alunoInativo != null) {
 
-            listaTemporariaDeletados.add(alunoInativo);
-
-            repository.save(alunoInativo);
+            alteraStatus(alunoInativo, "deletar");
 
             return ResponseEntity.status(200).body(alunoInativo);
         } else {
@@ -141,24 +136,32 @@ public class AlunoController {
     }
 
     @PostMapping("/desfazer")
+    @ApiOperation(value = "Desfaz a exclusão do ultimo aluno deletado")
     public ResponseEntity desfazerDelete() {
-
-        if (listaTemporariaDeletados.size() == 0) {
-
-            return ResponseEntity.status(404).build();
-
-        } else {
-
-            pilhaUsuariosDeletados = new PilhaObj(listaTemporariaDeletados.size());
-
+        System.out.println("-------------------");
+        pilhaUsuariosDeletados = new PilhaObj(listaTemporariaDeletados.size());
+        if(pilhaUsuariosDeletados.isEmpty()){
             listaTemporariaDeletados
                     .stream()
                     .forEach(perfilUsuario -> pilhaUsuariosDeletados.push(perfilUsuario));
+        }
 
+        pilhaUsuariosDeletados.exibe();
 
-            repository.save(pilhaUsuariosDeletados.peek());
+        if (listaTemporariaDeletados.size() == 0) {
 
-            return ResponseEntity.status(200).body(pilhaUsuariosDeletados.pop());
+            return ResponseEntity.status(204).build();
+
+        } else {
+            System.out.println("removendo o topo da pilha" +pilhaUsuariosDeletados.peek());
+            alteraStatus(pilhaUsuariosDeletados.peek(),"desfazer");
+
+            listaTemporariaDeletados.remove(pilhaUsuariosDeletados.peek());
+
+            pilhaUsuariosDeletados.pop();
+            pilhaUsuariosDeletados.exibe();
+
+            return ResponseEntity.status(200).build();
 
         }
 
@@ -166,6 +169,7 @@ public class AlunoController {
 
     @GetMapping("/teste")
     public ResponseEntity teste(){
+
 
         listaTemporariaDeletados
                 .stream()
@@ -187,6 +191,22 @@ public class AlunoController {
 
         }
 
+    }
+
+
+    public void alteraStatus(PerfilUsuario p, String status){
+
+        if(status.equals("deletar")){
+            p.setStatusAtivo(false);
+            p.setDataAtivacao(LocalDate.now());
+            listaTemporariaDeletados.add(p);
+        }else {
+            p.setStatusAtivo(true);
+            p.setDataAtivacao(null);
+        }
+
+        p.setFkTbInstituicao(1);
+        repository.save(p);
     }
 
     public boolean containsName(final List<Livros> list, final Integer id) {

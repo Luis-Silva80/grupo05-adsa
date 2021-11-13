@@ -68,11 +68,12 @@ public class PilhaObj<T> {
 
         if(isEmpty()){
 
-            System.out.println("Lista está vazia!");
+            System.out.println("Pilha está vazia!");
         } else{
 
             int c = topo;
 
+            System.out.println("\nExibindo a pilha");
             for( ; c >= 0; c --){
 
                 System.out.println(pilha[c]);
