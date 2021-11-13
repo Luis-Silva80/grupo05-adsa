@@ -11,7 +11,7 @@ import logoYouTube from "../../assets/youtube.png";
 function Footer() {
     return (
         <>
-            <footer className="footer container" id="rootFooter">
+            <footer className="footer" id="rootFooter">
                 <div className="footer_imageContainer">
                     <Link to="/" className="footer_imageContainer_link">
                         <img className="footer_imageContainer_link_imageLogo" src={logoImg} />
