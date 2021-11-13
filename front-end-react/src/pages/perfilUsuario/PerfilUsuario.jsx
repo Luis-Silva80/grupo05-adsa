@@ -47,10 +47,6 @@ function PerfilUsuario() {
         <>
             <SideBar />
             <main className="main container" id="rootPerfilUsuario">           
-
-            
-
-
                 <div className="main_perfilInfo">
                     <div className="main_perfilInfo_box">
                         <img src={perfilIcon} className="main_perfilInfo_box_icon" />

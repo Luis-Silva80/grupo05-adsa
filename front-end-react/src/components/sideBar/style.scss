@@ -1,26 +1,51 @@
 $bgBlacksideBar: #2C2C2C;
-$iconSize: 35px;
+$iconSize: 32px;
 
 #rootSideBar {
     position: fixed;
     background-color: $bgBlacksideBar;
     height: 80%;
-    width: auto;
+    width: 75px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    z-index: 2;
+    z-index: 7;
     padding: 5% 0 11% 0;
+    transition: 0.5s;
+    overflow: hidden;
 
     .sideBar_containerCategory {
         display: flex;
         flex-direction: column;
 
         &_link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            position: relative;
+            transition: 0.2s;
+
             &_icon {
                 width: $iconSize;
-                padding: 18px 10px;
+                padding: 18px 23px;
             }
+
+            &_desc {
+                font-size: 20px;
+                width: auto;
+                white-space: nowrap;
+                position: relative;
+            }
+
+            &:hover {
+                background-color: #32B9CD;
+
+                .sideBar_containerCategory_link_desc {
+                    color: #2C2C2C;
+                }
+            }
+
         }
     }
 
@@ -29,17 +54,43 @@ $iconSize: 35px;
         flex-direction: column;
 
         &_link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            position: relative;
+            transition: 0.2s;
+
             &_icon {
                 width: $iconSize;
-                padding: 18px 10px;
+                padding: 18px 23px;
+            }
+            &_desc {
+                font-size: 20px;
+                width: auto;
+                white-space: nowrap;
+                position: relative;
+            }
+
+            &:hover {
+                background-color: #cc2222;
+
+                .sideBar_containerCategory_link_desc {
+                    color: #2C2C2C;
+                }
             }
         }
     }
 }
 
-.active:after {
-    content: "";
-    display: block;
-    width: 10px;
-    height: 10px;
+.currentPage {
+    background-color: #32B9CD;
+
+    .sideBar_containerCategory_link_desc {
+        color: #2C2C2C;
+    }
+}
+
+#rootSideBar.sideOpen {
+    width: 280px;
 }

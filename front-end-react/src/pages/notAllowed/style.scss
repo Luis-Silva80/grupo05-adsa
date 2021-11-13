@@ -4,14 +4,14 @@ $lightGrey: #636a70;
 $white: #ffffff;
 $black: #07080a;
 
-#rootNotFound {
+#rootNotAllowed {
   .main {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
     padding-top: 100px;
-
+    
     &.container {
       width: 80%;
       margin: 0 auto;
@@ -32,13 +32,16 @@ $black: #07080a;
         color: $lightBlue;
       }
     }
+    &_img{
+        width: 55vh;
+    }
     &_btn{
       border-radius: 5px;
       border: none;
       margin-bottom: 15px;
       padding: 5px 55px;
-      background: #04378f;
-      color: #ffffff;
+      background: $darkBlue;
+      color: $white;
       font-size: 20px;
       cursor: pointer;
       transition: 0.5s;

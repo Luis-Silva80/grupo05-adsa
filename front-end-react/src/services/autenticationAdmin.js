@@ -12,7 +12,7 @@ function AutenticationAdmin() {
         .get(`/admin/` + localStorage.getItem('userId'))
         .then((response) => {
             if (response.status != 200) {
-                history.push("/semAcesso");
+                history.push("/notAllowed");
             }
         })
         .catch((err) => {

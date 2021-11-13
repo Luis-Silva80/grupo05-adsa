@@ -6,6 +6,9 @@ $colorWhite: #FFFF;
   display: flex;
   justify-content: space-between;
   background-color: $bgBlackHeader;
+  position: fixed;
+  transition: 0.5s;
+  z-index: 10;
 
   .header_imageContainer {
     width: 150px;
