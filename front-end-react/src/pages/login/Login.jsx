@@ -36,7 +36,7 @@ function Login() {
   return (
     <div id="rootLogin"y>
       <Header />
-        <main className="main container">
+        <main className="main">
           <h1 className="main_title">Login</h1>
           <p className="main_parag">Preencha os campos abaixo para acessar a sua conta.</p>
           <form action="" className="main_form" id="form" onSubmit={Submit}>

@@ -14,7 +14,7 @@ function NotFound() {
   return (
     <div id="rootNotFound">
       <Header />
-        <main className="main container">
+        <main className="main">
           <h1 className="main_title">Ops! Parece que a página não foi encontrada.</h1>
           <img className="" src={notFoundImg} alt="Page not found"/>
           <p className="main_parag">Caso algo não pareça certo, entre em <Link to="/contato">contato</Link></p>

@@ -7,6 +7,7 @@ import javax.persistence.*;
 })
 @Entity
 public class Biblioteca {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
