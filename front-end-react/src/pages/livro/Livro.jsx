@@ -15,10 +15,9 @@ function Livro(){
   Autentication();
 
   return(
-    <>
+    <div id="rootLivro">
     <SideBar />
-    <section id="rootLivro">
-      <main className="main container">
+      <main className="main">
         <div className="main_container">
           <div className="main_container_upBox">
             <div className="main_container_upBox_imgBox">
@@ -61,14 +60,13 @@ function Livro(){
           </div>
         </div>
         <div className="main_description">
+          <h3>Descrição</h3>
           <p>JavaScript é a linguagem de programação da Web. A maioria dos sites modernos usa JavaScript, e todos os navegadores – em computadores de mesa, consoles de jogos, tablets e smartphones – incluem interpretadores JavaScript. Isso a torna uma das linguagens de programação mais importantes atualmente e uma das tecnologias que todo desenvolvedor Web deve conhecer</p>
         </div>
       </main>
-    </section>
-
     <Footer />
 
-    </>
+    </div>
     )
 }
 export default Livro; 

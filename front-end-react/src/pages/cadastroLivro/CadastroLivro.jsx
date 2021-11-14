@@ -9,6 +9,7 @@ import api from "../../services/api";
 import { Link } from 'react-router-dom';
 
 function CadastroLivro() {
+    const userId = parseInt(localStorage.getItem('userId'))
 
     Autentication();
     AutenticationAdmin();
@@ -30,7 +31,7 @@ function CadastroLivro() {
 
         api({
             method: 'post',
-            url: '/biblioteca/1',
+            url: `/biblioteca/${userId}`,
             data: formData,
         }).then(function (response) {
             console.log(response.data)
@@ -49,10 +50,9 @@ function CadastroLivro() {
     // <td class="main_table_user_item" value={item.id} onClick={() =>localStorage.setItem('userId', item.id)} ><img class="main_table_user_about" src={loupe}/></td>
 
     return (
-        <>
+        <div id="rootCadastroLivro">
             <SideBar />
-            <section id="rootCadastroLivro">
-                <main class="main container">
+                <main class="main">
                     <h1 class="main_title">Adicionar Livro</h1>
                     <p class="main_parag">Preencha os campos abaixo para adicionar um novo livro ao sistema.</p>
                     <form action="" class="main_form" id="form" onSubmit={Submit}>
@@ -66,9 +66,8 @@ function CadastroLivro() {
                     </form>
                     <section id="resp" class="resp"></section>
                 </main>
-            </section>
             <Footer />
-        </>
+        </div>
     )
 }
 export default CadastroLivro;

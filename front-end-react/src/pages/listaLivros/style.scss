@@ -46,7 +46,6 @@ $black: #07080a;
                 position: relative;
                 cursor: pointer;
                 margin: 0 5px;
-                text-decoration: none;
                 &::after {
                     content: "";
                     background: url("../../assets/loupe.png") no-repeat;

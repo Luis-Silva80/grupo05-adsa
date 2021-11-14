@@ -5,7 +5,7 @@ import api from "../../services/api";
 import { useHistory } from 'react-router-dom';
 
 import userIcon from "../../assets/user.png";
-import bookIcon from "../../assets/book-shelf.png";
+import bookIcon from "../../assets/knowledge.png";
 import questionIcon from "../../assets/question.png";
 import logoutIcon from "../../assets/logout.png";
 import addLivro from "../../assets/addLivro.png";
