@@ -109,7 +109,7 @@ function ListaLivros() {
   //   }
   // }
   function storeId(value) {
-    localStorage.setItem('productId', value)
+    localStorage.setItem('id do livro', value)
   }
 
   return (
@@ -135,7 +135,7 @@ function ListaLivros() {
           <div id="resp" className="resp">
             {
               booksInfo.map(item => (
-                <BookCard image={imageLivro} onClick={() => storeId(item.id)} titulo={item.titulo} descricao={item.descricao} acao="Ver mais"/>
+                <BookCard image={imageLivro} idLivro={item.id} titulo={item.titulo} descricao={item.descricao} acao="Ver mais"/>
               ))
             }
 
