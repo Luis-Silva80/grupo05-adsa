@@ -21,7 +21,9 @@ function Livro() {
 
 
   const bookId = parseInt(localStorage.getItem('bookId'))
-  const [userInfo, setUserInfo] = useState([]);
+  const userId = parseInt(localStorage.getItem('userId'))
+  
+  // const [userInfo, setUserInfo] = useState([]);
   const [bookInfo, setBookInfo] = useState([]);
 
   useEffect(async () => {
@@ -30,18 +32,32 @@ function Livro() {
       .get(`/biblioteca/${bookId}`)
       .then((response) => {
         setBookInfo(response.data);
-        console.log("User data:", response.data);
+        console.log("Book data:", response.data);
       })
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
   }, []);
 
+  function reserve(idLivro, idUsuario) {
+    console.log("cai na função");
+    api
+      .put(`/biblioteca/reservar/${idLivro}/${idUsuario}`)
+      .then((response) => {
+        setBookInfo(response.data);
+        console.log("Book data:", response.data);
+      })
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+    });
+
+  }
+
   return (
     <div id="rootLivro">
       <SideBar />
 
-      {userInfo.length === 0 ?
+      {bookInfo.length === 0 ?
         <Loading /> :
         <main className="main">
           <div className="main_container">
@@ -50,21 +66,21 @@ function Livro() {
                 <img src={livro} className="main_container_upBox_imgBox_img" />
               </div>
               <div className="main_container_upBox_content">
-                <h3 className="main_container_upBox_content_title">{userInfo.titulo}</h3>
+                <h3 className="main_container_upBox_content_title">{bookInfo.titulo}</h3>
                 <div className="main_container_upBox_content_main">
                   <div className="main_container_upBox_content_main_left">
                     <div className="main_container_upBox_content_main_left_paragraph">
                       <p className="main_container_upBox_content_main_left_paragraph_pTitle">Autor:</p>
-                      <p className="main_container_upBox_content_main_left_paragraph_pContent">{userInfo.autor}</p>
+                      <p className="main_container_upBox_content_main_left_paragraph_pContent">{bookInfo.autor}</p>
                     </div>
                     <div className="main_container_upBox_content_main_left_paragraph">
                       <p className="main_container_upBox_content_main_left_paragraph_pTitle">Data publicação:</p>
                       <p className="main_container_upBox_content_main_left_paragraph_pContent">10/08/2020</p>
                     </div>
-                    <div className="main_container_upBox_content_main_left_paragraph">
+                    {/* <div className="main_container_upBox_content_main_left_paragraph">
                       <p className="main_container_upBox_content_main_left_paragraph_pTitle">Valor: </p>
                       <p className="main_container_upBox_content_main_left_paragraph_pContent">R$ 100,00</p>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="main_container_upBox_content_main_rigth">
                     <div className="main_container_upBox_content_main_rigth_paragraph">
@@ -80,14 +96,15 @@ function Livro() {
               </div>
             </div>
             <div className="main_container_downBox">
-              <LinkButton content="Reservar" className="main_container_downBox_button" />
+              <button onClick={() => reserve(bookInfo.id, userId)} className="main_container_downBox_button" >Reservar</button>
+              {/* <LinkButton content="Reservar" onclick={() => reserve(bookInfo.id, userId)} className="main_container_downBox_button" />
               <LinkButton content="Comprar" className="main_container_downBox_button" />
-              <LinkButton content="Baixar" className="main_container_downBox_button" />
+              <LinkButton content="Baixar" className="main_container_downBox_button" /> */}
             </div>
           </div>
           <div className="main_description">
             <h3>Descrição</h3>
-            <p>{userInfo.descricao}</p>
+            <p>{bookInfo.descricao}</p>
           </div>
         </main>
       }
