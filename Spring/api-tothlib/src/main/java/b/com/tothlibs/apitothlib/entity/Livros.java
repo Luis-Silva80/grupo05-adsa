@@ -151,4 +151,25 @@ public class Livros {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Livros() {
+    }
+
+    public Livros(Integer id, String titulo, String descricao, String autor, String edicao, String editora,
+                  String statusLivro, Integer qtdResenhas, Integer qtdReservas, Integer qtdEstoque,
+                  Integer qtdReservadosAgora, Integer fkTbBiblioteca, String linguagem) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.autor = autor;
+        this.edicao = edicao;
+        this.editora = editora;
+        this.statusLivro = statusLivro;
+        this.qtdResenhas = qtdResenhas;
+        this.qtdReservas = qtdReservas;
+        this.qtdEstoque = qtdEstoque;
+        this.qtdReservadosAgora = qtdReservadosAgora;
+        this.fkTbBiblioteca = fkTbBiblioteca;
+        this.linguagem = linguagem;
+    }
 }
