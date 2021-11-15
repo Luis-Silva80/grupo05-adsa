@@ -119,9 +119,9 @@ function PerfilUsuario() {
 
                              */}
                             { userInfo.livrosLidos.length === 0 ?
-                                <div>
-                                    <h3>Você ainda não reservou nenhum livro!</h3>
-                                    <Link to="/listaLivros">Reservar Agora</Link>
+                                <div className="empty">
+                                    <h3 className="empty_title">Você ainda não reservou nenhum livro!</h3>
+                                    <Link className="empty_btn" to="/listaLivros">Reservar Agora</Link>
                                 </div> 
                                 :
                                 userInfo.livrosLidos.map(item => (

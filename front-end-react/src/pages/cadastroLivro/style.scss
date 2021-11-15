@@ -10,10 +10,7 @@ $black: #07080a;
     flex-direction: column;
     align-items: center;
     position: relative;
-    &.container{
-      width: 80%;
-      margin: 0 auto;
-    }
+    height: 90vh;
     &_title{
       color: $lightBlue;
       font-size: 3rem;

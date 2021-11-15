@@ -1,81 +1,83 @@
-$secundariColor: #04378F;
-$greyColor: #C8C8C8;
-$secundaryColor: #32B9CD;
-#rootLivro{
-
-  .main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      &_container {
+$secundariColor: #04378f;
+$greyColor: #c8c8c8;
+$secundaryColor: #32b9cd;
+#rootLivro {
+    .main {
         display: flex;
         flex-direction: column;
-        align-items: stretch;
-        width: 50%;
-          &_upBox {
-              display: flex;
-              justify-content: space-between;
-              &_imgBox {
+        align-items: center;
+        height: 90vh;
+        &_container {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            width: 60%;
+            margin-top: 5vh;
+            &_upBox {
+                display: flex;
+                justify-content: space-between;
+                &_imgBox {
+                    &_img {
+                        width: 300px;
+                    }
+                }
+                &_content {
+                    min-width: 400px;
 
-                  &_img {
+                    &_title {
+                        font-size: 2rem;
+                        font-weight: 600;
+                    }
 
-                  }
+                    &_main {
+                        display: flex;
+                        justify-content: space-between;
 
-              }
-              &_content {
-                  padding-left: 20px;
+                        &_left {
+                            &_paragraph {
+                                padding: 10px 0;
 
-                  &_title {
-                      font-size: 1.5rem;
-                      font-weight: 600;
-                  }
+                                &_pTitle {
+                                    font-size: 1.125rem;
+                                    color: $secundaryColor;
+                                }
 
-                  &_main {
-                      display: flex;
-                      justify-content: space-between;
+                                &_pContent {
+                                    font-size: 1.125rem;
+                                }
+                            }
+                        }
 
-                      &_left {
+                        &_rigth {
+                            &_paragraph {
+                                padding: 10px 0;
 
-                          &_paragraph {
-                              padding: 10px 0;
-                              
-                              &_pTitle {
-                                  font-size: 1.125rem;
-                                  color: $secundaryColor;
-                              }
+                                &_pTitle {
+                                    font-size: 1.125rem;
+                                    color: $secundaryColor;
+                                }
+                                &_pContent {
+                                    font-size: 1.125rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
-                              &_pContent {
-                                  font-size: 1.125rem;
-                              }
-                          }
-                      }
-
-                      &_rigth {
-
-                          &_paragraph {
-                              padding: 10px 0;
-
-                              &_pTitle {
-                                  font-size: 1.125rem;
-                                  color: $secundaryColor;
-                              }
-                              &_pContent {
-                                  font-size: 1.125rem;
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-
-          &_downBox {
-              display: flex;
-              justify-content: space-between;
-          }
-      }
-      &_description {
-          padding: 0 100px;
-      }
-  }
+            &_downBox {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+            }
+        }
+        &_description {
+            width: 60%;
+            margin-top: 35px;
+            h3{
+                color: #04378f;
+                font-size: 25px;
+            }
+        }
+    }
 }

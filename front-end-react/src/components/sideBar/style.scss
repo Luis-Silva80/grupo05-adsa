@@ -4,19 +4,19 @@ $iconSize: 32px;
 #rootSideBar {
     position: fixed;
     background-color: $bgBlacksideBar;
-    height: 80%;
+    height: 100vh;
     width: 75px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     z-index: 7;
-    padding: 5% 0 11% 0;
     transition: 0.5s;
     overflow: hidden;
 
     .sideBar_containerCategory {
         display: flex;
         flex-direction: column;
+        margin-top: 5vh;
 
         &_link {
             display: flex;
