@@ -1,8 +1,10 @@
 package b.com.tothlibs.apitothlib.controlers;
 
+import b.com.tothlibs.apitothlib.entity.Categoria;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.listas.GravaArquivos;
+import b.com.tothlibs.apitothlib.repository.CategoriaRepository;
 import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
 import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
@@ -30,6 +32,9 @@ public class BibliotecaController {
 
     @Autowired
     private PerfilUsuarioRepository repositoryUsuario;
+
+    @Autowired
+    private CategoriaRepository repositoryCategoria;
 
     @Autowired
     UsuarioAdmin admin;
@@ -159,7 +164,10 @@ public class BibliotecaController {
     public ResponseEntity gravaTxt() {
 
         List<Livros> listaDeLivros = repository.findAll();
-        GravaArquivos gravadorDeArquivoTxt = new GravaArquivos(listaDeLivros, "Livros");
+        List<Categoria> listaDeCategorias = repositoryCategoria.findAll();
+
+        GravaArquivos gravadorDeArquivoTxt = new GravaArquivos(listaDeLivros, "Livros-", listaDeCategorias);
+
 
         gravadorDeArquivoTxt.verificaTipoArquivo();
 
