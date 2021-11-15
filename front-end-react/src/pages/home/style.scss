@@ -12,6 +12,7 @@ $black: #07080a;
     height: 90vh;
     border-bottom: 3px solid #ebe6e6;
     position: relative;
+    margin-top: 25px;
     &::after{
       content: "";
       background: url("../../assets/graph.png")no-repeat;

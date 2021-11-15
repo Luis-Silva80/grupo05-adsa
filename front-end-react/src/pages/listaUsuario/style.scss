@@ -119,6 +119,10 @@ $black: #07080a;
                         border-bottom-right-radius: 25px;
                         border-top-right-radius: 25px;
                     }
+                    button{
+                        background-color: transparent;
+                        border: none;
+                    }
                 }
                 &_img {
                     margin-top: 5px;

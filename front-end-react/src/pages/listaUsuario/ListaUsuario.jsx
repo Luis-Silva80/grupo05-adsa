@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import './style.scss';
 import icon from '../../assets/perfilIcon.png'
@@ -18,6 +19,7 @@ import AutenticationAdmin from "../../services/autenticationAdmin";
 
 import usuarioImg from '../../assets/perfilIcon.png';
 import Loading from '../../components/loading/Loading';
+import PopupUser from '../../components/popupUser/PopupUser';
 
 
 function ListaUsuarios() {
@@ -27,13 +29,13 @@ function ListaUsuarios() {
 
     //const userData = [];
 
-    const [userData, setUserData] = useState([]);
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         api
             .get("/aluno")
             .then((response) => {
-                setUserData(response.data);
+                setUsers(response.data);
                 console.log(response.data);
             })
             .catch((err) => {
@@ -47,17 +49,16 @@ function ListaUsuarios() {
     //         console.log( "Usuário aqui: " , element );
     //     });
     // }
-
+    
 
     return (
 
         <div id="rootListaUsuario">
             <SideBar />
-            {userData.length === 0 ?
+            {users.length === 0 ?
                 <Loading /> :
                 <main class="main">
                     <h1 class="main_title">Usuários cadastrados</h1>
-
                     <div class="main_nav">
                         <input class="main_nav_input" placeholder="Digite o nome do usuário" type="text" name="" id="" />
                         <button class="main_nav_btn" >Pesquisar</button>
@@ -80,37 +81,31 @@ function ListaUsuarios() {
                             <th></th>
                             <th></th>
                         </tr>
-                        {userData.map(item => (
+                        {users.map(item => (
 
                             <tr class="main_table_user">
 
                                 <td class="main_table_user_item frst"><img class="main_table_user_img" src={usuarioImg} alt="user img" /></td>
                                 <td class="main_table_user_item name">{item.nome}</td>
                                 <td class="main_table_user_item email">{item.email}</td>
-                                {item.status == "Inativo"
+                                {item.status === "Inativo"
                                     ? (<td class='main_table_user_item inactive'>{item.status}</td>)
-                                    : (<td class='main_table_user_item'>{item.status}</td>)}
+                                    : (<td class='main_table_user_item'>{item.status}</td>)
+                                }
                                 {item.pendencia == null
                                     ? (<td class='main_table_user_item'>nenhuma</td>)
-                                    : (<td class='main_table_user_item inactive'>{item.pendencia}</td>)}
-                                <td class="main_table_user_item" value={item.id} onClick={() => storeId(item.id)} >
-
-                                    <Link to="/perfilUsuario"><img class="main_table_user_about" src={loupe} /></Link>
+                                    : (<td class='main_table_user_item inactive'>{item.pendencia}</td>)
+                                }
+                                {/* <td class="main_table_user_item"  onClick={() => storeId(item.id)} > */}
+                                <td class="main_table_user_item" >
+                                    <button value={item.id} onClick={() => CallPopup(item.id)} ><img class="main_table_user_about" src={loupe} /></button>
+                                    {/* <button value={item.id} onClick={() => CallPopup(item.id)} ><img class="main_table_user_about" src={loupe} /></button> */}
                                 </td>
-
-
                                 <td class="main_table_user_item lst"><img class="main_table_user_trash" src={trash} /></td>
-
-
                             </tr>
                         ))}
 
                     </table>
-                    <section id="popup" class="main_popup">
-                        <img class="main_popup_img" src={icon} />
-                        <img class="main_popup_close" src={closed} onClick="callUser()" />
-                        <div class="main_popup_user" id="user"></div>
-                    </section>
                 </main>
             }
             <Footer />

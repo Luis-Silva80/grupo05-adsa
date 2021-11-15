@@ -135,7 +135,7 @@ function ListaLivros() {
           <div id="resp" className="resp">
             {
               booksInfo.map(item => (
-                <BookCard image={imageLivro} titulo={item.titulo} descricao={item.descricao} acao="Ver mais"/>
+                <BookCard image={imageLivro} onClick={() => storeId(item.id)} titulo={item.titulo} descricao={item.descricao} acao="Ver mais"/>
               ))
             }
 
