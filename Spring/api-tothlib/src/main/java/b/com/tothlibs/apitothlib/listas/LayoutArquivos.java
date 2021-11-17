@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class GravaArquivos<T> {
+public class LayoutArquivos<T> {
 
 
     @Autowired
@@ -38,11 +38,16 @@ public class GravaArquivos<T> {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private String dataFormatada = dataHoje.format(formatter);
 
-    public GravaArquivos(List<T> lista, String nomeArquivo, List<T> listaSecundaria) {
+    public LayoutArquivos(List<T> lista, String nomeArquivo, List<T> listaSecundaria) {
 
         this.lista = lista;
         this.nomeArquivo = nomeArquivo;
         this.listaSecundaria    = listaSecundaria;
+
+    }
+
+    public LayoutArquivos(){
+
 
     }
 
@@ -151,7 +156,7 @@ public class GravaArquivos<T> {
 
     }
 
-    public static void leArquivoTxt(String nomeDeArquivo) {
+    public void leArquivoTxt(String nomeDeArquivo) {
 
         BufferedReader entrada = null;
         String registroLido;

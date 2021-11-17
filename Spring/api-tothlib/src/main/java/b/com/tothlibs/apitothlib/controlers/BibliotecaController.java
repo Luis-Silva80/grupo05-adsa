@@ -2,8 +2,7 @@ package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.entity.Categoria;
 import b.com.tothlibs.apitothlib.entity.Livros;
-import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
-import b.com.tothlibs.apitothlib.listas.GravaArquivos;
+import b.com.tothlibs.apitothlib.listas.LayoutArquivos;
 import b.com.tothlibs.apitothlib.repository.CategoriaRepository;
 import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 @Controller
@@ -172,12 +170,24 @@ public class BibliotecaController {
 
         }
 
-        GravaArquivos gravadorDeArquivoTxt = new GravaArquivos(listaDeLivros, "Livros-", listaDeCategorias);
+        LayoutArquivos gravadorDeArquivoTxt = new LayoutArquivos(listaDeLivros, "Livros-", listaDeCategorias);
 
         gravadorDeArquivoTxt.verificaTipoArquivo();
 
         return ResponseEntity.status(200).body("Arquivo gerado com sucesso");
 
+    }
+
+    @GetMapping("/lerArquivo")
+    public ResponseEntity leTxt(){
+
+        String nomeArquivo = "Livros-2021-11-17";
+
+        LayoutArquivos trataArquivo = new LayoutArquivos();
+
+        trataArquivo.leArquivoTxt(nomeArquivo);
+
+        return ResponseEntity.status(200).build();
     }
 
 }
