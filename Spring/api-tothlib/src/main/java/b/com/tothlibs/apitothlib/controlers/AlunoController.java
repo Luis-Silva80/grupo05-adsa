@@ -84,6 +84,7 @@ public class AlunoController {
         List<Integer> listId = repositoryHistorico.findFkLivrosByIdUsuario(idUsuario);
         UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
 
+
         for (Integer i : listId) {
             Livros livro = repositoryLivro.findById(i).get();
             if (!containsName(usuarioInfo.getLivrosLidos(), livro.getId())) {

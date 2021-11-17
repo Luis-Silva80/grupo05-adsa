@@ -1,5 +1,6 @@
 package b.com.tothlibs.apitothlib.dto;
 
+import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 
@@ -22,6 +23,7 @@ public class UsuarioInfo {
     private Integer fkTbInstituicao;
     private Integer livrosReservados;
     private List<Livros> livrosLidos;
+    private Historico dadosLivros;
 
     public UsuarioInfo(PerfilUsuario usuario) {
         this.id = usuario.getId();
@@ -38,6 +40,14 @@ public class UsuarioInfo {
         this.livrosReservados = usuario.getLivrosReservados();
 
         this.livrosLidos = new ArrayList<>();
+    }
+
+    public Historico getDadosLivros() {
+        return dadosLivros;
+    }
+
+    public void setDadosLivros(Historico dadosLivros) {
+        this.dadosLivros = dadosLivros;
     }
 
     public Integer getId() {

@@ -166,8 +166,13 @@ public class BibliotecaController {
         List<Livros> listaDeLivros = repository.findAll();
         List<Categoria> listaDeCategorias = repositoryCategoria.findAll();
 
-        GravaArquivos gravadorDeArquivoTxt = new GravaArquivos(listaDeLivros, "Livros-", listaDeCategorias);
+        if(listaDeLivros.isEmpty()){
 
+            return ResponseEntity.status(204).body("A lista de Livros está vazia!");
+
+        }
+
+        GravaArquivos gravadorDeArquivoTxt = new GravaArquivos(listaDeLivros, "Livros-", listaDeCategorias);
 
         gravadorDeArquivoTxt.verificaTipoArquivo();
 
