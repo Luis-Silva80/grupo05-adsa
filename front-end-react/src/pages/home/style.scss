@@ -272,3 +272,12 @@ $black: #07080a;
     }
   }
 }
+::-webkit-scrollbar {
+  width: 10px; 
+  &-thumb{
+    background: #32B9CD; 
+  }
+  &-track{
+    background: #dddddd; 
+  }
+}

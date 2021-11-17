@@ -8,9 +8,7 @@ function Header() {
 
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
-        console.log(prevScrollpos, "prevScrollpos aqui");
         var currentScrollPos = window.pageYOffset;
-        console.log(currentScrollPos, "currentScrollPos aqui");
         if (prevScrollpos > currentScrollPos) {
             document.getElementById("rootHeader").style.top = "0";
         } else {

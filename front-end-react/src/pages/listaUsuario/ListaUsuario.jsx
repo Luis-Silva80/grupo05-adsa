@@ -20,7 +20,8 @@ import AutenticationAdmin from "../../services/autenticationAdmin";
 import usuarioImg from '../../assets/perfilIcon.png';
 import Loading from '../../components/loading/Loading';
 import PopupUser from '../../components/popupUser/PopupUser';
-
+import closeButton from "../../assets/close.png";
+import perfilIcon from '../../assets/perfilIcon.png';
 
 function ListaUsuarios() {
 
@@ -30,6 +31,7 @@ function ListaUsuarios() {
     //const userData = [];
 
     const [users, setUsers] = useState([]);
+    const [userInfo, setUserInfo] = useState([]);
 
     useEffect(() => {
         api
@@ -43,13 +45,26 @@ function ListaUsuarios() {
             });
     }, []);
 
+    function CallPopup(id) {
+        console.log("id retornado aqui: ", id);
+        api
+            .get(`/aluno/${id}`)
+            .then((response) => {
+                setUserInfo(response.data);
+                console.log("Usuário retornado:", response.data);
+            })
+            .catch((err) => {
+                console.error("ops! ocorreu um erro" + err);
+            });
 
+
+    }
     // function findUser() {
     //     userData.forEach(element => {
     //         console.log( "Usuário aqui: " , element );
     //     });
     // }
-    
+
 
     return (
 
@@ -99,13 +114,29 @@ function ListaUsuarios() {
                                 {/* <td class="main_table_user_item"  onClick={() => storeId(item.id)} > */}
                                 <td class="main_table_user_item" >
                                     <button value={item.id} onClick={() => CallPopup(item.id)} ><img class="main_table_user_about" src={loupe} /></button>
-                                    {/* <button value={item.id} onClick={() => CallPopup(item.id)} ><img class="main_table_user_about" src={loupe} /></button> */}
                                 </td>
                                 <td class="main_table_user_item lst"><img class="main_table_user_trash" src={trash} /></td>
                             </tr>
                         ))}
 
                     </table>
+                    <section id="popup" class="popup">
+                        <img class="popup_img" src={perfilIcon} alt="user" />
+                        <img class="popup_close" src={closeButton} alt="close popup" />
+                        {/* <img class="popup_close" src={closeButton} onClick={CallPopup} alt="close popup"/> */}
+                        <div class="popup_user">
+                            <h2 class="popup_user_info name">{userInfo.nome}</h2>
+                            <h4 class="popup_user_info email">Email: <b>{userInfo.email}</b></h4>
+                            <h4 class="popup_user_info status">Status: <b>Ativo</b></h4>
+                            <h4 class="popup_user_info bookName">Livro reservado: <b>css for babies</b></h4>
+                            <h4 class="popup_user_info reserved">Reservado em: <b>10/02/2021</b></h4>
+                            <h4 class="popup_user_info return">Devolver em: <b>20/02/2021</b></h4>
+                            <div class="popup_user_box">
+                                <button class="popup_user_box_btn">Enviar email</button>
+                                <button class="popup_user_box_btn">Prorrogar</button>
+                            </div>
+                        </div>
+                    </section>
                 </main>
             }
             <Footer />
