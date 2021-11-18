@@ -17,16 +17,18 @@ function Header() {
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
         var currentScrollPos = window.pageYOffset;
-        if (prevScrollpos > currentScrollPos) {
-            document.getElementById("rootHeader").style.top = "0";
-            document.getElementById("rootHeaderMobile").style.top = "0";
-        } else {
-            document.getElementById("rootHeader").style.top = "-75px";
-            document.getElementById("rootHeaderMobile").style.top = "-75px";
-            document.querySelector(".headerMobile_open").style.top = "-8px";
-            setIsSelect(false);
+        if (window.location.pathname == "/") {
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("rootHeader").style.top = "0";
+                document.getElementById("rootHeaderMobile").style.top = "0";
+            } else {
+                document.getElementById("rootHeader").style.top = "-75px";
+                document.getElementById("rootHeaderMobile").style.top = "-75px";
+                document.querySelector(".headerMobile_open").style.top = "-8px";
+                setIsSelect(false);
+            }
+            prevScrollpos = currentScrollPos;
         }
-        prevScrollpos = currentScrollPos;
     }
 
     useEffect(() => {
