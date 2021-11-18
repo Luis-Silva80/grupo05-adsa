@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="JpaBuddyIdeaProjectConfig">
-    <option name="defaultUnitInitialized" value="true" />
-    <option name="reverseEngineeringLastDbConnectionId" value="f9b0ce3b-b272-41cf-a36d-3040ad9997e3" />
-    <option name="reLastEntityCreationPackage" value="src/main/java/b/com/tothlibs/apitothlib/entity" />
-  </component>
-</project>

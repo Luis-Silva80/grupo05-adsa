@@ -64,7 +64,7 @@ public class PerfilUsuario {
         this.statusAtivo = statusAtivo;
     }
 
-    public LocalDate pegarDataAtivacao() {
+    public LocalDate getDataInativacao() {
         return dataInativacao;
     }
 
