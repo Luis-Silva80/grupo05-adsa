@@ -15,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -164,6 +166,12 @@ public class BibliotecaController {
 
         List<Livros> listaDeLivros = repository.findAll();
         List<Categoria> listaDeCategorias = repositoryCategoria.findAll();
+        LocalDateTime dataHoje = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String dataFormatada = dataHoje.format(formatter);
+
+        String nomeArquivo =  "Livros-";
+               nomeArquivo += dataFormatada + ".txt";
 
         if (listaDeLivros.isEmpty()) {
 
@@ -171,18 +179,21 @@ public class BibliotecaController {
 
         }
 
-        LayoutArquivos gravadorDeArquivoTxt = new LayoutArquivos(listaDeLivros, "Livros-", listaDeCategorias);
+        LayoutArquivos managerLayoutArquivos = new LayoutArquivos(listaDeLivros, nomeArquivo, listaDeCategorias);
 
-        gravadorDeArquivoTxt.verificaTipoArquivo();
+        managerLayoutArquivos.verificaTipoArquivo();
+
+        managerLayoutArquivos.leArquivoTxt(nomeArquivo);
 
         return ResponseEntity.status(200).body("Arquivo gerado com sucesso");
 
     }
 
+
     @GetMapping("/lerArquivo")
     public ResponseEntity leTxt() {
 
-        String nomeArquivo = "Livros-2021-11-17";
+        String nomeArquivo = "Livros-2021-11-17.txt";
 
         LayoutArquivos trataArquivo = new LayoutArquivos();
 

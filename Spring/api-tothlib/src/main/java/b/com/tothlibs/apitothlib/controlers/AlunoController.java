@@ -31,6 +31,7 @@ public class AlunoController {
 
     PilhaObj<PerfilUsuario> pilhaUsuariosDeletados;
     List<PerfilUsuario> listaTemporariaDeletados = new ArrayList<>();
+    Integer qtdDeletados = 0;
 
 
     @Autowired
@@ -131,6 +132,7 @@ public class AlunoController {
             alteraStatus(alunoInativo, "deletar");
 
             return ResponseEntity.status(200).body(alunoInativo);
+
         } else {
 
             return ResponseEntity.status(404).build();
@@ -141,8 +143,10 @@ public class AlunoController {
     @PostMapping("/desfazer")
     @ApiOperation(value = "Desfaz a exclusão do ultimo aluno deletado")
     public ResponseEntity desfazerDelete() {
+
         System.out.println("-------------------");
         pilhaUsuariosDeletados = new PilhaObj(listaTemporariaDeletados.size());
+
         if (pilhaUsuariosDeletados.isEmpty()) {
             listaTemporariaDeletados
                     .stream()
@@ -156,7 +160,9 @@ public class AlunoController {
             return ResponseEntity.status(204).build();
 
         } else {
+
             System.out.println("removendo o topo da pilha" + pilhaUsuariosDeletados.peek());
+
             alteraStatus(pilhaUsuariosDeletados.peek(), "desfazer");
 
             listaTemporariaDeletados.remove(pilhaUsuariosDeletados.peek());
@@ -170,39 +176,45 @@ public class AlunoController {
 
     }
 
-    @GetMapping("/teste")
-    public ResponseEntity teste() {
 
+
+    @GetMapping("/deletaInativos")
+    public ResponseEntity deletaInativos() {
 
         List<PerfilUsuario> listaDeUsuariosInativos = repository.findAlunosInativos();
-
-        System.out.println(listaDeUsuariosInativos);
-
         List<PerfilUsuario> listaDeDeletados = new ArrayList<>();
+
 
         listaDeUsuariosInativos
                 .stream()
                 .forEach(perfilUsuario -> verificarDataInativacao(perfilUsuario, listaDeDeletados));
 
+        if(qtdDeletados == 0){
+
+            LOGGER.info("Nenhum usuário foi deletado esse dia!");
+
+        } else {
+
+            LOGGER.info("Quantidade de usuários deletados: " + qtdDeletados);
+
+        }
+
+        qtdDeletados = 0;
 
         return ResponseEntity.status(200).body(listaDeDeletados);
 
     }
 
-    public void verificarDataInativacao(PerfilUsuario p, List<PerfilUsuario> listaDeDeletados) {
+    public void verificarDataInativacao(PerfilUsuario p,
+                                        List<PerfilUsuario> listaDeDeletados) {
 
 
-            if (LocalDate.now().isAfter(p.pegarDataInativacao().plusDays(30))) {
+        if (LocalDate.now().isAfter(p.getDataInativacao().plusDays(30))) {
 
-
-                listaDeDeletados.add(p);
-
-//                repository.deleteById(p.getId());
-            } else {
-
-                System.out.println("Não há usuários a serem deletados!");
-
-            }
+            listaDeDeletados.add(p);
+            qtdDeletados ++;
+        //                repository.deleteById(p.getId());
+        }
 
     }
 
@@ -210,9 +222,11 @@ public class AlunoController {
     public void alteraStatus(PerfilUsuario p, String status) {
 
         if (status.equals("deletar")) {
+
             p.setStatusAtivo(false);
             p.setDataAtivacao(LocalDate.now());
             listaTemporariaDeletados.add(p);
+
         } else {
             p.setStatusAtivo(true);
             p.setDataAtivacao(null);
