@@ -14,6 +14,7 @@ import SideBar from '../../components/sideBar/SideBar';
 import Footer from '../../components/footer/Footer';
 import BookCard from '../../components/bookCard/BookCard';
 import Loading from '../../components/loading/Loading';
+import ButtonLink from '../../components/button/Button';
 
 //IMAGENS
 
@@ -124,6 +125,7 @@ function PerfilUsuario() {
                                     <p className="main_perfilInfo_perfilGame_status_box_content"><span className="main_perfilInfo_perfilGame_status_box_content_number" id="numberBooksReview">{userInfo.qtdResenhas}</span> resenhas</p>
                                 </div>
                             </div>
+                            <ButtonLink path="/rankingUsuarios" content="Ver Ranking" />
                         </div>
                     </div>
 

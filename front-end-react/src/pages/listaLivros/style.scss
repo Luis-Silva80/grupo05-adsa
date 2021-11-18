@@ -29,12 +29,22 @@ $black: #07080a;
             top: 10px;
             border-radius: 20px;
             z-index: 2;
+            
+            @media (max-width: 768px) {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
             &_input {
                 min-width: 60%;
                 font-size: 18px;
                 padding: 5px 10px;
                 border: 2px solid #909090;
                 border-radius: 10px;
+
+                @media (max-width: 768px) {
+                    width: 65%;
+                }
             }
             &_btn {
                 background: $darkBlue;
@@ -46,6 +56,11 @@ $black: #07080a;
                 position: relative;
                 cursor: pointer;
                 margin: 0 5px;
+
+                @media (max-width: 768px) {
+                    font-size: 0;
+                    height: 35px;
+                }
                 &::after {
                     content: "";
                     background: url("../../assets/loupe.png") no-repeat;
@@ -57,6 +72,10 @@ $black: #07080a;
                     background-size: contain;
                     left: 12px;
                     z-index: 0;
+
+                    @media (max-width: 768px) {
+                        left: 15px;
+                    }
                 }
             }
             &_filter {
@@ -68,6 +87,10 @@ $black: #07080a;
                 border: none;
                 position: relative;
                 cursor: pointer;
+
+                @media (max-width: 768px) {
+                    margin-top: 20px;
+                }
                 &_value {
                     background: white;
                     color: $black;

@@ -11,16 +11,46 @@ import logoutIcon from "../../assets/logout.png";
 import addLivro from "../../assets/addLivro.png";
 import listUser from "../../assets/group.png";
 import email from "../../assets/email.png";
+import hamburgerMenu from "../../assets/hamburgerMenu.png";
+import logoImg from "../../assets/logoWhiteWhite.png";
 
 
 function SideBarComponent() {
 
     const history = useHistory();
     const [ isSelect, setIsSelect ] = useState(true);
+    const [ HeaderOpen, setHeaderOpen ] = useState();
+    const [ headerIsSelect, setHeaderIsSelect ] = useState(false);
+
+    useEffect(() => {
+        if (window.screen.width < 767) {
+            setHeaderOpen(false);
+        } else {
+            setHeaderOpen(true);
+        }
+    },[])
+
 
     const handleClick = useCallback(() => {
         setIsSelect(!isSelect);
     }, [isSelect])
+    
+    const handleClickHeader = useCallback(() => {
+        setHeaderIsSelect(!headerIsSelect);
+        setHeaderOpen(true);
+    }, [headerIsSelect])
+
+    const handleClickOpen = useCallback(() => {
+        setHeaderOpen(!HeaderOpen);
+    }, [HeaderOpen])
+
+    useEffect(() => {
+        if (headerIsSelect) {
+            document.getElementById("rootSideBar").style.left = "0";
+        } else if(!headerIsSelect) {
+            document.getElementById("rootSideBar").style.left = "-300px";
+        }
+    }, [headerIsSelect])
 
     useEffect(() => {
         if (isSelect) {
@@ -49,15 +79,25 @@ function SideBarComponent() {
         }
     }, [isSelect])
 
-    function IconFunc() {
-        const side = document.getElementById("rootSideBar");
-        side.classList.add('sideOpen');
-    }
+    useEffect(() => {
+        if (HeaderOpen) {
+            const side = document.getElementById("rootSideBar");
+            side.classList.add('sideOpen');
+        } else {
+            const side = document.getElementById("rootSideBar");
+            side.classList.remove('sideOpen');
+        }
+    },[HeaderOpen])
 
-    function IconFuncOut() {
-        const side = document.getElementById("rootSideBar");
-        side.classList.remove('sideOpen');
-    }
+    // function IconFunc() {
+    //     const side = document.getElementById("rootSideBar");
+    //     side.classList.add('sideOpen');
+    // }
+
+    // function IconFuncOut() {
+    //     const side = document.getElementById("rootSideBar");
+    //     side.classList.remove('sideOpen');
+    // }
 
     function LogOut() {
         api
@@ -76,7 +116,11 @@ function SideBarComponent() {
 
     return (
         <>
-            <aside onMouseOver={IconFunc} onMouseOut={IconFuncOut} className="sideBar" id="rootSideBar">
+            <header className="headerMobile" id="headerMobileSide" >
+                <img onClick={handleClickHeader} className="headerMobile_hamburger" src={hamburgerMenu} />
+                <img className="headerMobile_logo" src={logoImg} />
+            </header>
+            <aside onMouseOver={handleClickOpen} onMouseOut={handleClickOpen} className="sideBar" id="rootSideBar">
                 <div className="sideBar_containerCategory">
                     <Link onClick={handleClick} to="/perfilUsuario" className="sideBar_containerCategory_link" id="perfilUsuario">
                         <img src={userIcon} className="sideBar_containerCategory_link_icon" />

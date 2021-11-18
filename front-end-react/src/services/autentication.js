@@ -12,7 +12,6 @@ function Autentication() {
         .get(`/autenticacao/usuariosLogados`)
         .then((response) => {
             response.data.map(user => {
-                console.log(!user.autenticado);
                 if (user.id != localStorage.getItem('userId')) {
                     if (user.autenticado) {
                         history.push("/login")

@@ -11,9 +11,18 @@ $black: #07080a;
     align-items: center;
     position: relative;
     height: 90vh;
+
+    @media (max-width: 768px) {
+      height: auto;
+    }
+
     &_title{
       color: $lightBlue;
       font-size: 3rem;
+
+      @media (max-width: 768px) {
+        padding-top: 90px;
+      }
     }
     &_parag{
       color: $lightGrey;
@@ -29,6 +38,11 @@ $black: #07080a;
       align-items: center;
       width: 50%;
       z-index: 1;
+
+      @media (max-width: 768px) {
+        width: auto;
+      }
+
       &_input{
         border-radius: 10px;
         border: 2px solid $darkBlue;

@@ -16,11 +16,26 @@ $black: #07080a;
             justify-content: space-between;
             padding: 30px 75px 0;
 
+            @media (max-width: 768px) {
+                flex-direction: column;
+                padding: 100px 0 0;
+            }
+
             &_box {
                 display: flex;
 
+                @media (max-width: 768px) {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                }
+
                 &_icon {
                     height: 135px;
+
+                    @media (max-width: 768px) {
+                        width: 135px;
+                    }
                 }
 
                 &_content {
@@ -64,6 +79,16 @@ $black: #07080a;
             }
 
             &_perfilGame {
+                @media (max-width: 768px) {
+                    margin-top: 50px;
+                    
+                    .button_link {
+                        display: flex;
+                        justify-content: center;
+                        width: 40%;
+                        margin: 10px auto;
+                    }
+                }
                 &_level {
                     display: flex;
                     align-items: center;
@@ -94,7 +119,9 @@ $black: #07080a;
 
                 &_status {
                     display: flex;
-
+                    @media (max-width: 768px) {
+                        justify-content: space-between;
+                    }
                     &_box {
                         display: flex;
                         flex-direction: column;
@@ -188,8 +215,17 @@ $black: #07080a;
     .main_listaLivros {
         margin: 30px 75px 0;
 
+        @media (max-width: 768px) {
+            margin: 0;
+        }
+
         &_title {
             display: flex;
+
+            @media (max-width: 768px) {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
 
             &_filter {
                 background: #04378f;
@@ -202,6 +238,9 @@ $black: #07080a;
                 cursor: pointer;
                 width: 15%;
 
+                @media (max-width: 768px) {
+                    width: auto;
+                }
                 &_value {
                     background: white;
                     color: #07080a;
@@ -212,6 +251,10 @@ $black: #07080a;
                 width: 70%;
                 text-align: center;
                 font-size: 1.875rem;
+
+                @media (max-width: 768px) {
+                    width: auto;
+                }
             }
         }
 
