@@ -34,6 +34,8 @@ public class Historico {
     @Column(name = "acao", length = 15)
     private String acao;
 
+
+
     @Column(name = "data_devolucao")
     private LocalDate dataDevolucao;
 

@@ -1,8 +1,9 @@
 package b.com.tothlibs.apitothlib.controlers;
 
+import b.com.tothlibs.apitothlib.entity.Categoria;
 import b.com.tothlibs.apitothlib.entity.Livros;
-import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
-import b.com.tothlibs.apitothlib.listas.GravaArquivos;
+import b.com.tothlibs.apitothlib.listas.LayoutArquivos;
+import b.com.tothlibs.apitothlib.repository.CategoriaRepository;
 import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
 import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
@@ -11,10 +12,10 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 @Controller
@@ -30,6 +31,9 @@ public class BibliotecaController {
 
     @Autowired
     private PerfilUsuarioRepository repositoryUsuario;
+
+    @Autowired
+    private CategoriaRepository repositoryCategoria;
 
     @Autowired
     UsuarioAdmin admin;
@@ -107,7 +111,7 @@ public class BibliotecaController {
         Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
         if (idRegistro != null) {
-            return ResponseEntity.status(200).body("ID para retirada: " + idRegistro);
+            return ResponseEntity.status(200).body(repository.count());
         } else {
             return ResponseEntity.status(400).build();
         }
@@ -159,12 +163,32 @@ public class BibliotecaController {
     public ResponseEntity gravaTxt() {
 
         List<Livros> listaDeLivros = repository.findAll();
-        GravaArquivos gravadorDeArquivoTxt = new GravaArquivos(listaDeLivros, "Livros");
+        List<Categoria> listaDeCategorias = repositoryCategoria.findAll();
+
+        if (listaDeLivros.isEmpty()) {
+
+            return ResponseEntity.status(204).body("A lista de Livros está vazia!");
+
+        }
+
+        LayoutArquivos gravadorDeArquivoTxt = new LayoutArquivos(listaDeLivros, "Livros-", listaDeCategorias);
 
         gravadorDeArquivoTxt.verificaTipoArquivo();
 
         return ResponseEntity.status(200).body("Arquivo gerado com sucesso");
 
+    }
+
+    @GetMapping("/lerArquivo")
+    public ResponseEntity leTxt() {
+
+        String nomeArquivo = "Livros-2021-11-17";
+
+        LayoutArquivos trataArquivo = new LayoutArquivos();
+
+        trataArquivo.leArquivoTxt(nomeArquivo);
+
+        return ResponseEntity.status(200).build();
     }
 
 }

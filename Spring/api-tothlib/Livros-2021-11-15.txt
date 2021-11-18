@@ -1,0 +1,10 @@
+00LIVROS2021-11-1501
+01000004JAVA PROGRAMIM I                             ESTE É UM LIVRO DE JAVA                      LUIS CAMPOS                                  15                                           BUSCAPÉ                                      DISPONIVEL          000000006008000
+02000001PROGRAMAÇÃO                                  
+01000005JS ADVANCED                                  ESTE É UM LIVRO DE JS                        DUDU NOBRE                                   8                                            SARAIVA                                      DISPONIVEL          000000000008000
+02000000ESSE LIVRO NÃO POSSUI CATEGORIA              
+01000007MAZE RUNNER                                  ESTE É UM LIVRO DE FICÇÃO                    JAMES DASHNER                                99                                           VAR                                          DISPONIVEL          000000000003000
+02000000ESSE LIVRO NÃO POSSUI CATEGORIA              
+01000018CSS FOR BABIES                               CSS FOR BABIES IS THE SECOND                 JOHN VANDEN-HEUVEL                           2010                                         EDITORA                                      DISPONIVEL          000000000006000
+02000000ESSE LIVRO NÃO POSSUI CATEGORIA              
+090000400004
