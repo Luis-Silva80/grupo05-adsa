@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -112,7 +113,7 @@ public class BibliotecaController {
         Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
         if (idRegistro != null) {
-            return ResponseEntity.status(200).body("ID para retirada: " + idRegistro);
+            return ResponseEntity.status(200).body(idRegistro);
         } else {
             return ResponseEntity.status(400).build();
         }
@@ -127,7 +128,7 @@ public class BibliotecaController {
         Integer novoRegistro = admin.locarLivro(idRegistro, idUsuario);
 
         if (novoRegistro != null) {
-            return ResponseEntity.status(200).body("ID da retirada: " + novoRegistro);
+            return ResponseEntity.status(200).body(novoRegistro);
         } else {
             return ResponseEntity.status(400).body("Retirada não concluida");
         }
@@ -140,7 +141,7 @@ public class BibliotecaController {
         Integer novoCodRegistro = admin.renovarAlocacao(idRegistro, idUsuario);
 
         if (idRegistro != null) {
-            return ResponseEntity.status(200).body("Novo ID de retirada: " + novoCodRegistro);
+            return ResponseEntity.status(200).body(novoCodRegistro);
         } else {
             return ResponseEntity.status(400).body("Renovação não concluida");
         }
@@ -153,7 +154,7 @@ public class BibliotecaController {
         Integer novoCodRegistro = admin.devolverLivro(idRegistro, idUsuario);
 
         if (novoCodRegistro != null) {
-            return ResponseEntity.status(200).body("Novo ID de retirada: " + novoCodRegistro);
+            return ResponseEntity.status(200).body(novoCodRegistro);
         } else {
             return ResponseEntity.status(404).body("Registro de retirada não encontrado!!");
         }
@@ -172,7 +173,7 @@ public class BibliotecaController {
         String nomeArquivo =  "Livros-";
                nomeArquivo += dataFormatada + ".txt";
 
-        if(listaDeLivros.isEmpty()){
+        if (listaDeLivros.isEmpty()) {
 
             return ResponseEntity.status(204).body("A lista de Livros está vazia!");
 
@@ -188,8 +189,9 @@ public class BibliotecaController {
 
     }
 
-    @GetMapping("/lerArquivo/")
-    public ResponseEntity leTxt(){
+
+    @GetMapping("/lerArquivo")
+    public ResponseEntity leTxt() {
 
         String nomeArquivo = "Livros-2021-11-17.txt";
 
