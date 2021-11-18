@@ -3,6 +3,7 @@ package b.com.tothlibs.apitothlib.listas;
 import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
 import b.com.tothlibs.apitothlib.entity.Categoria;
 import b.com.tothlibs.apitothlib.entity.Livros;
+import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -16,6 +17,7 @@ import javax.persistence.NoResultException;
 import java.io.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -31,22 +33,19 @@ public class LayoutArquivos<T> {
     private static CategoriaRepository categoriaRepository;
 
     private List<T> lista;
-    private List<T> listaSecundaria ;
+    private List<T> listaSecundaria;
     private String nomeArquivo;
 
-    private LocalDateTime dataHoje = LocalDateTime.now();
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private String dataFormatada = dataHoje.format(formatter);
 
     public LayoutArquivos(List<T> lista, String nomeArquivo, List<T> listaSecundaria) {
 
         this.lista = lista;
         this.nomeArquivo = nomeArquivo;
-        this.listaSecundaria    = listaSecundaria;
+        this.listaSecundaria = listaSecundaria;
 
     }
 
-    public LayoutArquivos(){
+    public LayoutArquivos() {
 
 
     }
@@ -59,9 +58,6 @@ public class LayoutArquivos<T> {
 
             if (this.lista.get(0) instanceof Livros && this.listaSecundaria.get(0) instanceof Categoria) {
 
-
-                nomeArquivo +=  dataFormatada;
-                nomeArquivo +=  ".txt";
 
                 List<Livros> listaDeLivros = (List<Livros>) this.lista;
                 List<Categoria> listaDeCategoria = (List<Categoria>) this.listaSecundaria;
@@ -137,9 +133,9 @@ public class LayoutArquivos<T> {
         for (Livros l : listaDeLivros) {
 
 
-            gravaRegistro(nomeDeAqruivo, formataRegistroLivroTipo1(corpo1,l));
+            gravaRegistro(nomeDeAqruivo, formataRegistroLivroTipo1(corpo1, l));
 
-            gravaRegistro(nomeDeAqruivo,formataRegistroLivroTipo2(corpo2,l, listaDeCategoria));
+            gravaRegistro(nomeDeAqruivo, formataRegistroLivroTipo2(corpo2, l, listaDeCategoria));
 
             contaRegistroTipo1++;
             contaRegistroTipo2++;
@@ -156,41 +152,161 @@ public class LayoutArquivos<T> {
 
     }
 
-    public void leArquivoTxt(String nomeDeArquivo) {
+    public void leArquivoTxt(String nomeArq) {
+
 
         BufferedReader entrada = null;
-        String registroLido;
+
+        // generico
+        String registro;
         String tipoRegistro;
+        int id;
+        LocalDate dataHoraGeracaoDoArquivo;
+        String versaoLayout;
+
+        // PARA TIPO REGISTRO 01 --> LIVRO
+
+        String titulo;
+        String descricao;
+        String autor;
+        String edicao;
+        String editora;
+        String statusLivro;
+        int qtdResenhas;
+        int qtdReservas;
+        int qtdEstoque;
+        int qtdReservados;
+        int fkTbInstituicao;
+        String linguagem;
+
+        // PARA TIPO REGISTRO 02 --CATEGORIA
+        String nome;
+        int    fkTbLivros;
+
+        // PARA TRAILLER
+        int qtdRegistroTipo1 = 0;
+        int qtdRegistroTipo2 = 0;
+        int qtdRegistroHeader = 0;
+        int qtdRegistroTrailer = 0;
+
+        List<Livros>    listaLidaDeLivros = new ArrayList();
+        List<Categoria> listaLidaDeCategorias = new ArrayList<>();
 
         try {
-
-            entrada = new BufferedReader(new FileReader(nomeDeArquivo));
-
-        } catch (IOException error) {
-
-            System.out.println("Erro na abertura no arquivo: " + error.getMessage());
-
-
+            entrada = new BufferedReader(new FileReader(nomeArq));
+        } catch (IOException erro) {
+            System.out.println("Erro na abertura do arquivo: " +
+                    erro.getMessage());
         }
 
         try {
+            registro = entrada.readLine();  // Lê o primeiro registro do arquivo
 
-            registroLido = entrada.readLine();
-            while (registroLido != null) {
+            while (registro != null) {      // Enquanto não chegou ao final do arquivo
+                // obtém o tipo do registro - primeiros 2 caracteres do registro
+                // substring devolve um "pedaço da String",
+                // que começa na posição 0 e termina na posição 1 (como num vetor)
+                //    0123456
+                //    00NOTA
+                tipoRegistro = registro.substring(0, 2);
 
-                tipoRegistro = registroLido.substring(0, 2);
+                // Verifica se o tipoRegistro é "00" (header), ou "01" (trailer) ou "02" (corpo)
+                if (tipoRegistro.equals("00")) {
+                    System.out.println("--> Eh um header");
+                    System.out.println("--> Tipo de registro          : " + registro.substring(0, 2));
+                    System.out.println("--> Tipo de arquivo           : " + registro.substring(2, 8));
+                    System.out.println("--> Data de gravação          : " + registro.substring(8, 18));
+                    System.out.println("--> Versão do layout          : " + registro.substring(18, 20));
+                    System.out.println("-------------------------------------------------------------");
 
-                if (tipoRegistro.equalsIgnoreCase("00")) {
+                    qtdRegistroHeader++;
 
-                    System.out.println("Eh um reader");
+                } else if (tipoRegistro.equals("09")) {
+                    System.out.println("Eh um trailer");
+                    qtdRegistroTrailer++;
+
+                    System.out.println("* * *   C O N T A B I L I Z A C A O   * * *");
+                    System.out.println("*                                          ");
+                    System.out.println("*  Quantidade de header         : " + qtdRegistroHeader);
+                    System.out.println("*  Quantidade de trailer        : " + qtdRegistroTrailer);
+                    System.out.println("*  Quantidade de registro tipo 1: " + qtdRegistroTipo1);
+                    System.out.println("*  Quantidade de registro tipo 2: " + qtdRegistroTipo2);
+                    System.out.println("* * * * * * * * * * * * * * * * * * * * * * ");
+
+                    if (qtdRegistroTipo1 == qtdRegistroTipo2) {
+                        System.out.println("Quantidade de registros do tipo 1 é compatível com quantidade de registros" +
+                                " do tipo 2");
+                    } else {
+                        System.out.println("Quantidade de registros do tipo 1 é incompatível com quantidade de registros" +
+                                " do tipo 2");
+                    }
+                } else if (tipoRegistro.equals("01")) {
+
+                    System.out.println("Eh um registro de livro");
+                    id = Integer.valueOf(registro.substring(2, 8));
+                    titulo = registro.substring(8, 53).trim();
+                    descricao = registro.substring(53, 453).trim();
+                    autor = registro.substring(453, 498).trim();
+                    edicao = registro.substring(498, 543).trim();
+                    editora = registro.substring(543, 588);
+                    statusLivro = registro.substring(588, 608);
+                    qtdResenhas = Integer.valueOf(registro.substring(608, 614));
+                    qtdReservas = Integer.valueOf(registro.substring(614, 617));
+                    qtdEstoque = Integer.valueOf(registro.substring(617, 620));
+                    qtdReservados = Integer.valueOf(registro.substring(620, 623));
+                    fkTbInstituicao = Integer.valueOf(registro.substring(623, 629));
+                    linguagem = registro.substring(629, 659);
+
+                    Livros l = new Livros(id,
+                            titulo,
+                            descricao,
+                            autor,
+                            edicao,
+                            editora,
+                            statusLivro,
+                            qtdResenhas,
+                            qtdReservas,
+                            qtdEstoque,
+                            qtdReservados, fkTbInstituicao, linguagem);
+
+                    qtdRegistroTipo1++;
+
+                    listaLidaDeLivros.add(l);
+
+                } else if (tipoRegistro.equals("02")) {
+
+                    id   = Integer.valueOf(registro.substring(2, 8));
+                    nome = registro.substring(8, 53);
+                    fkTbLivros = Integer.valueOf(registro.substring(53,59));
+
+                    Categoria c = new Categoria(id,nome,fkTbLivros);
+
+                    listaLidaDeCategorias.add(c);
+
+                    qtdRegistroTipo2++;
+
                 }
 
+                // lê o próximo registro
+                registro = entrada.readLine();
             }
 
-        } catch (IOException error) {
+            entrada.close();
+        } catch (IOException erro) {
+            System.out.println("Erro ao ler arquivo: " + erro.getMessage());
+        }
 
-            System.out.println("Erro na leitura do arquivo: " + error.getMessage());
+        System.out.println("\n");
+        System.out.println("****** LIVROS LIDO NO ARQUIVO ******");
 
+        for (Livros l : listaLidaDeLivros) {
+            System.out.println(l);
+        }
+
+        System.out.println("****** CATEGORIAS LIDAS NO ARQUIVO ******");
+        for (Categoria c: listaLidaDeCategorias){
+
+            System.out.println(c);
         }
 
     }
@@ -200,7 +316,7 @@ public class LayoutArquivos<T> {
         corpo = "01";
         corpo += String.format("%06d", l.getId());
         corpo += String.format("%-45.45S", l.getTitulo());
-        corpo += String.format("%-45.45S", l.getDescricao());
+        corpo += String.format("%-400.400S", l.getDescricao().replace("\n", " ").replace("  ", " "));
         corpo += String.format("%-45.45S", l.getAutor());
         corpo += String.format("%-45.45s", l.getEdicao()); // 99,99
         corpo += String.format("%-45.45S", l.getEditora());
@@ -209,6 +325,8 @@ public class LayoutArquivos<T> {
         corpo += String.format("%03d", l.getQtdReservas());
         corpo += String.format("%03d", l.getQtdEstoque());
         corpo += String.format("%03d", l.getQtdReservadoAgora());
+        corpo += String.format("%06d", l.getFkTbbiblioteca());
+        corpo += String.format("%-30.30S", l.getLinguagem());
 
         return corpo;
     }
@@ -217,12 +335,15 @@ public class LayoutArquivos<T> {
 
         corpo2 = "02";
 
-        if(listaDeCategoria.isEmpty()){
+        if (listaDeCategoria.isEmpty()) {
+
 
             corpo2 += String.format("%06d", 0);
             corpo2 += String.format("%-45.45s", "ESSE LIVRO NÃO POSSUI CATEGORIA");
+            corpo2 += String.format("%06d", 0);
 
             return corpo2;
+
         } else {
 
             for (Categoria c : listaDeCategoria) {
@@ -232,6 +353,7 @@ public class LayoutArquivos<T> {
 
                     corpo2 += String.format("%06d", c.getId());
                     corpo2 += String.format("%-45.45S", c.getNome());
+                    corpo2 += String.format("%06d", c.getFkTblivros());
 
                     return corpo2;
                 }
@@ -241,6 +363,7 @@ public class LayoutArquivos<T> {
 
         corpo2 += String.format("%06d", 0);
         corpo2 += String.format("%-45.45s", "ESSE LIVRO NÃO POSSUI CATEGORIA");
+        corpo2 += String.format("%06d", 0);
 
         return corpo2;
     }

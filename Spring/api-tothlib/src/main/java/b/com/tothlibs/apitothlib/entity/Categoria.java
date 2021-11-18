@@ -42,4 +42,13 @@ public class Categoria {
         this.id = id;
     }
 
+    public Categoria(){
+
+    }
+
+    public Categoria(Integer id, String nome, Integer fkTblivros) {
+        this.id = id;
+        this.nome = nome;
+        this.fkTblivros = fkTblivros;
+    }
 }
