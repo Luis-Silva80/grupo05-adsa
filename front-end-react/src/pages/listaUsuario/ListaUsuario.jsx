@@ -47,6 +47,8 @@ function ListaUsuarios() {
 
     function CallPopup(id) {
         console.log("id retornado aqui: ", id);
+        let popup = document.getElementById("popup")
+        popup.classList.add("active")
         api
             .get(`/aluno/${id}`)
             .then((response) => {
@@ -58,6 +60,10 @@ function ListaUsuarios() {
             });
 
 
+    }
+    function ClosePopup() {
+        let popup = document.getElementById("popup")
+        popup.classList.remove("active")
     }
     // function findUser() {
     //     userData.forEach(element => {
@@ -122,8 +128,7 @@ function ListaUsuarios() {
                     </table>
                     <section id="popup" class="popup">
                         <img class="popup_img" src={perfilIcon} alt="user" />
-                        <img class="popup_close" src={closeButton} alt="close popup" />
-                        {/* <img class="popup_close" src={closeButton} onClick={CallPopup} alt="close popup"/> */}
+                        <img class="popup_close" onClick={() => ClosePopup()} src={closeButton} alt="close popup" />
                         <div class="popup_user">
                             <h2 class="popup_user_info name">{userInfo.nome}</h2>
                             <h4 class="popup_user_info email">Email: <b>{userInfo.email}</b></h4>
