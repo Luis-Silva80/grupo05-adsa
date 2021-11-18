@@ -31,7 +31,6 @@ function PerfilUsuario() {
 
     const userId = parseInt(localStorage.getItem('userId'))
     const [userInfo, setUserInfo] = useState([]);
-    const [bookInfo, setBookInfo] = useState([]);
 
     useEffect(async () => {
 
@@ -46,17 +45,10 @@ function PerfilUsuario() {
             });
     }, []);
 
-    useEffect(async () => {
-        await api
-            .get('/historico')
-            .then((response) => {
-                setBookInfo(response.data);
-                console.log("Livro data:", response.data);
-            })
-            .catch((err) => {
-                console.error("ops! ocorreu um erro" + err);
-            });
-    }, []);
+    
+    function storeId(value) {
+        localStorage.setItem('bookId', parseInt(value))
+    }
 
 
     return (
@@ -111,24 +103,26 @@ function PerfilUsuario() {
                         </div>
 
                         <ul className="main_listaLivros_lista">
-                            {/* {
-                                bookInfo.map(item => (
-                                    item.fkTbPerfilUsuario === userId &&
-                                    console.log("livro do user", item),
-                                    <BookCard image={imageLivro} titulo={item.nomeLivro} acao="devolver" date="10/02/2021" />
-                                ))
-                            }
-
-                             */}
-                            { userInfo.livrosLidos.length === 0 ?
+                            {
+                                userInfo.livrosLidos.length === 0 ?
                                 <div className="empty">
                                     <h3 className="empty_title">Você ainda não reservou nenhum livro!</h3>
                                     <Link className="empty_btn" to="/listaLivros">Reservar Agora</Link>
-                                </div> 
+                                </div>
                                 :
                                 userInfo.livrosLidos.map(item => (
-                                    console.log("livros lidos: ", item),
-                                    <BookCard image={imageLivro} titulo={item.titulo} acao="devolver" date="10/02/2021" />    
+                                    console.log("item aqui", item),
+                                    <div class="book">
+                                        <Link to="./livro" class="book_link">
+                                            <img src={imageLivro} class="book_link_img" alt="book preview" />
+                                        </Link>
+                                        <div class="book_info">
+                                            <span id="bookId" className="book_info_id">{item.id}</span>
+                                            <h4 class="book_info_title">{item.titulo}</h4>
+                                            {/* chamar a função do modal, e o endpoint de livro por id, passando item.id como param */}
+                                            <button onClick={() => CallPopup(item.id)} class="book_info_btn">Ver Mais</button>
+                                        </div>
+                                    </div>
                                 ))
                             }
                         </ul>

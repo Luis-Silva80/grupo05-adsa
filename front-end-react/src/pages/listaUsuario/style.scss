@@ -152,9 +152,10 @@ $black: #07080a;
             }
         }
 
-        &_popup {
+        .popup {
             display: none;
-            border: 2px solid $darkBlue;
+            display: flex;
+            border: 3px solid $darkBlue;
             border-radius: 10px;
             padding: 10px;
             width: 500px;
@@ -165,7 +166,8 @@ $black: #07080a;
                 display: flex;
             }
             &_img {
-                width: 175px;
+                width: 200px;
+                height: 200px;
             }
             &_close {
                 width: 20px;
@@ -176,23 +178,32 @@ $black: #07080a;
             &_user {
                 margin-left: 10px;
                 width: 100%;
-                &_name {
-                    font-size: 25px;
+                &_info{
+                    font-size: 18px;
+                    b{
+                        color: #32b9cd;
+                        font-weight: 600;
+                        text-decoration: underline;
+                    }
+                    &.name {
+                        font-size: 25px;
+                        margin-bottom: 10px;
+                    }
                 }
 
                 &_box {
                     display: flex;
-                    justify-content: center;
+                    justify-content: space-between;
                     margin-top: 20px;
                     &_btn {
-                        padding: 5px 15px;
+                        padding: 5px 0;
                         background: $darkBlue;
                         color: $white;
                         font-size: 18px;
                         border-radius: 10px;
                         border: none;
                         cursor: pointer;
-                        margin: 0 10px;
+                        width: 48%;
                         &.delete {
                             background: #dd0606;
                         }
