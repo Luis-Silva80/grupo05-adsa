@@ -1,50 +1,77 @@
 package b.com.tothlibs.apitothlib.listas;
 
 import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
+import b.com.tothlibs.apitothlib.entity.Categoria;
 import b.com.tothlibs.apitothlib.entity.Livros;
+import b.com.tothlibs.apitothlib.repository.CategoriaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import java.io.*;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
-public class GravaArquivos<T> {
+public class LayoutArquivos<T> {
+
+
+    @Autowired
+    private static CategoriaRepository categoriaRepository;
 
     private List<T> lista;
+    private List<T> listaSecundaria ;
     private String nomeArquivo;
 
     private LocalDateTime dataHoje = LocalDateTime.now();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private String dataFormatada = dataHoje.format(formatter);
 
-    public GravaArquivos(List<T> lista, String nomeArquivo) {
+    public LayoutArquivos(List<T> lista, String nomeArquivo, List<T> listaSecundaria) {
 
         this.lista = lista;
         this.nomeArquivo = nomeArquivo;
+        this.listaSecundaria    = listaSecundaria;
 
     }
+
+    public LayoutArquivos(){
+
+
+    }
+
 
     public void verificaTipoArquivo() {
 
 
         if (this.lista.size() > 0) {
 
-            if (this.lista.get(0) instanceof Livros) {
+            if (this.lista.get(0) instanceof Livros && this.listaSecundaria.get(0) instanceof Categoria) {
 
-                nomeArquivo += "-" +  dataFormatada.toString();
-                nomeArquivo += ".txt";
-                System.out.println("CHEGUEI AQUI");
+
+                nomeArquivo +=  dataFormatada;
+                nomeArquivo +=  ".txt";
+
                 List<Livros> listaDeLivros = (List<Livros>) this.lista;
+                List<Categoria> listaDeCategoria = (List<Categoria>) this.listaSecundaria;
 
-                gravaArquivoTxtLivros(listaDeLivros, nomeArquivo);
+                gravaArquivoTxtLivros(listaDeLivros, nomeArquivo, listaDeCategoria);
 
             } else if (this.lista.get(0) instanceof UsuariosPendentesDto) {
                 System.out.println("É DO TIPO ALUNO PENDENTE");
+            } else {
+                System.out.println("Algo de errado não está certo");
             }
 
         } else {
@@ -84,7 +111,7 @@ public class GravaArquivos<T> {
     }
 
 
-    public static void gravaArquivoTxtLivros(List<Livros> listaDeLivros, String nomeDeAqruivo) {
+    public static void gravaArquivoTxtLivros(List<Livros> listaDeLivros, String nomeDeAqruivo, List<Categoria> listaDeCategoria) {
 
 
         LocalDateTime dataHoje = LocalDateTime.now();
@@ -104,13 +131,18 @@ public class GravaArquivos<T> {
 
         //Grava o corpo
 
-        String corpo = "";
+        String corpo1 = "";
+        String corpo2 = "";
 
         for (Livros l : listaDeLivros) {
 
-            gravaRegistro(nomeDeAqruivo, formataRegistroLivroTipo1(corpo,l));
+
+            gravaRegistro(nomeDeAqruivo, formataRegistroLivroTipo1(corpo1,l));
+
+            gravaRegistro(nomeDeAqruivo,formataRegistroLivroTipo2(corpo2,l, listaDeCategoria));
 
             contaRegistroTipo1++;
+            contaRegistroTipo2++;
 
         }
 
@@ -124,7 +156,7 @@ public class GravaArquivos<T> {
 
     }
 
-    public static void leArquivoTxt(String nomeDeArquivo) {
+    public void leArquivoTxt(String nomeDeArquivo) {
 
         BufferedReader entrada = null;
         String registroLido;
@@ -166,7 +198,7 @@ public class GravaArquivos<T> {
     public static String formataRegistroLivroTipo1(String corpo, Livros l) {
 
         corpo = "01";
-        corpo += String.format("%-6.6S", l.getId());
+        corpo += String.format("%06d", l.getId());
         corpo += String.format("%-45.45S", l.getTitulo());
         corpo += String.format("%-45.45S", l.getDescricao());
         corpo += String.format("%-45.45S", l.getAutor());
@@ -179,6 +211,38 @@ public class GravaArquivos<T> {
         corpo += String.format("%03d", l.getQtdReservadoAgora());
 
         return corpo;
+    }
+
+    public static String formataRegistroLivroTipo2(String corpo2, Livros l, List<Categoria> listaDeCategoria) {
+
+        corpo2 = "02";
+
+        if(listaDeCategoria.isEmpty()){
+
+            corpo2 += String.format("%06d", 0);
+            corpo2 += String.format("%-45.45s", "ESSE LIVRO NÃO POSSUI CATEGORIA");
+
+            return corpo2;
+        } else {
+
+            for (Categoria c : listaDeCategoria) {
+
+                if (c.getFkTblivros().equals(l.getId())) {
+
+
+                    corpo2 += String.format("%06d", c.getId());
+                    corpo2 += String.format("%-45.45S", c.getNome());
+
+                    return corpo2;
+                }
+
+            }
+        }
+
+        corpo2 += String.format("%06d", 0);
+        corpo2 += String.format("%-45.45s", "ESSE LIVRO NÃO POSSUI CATEGORIA");
+
+        return corpo2;
     }
 
 

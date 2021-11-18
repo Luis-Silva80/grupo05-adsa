@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -84,6 +86,7 @@ public class AlunoController {
         List<Integer> listId = repositoryHistorico.findFkLivrosByIdUsuario(idUsuario);
         UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
 
+
         for (Integer i : listId) {
             Livros livro = repositoryLivro.findById(i).get();
             if (!containsName(usuarioInfo.getLivrosLidos(), livro.getId())) {
@@ -140,7 +143,7 @@ public class AlunoController {
     public ResponseEntity desfazerDelete() {
         System.out.println("-------------------");
         pilhaUsuariosDeletados = new PilhaObj(listaTemporariaDeletados.size());
-        if(pilhaUsuariosDeletados.isEmpty()){
+        if (pilhaUsuariosDeletados.isEmpty()) {
             listaTemporariaDeletados
                     .stream()
                     .forEach(perfilUsuario -> pilhaUsuariosDeletados.push(perfilUsuario));
@@ -153,8 +156,8 @@ public class AlunoController {
             return ResponseEntity.status(204).build();
 
         } else {
-            System.out.println("removendo o topo da pilha" +pilhaUsuariosDeletados.peek());
-            alteraStatus(pilhaUsuariosDeletados.peek(),"desfazer");
+            System.out.println("removendo o topo da pilha" + pilhaUsuariosDeletados.peek());
+            alteraStatus(pilhaUsuariosDeletados.peek(), "desfazer");
 
             listaTemporariaDeletados.remove(pilhaUsuariosDeletados.peek());
 
@@ -168,39 +171,49 @@ public class AlunoController {
     }
 
     @GetMapping("/teste")
-    public ResponseEntity teste(){
+    public ResponseEntity teste() {
 
 
-        listaTemporariaDeletados
+        List<PerfilUsuario> listaDeUsuariosInativos = repository.findAlunosInativos();
+
+        System.out.println(listaDeUsuariosInativos);
+
+        List<PerfilUsuario> listaDeDeletados = new ArrayList<>();
+
+        listaDeUsuariosInativos
                 .stream()
-                .forEach(perfilUsuario -> verificarDataInativacao(perfilUsuario));
+                .forEach(perfilUsuario -> verificarDataInativacao(perfilUsuario, listaDeDeletados));
 
-        return ResponseEntity.status(200).build();
+
+        return ResponseEntity.status(200).body(listaDeDeletados);
 
     }
 
-    public void verificarDataInativacao(PerfilUsuario p) {
+    public void verificarDataInativacao(PerfilUsuario p, List<PerfilUsuario> listaDeDeletados) {
 
-        if (p.getStatusAtivo().equals(0)) {
-            if (LocalDate.now().isAfter(p.pegarDataAtivacao().plusDays(30))) {
-                System.out.println("è mais que trinta");
+
+            if (LocalDate.now().isAfter(p.pegarDataInativacao().plusDays(30))) {
+
+
+                listaDeDeletados.add(p);
+
 //                repository.deleteById(p.getId());
             } else {
-                System.out.println("hanan moscou");
-            }
 
-        }
+                System.out.println("Não há usuários a serem deletados!");
+
+            }
 
     }
 
 
-    public void alteraStatus(PerfilUsuario p, String status){
+    public void alteraStatus(PerfilUsuario p, String status) {
 
-        if(status.equals("deletar")){
+        if (status.equals("deletar")) {
             p.setStatusAtivo(false);
             p.setDataAtivacao(LocalDate.now());
             listaTemporariaDeletados.add(p);
-        }else {
+        } else {
             p.setStatusAtivo(true);
             p.setDataAtivacao(null);
         }
