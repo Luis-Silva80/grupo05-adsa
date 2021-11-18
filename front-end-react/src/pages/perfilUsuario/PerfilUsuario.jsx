@@ -8,6 +8,7 @@ import Autentication from "../../services/autentication";
 import { useHistory } from 'react-router-dom';
 
 
+
 //Importanto componentes e o css
 import './style.scss';
 import SideBar from '../../components/sideBar/SideBar';
@@ -68,12 +69,12 @@ function PerfilUsuario() {
         popup.classList.remove("active")
     }
 
-    function ReturnBook(bookId, userId) {
-        console.log("id do livro", bookId);
+    function ReturnBook(userId) {
+        // console.log("id do livro", bookId);
         console.log("id do usuário", userId);
-
+        let idReserva = localStorage.getItem("idReserva")
         api
-        .put(`/biblioteca/devolver/${bookId}/${userId}`)
+        .put(`/biblioteca/devolver/${idReserva}/${userId}`)
         .then((response) => {
             // setBookInfo(response.data);
             console.log("devolvi aqui: ", response.data);
@@ -82,6 +83,22 @@ function PerfilUsuario() {
             console.error("ops! ocorreu um erro" + err);
         });
 
+    }
+    function RetirarBook(userId) {
+        let reservaId = localStorage.getItem("idReserva")
+        
+        console.log("id da reserva aqui: ", Number(reservaId));
+        console.log("id do usuário aqui: ", userId);
+        
+        api
+        .put(`/biblioteca/retirar/${Number(reservaId)}/${userId}`)
+        .then((response) => {
+            // setBookInfo(response.data);
+            console.log("retirei aqui: ", response.data);
+        })
+        .catch((err) => {
+            console.error("ops! ocorreu um erro" + err);
+        });
     }
 
     
@@ -174,8 +191,9 @@ function PerfilUsuario() {
                             <h4 class="popup_user_info return">Devolver até: <b>20/02/2021</b></h4>
                             <h4 class="popup_user_info reserved">Reservado em: <b>10/02/2021</b></h4>
                             <div class="popup_user_box">
-                                <button class="popup_user_box_btn" onClick={() => ReturnBook(bookInfo.id, userInfo.id)}>Devolver</button>
+                                <button class="popup_user_box_btn" onClick={() => ReturnBook(userInfo.id)}>Devolver</button>
                                 <button class="popup_user_box_btn">Prorrogar</button>
+                                <button class="popup_user_box_btn" onClick={() => RetirarBook(userInfo.id)}>Retirar</button>
                             </div>
                         </div>
                     </section>
