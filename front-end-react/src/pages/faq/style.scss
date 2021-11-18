@@ -14,11 +14,20 @@ $black: #07080a;
         width: 80%;
         margin: 0 auto;
         height: 90vh;
+
+        @media (max-width: 768px) {
+            height: auto;
+        }
     }
     .main_title {
         color: $lightBlue;
         font-size: 3rem;
         margin: 25px;
+
+        @media (max-width: 768px) {
+            padding-top: 50px;
+            text-align: center;
+        }
     }
 
     .main_question {
@@ -30,22 +39,27 @@ $black: #07080a;
         border: $darkGrey solid 1px;
         border-radius: 15px;
         background-color: $darkGrey;
-        height: 50px;
+        height: 75px;
         overflow: hidden;
         transition: 0.5s;
         margin-bottom: 20px;
         position: relative;
+
         &.active {
-            height: 115px;
+            height: auto;
         }
+
         &_title {
             color: whitesmoke;
             margin: 10px 0 15px 15px;
+
+            @media (max-width: 768px) {
+                width: 75%;
+            }
         }
         &_parag {
             background-color: whitesmoke;
             padding: 0 15px;
-            height: 60px;
             display: flex;
             align-items: center;
         }
@@ -60,22 +74,15 @@ $black: #07080a;
             border: none;
             background: url("../../assets/plus.png");
             background-size: cover;
+
+            @media (max-width: 768px) {
+                right: 15px;
+            }
+
             &.active {
                 background: url("../../assets/minus.png");
                 background-size: cover;
             }
         }
     }
-}
-
-.sidFaq::after {
-    content: "";
-    height: 7px;
-    width: 7px;
-    background-color: #fff;
-    position: absolute;
-    display: block;
-    top: 25px;
-    left: 6px;
-    border-radius: 15px;
 }

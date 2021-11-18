@@ -13,6 +13,12 @@ $black: #07080a;
     border-bottom: 3px solid #ebe6e6;
     position: relative;
     margin-top: 25px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      height: auto;
+    }
+
     &::after{
       content: "";
       background: url("../../assets/graph.png")no-repeat;
@@ -30,21 +36,40 @@ $black: #07080a;
       flex-direction: column;
       align-items: center;
       margin-top: 12.5vh;
+
+      @media (max-width: 768px) {
+        text-align: center;
+      }
+
       &-title{
         color: $lightBlue;
         font-size: 75px;
         align-self: flex-start;
+      
+        @media (max-width: 768px) {
+          width: 100%;
+          font-size: 50px;
+        }
       }
       &-parag{
         font-size: 40px;
         max-width: 350px;
         margin: 10px 0 50px 0;
+
+        @media (max-width: 768px) {
+          font-size: 30px;
+        }
       }
     }
     &-img{
       height: 55%;
       max-height: 500px;
       margin-top: 20vh;
+
+      @media (max-width: 768px) {
+        margin: 17vh 0;
+        width: 100%;
+      }
     }
     &-arrowScroll{
       transform: rotate(90deg);
@@ -52,6 +77,10 @@ $black: #07080a;
       position: absolute;
       bottom: 15vh;
       animation: arrowScroll 2s infinite;
+
+      @media (max-width: 768px) {
+        margin: 0 45%;
+      }
     }
   }
   .about{
@@ -62,6 +91,12 @@ $black: #07080a;
     position: relative;
     height: 100vh;
     border-bottom: 3px solid #ebe6e6;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      height: auto;
+    }
+
     &::after{
       content: "";
       background: url("../../assets/graph2.png")no-repeat;
@@ -80,13 +115,23 @@ $black: #07080a;
     &-box{
       display: flex;
       flex-direction: column;
-      
       width: 35%;
+
+      @media (max-width: 768px) {
+        width: auto;
+        text-align: center;
+      }
+
       &-title{
         color: $lightBlue;
         font-size: 65px;
         align-self: flex-start;
         margin-bottom: 25px;
+
+        @media (max-width: 768px) {
+          width: 100%;
+          font-size: 50px;
+        }
       }
       &-parag{
         font-size: 30px;
@@ -96,6 +141,10 @@ $black: #07080a;
     }
     &-img{
       height: 70%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
     }
   }
   .weDo{
@@ -106,6 +155,11 @@ $black: #07080a;
     position: relative;
     height: 100vh;
     border-bottom: 3px solid #ebe6e6;
+    
+    @media (max-width: 768px) {
+      flex-direction: column !important;
+      height: auto;
+    }
     &::after{
       content: "";
       background: url("../../assets/graph4.png")no-repeat;
@@ -125,19 +179,39 @@ $black: #07080a;
       display: flex;
       flex-direction: column;
       width: 35%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        text-align: center;
+      }
+
       &-title{
         color: $lightBlue;
         font-size: 60px;
         align-self: flex-start;
+
+        @media (max-width: 768px) {
+          font-size: 50px;
+          width: 100%;
+        }
       }
       &-parag{
         font-size: 30px;
         width: 90%;
         margin: 10px 0 25px 0;
+
+        @media (max-width: 768px) {
+          width: 90%;
+          margin: 10px auto;
+        }
       }
     }
     &-img{
       height: 70%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
     }
     &-graph{
       position: absolute;
@@ -172,6 +246,10 @@ $black: #07080a;
         text-align: center;
         font-size: 25px;
         width: 50%;
+
+        @media (max-width: 768px) {
+        width: 100%;
+        }
       }
     }
 
@@ -197,10 +275,17 @@ $black: #07080a;
 
   .contact {
     display: flex;
-    padding: 100px 100px;
+
+    @media (max-width: 768px) {
+      flex-direction: column-reverse;
+    }
 
     &_img {
-      width: 500px;
+      width: 35%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
     }
     &_box {
       display: flex;
@@ -253,7 +338,7 @@ $black: #07080a;
   }
 
   @media only screen and (max-width: 600px) {
-    .main,.weDo,.about{
+    .main,.weDo,.about,.benefit{
       &::after{
         display: none;
       }

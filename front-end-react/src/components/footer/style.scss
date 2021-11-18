@@ -3,11 +3,18 @@ $colorWhite: #FFFF;
 
 #rootFooter {
     display: flex;
-    background-color: #2C2C2C;
+    background-color: $bgBlackHeader;
     justify-content: space-evenly;
     width: 100%;
     align-items: center;
     height: 10vh;
+
+    @media (max-width: 768px) {
+        height: 20vh;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 5px 0;
+    }
     
     .footer_imageContainer{
         &_link {

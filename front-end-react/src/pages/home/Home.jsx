@@ -1,6 +1,7 @@
 // React and hooks
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Link as Scroll } from 'react-scroll';
 // import AOS from 'aos';
 
 // import components
@@ -35,7 +36,7 @@ function Home() {
                         <div className="main-box">
                             <h1 className="main-box-title">ThothLib</h1>
                             <p className="main-box-parag">Especialistas em Softwares de gestão e ERP.</p>
-                            <LinkButton className="main-box-link" path="" content="Saiba mais" />
+                            <Scroll activeClass="active" to="about_section" spy={true} smooth={true}><LinkButton className="main-box-link" path="" content="Saiba mais" /></Scroll>
                         </div>
                         <img className="main-img" src={mainImg} alt="TothLib main banner" />
                         <img className="main-arrowScroll" src={arrowScroll} alt="TothLib arrow scroll" />

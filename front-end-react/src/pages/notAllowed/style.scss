@@ -21,6 +21,11 @@ $black: #07080a;
       color: $lightBlue;
       font-size: 3rem;
       margin-top: 10px;
+
+      @media (max-width: 768px) {
+        text-align: center;
+        font-size: 2rem;
+      }
     }
     &_parag {
       color: $lightGrey;
@@ -50,8 +55,10 @@ $black: #07080a;
     }
     
   }
-  .footer{
-    position: absolute;
-    bottom: 0;
+  @media (min-width: 768px) {
+    .footer{
+      position: absolute;
+      bottom: 0;
+    }
   }
 }
