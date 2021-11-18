@@ -111,7 +111,7 @@ public class BibliotecaController {
         Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
         if (idRegistro != null) {
-            return ResponseEntity.status(200).body(repository.count());
+            return ResponseEntity.status(200).body(idRegistro);
         } else {
             return ResponseEntity.status(400).build();
         }
@@ -126,7 +126,7 @@ public class BibliotecaController {
         Integer novoRegistro = admin.locarLivro(idRegistro, idUsuario);
 
         if (novoRegistro != null) {
-            return ResponseEntity.status(200).body("ID da retirada: " + novoRegistro);
+            return ResponseEntity.status(200).body(novoRegistro);
         } else {
             return ResponseEntity.status(400).body("Retirada não concluida");
         }
@@ -139,7 +139,7 @@ public class BibliotecaController {
         Integer novoCodRegistro = admin.renovarAlocacao(idRegistro, idUsuario);
 
         if (idRegistro != null) {
-            return ResponseEntity.status(200).body("Novo ID de retirada: " + novoCodRegistro);
+            return ResponseEntity.status(200).body(novoCodRegistro);
         } else {
             return ResponseEntity.status(400).body("Renovação não concluida");
         }
@@ -152,7 +152,7 @@ public class BibliotecaController {
         Integer novoCodRegistro = admin.devolverLivro(idRegistro, idUsuario);
 
         if (novoCodRegistro != null) {
-            return ResponseEntity.status(200).body("Novo ID de retirada: " + novoCodRegistro);
+            return ResponseEntity.status(200).body(novoCodRegistro);
         } else {
             return ResponseEntity.status(404).body("Registro de retirada não encontrado!!");
         }
