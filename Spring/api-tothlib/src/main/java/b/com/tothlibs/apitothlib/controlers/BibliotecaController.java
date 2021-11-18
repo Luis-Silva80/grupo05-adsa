@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -110,7 +111,7 @@ public class BibliotecaController {
         Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
         if (idRegistro != null) {
-            return ResponseEntity.status(200).body("ID para retirada: " + idRegistro);
+            return ResponseEntity.status(200).body(repository.count());
         } else {
             return ResponseEntity.status(400).build();
         }
@@ -164,7 +165,7 @@ public class BibliotecaController {
         List<Livros> listaDeLivros = repository.findAll();
         List<Categoria> listaDeCategorias = repositoryCategoria.findAll();
 
-        if(listaDeLivros.isEmpty()){
+        if (listaDeLivros.isEmpty()) {
 
             return ResponseEntity.status(204).body("A lista de Livros está vazia!");
 
@@ -179,7 +180,7 @@ public class BibliotecaController {
     }
 
     @GetMapping("/lerArquivo")
-    public ResponseEntity leTxt(){
+    public ResponseEntity leTxt() {
 
         String nomeArquivo = "Livros-2021-11-17";
 
