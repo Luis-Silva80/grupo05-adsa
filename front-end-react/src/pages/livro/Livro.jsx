@@ -25,6 +25,7 @@ function Livro() {
   
   // const [userInfo, setUserInfo] = useState([]);
   const [bookInfo, setBookInfo] = useState([]);
+  const [idReserva, setIdReserva] = useState([]);
 
   useEffect(async () => {
 
@@ -40,12 +41,15 @@ function Livro() {
   }, []);
 
   function reserve(idLivro, idUsuario) {
-    console.log("cai na função");
+    console.log("cai na reserva");
     api
       .put(`/biblioteca/reservar/${idLivro}/${idUsuario}`)
       .then((response) => {
-        setBookInfo(response.data);
-        console.log("Book data:", response.data);
+        setIdReserva(response.data);
+        
+        console.log("id qq coisa aqui", idReserva.splice(16, 17));
+        localStorage.setItem("idReserva", response.data)
+        console.log("id da reserva:", response.data);
       })
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);

@@ -77,7 +77,7 @@ function SideBarComponent() {
         .delete(`/autenticacao/` + localStorage.getItem('userId'))
         .then((response) => {
             console.log(response.data);
-                if(response.status === 200) {
+                if(response.status === 204) {
                     localStorage.setItem('userId', '')
                     history.push("/");
                 }    

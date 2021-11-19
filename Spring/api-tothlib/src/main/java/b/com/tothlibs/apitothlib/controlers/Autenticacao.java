@@ -33,8 +33,10 @@ public class Autenticacao {
             UsuarioDto usuarioDto = null;
 
             List<PerfilUsuario> listUsuarios = repository.findAll();
-
+            System.out.println( email);
+            System.out.println( senha);
             for (PerfilUsuario u : listUsuarios) {
+                System.out.println(u.getEmail());
                 if (u.getEmail().equals(email)) {
                     if (u.retornaSenha().equals(senha)) {
                         usuarioDto = new UsuarioDto(u);
