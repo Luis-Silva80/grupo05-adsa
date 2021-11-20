@@ -71,10 +71,12 @@ function PerfilUsuario() {
 
     function ReturnBook(userId) {
         // console.log("id do livro", bookId);
-        console.log("id do usuário", userId);
+        console.log("id do usuário", typeof userId);
         let idReserva = localStorage.getItem("idReserva")
+        console.log("idReserva", typeof Number(idReserva));
+        
         api
-        .put(`/biblioteca/devolver/${idReserva}/${userId}`)
+        .put(`/biblioteca/devolver/${Number(idReserva)}/${userId}`)
         .then((response) => {
             // setBookInfo(response.data);
             console.log("devolvi aqui: ", response.data);

@@ -47,7 +47,7 @@ function Livro() {
       .then((response) => {
         setIdReserva(response.data);
         
-        console.log("id qq coisa aqui", idReserva.splice(16, 17));
+        // console.log("id qq coisa aqui", idReserva.splice(16, 17));
         localStorage.setItem("idReserva", response.data)
         console.log("id da reserva:", response.data);
       })
