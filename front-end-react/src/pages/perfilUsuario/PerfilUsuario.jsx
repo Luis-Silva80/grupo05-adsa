@@ -70,10 +70,9 @@ function PerfilUsuario() {
     }
 
     function ReturnBook(userId) {
-        // console.log("id do livro", bookId);
-        console.log("id do usuário", typeof userId);
+        console.log("id do usuário", userId);
         let idReserva = localStorage.getItem("idReserva")
-        console.log("idReserva", typeof Number(idReserva));
+        console.log("idReserva", Number(idReserva));
         
         api
         .put(`/biblioteca/devolver/${Number(idReserva)}/${userId}`)
@@ -97,6 +96,7 @@ function PerfilUsuario() {
         .then((response) => {
             // setBookInfo(response.data);
             console.log("retirei aqui: ", response.data);
+            localStorage.setItem("idReserva", response.data)
         })
         .catch((err) => {
             console.error("ops! ocorreu um erro" + err);
