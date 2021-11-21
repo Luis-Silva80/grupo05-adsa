@@ -26,9 +26,10 @@ function Livro() {
   
   const [respInfo, setRespInfo] = useState([]);
   const [bookInfo, setBookInfo] = useState([]);
-  const [idReserva, setIdReserva] = useState([]);
+  const [ showResp, setShowResp ] = useState(false);
 
   useEffect(async () => {
+    setRespInfo({ titulo: "Sucesso", parag: "Entre em seu perfil para verificar o livro clicando no botão abaixo"})
 
     await api
       .get(`/biblioteca/${bookId}`)
@@ -41,36 +42,62 @@ function Livro() {
       });
   }, []);
 
-  useEffect(() => {
-    setRespInfo({ titulo: "deu bom", parag: "qq coisa", btn: "perfil usuario", link:"perfilUsuario" });
+  // useEffect(() => {
+  //   setRespInfo({ titulo: "deu bom", parag: "qq coisa", btn: "perfil usuario", link:"perfilUsuario" });
 
-    console.log("resp info aqui",respInfo);
+  //   console.log("resp info aqui",respInfo);
     
-  }, []);
+  // }, []);
 
+  useEffect(() => {
+    const resp = document.getElementById('respReserv');
 
-  function reserve(idLivro, idUsuario) {
-    let resp = document.getElementById('resp')
-
-      resp.classList.add("active")
-
-    api
-      .put(`/biblioteca/reservar/${idLivro}/${idUsuario}`)
+    if (showResp) {
+      resp.classList.add("active");
+      
+      api
+      .put(`/biblioteca/reservar/${bookInfo.id}/${userId}`)
       .then((response) => {
-        setIdReserva(response.data);
-
+        setRespInfo({ titulo: "Sucesso", parag: "Entre em seu perfil para verificar o livro clicando no botão abaixo", btn: "Perfil", link:"/perfilUsuario" })
+        resp.classList.add("success");
+        resp.classList.add("active");
         localStorage.setItem("idReserva", response.data)
+
         console.log("id da reserva:", response.data);
         console.log("resp info aqui",respInfo);
-
       })
       .catch((err) => {
-        
+        console.log("deu erro aqui pô");
+        setRespInfo({ titulo: "Ocorreu um erro", parag: "Entre em contato com o nosso time de suporte clicando no botão abaixo", btn: "Contato", link:"/contato" })
+        resp.classList.add("error");
+        resp.classList.add("active");
         console.error("ops! ocorreu um erro" + err);
-    });
+      });
+    }
+  },[showResp])
+
+  // function reserve(idLivro, idUsuario) {
+  //   let resp = document.getElementById('resp')
+
+  //   resp.classList.add("active")
+
+  //   api
+  //     .put(`/biblioteca/reserva/${bookInfo.id}/${userId}`)
+  //     .then((response) => {
+  //       setIdReserva(response.data);
+
+  //       localStorage.setItem("idReserva", response.data)
+  //       console.log("id da reserva:", response.data);
+  //       console.log("resp info aqui",respInfo);
+
+  //     })
+  //     .catch((err) => {
+  //       console.log("deu erro aqui pô");
+  //       console.error("ops! ocorreu um erro" + err);
+  //   });
    
 
-  }
+  // }
 
   return (
     <div id="rootLivro">
@@ -79,7 +106,7 @@ function Livro() {
       {bookInfo.length === 0 ?
         <Loading /> :
         <main className="main">
-          <Resp  titulo="teste titulo" parag="ts=eadaosf" btn="dhaskdhasd asdsa" link="/perfilUsuario" /> 
+          <Resp  titulo={respInfo.titulo} parag={respInfo.parag} btn={respInfo.btn} link={respInfo.link} /> 
           <div className="main_container">
             <div className="main_container_upBox">
               <div className="main_container_upBox_imgBox">
@@ -114,7 +141,7 @@ function Livro() {
                   </div>  
                 </div>
                 <div className="buttons">
-                  <button onClick={() => reserve(bookInfo.id, userId)} className="buttons_btn" >Reservar</button>
+                  <button onClick={() => setShowResp(true)} className="buttons_btn" >Reservar</button>
                   {/* <LinkButton content="Reservar" onclick={() => reserve(bookInfo.id, userId)} className="main_container_downBox_button" />
                   <LinkButton content="Comprar" className="main_container_downBox_button" />
                   <LinkButton content="Baixar" className="main_container_downBox_button" /> */}

@@ -118,19 +118,5 @@ $secundaryColor: #32b9cd;
                 font-size: 25px;
             }
         }
-        #resp{
-            display: none;
-            position: absolute;
-            top: 150px;
-            left: 0; 
-            right: 0; 
-            margin-left: auto; 
-            margin-right: auto; 
-            width: 300px;
-            background: red;
-            &.active{
-                display: flex;
-            }
-        }
     }
 }

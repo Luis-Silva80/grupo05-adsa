@@ -57,8 +57,14 @@ $black: #07080a;
         font-weight: 600;
         text-align: center;
       }
-      &.status {
+      &.available {
         color: #32b9cd;
+        font-weight: 700;
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+      &.unavailable {
+        color: red;
         font-weight: 700;
         font-size: 18px;
         text-transform: uppercase;

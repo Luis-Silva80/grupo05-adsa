@@ -19,26 +19,39 @@ function SideBarComponent() {
 
     const history = useHistory();
     const [ headerIsSelect, setHeaderIsSelect ] = useState(window.screen.width < 767 ? false : true);
+    const [ isAdmin, setIsAdmin ] = useState();
+    const userId = parseInt(localStorage.getItem('userId'))
+
+    useEffect(async () => {
+        await api
+            .get(`/aluno/${userId}`)
+            .then((response) => {
+                setIsAdmin(response.data.usuarioAdmin);
+            })
+            .catch((err) => {
+                console.error("ops! ocorreu um erro" + err);
+            });
+    }, []);
     
     useEffect(() => {
         switch (window.location.pathname) {
             case "/perfilUsuario":
-                document.getElementById("perfilUsuario").classList.add('currentPage');
+                document.getElementById("perfilUsuario")?.classList.add('currentPage');
                 break;
             case "/listaLivros":
-                document.getElementById("listaLivros").classList.add('currentPage');
+                document.getElementById("listaLivros")?.classList.add('currentPage');
                 break;
             case "/contato":
-                document.getElementById("contato").classList.add('currentPage');
+                document.getElementById("contato")?.classList.add('currentPage');
                 break;
             case "/faq":
-                document.getElementById("faq").classList.add('currentPage');
+                document.getElementById("faq")?.classList.add('currentPage');
                 break;
             case "/listaUsuarios":
-                document.getElementById("listaUsuarios").classList.add('currentPage');
+                document.getElementById("listaUsuarios")?.classList.add('currentPage');
                 break;
             case "/cadastroLivro":
-                document.getElementById("cadastroLivro").classList.add('currentPage');
+                document.getElementById("cadastroLivro")?.classList.add('currentPage');
                 break;
             default:
                 break;
@@ -111,14 +124,26 @@ function SideBarComponent() {
                         <img src={questionIcon} className="sideBar_containerCategory_link_icon" />
                         <p className="sideBar_containerCategory_link_desc">Perguntas frequentes</p>
                     </Link>
-                    <Link to="/listaUsuarios" className="sideBar_containerCategory_link" id="listaUsuarios">
-                        <img src={listUser} className="sideBar_containerCategory_link_icon" />
-                        <p className="sideBar_containerCategory_link_desc">Lista de Usuários</p>
-                    </Link>
-                    <Link to="/cadastroLivro" className="sideBar_containerCategory_link" id="cadastroLivro">
-                        <img src={addLivro} className="sideBar_containerCategory_link_icon" />
-                        <p className="sideBar_containerCategory_link_desc">Adicionar Livro</p>
-                    </Link>
+                    {
+                        isAdmin == 1 
+                        ? 
+                        <Link to="/listaUsuarios" className="sideBar_containerCategory_link" id="listaUsuarios">
+                            <img src={listUser} className="sideBar_containerCategory_link_icon" />
+                            <p className="sideBar_containerCategory_link_desc">Lista de Usuários</p>
+                        </Link>
+                        :
+                        ""
+                    }
+                    {
+                        isAdmin == 1 
+                        ? 
+                        <Link to="/cadastroLivro" className="sideBar_containerCategory_link" id="cadastroLivro">
+                            <img src={addLivro} className="sideBar_containerCategory_link_icon" />
+                            <p className="sideBar_containerCategory_link_desc">Adicionar Livro</p>
+                        </Link>
+                        :
+                        ""
+                    }
                 </div>
             
                 <div className="sideBar_containerOptions">

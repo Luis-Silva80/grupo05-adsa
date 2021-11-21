@@ -7,11 +7,10 @@ function AutenticationAdmin() {
     const history = useHistory();
 
     useEffect(async () => {
-
         await api
         .get(`/admin/` + localStorage.getItem('userId'))
         .then((response) => {
-            if (response.status != 200) {
+        if (response.status != 200) {
                 history.push("/notAllowed");
             }
         })

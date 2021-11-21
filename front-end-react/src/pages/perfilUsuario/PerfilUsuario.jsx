@@ -16,6 +16,7 @@ import Footer from '../../components/footer/Footer';
 import BookCard from '../../components/bookCard/BookCard';
 import Loading from '../../components/loading/Loading';
 import ButtonLink from '../../components/button/Button';
+import Resp from '../../components/resp/Resp';
 
 //IMAGENS
 
@@ -34,6 +35,7 @@ function PerfilUsuario() {
     const userId = parseInt(localStorage.getItem('userId'))
     const [userInfo, setUserInfo] = useState([]);
     const [bookInfo, setBookInfo] = useState([]);
+    const [respInfo, setRespInfo] = useState([]);
 
     useEffect(async () => {
 
@@ -70,6 +72,8 @@ function PerfilUsuario() {
     }
 
     function ReturnBook(userId) {
+        const resp = document.getElementById('respReserv');
+
         console.log("id do usuário", userId);
         let idReserva = localStorage.getItem("idReserva")
         console.log("idReserva", Number(idReserva));
@@ -79,14 +83,21 @@ function PerfilUsuario() {
         .then((response) => {
             // setBookInfo(response.data);
             console.log("devolvi aqui: ", response.data);
+            setRespInfo({ titulo: "Sucesso", parag: "Devolução feita com sucesso" })
+            resp.classList.add("active");
+            resp.classList.add("success");
         })
         .catch((err) => {
             console.error("ops! ocorreu um erro" + err);
+            setRespInfo({ titulo: "Ocorreu um erro", parag: "Entre em contato com o nosso time de suporte clicando no botão abaixo", btn: "Contato", link:"/contato" })
+            resp.classList.add("active");
+            resp.classList.add("error");
         });
 
     }
     function RetirarBook(userId) {
         let reservaId = localStorage.getItem("idReserva")
+        const resp = document.getElementById('respReserv');
         
         console.log("id da reserva aqui: ", Number(reservaId));
         console.log("id do usuário aqui: ", userId);
@@ -96,10 +107,16 @@ function PerfilUsuario() {
         .then((response) => {
             // setBookInfo(response.data);
             console.log("retirei aqui: ", response.data);
-            localStorage.setItem("idReserva", response.data)
+            localStorage.setItem("idReserva", response.data);
+            setRespInfo({ titulo: "Sucesso", parag: "Retirada feita com sucesso" })
+            resp.classList.add("active");
+            resp.classList.add("success");
         })
         .catch((err) => {
             console.error("ops! ocorreu um erro" + err);
+            setRespInfo({ titulo: "Ocorreu um erro", parag: "Entre em contato com o nosso time de suporte clicando no botão abaixo", btn: "Contato", link:"/contato" })
+            resp.classList.add("active");
+            resp.classList.add("error");
         });
     }
 
@@ -199,6 +216,7 @@ function PerfilUsuario() {
                             </div>
                         </div>
                     </section>
+                    <Resp  titulo={respInfo.titulo} parag={respInfo.parag} btn={respInfo.btn} link={respInfo.link} /> 
                 </main>
 
             }
