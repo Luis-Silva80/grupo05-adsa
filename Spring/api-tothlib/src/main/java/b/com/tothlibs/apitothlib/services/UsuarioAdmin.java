@@ -33,7 +33,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
     private HistoricoRepository repositoryHistorico;
 
     @Override
-    public Boolean cadastrarLivro(Livros livro) {
+    public Livros cadastrarLivro(Livros livro) {
 
         livro.setQtdResenhas(0);
         livro.setQtdReservas(0);
@@ -43,11 +43,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
         repository.save(livro);
 
-        if (repository.findAll().contains(livro)) {
-            return true;
-        } else {
-            return false;
-        }
+        return livro;
 
     }
 
@@ -182,9 +178,9 @@ public class UsuarioAdmin implements Administravel, Usuario {
                             livro.setQtdReservadoAgora(qtdReservadosAgora + 1);
                             livro.setQtdReservas(livro.getQtdReservas() - 1);
 
-                            if(livro.getQtdReservadoAgora().equals(livro.getQtdEstoque())){
+                            if (livro.getQtdReservadoAgora().equals(livro.getQtdEstoque())) {
                                 livro.setStatusLivro("Indisponivel");
-                            }else {
+                            } else {
                                 livro.setStatusLivro("Disponivel");
                             }
 
@@ -250,8 +246,8 @@ public class UsuarioAdmin implements Administravel, Usuario {
                     livro.setQtdReservadoAgora(livro.getQtdReservadoAgora() - 1);
 
                     usuario.setId(idUsuario);
-                    usuario.setQtdLivrosLidos(usuario.getQtdLivrosLidos()+1);
-                    usuario.setLivrosReservados(usuario.getLivrosReservados()-1);
+                    usuario.setQtdLivrosLidos(usuario.getQtdLivrosLidos() + 1);
+                    usuario.setLivrosReservados(usuario.getLivrosReservados() - 1);
 
                     criaResgistro(idLivroNoRegistro, idUsuario, "Devolucao");
                     Historico ultimoRegistro = repositoryHistorico.findTopByOrderByIdDesc();
