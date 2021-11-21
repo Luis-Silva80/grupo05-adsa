@@ -77,7 +77,7 @@ public class BibliotecaController {
     public ResponseEntity exibeLivroById(@PathVariable Integer idLivro) {
 
         LOGGER.info("Retornando usuario desejado...");
-        return ResponseEntity.of(repository.findById(idLivro));
+        return ResponseEntity.of(admin.buscarLivro(idLivro));
 
     }
 

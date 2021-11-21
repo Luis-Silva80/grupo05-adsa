@@ -13,6 +13,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioAdmin implements Administravel, Usuario {
@@ -87,9 +88,9 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
 
     @Override
-    public Livros buscarLivro(Integer id) {
+    public Optional<Livros> buscarLivro(Integer id) {
 
-        Livros livro = repository.findById(id).get();
+        Optional<Livros> livro = repository.findById(id);
 
         return livro;
     }
