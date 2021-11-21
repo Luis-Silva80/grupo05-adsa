@@ -1,11 +1,11 @@
 package b.com.tothlibs.apitothlib.controlers;
 
+import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
 import b.com.tothlibs.apitothlib.entity.Categoria;
+import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.listas.LayoutArquivos;
-import b.com.tothlibs.apitothlib.repository.CategoriaRepository;
-import b.com.tothlibs.apitothlib.repository.LivrosRepository;
-import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
+import b.com.tothlibs.apitothlib.repository.*;
 import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -36,6 +37,9 @@ public class BibliotecaController {
 
     @Autowired
     private CategoriaRepository repositoryCategoria;
+
+    @Autowired
+    private HistoricoRepository repositoryHistorico;
 
     @Autowired
     UsuarioAdmin admin;
@@ -107,17 +111,34 @@ public class BibliotecaController {
 
     }
 
-    @PutMapping("reservar/{idLivro}/{idUsuario}")
-    public ResponseEntity reservarLivro(@PathVariable Integer idLivro, @PathVariable Integer idUsuario) {
+    @PutMapping("reservar/{idUsuario}/{idLivro}")
+    public ResponseEntity reservarLivro(@PathVariable Integer idUsuario, @PathVariable Integer idLivro) {
 
-        Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
-        if (idRegistro != null) {
-            return ResponseEntity.status(200).body(idRegistro);
+        Historico u = repositoryHistorico.
+                findTopByFkTbPerfilUsuarioAndFkTbLivrosOrderByIdDesc(idUsuario, idLivro);
+
+
+        if (u.getAcao().equals("Retirada")) {
+
+            System.out.println("Backend melhor que o front forever!!");
+
+            return ResponseEntity.status(400).body("Não pode reservar o mesmo livro sem devolver antes!");
+
         } else {
-            return ResponseEntity.status(400).build();
-        }
 
+
+            Integer idRegistro = admin.reservar(idLivro, idUsuario);
+
+            if (idRegistro != null) {
+
+                return ResponseEntity.status(200).body(idRegistro);
+            } else {
+
+                return ResponseEntity.status(400).build();
+            }
+
+        }
 
     }
 
@@ -170,8 +191,8 @@ public class BibliotecaController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String dataFormatada = dataHoje.format(formatter);
 
-        String nomeArquivo =  "Livros-";
-               nomeArquivo += dataFormatada + ".txt";
+        String nomeArquivo = "Livros-";
+        nomeArquivo += dataFormatada + ".txt";
 
         if (listaDeLivros.isEmpty()) {
 

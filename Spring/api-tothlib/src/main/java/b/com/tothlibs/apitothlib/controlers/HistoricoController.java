@@ -38,7 +38,7 @@ public class HistoricoController {
     @GetMapping
     public ResponseEntity getHistorico(){
 
-        List<Historico> historico = repository.findAll();
+        List<Historico> historico = repository.findAllByOrderByIdDesc();
 
         if(!historico.isEmpty()){
             return ResponseEntity.status(200).body(historico);

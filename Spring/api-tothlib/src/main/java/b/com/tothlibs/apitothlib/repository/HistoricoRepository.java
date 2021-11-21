@@ -26,6 +26,13 @@ public interface HistoricoRepository extends JpaRepository<Historico, Integer> {
 
     public Historico findTopByOrderByIdDesc();
 
+    public Historico findTopByFkTbPerfilUsuarioAndFkTbLivrosOrderByIdDesc(Integer idUsuario, Integer idLivro);
+
+    public List<Historico> findAllByOrderByIdDesc();
+
+//    @Query("SELECT h FROM Historico h where h.id = :id"
+//    public List<UsuariosPendentesDto> findUserPendenciaById(@Param("id") Integer id);
+
     @Query("SELECT h.fkTbLivros FROM Historico h where h.fkTbPerfilUsuario = :idUsuario")
     public List<Integer> findFkLivrosByIdUsuario(@Param("idUsuario") Integer idUsuario);
 }
