@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/aluno")
@@ -46,7 +47,10 @@ public class AlunoController {
     @GetMapping
     @ApiOperation(value = "Retorna a lista de alunos cadastrados")
     public ResponseEntity getAluno() {
-        List<PerfilUsuario> alunos = repository.findAlunos();
+        List<PerfilUsuario> alunos = repository.findAlunos()
+                .stream()
+                .filter(usuario -> usuario.getUsuarioAdmin().equals(0))
+                .collect(Collectors.toList());
 
         if (alunos.isEmpty()) {
 
@@ -82,18 +86,15 @@ public class AlunoController {
     @ApiOperation(value = "Retorna um usuario com ID especifico")
     public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idUsuario) {
 
-        PerfilUsuario usuario = repository.findById(idUsuario).get();
+        PerfilUsuario usuario = repository.findByIdOnNotAdmin(idUsuario);
 
-        List<Integer> listId = repositoryHistorico.findFkLivrosByIdUsuario(idUsuario);
+        List<Integer> listId = repositoryHistorico.findLivrosByUser(idUsuario);
         UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
 
-
-        for (Integer i : listId) {
-            Livros livro = repositoryLivro.findById(i).get();
-            if (!containsName(usuarioInfo.getLivrosLidos(), livro.getId())) {
-                usuarioInfo.getLivrosLidos().add(livro);
-            }
+        for(Integer l : listId){
+            usuarioInfo.getLivrosLidos().add(repositoryLivro.findById(l).get());
         }
+        
         LOGGER.info("Retornando usuario desejado...");
 
         if (usuarioInfo != null) {
