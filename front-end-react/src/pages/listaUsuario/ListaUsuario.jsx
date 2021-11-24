@@ -109,13 +109,13 @@ function ListaUsuarios() {
                                 <td class="main_table_user_item frst"><img class="main_table_user_img" src={usuarioImg} alt="user img" /></td>
                                 <td class="main_table_user_item name">{item.nome}</td>
                                 <td class="main_table_user_item email">{item.email}</td>
-                                {item.status === "Inativo"
-                                    ? (<td class='main_table_user_item inactive'>{item.status}</td>)
-                                    : (<td class='main_table_user_item'>{item.status}</td>)
+                                {item.statusAtivo
+                                    ? (<td class='main_table_user_item'>ativo</td>)
+                                    : (<td class='main_table_user_item inactive'>Inativo</td>)
                                 }
-                                {item.pendencia == null
+                                {item.livrosReservados <= 0
                                     ? (<td class='main_table_user_item'>nenhuma</td>)
-                                    : (<td class='main_table_user_item inactive'>{item.pendencia}</td>)
+                                    : (<td class='main_table_user_item inactive'>{item.livrosReservados}</td>)
                                 }
                                 {/* <td class="main_table_user_item"  onClick={() => storeId(item.id)} > */}
                                 <td class="main_table_user_item" >
