@@ -114,6 +114,7 @@ public class BibliotecaController {
     }
 
     @PutMapping("reservar/{idUsuario}/{idLivro}")
+    @ApiOperation(value = "Realiza a reserva de um livro que esteja disponivel na biblioteca")
     public ResponseEntity reservarLivro(@PathVariable Integer idUsuario, @PathVariable Integer idLivro) {
 
         try {
@@ -153,7 +154,8 @@ public class BibliotecaController {
         }
     }
 
-    @GetMapping("/buscarLivrosRerservados/{idUsuario}")
+    @GetMapping("/buscarLivrosReservados/{idUsuario}")
+    @ApiOperation(value = "Busca os livros que estão reservados agora para o usuário")
     public ResponseEntity buscarLivrosLidos(@PathVariable Integer idUsuario){
 
         try {
@@ -202,6 +204,7 @@ public class BibliotecaController {
     }
 
     @PutMapping("retirar/{idRegistro}/{idUsuario}")
+    @ApiOperation(value = "Realiza a retirada de um livro que esteja reservado pelo usuario")
     public ResponseEntity retirarLivro(@PathVariable Integer idRegistro, @PathVariable Integer idUsuario) {
 
 
@@ -216,6 +219,7 @@ public class BibliotecaController {
     }
 
     @PutMapping("renovar/{idRegistro}/{idUsuario}")
+    @ApiOperation(value = "Realiza a renovação do tempo de alocação do livro por 10 dias")
     public ResponseEntity renovarLivro(@PathVariable Integer idRegistro, @PathVariable Integer idUsuario) {
 
         Integer novoCodRegistro = admin.renovarAlocacao(idRegistro, idUsuario);
@@ -229,6 +233,7 @@ public class BibliotecaController {
     }
 
     @PutMapping("devolver/{idRegistro}/{idUsuario}")
+    @ApiOperation(value = "Realiza a devolução do livro que está com o usuario")
     public ResponseEntity devolverLivro(@PathVariable Integer idRegistro, @PathVariable Integer idUsuario) {
 
         Integer novoCodRegistro = admin.devolverLivro(idRegistro, idUsuario);
@@ -242,6 +247,7 @@ public class BibliotecaController {
     }
 
     @GetMapping("/gravarArqTxt/livros")
+    @ApiOperation(value = "Retorna um arquivo com os livros da biblioteca")
     public ResponseEntity gravaTxt() {
 
         List<Livros> listaDeLivros = repository.findAll();
@@ -271,6 +277,7 @@ public class BibliotecaController {
 
 
     @GetMapping("/lerArquivo")
+    @ApiOperation(value = "Realiza a leitura de um arquivo com as informções dentro arquivo")
     public ResponseEntity leTxt() {
 
         String nomeArquivo = "Livros-2021-11-17.txt";
