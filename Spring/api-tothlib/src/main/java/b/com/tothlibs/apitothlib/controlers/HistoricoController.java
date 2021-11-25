@@ -51,7 +51,7 @@ public class HistoricoController {
 
     @GetMapping("/pendentes")
     @ApiOperation(value = "Retorna uma lista com o historico usuarios pendentes na plataforma")
-    public ResponseEntity pendencia() throws IOException {
+    public ResponseEntity pendencia() throws IOException , NullPointerException{
 
         List<UsuariosPendentesDto> listaDeHistorico = repository.findUserPendencia().stream()
                 .filter(usuariosPendentesDto -> usuariosPendentesDto.getLivrosReservados() > 0)
@@ -59,31 +59,11 @@ public class HistoricoController {
 
         listaObj = new ListaObj(listaDeHistorico.size());
 
-
-//        listaDeHistorico.stream()
-//                .filter(usuariosPendentesDto -> usuariosPendentesDto.getLivrosReservados() > 0)
-//                .collect(Collectors.toList());
-
         for (int i = 0;i < listaDeHistorico.size();i++){
             listaObj.adicionaElemento(listaDeHistorico.get(i));
         }
 
         gravaArquivoCsv(listaObj);
-
-
-
-//        byte[] arquivo = Files.readAllBytes(Paths.get("Pendentes.csv") );
-//
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//
-//        httpHeaders.add("Content-Disposition", "attachment;filename=\"Pendentes.csv\"");
-//
-//        HttpEntity<byte[]> entity = new HttpEntity<byte[]>( arquivo, httpHeaders);
-//
-//        return entity;
-
-
-//        List<UsuariosPendentesDto> listaDeHistorico = repository.findUserPendencia();
 
         return ResponseEntity.status(200).body(listaDeHistorico);
     }

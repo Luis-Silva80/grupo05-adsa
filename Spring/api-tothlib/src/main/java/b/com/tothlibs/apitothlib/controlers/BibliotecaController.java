@@ -115,18 +115,32 @@ public class BibliotecaController {
     public ResponseEntity reservarLivro(@PathVariable Integer idUsuario, @PathVariable Integer idLivro) {
 
 
-        Historico u = repositoryHistorico.
-                findTopByFkTbPerfilUsuarioAndFkTbLivrosOrderByIdDesc(idUsuario, idLivro);
+        try {
+
+            Historico u = repositoryHistorico.
+                    findTopByFkTbPerfilUsuarioAndFkTbLivrosOrderByIdDesc(idUsuario, idLivro);
+            if (u.getAcao().equals("Retirada") || u.getAcao().equals("Renovacao")) {
+
+                System.out.println("Backend melhor que o front forever!!");
+
+                return ResponseEntity.status(400).body("Não pode reservar o mesmo livro sem devolver antes!");
+
+            } else {
 
 
-        if (u.getAcao().equals("Retirada")) {
+                Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
-            System.out.println("Backend melhor que o front forever!!");
+                if (idRegistro != null) {
 
-            return ResponseEntity.status(400).body("Não pode reservar o mesmo livro sem devolver antes!");
+                    return ResponseEntity.status(200).body(idRegistro);
+                } else {
 
-        } else {
+                    return ResponseEntity.status(400).build();
+                }
 
+            }
+
+        }catch (NullPointerException e){
 
             Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
@@ -139,6 +153,9 @@ public class BibliotecaController {
             }
 
         }
+
+
+
 
     }
 
@@ -221,6 +238,16 @@ public class BibliotecaController {
         trataArquivo.leArquivoTxt(nomeArquivo);
 
         return ResponseEntity.status(200).build();
+    }
+
+    public Integer efetuarReserva(Integer idUsuario, Integer idLivro){
+        Integer idRegistro = admin.reservar(idLivro, idUsuario);
+
+        if (idRegistro != null) {
+            return idRegistro;
+        } else {
+            return null;
+        }
     }
 
 }
