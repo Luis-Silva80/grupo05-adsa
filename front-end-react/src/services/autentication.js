@@ -13,7 +13,6 @@ function Autentication() {
         .get(`/autenticacao/usuariosLogados`)
         .then((response) => {
                 response.data.map(user => {
-                    console.log(localStorage.getItem('userId'), "local aqui");
                     if (user.id != localStorage.getItem('userId')) {
                         if (user.autenticado == false) {
                             history.push("/login")
