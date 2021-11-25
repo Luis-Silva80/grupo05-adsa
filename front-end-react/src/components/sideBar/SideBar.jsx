@@ -19,14 +19,22 @@ function SideBarComponent() {
 
     const history = useHistory();
     const [ headerIsSelect, setHeaderIsSelect ] = useState(window.screen.width < 767 ? false : true);
-    const [ isAdmin, setIsAdmin ] = useState();
+    const [ isAdmin, setIsAdmin ] = useState(false);
     const userId = parseInt(localStorage.getItem('userId'))
+    const [ isAluno, setIsAluno ] = useState(false);
 
     useEffect(async () => {
         await api
-            .get(`/aluno/${userId}`)
+            .get(`/aluno/`)
             .then((response) => {
-                setIsAdmin(response.data.usuarioAdmin);
+                response.data.map(user => {
+                    if (userId == user.id) {
+                        setIsAluno(true);
+                    }
+                })
+                if (!isAluno) {
+                    setIsAdmin(true);
+                }
             })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
@@ -125,7 +133,7 @@ function SideBarComponent() {
                         <p className="sideBar_containerCategory_link_desc">Perguntas frequentes</p>
                     </Link>
                     {
-                        isAdmin == 1 
+                        isAdmin
                         ? 
                         <Link to="/listaUsuarios" className="sideBar_containerCategory_link" id="listaUsuarios">
                             <img src={listUser} className="sideBar_containerCategory_link_icon" />
@@ -135,7 +143,7 @@ function SideBarComponent() {
                         ""
                     }
                     {
-                        isAdmin == 1 
+                        isAdmin
                         ? 
                         <Link to="/cadastroLivro" className="sideBar_containerCategory_link" id="cadastroLivro">
                             <img src={addLivro} className="sideBar_containerCategory_link_icon" />
