@@ -190,7 +190,7 @@ public class BibliotecaController {
 
                 h = repositoryHistorico.findTopByFkTbPerfilUsuarioAndFkTbLivrosOrderByIdDesc(idUsuario,c);
 
-                if(h.getAcao().equals("Retirada") || h.getAcao().equals("Renovacao")){
+                if(!h.getAcao().equals("Devolucao")){
 
                     l = repository.findLivroById(c);
 
@@ -305,23 +305,17 @@ public class BibliotecaController {
 
         for(Integer c = 0; c < listaDeId.size() ; c++){
 
-            System.out.println("Printando c: " + c);
-            System.out.println("Printando listaDeId na posição c : " + listaDeId.get(c));
-
             if(listaDeId.get(c).equals(id)){
 
                 contadorDeRepeticao++;
 
             }
-
         }
 
         if(contadorDeRepeticao > 1) {
 
             return true;
-
         }
-
         return false;
     }
 
