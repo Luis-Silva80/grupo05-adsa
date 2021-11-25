@@ -29,4 +29,11 @@ public interface PerfilUsuarioRepository extends JpaRepository<PerfilUsuario, In
     public PerfilUsuario findByNome(String nome);
 
     public PerfilUsuario findByEmail(String email);
+
+    @Query("SELECT a FROM PerfilUsuario a WHERE a.usuarioAdmin = 1 and a.id = :id")
+    public PerfilUsuario findAlunoById(@Param("id") Integer id);
+
+    @Query("SELECT p FROM PerfilUsuario p WHERE p.id = :id")
+    public PerfilUsuario findPerfilUsuarioById(@Param("id") Integer id);
+
 }

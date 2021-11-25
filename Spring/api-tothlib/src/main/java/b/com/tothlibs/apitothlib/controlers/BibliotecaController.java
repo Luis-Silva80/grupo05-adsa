@@ -4,6 +4,7 @@ import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
 import b.com.tothlibs.apitothlib.entity.Categoria;
 import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.entity.Livros;
+import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.listas.LayoutArquivos;
 import b.com.tothlibs.apitothlib.repository.*;
 import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
@@ -114,7 +116,6 @@ public class BibliotecaController {
     @PutMapping("reservar/{idUsuario}/{idLivro}")
     public ResponseEntity reservarLivro(@PathVariable Integer idUsuario, @PathVariable Integer idLivro) {
 
-
         try {
 
             Historico u = repositoryHistorico.
@@ -127,7 +128,6 @@ public class BibliotecaController {
 
             } else {
 
-
                 Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
                 if (idRegistro != null) {
@@ -137,9 +137,7 @@ public class BibliotecaController {
 
                     return ResponseEntity.status(400).build();
                 }
-
             }
-
         }catch (NullPointerException e){
 
             Integer idRegistro = admin.reservar(idLivro, idUsuario);
@@ -153,10 +151,54 @@ public class BibliotecaController {
             }
 
         }
+    }
 
+    @GetMapping("/buscarLivrosRerservados/{idUsuario}")
+    public ResponseEntity buscarLivrosLidos(@PathVariable Integer idUsuario){
 
+        try {
 
+            PerfilUsuario p = repositoryUsuario.findPerfilUsuarioById(idUsuario);
 
+        } catch (NullPointerException erro) {
+
+            return ResponseEntity.status(400).body("Usuário não encontrado!");
+
+        }
+
+        PerfilUsuario p = repositoryUsuario.findPerfilUsuarioById(idUsuario);
+
+        List<Integer> idLivrosAssociadosAoUsuario = new ArrayList<>();
+
+        idLivrosAssociadosAoUsuario = repositoryHistorico.findFkLivrosByIdUsuario(idUsuario);
+
+        List<Integer> idRepetidos = new ArrayList<>();
+
+        List<Livros> listaDeLivrosEncontrados = new ArrayList<>();
+
+        Historico h;
+
+        Livros l;
+
+        for(Integer c : idLivrosAssociadosAoUsuario){
+
+            idRepetidos.add(c);
+
+            if(!verificaIdRepetido(idRepetidos, c)){
+
+                h = repositoryHistorico.findTopByFkTbPerfilUsuarioAndFkTbLivrosOrderByIdDesc(idUsuario,c);
+
+                if(h.getAcao().equals("Retirada") || h.getAcao().equals("Renovacao")){
+
+                    l = repository.findLivroById(c);
+
+                    listaDeLivrosEncontrados.add(l);
+
+                }
+            }
+        }
+
+        return ResponseEntity.status(200).body(listaDeLivrosEncontrados);
     }
 
     @PutMapping("retirar/{idRegistro}/{idUsuario}")
@@ -248,6 +290,32 @@ public class BibliotecaController {
         } else {
             return null;
         }
+    }
+
+    public Boolean verificaIdRepetido(List<Integer> listaDeId, Integer id){
+
+        Integer contadorDeRepeticao = 0;
+
+        for(Integer c = 0; c < listaDeId.size() ; c++){
+
+            System.out.println("Printando c: " + c);
+            System.out.println("Printando listaDeId na posição c : " + listaDeId.get(c));
+
+            if(listaDeId.get(c).equals(id)){
+
+                contadorDeRepeticao++;
+
+            }
+
+        }
+
+        if(contadorDeRepeticao > 1) {
+
+            return true;
+
+        }
+
+        return false;
     }
 
 }
