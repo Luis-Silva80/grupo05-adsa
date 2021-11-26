@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -21,6 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -68,6 +70,7 @@ public class AlunoController {
     @ApiOperation(value = "Realiza o cadastro de um novo aluno")
     public ResponseEntity postAluno(@RequestBody PerfilUsuario novoAluno) throws UsuarioNaoEncontradoException {
 
+
         novoAluno.setUsuarioAdmin(0);
         novoAluno.setQtdLivrosLidos(0);
         novoAluno.setPontos(0L);
@@ -91,10 +94,10 @@ public class AlunoController {
         List<Integer> listId = repositoryHistorico.findLivrosByUser(idUsuario);
         UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
 
-        for(Integer l : listId){
+        for (Integer l : listId) {
             usuarioInfo.getLivrosLidos().add(repositoryLivro.findById(l).get());
         }
-        
+
         LOGGER.info("Retornando usuario desejado...");
 
         if (usuarioInfo != null) {
@@ -178,7 +181,6 @@ public class AlunoController {
     }
 
 
-
     @GetMapping("/deletaInativos")
     public ResponseEntity deletaInativos() {
 
@@ -190,7 +192,7 @@ public class AlunoController {
                 .stream()
                 .forEach(perfilUsuario -> verificarDataInativacao(perfilUsuario, listaDeDeletados));
 
-        if(qtdDeletados == 0){
+        if (qtdDeletados == 0) {
 
             LOGGER.info("Nenhum usuário foi deletado esse dia!");
 
@@ -213,8 +215,8 @@ public class AlunoController {
         if (LocalDate.now().isAfter(p.getDataInativacao().plusDays(30))) {
 
             listaDeDeletados.add(p);
-            qtdDeletados ++;
-        //                repository.deleteById(p.getId());
+            qtdDeletados++;
+            //                repository.deleteById(p.getId());
         }
 
     }

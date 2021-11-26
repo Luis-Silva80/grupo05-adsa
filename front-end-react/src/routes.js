@@ -14,6 +14,8 @@ import Login from "./pages/login/Login";
 import NotFound from "./pages/notFound/NotFound";
 import CadastroLivro from "./pages/cadastroLivro/CadastroLivro";
 
+import testePython from  "./pages/cadastroUsuario/testePython";
+
 
 export default function Routes() {
     return (
@@ -29,7 +31,12 @@ export default function Routes() {
                 <Route path="/contato" exact component={Contato} />
                 <Route path="/faq" exact component={Faq} />
                 <Route path="/cadastroLivro" exact component={CadastroLivro}/>
+
+                <Route path="/teste" exact component={testePython}/>
+
                 <Route path="*" exact component={NotFound} />
+
+                
             </Switch>
         </BrowserRouter>
     );

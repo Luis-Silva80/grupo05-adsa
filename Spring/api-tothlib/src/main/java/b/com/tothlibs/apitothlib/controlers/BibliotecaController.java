@@ -122,12 +122,12 @@ public class BibliotecaController {
             Historico u = repositoryHistorico.
                     findTopByFkTbPerfilUsuarioAndFkTbLivrosOrderByIdDesc(idUsuario, idLivro);
             if (u.getAcao().equals("Retirada") || u.getAcao().equals("Renovacao")) {
-
-                System.out.println("Backend melhor que o front forever!!");
-
                 return ResponseEntity.status(400).body("Não pode reservar o mesmo livro sem devolver antes!");
 
-            } else {
+            } else if(u.getAcao().equals("Reserva")){
+                return ResponseEntity.status(400).body("Você ja está com o livro reservado!!!");
+            }
+            else {
 
                 Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
