@@ -69,14 +69,12 @@ public class AdminController {
 
         PerfilUsuario usuario = repository.findById(idAdmin).get();
 
-        List<Integer> listId = repositoryHistorico.findFkLivrosByIdUsuario(idAdmin);
+        List<Integer> listId = repositoryHistorico.findLivrosByUser(idAdmin);
+
         UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
 
-        for (Integer i : listId){
-            Livros livro = repositoryLivro.findById(i).get();
-            if(!containsName(usuarioInfo.getLivrosLidos(), livro.getId())){
-                usuarioInfo.getLivrosLidos().add(livro);
-            }
+        for(Integer l : listId){
+            usuarioInfo.getLivrosLidos().add(repositoryLivro.findById(l).get());
         }
 
         LOGGER.info("Retornando usuario desejado...");
@@ -91,9 +89,5 @@ public class AdminController {
             return ResponseEntity.status(404).build();
         }
 
-    }
-
-    public boolean containsName(final List<Livros> list, final Integer id){
-        return list.stream().map(Livros::getId).filter(id::equals).findFirst().isPresent();
     }
 }

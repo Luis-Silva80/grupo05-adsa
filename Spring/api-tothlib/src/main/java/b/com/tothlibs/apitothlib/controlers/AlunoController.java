@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -21,7 +22,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/aluno")
@@ -46,7 +49,10 @@ public class AlunoController {
     @GetMapping
     @ApiOperation(value = "Retorna a lista de alunos cadastrados")
     public ResponseEntity getAluno() {
-        List<PerfilUsuario> alunos = repository.findAlunos();
+        List<PerfilUsuario> alunos = repository.findAlunos()
+                .stream()
+                .filter(usuario -> usuario.getUsuarioAdmin().equals(0))
+                .collect(Collectors.toList());
 
         if (alunos.isEmpty()) {
 
@@ -63,6 +69,7 @@ public class AlunoController {
     @PostMapping()
     @ApiOperation(value = "Realiza o cadastro de um novo aluno")
     public ResponseEntity postAluno(@RequestBody PerfilUsuario novoAluno) throws UsuarioNaoEncontradoException {
+
 
         novoAluno.setUsuarioAdmin(0);
         novoAluno.setQtdLivrosLidos(0);
@@ -82,18 +89,15 @@ public class AlunoController {
     @ApiOperation(value = "Retorna um usuario com ID especifico")
     public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idUsuario) {
 
-        PerfilUsuario usuario = repository.findById(idUsuario).get();
+        PerfilUsuario usuario = repository.findByIdOnNotAdmin(idUsuario);
 
-        List<Integer> listId = repositoryHistorico.findFkLivrosByIdUsuario(idUsuario);
+        List<Integer> listId = repositoryHistorico.findLivrosByUser(idUsuario);
         UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
 
-
-        for (Integer i : listId) {
-            Livros livro = repositoryLivro.findById(i).get();
-            if (!containsName(usuarioInfo.getLivrosLidos(), livro.getId())) {
-                usuarioInfo.getLivrosLidos().add(livro);
-            }
+        for (Integer l : listId) {
+            usuarioInfo.getLivrosLidos().add(repositoryLivro.findById(l).get());
         }
+
         LOGGER.info("Retornando usuario desejado...");
 
         if (usuarioInfo != null) {
@@ -177,7 +181,6 @@ public class AlunoController {
     }
 
 
-
     @GetMapping("/deletaInativos")
     public ResponseEntity deletaInativos() {
 
@@ -189,7 +192,7 @@ public class AlunoController {
                 .stream()
                 .forEach(perfilUsuario -> verificarDataInativacao(perfilUsuario, listaDeDeletados));
 
-        if(qtdDeletados == 0){
+        if (qtdDeletados == 0) {
 
             LOGGER.info("Nenhum usuário foi deletado esse dia!");
 
@@ -212,8 +215,8 @@ public class AlunoController {
         if (LocalDate.now().isAfter(p.getDataInativacao().plusDays(30))) {
 
             listaDeDeletados.add(p);
-            qtdDeletados ++;
-        //                repository.deleteById(p.getId());
+            qtdDeletados++;
+            //                repository.deleteById(p.getId());
         }
 
     }
