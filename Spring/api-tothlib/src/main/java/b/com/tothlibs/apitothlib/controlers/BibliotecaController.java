@@ -56,7 +56,7 @@ public class BibliotecaController {
 
         List<Livros> livros = admin.consultaListaLivros();
 
-        if(livros.isEmpty()){
+        if(!livros.isEmpty()){
             return ResponseEntity.status(200).body(livros);
         }else {
             return ResponseEntity.status(204).build();
@@ -68,6 +68,7 @@ public class BibliotecaController {
     @ApiOperation(value = "Realiza um cadastro de um livro")
     public ResponseEntity cadastrarLivro(@PathVariable Integer idAdmin, @RequestBody Livros idLivro) {
 
+        Integer admin = repositoryUsuario.findAdminById(idAdmin);
         Integer admin = repositoryUsuario.findAdminById(idAdmin);
 
         if (admin.equals(1)) {
