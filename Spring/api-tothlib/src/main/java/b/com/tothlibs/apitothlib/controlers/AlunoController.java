@@ -96,7 +96,10 @@ public class AlunoController {
         UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
 
         for (Integer l : listId) {
-            usuarioInfo.getLivrosLidos().add(repositoryLivro.findById(l).get());
+            Livros livro = repositoryLivro.findById(l).get();
+            if (!usuarioInfo.getLivrosLidos().contains(livro)) {
+                usuarioInfo.getLivrosLidos().add(repositoryLivro.findById(l).get());
+            }
         }
 
         LOGGER.info("Retornando usuario desejado...");
