@@ -89,7 +89,7 @@ public class AlunoController {
     @ApiOperation(value = "Retorna um usuario com ID especifico")
     public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idUsuario) {
 
-        PerfilUsuario usuario = repository.findByIdOnNotAdmin(idUsuario);
+        PerfilUsuario usuario = repository.findById(idUsuario).get();
 
         List<Integer> listId = repositoryHistorico.findLivrosByUser(idUsuario);
         UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
