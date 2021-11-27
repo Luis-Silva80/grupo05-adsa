@@ -1,5 +1,6 @@
 package b.com.tothlibs.apitothlib.services;
 
+import b.com.tothlibs.apitothlib.dto.Response;
 import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
@@ -48,34 +49,30 @@ public class UsuarioAdmin implements Administravel, Usuario {
     }
 
     @Override
-    public Boolean excluirLivro(Integer id) {
+    public Response excluirLivro(Integer id) {
 
 
         if (repository.existsById(id)) {
             repository.deleteById(id);
 
-
-            if (repository.existsById(id)) {
-                return false;
-            } else {
-                return true;
-            }
+            return new Response(00,"Livro Deletado com sucesso");
 
         } else {
-            return false;
+            return new Response(02,"Livro não existe na base");
         }
 
     }
 
     @Override
-    public Boolean alterarLivro(Integer id, Livros livroAtualizado) {
+    public Response alterarLivro(Integer id, Livros livroAtualizado) {
 
         if (repository.existsById(id)) {
             livroAtualizado.setId(id);
+            livroAtualizado.setFkTbbiblioteca(1);
             repository.save(livroAtualizado);
-            return true;
+            return new Response(00,"Livro atualizado");
         } else {
-            return false;
+            return new Response(02,"Livro não encontrado");
         }
     }
 
@@ -111,6 +108,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
         usuario = repositoryUsuario.findById(idUsuario).get();
 
 
+        Historico ultimoRegistroByUsuario = repositoryHistorico.findFirstByFkTbPerfilUsuarioOrderByIdDesc(usuario.getId());
 
         if(usuario.getStatusAtivo()){
             if (livro != null) {

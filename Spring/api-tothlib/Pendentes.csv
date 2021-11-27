@@ -1,4 +1,4 @@
-
+ID Registro;ID Livro;ID Usuario;Data Retirada;Nome do livro;Nome do Aluno;Ação;Data de devolução;Qtd Livros reservados
 6;5;12;2021-11-06;JS Advanced;Dudu;Retirada;2021-11-16;0
 2;4;13;2021-11-06;Java Programim I ;Luis;Retirada;2021-11-16;0
 9;7;15;2021-11-10;Maze Runner;Alencar;Retirada;2021-11-20;1
@@ -26,3 +26,4 @@
 9;7;15;2021-11-10;Maze Runner;Alencar;Retirada;2021-11-20;4
 3;4;13;2021-11-06;Java Programim I ;Luis;Renovacao;2021-11-26;2
 2;4;13;2021-11-06;Java Programim I ;Luis;Retirada;2021-11-16;2
+149;21;13;2021-11-25;Livro de teste 2;Luis;Retirada;2021-12-05;4

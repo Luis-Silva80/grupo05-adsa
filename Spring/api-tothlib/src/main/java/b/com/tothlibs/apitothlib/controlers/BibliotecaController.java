@@ -1,5 +1,6 @@
 package b.com.tothlibs.apitothlib.controlers;
 
+import b.com.tothlibs.apitothlib.dto.Response;
 import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
 import b.com.tothlibs.apitothlib.entity.Categoria;
 import b.com.tothlibs.apitothlib.entity.Historico;
@@ -90,26 +91,38 @@ public class BibliotecaController {
     @PutMapping("/{id}")
     @ApiOperation(value = "Realiza uma alteração no cadastro de livros")
     public ResponseEntity alteraLivro(@PathVariable Integer id, @RequestBody Livros livroAtualizado) {
-        if (repository.existsById(id)) {
-            livroAtualizado.setId(id);
-            repository.save(livroAtualizado);
-            return ResponseEntity.status(200).build();
-        } else {
-            return ResponseEntity.status(404).build();
+
+
+        Response resp = admin.alterarLivro(id, livroAtualizado);
+
+        if(resp.getCodigo().equals(00)){
+            return ResponseEntity.status(200).body(resp);
+        }else {
+            return ResponseEntity.status(404).body(resp);
         }
+
+
+//        if (repository.existsById(id)) {
+//            livroAtualizado.setId(id);
+//            repository.save(livroAtualizado);
+//            return ResponseEntity.status(200).build();
+//        } else {
+//            return ResponseEntity.status(404).build();
+//        }
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Remove um livro pelo ID")
     public ResponseEntity deletaPorId(@PathVariable Integer id) {
 
-        if (repository.existsById(id)) {
+        Response resp = admin.excluirLivro(id);
 
-            repository.deleteById(id);
-            return ResponseEntity.status(200).build();
-        } else {
-            return ResponseEntity.status(404).build();
+        if (resp.getCodigo().equals(00)) {
+            return ResponseEntity.status(200).body(resp);
+        }else {
+            return ResponseEntity.status(404).body(resp);
         }
+
 
     }
 
@@ -124,10 +137,9 @@ public class BibliotecaController {
             if (u.getAcao().equals("Retirada") || u.getAcao().equals("Renovacao")) {
                 return ResponseEntity.status(400).body("Não pode reservar o mesmo livro sem devolver antes!");
 
-            } else if(u.getAcao().equals("Reserva")){
+            } else if (u.getAcao().equals("Reserva")) {
                 return ResponseEntity.status(400).body("Você ja está com o livro reservado!!!");
-            }
-            else {
+            } else {
 
                 Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
@@ -139,7 +151,7 @@ public class BibliotecaController {
                     return ResponseEntity.status(400).build();
                 }
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
 
             Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
@@ -156,7 +168,7 @@ public class BibliotecaController {
 
     @GetMapping("/buscarLivrosReservados/{idUsuario}")
     @ApiOperation(value = "Busca os livros que estão reservados agora para o usuário")
-    public ResponseEntity buscarLivrosLidos(@PathVariable Integer idUsuario){
+    public ResponseEntity buscarLivrosLidos(@PathVariable Integer idUsuario) {
 
         try {
 
@@ -182,15 +194,15 @@ public class BibliotecaController {
 
         Livros l;
 
-        for(Integer c : idLivrosAssociadosAoUsuario){
+        for (Integer c : idLivrosAssociadosAoUsuario) {
 
             idRepetidos.add(c);
 
-            if(!verificaIdRepetido(idRepetidos, c)){
+            if (!verificaIdRepetido(idRepetidos, c)) {
 
-                h = repositoryHistorico.findTopByFkTbPerfilUsuarioAndFkTbLivrosOrderByIdDesc(idUsuario,c);
+                h = repositoryHistorico.findTopByFkTbPerfilUsuarioAndFkTbLivrosOrderByIdDesc(idUsuario, c);
 
-                if(!h.getAcao().equals("Devolucao")){
+                if (!h.getAcao().equals("Devolucao")) {
 
                     l = repository.findLivroById(c);
 
@@ -289,7 +301,7 @@ public class BibliotecaController {
         return ResponseEntity.status(200).build();
     }
 
-    public Integer efetuarReserva(Integer idUsuario, Integer idLivro){
+    public Integer efetuarReserva(Integer idUsuario, Integer idLivro) {
         Integer idRegistro = admin.reservar(idLivro, idUsuario);
 
         if (idRegistro != null) {
@@ -299,20 +311,20 @@ public class BibliotecaController {
         }
     }
 
-    public Boolean verificaIdRepetido(List<Integer> listaDeId, Integer id){
+    public Boolean verificaIdRepetido(List<Integer> listaDeId, Integer id) {
 
         Integer contadorDeRepeticao = 0;
 
-        for(Integer c = 0; c < listaDeId.size() ; c++){
+        for (Integer c = 0; c < listaDeId.size(); c++) {
 
-            if(listaDeId.get(c).equals(id)){
+            if (listaDeId.get(c).equals(id)) {
 
                 contadorDeRepeticao++;
 
             }
         }
 
-        if(contadorDeRepeticao > 1) {
+        if (contadorDeRepeticao > 1) {
 
             return true;
         }

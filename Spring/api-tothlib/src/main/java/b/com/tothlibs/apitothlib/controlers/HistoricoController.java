@@ -7,18 +7,23 @@ import b.com.tothlibs.apitothlib.repository.HistoricoRepository;
 import b.com.tothlibs.apitothlib.utils.Mensagem;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Formatter;
 import java.util.FormatterClosedException;
 import java.util.List;
@@ -36,14 +41,14 @@ public class HistoricoController {
     ListaObj listaObj = null;
 
     @GetMapping
-    public ResponseEntity getHistorico(){
+    public ResponseEntity getHistorico() {
 
         List<Historico> historico = repository.findAllByOrderByIdDesc();
 
-        if(!historico.isEmpty()){
+        if (!historico.isEmpty()) {
             return ResponseEntity.status(200).body(historico);
-        }else {
-            mensagem = new Mensagem(01,"Registros não encontrados");
+        } else {
+            mensagem = new Mensagem(01, "Registros não encontrados");
             return ResponseEntity.status(404).build();
         }
 
@@ -51,30 +56,54 @@ public class HistoricoController {
 
     @GetMapping("/pendentes")
     @ApiOperation(value = "Retorna uma lista com o historico usuarios pendentes na plataforma")
-    public ResponseEntity pendencia() throws IOException , NullPointerException{
+    public ResponseEntity pendencia() throws IOException, NullPointerException {
 
         List<UsuariosPendentesDto> listaDeHistorico = repository.findUserPendencia().stream()
                 .filter(usuariosPendentesDto -> usuariosPendentesDto.getLivrosReservados() > 0)
-                .collect(Collectors.toList());                ;
+                .collect(Collectors.toList());
 
         listaObj = new ListaObj(listaDeHistorico.size());
 
-        for (int i = 0;i < listaDeHistorico.size();i++){
+        for (int i = 0; i < listaDeHistorico.size(); i++) {
             listaObj.adicionaElemento(listaDeHistorico.get(i));
         }
 
         gravaArquivoCsv(listaObj);
 
         return ResponseEntity.status(200).body(listaDeHistorico);
+
+
     }
 
-    public static void gravaArquivoCsv(ListaObj<UsuariosPendentesDto> lista) {
+    @GetMapping(value = "/export", produces = "text/csv")
+    @ApiOperation(value = "Realiza a exportação de um arquivo com todos os usuarios pendentes na biblioteca")
+    public ResponseEntity<?> export() {
+
+         String data = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+        var filename = String.format("Pendentes.csv");
+
+        try {
+            var file = new File(filename);
+            var path = Paths.get(file.getAbsolutePath());
+            var resource = new ByteArrayResource(Files.readAllBytes(path));
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.parseMediaType("text/csv"))
+                    .contentLength(file.length())
+                    .body(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    public static Formatter gravaArquivoCsv(ListaObj<UsuariosPendentesDto> lista) {
 
         FileWriter arq = null;
         Formatter saida = null;
         Boolean deuRuim = false;
 
-        String nomeArq = "Pendentes.csv";       // acrescenta a extensão .csv ao nome do arquivo
+        String nomeArq = "Pendentes2.csv";       // acrescenta a extensão .csv ao nome do arquivo
 
         // Bloco try-catch para abrir o arquivo
         try {
@@ -86,18 +115,15 @@ public class HistoricoController {
             System.exit(1);
         }
 
-
-//        private Integer id;
-//        private Integer fkTbLivros;
-//        private Integer fkTbPerfilUsuario;
-//        private LocalDate dataLivroHistorico;
-//        private String nomeLivro;
-//        private String nomePerfilUsuario;
-//        private String acao;
-//        private LocalDate dataDevolucao;
-//        private Integer livrosReservados;
-
         // Bloco try-catch para gravar no arquivo
+        saida.format("%s;%s;%s;%s;%s;%s;%s;%s;%s\n","ID Registro",
+                "ID Livro","ID Usuario",
+                "Data Retirada",
+                "Nome do livro",
+                "Nome do Aluno",
+                "Ação",
+                "Data de devolução",
+                "Qtd Livros reservados");
         try {
             // Percorro a lista de cachorros
             for (int i = 0; i < lista.getTamanho(); i++) {
@@ -114,10 +140,14 @@ public class HistoricoController {
                         pendentes.getAcao(),
                         pendentes.getDataDevolucao(),
                         pendentes.getLivrosReservados());
+
+                return saida;
             }
         } catch (FormatterClosedException erro) {
             System.out.println("Erro ao gravar arquivo");
             deuRuim = true;
+
+            return null;
         } finally {
             saida.close();
             try {
@@ -129,13 +159,9 @@ public class HistoricoController {
             if (deuRuim) {
                 System.exit(1);
             }
+
+            return null;
         }
-
-    }
-
-    public static void montaPilhaUsuarioPendente(){
-
-
 
     }
 
