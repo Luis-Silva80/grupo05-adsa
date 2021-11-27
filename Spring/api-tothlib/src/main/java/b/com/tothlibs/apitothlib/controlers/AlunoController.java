@@ -76,6 +76,7 @@ public class AlunoController {
         novoAluno.setPontos(0L);
         novoAluno.setQtdResenhas(0);
         novoAluno.setLivrosReservados(0);
+        novoAluno.setFkTbInstituicao(2);
         novoAluno.setStatusAtivo(true);
 
         repository.save(novoAluno);

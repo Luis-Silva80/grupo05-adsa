@@ -69,6 +69,7 @@ public class BibliotecaController {
     public ResponseEntity cadastrarLivro(@PathVariable Integer idAdmin, @RequestBody Livros idLivro) {
 
         Integer admin = repositoryUsuario.findAdminById(idAdmin);
+        Integer admin = repositoryUsuario.findAdminById(idAdmin);
 
         if (admin.equals(1)) {
 

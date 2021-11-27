@@ -55,6 +55,7 @@ public class AdminController {
         novoAdmin.setPontos(0L);
         novoAdmin.setQtdResenhas(0);
         novoAdmin.setLivrosReservados(0);
+        novoAdmin.setFkTbInstituicao(2);
         novoAdmin.setStatusAtivo(true);
 
         repository.save(novoAdmin);
