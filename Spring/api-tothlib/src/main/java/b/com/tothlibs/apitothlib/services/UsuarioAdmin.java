@@ -145,7 +145,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
     @Override
     public Integer locarLivro(Integer idRegistro, Integer idUsuario) {
 
-        usuario = new PerfilUsuario();
+        usuario = repositoryUsuario.findById(idUsuario).get();
         registro = repositoryHistorico.findById(idRegistro).get();
 
         livro = repository.findById(registro.getFkTbLivros()).get();
