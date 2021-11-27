@@ -212,6 +212,19 @@ public class AlunoController {
 
     }
 
+    @PatchMapping("/alterar-nome/{idAluno}/{novoNome}")
+    public ResponseEntity patchNome(@PathVariable Integer idAluno, @PathVariable String novoNome){
+
+        PerfilUsuario alunoComNome = repository.findById(idAluno).get();
+
+        alunoComNome.setNome(novoNome);
+
+        repository.save(alunoComNome);
+
+        return ResponseEntity.status(200).build();
+
+    }
+
     public void verificarDataInativacao(PerfilUsuario p,
                                         List<PerfilUsuario> listaDeDeletados) {
 
