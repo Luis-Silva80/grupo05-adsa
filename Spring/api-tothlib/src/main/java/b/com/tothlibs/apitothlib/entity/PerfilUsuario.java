@@ -1,6 +1,7 @@
 package b.com.tothlibs.apitothlib.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.query.criteria.internal.predicate.BooleanExpressionPredicate;
 
 import javax.persistence.*;
@@ -30,7 +31,7 @@ public class PerfilUsuario {
     @Column(name = "telefone", length = 14)
     private String telefone;
 
-    @JsonIgnore
+    @JsonIgnoreProperties
     @Column(name = "senha", length = 35)
     private String senha;
 
