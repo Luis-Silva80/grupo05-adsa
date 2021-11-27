@@ -56,7 +56,7 @@ public class BibliotecaController {
 
         List<Livros> livros = admin.consultaListaLivros();
 
-        if(livros != null){
+        if(livros.isEmpty()){
             return ResponseEntity.status(200).body(livros);
         }else {
             return ResponseEntity.status(204).build();
