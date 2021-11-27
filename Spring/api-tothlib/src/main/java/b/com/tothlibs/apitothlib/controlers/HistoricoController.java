@@ -75,7 +75,7 @@ public class HistoricoController {
 
     }
 
-    @GetMapping(value = "/export", produces = "text/csv")
+    @GetMapping(value = "/export-pendentes", produces = "text/csv")
     @ApiOperation(value = "Realiza a exportação de um arquivo com todos os usuarios pendentes na biblioteca")
     public ResponseEntity<?> export() {
 

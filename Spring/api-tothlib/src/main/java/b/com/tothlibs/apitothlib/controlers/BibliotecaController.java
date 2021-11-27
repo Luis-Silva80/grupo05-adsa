@@ -11,11 +11,14 @@ import b.com.tothlibs.apitothlib.repository.*;
 import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -51,8 +54,13 @@ public class BibliotecaController {
     @ApiOperation(value = "Retorna uma lista de livros")
     public ResponseEntity listaLivros() {
 
-        List<Livros> livros = repository.findAll();
-        return ResponseEntity.status(200).body(repository.findAll());
+        List<Livros> livros = admin.consultaListaLivros();
+
+        if(livros != null){
+            return ResponseEntity.status(200).body(livros);
+        }else {
+            return ResponseEntity.status(204).build();
+        }
 
     }
 
@@ -90,36 +98,33 @@ public class BibliotecaController {
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Realiza uma alteração no cadastro de livros")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Alteração bem sucedida"),
+            @ApiResponse(code = 404, message = "Livro não encontrado")})
     public ResponseEntity alteraLivro(@PathVariable Integer id, @RequestBody Livros livroAtualizado) {
 
 
         Response resp = admin.alterarLivro(id, livroAtualizado);
 
-        if(resp.getCodigo().equals(00)){
+        if (resp.getCodigo().equals(00)) {
             return ResponseEntity.status(200).body(resp);
-        }else {
+        } else {
             return ResponseEntity.status(404).body(resp);
         }
-
-
-//        if (repository.existsById(id)) {
-//            livroAtualizado.setId(id);
-//            repository.save(livroAtualizado);
-//            return ResponseEntity.status(200).build();
-//        } else {
-//            return ResponseEntity.status(404).build();
-//        }
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Remove um livro pelo ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Livro removido com sucesso"),
+            @ApiResponse(code = 404, message = "Livro não encontrado")})
     public ResponseEntity deletaPorId(@PathVariable Integer id) {
 
         Response resp = admin.excluirLivro(id);
 
         if (resp.getCodigo().equals(00)) {
             return ResponseEntity.status(200).body(resp);
-        }else {
+        } else {
             return ResponseEntity.status(404).body(resp);
         }
 
@@ -172,15 +177,15 @@ public class BibliotecaController {
 
         try {
 
-            PerfilUsuario p = repositoryUsuario.findPerfilUsuarioById(idUsuario);
+            PerfilUsuario p = repositoryUsuario.findById(idUsuario).get();
 
         } catch (NullPointerException erro) {
 
-            return ResponseEntity.status(400).body("Usuário não encontrado!");
+            return ResponseEntity.status(404).body("Usuário não encontrado!");
 
         }
 
-        PerfilUsuario p = repositoryUsuario.findPerfilUsuarioById(idUsuario);
+        PerfilUsuario p = repositoryUsuario.findById(idUsuario).get();
 
         List<Integer> idLivrosAssociadosAoUsuario = new ArrayList<>();
 
@@ -284,6 +289,17 @@ public class BibliotecaController {
         managerLayoutArquivos.leArquivoTxt(nomeArquivo);
 
         return ResponseEntity.status(200).body("Arquivo gerado com sucesso");
+
+    }
+
+    @PostMapping("/upload")
+    public void upload(@RequestParam MultipartFile file){
+
+//        LayoutArquivos lerArq = new LayoutArquivos();
+//
+//        System.out.println(file.getName());
+//
+//        lerArq.leArquivoTxt(file.getName());
 
     }
 
