@@ -241,7 +241,7 @@ public class BibliotecaController {
 
         Integer novoCodRegistro = admin.renovarAlocacao(idRegistro, idUsuario);
 
-        if (idRegistro != null) {
+        if (idRegistro != null || idRegistro.equals(0)) {
             return ResponseEntity.status(200).body(novoCodRegistro);
         } else {
             return ResponseEntity.status(400).body("Renovação não concluida");
