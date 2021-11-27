@@ -32,7 +32,11 @@ function ListaUsuarios() {
 
     const [users, setUsers] = useState([]);
     const [userInfo, setUserInfo] = useState([]);
-    const [render, setRender] = useState([users]);
+
+
+    var userName = [];
+    var userAZ = [];
+    var userZA = [];
 
     useEffect(() => {
         api
@@ -86,11 +90,8 @@ function ListaUsuarios() {
     // }
 
     function filtro() {
-        console.log(filter_combo.value);
         switch (filter_combo.value) {
-            case "nomeAsc":
-                var userName = [];
-                var userOrdenado = [];
+            case "nomeA-Z":
                 users.map(user => {
                     userName.push(user.nome)
                 });
@@ -98,22 +99,33 @@ function ListaUsuarios() {
                 userName.map(name => {
                     users.map(user => {
                         if (user.nome == name) {
-                            userOrdenado.push(user)
+                            userAZ.push(user)
                         }
                     })
                 })
-                setRender(userOrdenado)
-                console.log(userOrdenado, "userOrdenado aqui");
+                setUsers(userAZ)
                 break;
-            case "nomeDesc":
-                setRender(users)
-                console.log(render, "render aqui");
+            case "nomeZ-A":
+                users.map(user => {
+                    userName.push(user.nome)
+                });
+                userName.sort();
+                userName.map(name => {
+                    users.map(user => {
+                        if (user.nome == name) {
+                            userAZ.push(user)
+                        }
+                    })
+                })
+                for (let i = userAZ.length -1; i >= 0; i--) {
+                    userZA.push(userAZ[i]);
+                }
+                setUsers(userZA)
                 break;
             default:
                 break;
         }
     }
-
 
     return (
 
@@ -127,17 +139,16 @@ function ListaUsuarios() {
                         <input className="main_nav_input" placeholder="Digite o nome do usuário" type="text" name="" id="" />
                         <button className="main_nav_btn" >Pesquisar</button>
                         {/* <button className="main_nav_btn" onClick={findUser}>Pesquisar</button> */}
-                        <select id="filter_combo" className="main_nav_filter">
+                        <select id="filter_combo" onChange={() => filtro()} className="main_nav_filter">
                             <option className="main_nav_filter_value" value="#">Filtrar por: </option>
+                            <option className="main_nav_filter_value" value="nomeA-Z">Nome A-Z</option>
+                            <option className="main_nav_filter_value" value="nomeZ-A">Nome Z-A</option>
                             <option className="main_nav_filter_value" value="pendencia">Pendência</option>
-                            <option className="main_nav_filter_value" value="nomeDesc">Nome Desc</option>
-                            <option className="main_nav_filter_value" value="nomeAsc">Nome Asc</option>
                         </select>
                     </div>
 
                     <div className="main_excel">
-                        <button onClick={() => Pendentes()} className="main_excel_button">Extrair excel</button>
-                        <button onClick={() => filtro()} className="main_excel_button">Aplicar filtros</button>
+                        <a href="http://localhost:8080/historico/export-pendentes" className="main_excel_button">Extrair excel</a>
                     </div>
 
                     <table className="main_table" id="table">
@@ -150,7 +161,7 @@ function ListaUsuarios() {
                             <th></th>
                             <th></th>
                         </tr>
-                        {render.map(item => (
+                        {users.map(item => (
 
                             <tr className="main_table_user">
 

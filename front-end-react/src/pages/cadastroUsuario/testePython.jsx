@@ -4,13 +4,13 @@ function CadastroUsuario() {
 
    function teste(){
 
-    const numero_aleatorio = Math.random(1_000_000, 9_999_999)
+    const numero_aleatorio = Math.random(1000000, 9999999)
 
         apiPython.post("/sendEmail",
         {
             nome_usuario : "Hanan",
             email : "212-3a-grupo4@bandtec.com.br",
-            numero_codigo : "13823"
+            numero_codigo : numero_aleatorio
 
         }).then((resposta) => {
             if (resposta.status === 201) {

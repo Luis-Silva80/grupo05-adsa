@@ -6,7 +6,7 @@ import closeButton from "../../assets/close.png";
 function Resp(props) {
   return (
     <>
-      <section id="respReserv" className="resp">
+      <section id="respReserv" className="respReserv">
         <h3 className="resp_title">{props.titulo}</h3>
         <h3 className="resp_parag">{props.parag}</h3>
         {

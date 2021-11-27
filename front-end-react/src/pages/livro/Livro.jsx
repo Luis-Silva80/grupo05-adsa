@@ -45,7 +45,7 @@ function Livro() {
     const resp = document.getElementById('respReserv');
 
     api
-    .put(`/biblioteca/reservar/${bookInfo.id}/${userId}`)
+    .put(`/biblioteca/reservar/${userId}/${bookInfo.id}`)
     .then((response) => {
       if (response.status === 200) {
         setRespInfo({ titulo: "Sucesso", parag: "Entre em seu perfil para verificar o livro clicando no botão abaixo", btn: "Perfil", link:"/perfilUsuario" })
