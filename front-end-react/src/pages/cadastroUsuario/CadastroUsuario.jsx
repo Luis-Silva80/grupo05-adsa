@@ -1,5 +1,6 @@
 // import css, React and hooks
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import "./style.scss";
 
 // import components
@@ -11,6 +12,8 @@ import api from "../../services/api";
 import { Link } from 'react-router-dom';
 
 function CadastroUsuario() {
+
+    const history = useHistory();
 
     function Submit(event) {
   
@@ -30,9 +33,12 @@ function CadastroUsuario() {
             method: 'post',
             url: '/aluno',
             data: formData,
-        }).then(function (response) {
-            console.log(response.data)
-        });
+        }).then(response => {
+            console.log(response)
+            history.push('/login');
+        }).catch(erro => {
+            console.error(erro);
+        })
       }
 
     useEffect(() => {
@@ -51,11 +57,11 @@ function CadastroUsuario() {
                 <h1 className="main_title">Cadastro</h1>
                 <p className="main_parag">Faça o seu cadastro na nossa plataforma para reservar o seus livros.</p>
                 <form action="" className="main_form" id="form" onSubmit={Submit}> 
-                    <input type="text" id="nome" name="nome" required className="main_form_input" placeholder="Nome: Lucas Alves Pereira " />
-                    <input type="number" id="cpf" name="cpf" required className="main_form_input" placeholder="CPF: 12345678911" />
-                    <input type="text" id="email" name="email" required className="main_form_input" placeholder="Email: usuario.exemplo@email.com" />
-                    <input type="text" id="telefone" name="telefone" required className="main_form_input" placeholder="Telefone: (11)123456789" />
-                    <input type="password" id="senha" name="senha" required className="main_form_input" placeholder="Senha: *************" />
+                    <input type="text" id="nome" name="nome" required className="main_form_input" placeholder="Ex: Nome Sobrenome " />
+                    <input type="number" id="cpf" name="cpf" required className="main_form_input" placeholder="Ex: 12345678911" />
+                    <input type="text" id="email" name="email" required className="main_form_input" placeholder="Ex: exemplo.exemplo@email.com" />
+                    <input type="text" id="telefone" name="telefone" required className="main_form_input" placeholder="Ex: (11)123456789" />
+                    <input type="password" id="senha" name="senha" required className="main_form_input" placeholder="*************" />
                     <input type="submit" className="main_form_button" id="formBtn" value="Cadastrar" />
                 </form>
                 <div className="main_box">

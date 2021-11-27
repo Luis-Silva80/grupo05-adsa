@@ -19,6 +19,23 @@ $black: #07080a;
             font-size: 3rem;
             margin-bottom: 20px;
         }
+        &_excel {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            &_button {
+                background: #04378f;
+                color: #ffffff;
+                padding: 6px 10px 6px 10px;
+                border-radius: 10px;
+                font-size: 18px;
+                border: none;
+                position: relative;
+                cursor: pointer;
+                margin: 0 10px;
+            }
+        }
         &_nav {
             display: flex;
             align-items: center;
