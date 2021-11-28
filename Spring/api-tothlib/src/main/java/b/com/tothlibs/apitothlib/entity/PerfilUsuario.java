@@ -59,6 +59,18 @@ public class PerfilUsuario {
     @Column(name = "data_inativacao")
     private LocalDate dataInativacao;
 
+    @JsonIgnoreProperties  // esta anotação indica que o campo não será exibido no JSON
+    @Column(name = "foto", length = 20_000_000) // tamanho de 20Mb
+    private byte[] foto;
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
     public Boolean getStatusAtivo() {
         return statusAtivo;
     }
