@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 @RequestMapping("/biblioteca")
 @Api(value = "API REST")
 @CrossOrigin(origins = "*")
-public class BibliotecaController {
+public class BibliotecaController<T> {
 
     public static final Logger LOGGER = Logger.getLogger(String.valueOf(BibliotecaController.class));
 
@@ -273,6 +273,8 @@ public class BibliotecaController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String dataFormatada = dataHoje.format(formatter);
 
+
+
         String nomeArquivo = "Livros-";
         nomeArquivo += dataFormatada + ".txt";
 
@@ -286,11 +288,12 @@ public class BibliotecaController {
 
         managerLayoutArquivos.verificaTipoArquivo();
 
-        managerLayoutArquivos.leArquivoTxt(nomeArquivo);
 
         return ResponseEntity.status(200).body("Arquivo gerado com sucesso");
 
     }
+
+
 
     @PostMapping("/upload")
     public void upload(@RequestParam MultipartFile file){
@@ -304,15 +307,43 @@ public class BibliotecaController {
     }
 
 
-    @GetMapping("/lerArquivo")
+    @GetMapping("/lerArquivo/livro")
     @ApiOperation(value = "Realiza a leitura de um arquivo com as informções dentro arquivo")
     public ResponseEntity leTxt() {
 
-        String nomeArquivo = "Livros-2021-11-17.txt";
+        LayoutArquivos managerLayoutArquivos = new LayoutArquivos();
 
-        LayoutArquivos trataArquivo = new LayoutArquivos();
+        List<Livros> livrosAGravar = new ArrayList<>();
+        List<Categoria> categoriasAGravar = new ArrayList<>();
 
-        trataArquivo.leArquivoTxt(nomeArquivo);
+        List<List<T>> retornoDoMetodoLerArquivo;
+
+        retornoDoMetodoLerArquivo = (managerLayoutArquivos.leArquivoTxt("Livros-2021-11-27.txt"));
+
+        if(retornoDoMetodoLerArquivo.get(0).get(0) instanceof  Livros){
+
+            livrosAGravar = (List<Livros>) retornoDoMetodoLerArquivo.get(0);
+
+        }
+
+        if(retornoDoMetodoLerArquivo.get(1).get(0) instanceof  Categoria){
+
+            categoriasAGravar = (List<Categoria>) retornoDoMetodoLerArquivo.get(1);
+
+        }
+
+        for(Livros l : livrosAGravar){
+
+            repository.save(l);
+
+        }
+
+        for(Categoria c : categoriasAGravar){
+
+            repositoryCategoria.save(c);
+
+        }
+
 
         return ResponseEntity.status(200).build();
     }
