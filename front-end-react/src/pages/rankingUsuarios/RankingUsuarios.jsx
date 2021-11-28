@@ -52,7 +52,7 @@ function RankingUsuarios() {
 
             <tr class="main_table_user">
               <td class="main_table_user_item place"><img class="main_table_user_img" src={medal} alt="First user" /></td>
-              <td class="main_table_user_item name">Usuário 0001</td>
+              <td class="main_table_user_item name">{userData.nome}</td>
               <td class="main_table_user_item pts">345 Pts</td>
               <td class="main_table_user_item nvl">Nvl 12</td>
             </tr>

@@ -5,6 +5,7 @@
 import React, { useEffect, useState } from 'react';
 import api from "../../services/api";
 import Autentication from "../../services/autentication";
+import Gamification from "../../services/gamification";
 import { useHistory } from 'react-router-dom';
 
 
@@ -43,6 +44,7 @@ function PerfilUsuario() {
             .get(`/aluno/${userId}`)
             .then((response) => {
                 setUserInfo(response.data);
+                Gamification(response.data.pontos);
                 console.log("User data:", response.data);
             })
             .catch((err) => {
