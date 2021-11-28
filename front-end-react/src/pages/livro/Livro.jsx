@@ -15,7 +15,34 @@ import Resp from '../../components/resp/Resp';
 import LinkButton from '../../components/button/Button';
 import livro from '../../assets/book.png';
 
+
+
+
 function Livro() {
+
+    const [ isAluno, setIsAluno ] = useState(false);
+    const [ isAdmin, setIsAdmin ] = useState(false);  
+     
+    useEffect(async () => {
+     await api
+         .get(`/aluno/`)
+         .then((response) => {
+             if (response.data.length === 0) {
+                 isAdmin(true);
+             }
+             response.data.map(user => {
+                 if (userId == user.id) {
+                     isAdmin(true);
+                 }     
+       })
+            if (!isAluno) {
+                 isAdmin(true);
+            }
+         })
+         .catch((err) => {
+             console.error("ops! ocorreu um erro" + err);
+        });
+ }, []);
 
   Autentication();
 
@@ -63,6 +90,26 @@ function Livro() {
       console.error("ops! ocorreu um erro" + err);
     });
   }
+  function deleted(){
+
+  api
+  .delete(`/biblioteca/${userId}`)
+  .then((response) => {
+    if (response.status === 200) {
+      resp.classList.add("success");
+      resp.classList.add("active");
+      localStorage.setItem("idDelete", response.data)
+    } else {
+      setRespInfo({ titulo: "Ocorreu um erro", parag: "Entre em contato com o nosso time de suporte clicando no botão abaixo", btn: "Contato", link:"/contato" })
+    }
+  })
+  .catch((err) => {
+    setRespInfo({ titulo: "Ocorreu um erro", parag: "Entre em contato com o nosso time de suporte clicando no botão abaixo", btn: "Contato", link:"/contato" })
+    resp.classList.add("error");
+    resp.classList.add("active");
+    console.error("ops! ocorreu um erro" + err);
+  });
+}
 
   return (
     <div id="rootLivro">
@@ -106,7 +153,12 @@ function Livro() {
                   </div>  
                 </div>
                 <div className="buttons">
+                  
                   <button onClick={() => reserve()} className="buttons_btn" >Reservar</button>
+                  {isAdmin
+                      ? <button onClick={() => deleted()} className="buttons_btn" id="btn_deletar" >Deletar</button>
+                      : ""
+                  }
                   {/* <LinkButton content="Reservar" onclick={() => reserve(bookInfo.id, userId)} className="main_container_downBox_button" />
                   <LinkButton content="Comprar" className="main_container_downBox_button" />
                   <LinkButton content="Baixar" className="main_container_downBox_button" /> */}

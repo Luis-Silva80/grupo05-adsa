@@ -1,7 +1,6 @@
 package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.dto.UsuarioInfo;
-import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.HistoricoRepository;
 import b.com.tothlibs.apitothlib.repository.LivrosRepository;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin")

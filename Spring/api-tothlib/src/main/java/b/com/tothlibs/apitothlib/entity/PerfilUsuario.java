@@ -1,13 +1,9 @@
 package b.com.tothlibs.apitothlib.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.query.criteria.internal.predicate.BooleanExpressionPredicate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 @Table(name = "tbperfilusuario", indexes = {
         @Index(name = "fk_tb_instituicao", columnList = "fk_tb_instituicao")

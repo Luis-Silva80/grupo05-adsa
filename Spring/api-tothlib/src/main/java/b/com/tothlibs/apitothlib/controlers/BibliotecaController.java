@@ -1,13 +1,15 @@
 package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.dto.Response;
-import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
 import b.com.tothlibs.apitothlib.entity.Categoria;
 import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.listas.LayoutArquivos;
-import b.com.tothlibs.apitothlib.repository.*;
+import b.com.tothlibs.apitothlib.repository.CategoriaRepository;
+import b.com.tothlibs.apitothlib.repository.HistoricoRepository;
+import b.com.tothlibs.apitothlib.repository.LivrosRepository;
+import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
 import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,14 +18,12 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 

@@ -2,7 +2,6 @@ package b.com.tothlibs.apitothlib.dto;
 
 import b.com.tothlibs.apitothlib.entity.Historico;
 
-import javax.persistence.Column;
 import java.time.LocalDate;
 
 public class UsuariosPendentesDto {
