@@ -28,4 +28,7 @@ public interface PerfilUsuarioRepository extends JpaRepository<PerfilUsuario, In
 
     public PerfilUsuario findByEmail(String email);
 
+    @Query("SELECT u.foto FROM PerfilUsuario u WHERE u.id = :id")
+    public byte[] findFotoById(@Param("id") Integer id);
+
 }

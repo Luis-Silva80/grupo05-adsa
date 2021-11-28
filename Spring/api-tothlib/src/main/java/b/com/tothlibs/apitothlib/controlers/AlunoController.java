@@ -254,6 +254,17 @@ public class AlunoController {
         return ResponseEntity.status(200).build();
     }
 
+    @GetMapping("/foto/{id}")
+    public ResponseEntity getFoto(@PathVariable int id) {
+        // não vamos validar se o carro existe
+        byte[] foto = repository.findFotoById(id);
+
+        return ResponseEntity
+                .status(200)
+                .header("content-type", "image/jpeg")
+                .body(foto);
+    }
+
 
     public void verificarDataInativacao(PerfilUsuario p,
                                         List<PerfilUsuario> listaDeDeletados) {
