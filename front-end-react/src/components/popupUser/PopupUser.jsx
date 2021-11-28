@@ -38,20 +38,20 @@ function PopupUser(props) {
   return (
     <>
       {props.visible && (
-        <section id="popup" class="main_popup">
-          <img class="popup_img" src={perfilIcon} alt="user" />
-          <img class="popup_close" src={closeButton} alt="close popup" />
-          {/* <img class="popup_close" src={closeButton} onClick={CallPopup} alt="close popup"/> */}
-          <div class="popup_user">
-            <h2 class="popup_user_name">Usuário 2</h2>
-            <h4 class="popup_user_email">Email: <b>lucas@gmail.com</b></h4>
-            <h4 class="popup_user_status">Status: <b>Ativo</b></h4>
-            <h4 class="popup_user_bookName">Livro reservado: <b>css for babies</b></h4>
-            <h4 class="popup_user_reserved">Reservado em: <b>10/02/2021</b></h4>
-            <h4 class="popup_user_return">Devolver em: <b>20/02/2021</b></h4>
-            <div class="popup_user_box">
-              <button class="popup_user_box_btn">Enviar email</button>
-              <button class="popup_user_box_btn">Prorrogar</button>
+        <section id="popup" className="main_popup">
+          <img className="popup_img" src={perfilIcon} alt="user" />
+          <img className="popup_close" src={closeButton} alt="close popup" />
+          {/* <img className="popup_close" src={closeButton} onClick={CallPopup} alt="close popup"/> */}
+          <div className="popup_user">
+            <h2 className="popup_user_name">Usuário 2</h2>
+            <h4 className="popup_user_email">Email: <b>lucas@gmail.com</b></h4>
+            <h4 className="popup_user_status">Status: <b>Ativo</b></h4>
+            <h4 className="popup_user_bookName">Livro reservado: <b>css for babies</b></h4>
+            <h4 className="popup_user_reserved">Reservado em: <b>10/02/2021</b></h4>
+            <h4 className="popup_user_return">Devolver em: <b>20/02/2021</b></h4>
+            <div className="popup_user_box">
+              <button className="popup_user_box_btn">Enviar email</button>
+              <button className="popup_user_box_btn">Prorrogar</button>
             </div>
           </div>
         </section>

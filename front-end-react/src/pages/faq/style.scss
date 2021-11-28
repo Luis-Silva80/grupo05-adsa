@@ -39,12 +39,15 @@ $black: #07080a;
         border: $darkGrey solid 1px;
         border-radius: 15px;
         background-color: $darkGrey;
-        height: 75px;
+        height: 54px;
         overflow: hidden;
         transition: 0.5s;
         margin-bottom: 20px;
         position: relative;
 
+        @media (max-width: 768px) {
+            height: 75px;
+        }
         &.active {
             height: auto;
         }

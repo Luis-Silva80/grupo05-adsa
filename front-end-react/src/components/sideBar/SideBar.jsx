@@ -29,6 +29,9 @@ function SideBarComponent() {
         await api
             .get(`/aluno/`)
             .then((response) => {
+                if (response.data.length === 0) {
+                    setIsAdmin(true);
+                }
                 response.data.map(user => {
                     if (userId == user.id) {
                         setIsAluno(true);

@@ -1,5 +1,6 @@
 package b.com.tothlibs.apitothlib.services;
 
+import b.com.tothlibs.apitothlib.dto.Response;
 import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
@@ -13,6 +14,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioAdmin implements Administravel, Usuario {
@@ -32,7 +34,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
     private HistoricoRepository repositoryHistorico;
 
     @Override
-    public Boolean cadastrarLivro(Livros livro) {
+    public Livros cadastrarLivro(Livros livro) {
 
         livro.setQtdResenhas(0);
         livro.setQtdReservas(0);
@@ -42,43 +44,35 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
         repository.save(livro);
 
-        if (repository.findAll().contains(livro)) {
-            return true;
-        } else {
-            return false;
-        }
+        return livro;
 
     }
 
     @Override
-    public Boolean excluirLivro(Integer id) {
+    public Response excluirLivro(Integer id) {
 
 
         if (repository.existsById(id)) {
             repository.deleteById(id);
 
-
-            if (repository.existsById(id)) {
-                return false;
-            } else {
-                return true;
-            }
+            return new Response(00,"Livro Deletado com sucesso");
 
         } else {
-            return false;
+            return new Response(02,"Livro não existe na base");
         }
 
     }
 
     @Override
-    public Boolean alterarLivro(Integer id, Livros livroAtualizado) {
+    public Response alterarLivro(Integer id, Livros livroAtualizado) {
 
         if (repository.existsById(id)) {
             livroAtualizado.setId(id);
+            livroAtualizado.setFkTbbiblioteca(1);
             repository.save(livroAtualizado);
-            return true;
+            return new Response(00,"Livro atualizado");
         } else {
-            return false;
+            return new Response(02,"Livro não encontrado");
         }
     }
 
@@ -87,9 +81,9 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
 
     @Override
-    public Livros buscarLivro(Integer id) {
+    public Optional<Livros> buscarLivro(Integer id) {
 
-        Livros livro = repository.findById(id).get();
+        Optional<Livros> livro = repository.findById(id);
 
         return livro;
     }
@@ -113,94 +107,106 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
         usuario = repositoryUsuario.findById(idUsuario).get();
 
-        if (livro != null) {
-            if (livro.getQtdReservadoAgora() >= livro.getQtdEstoque()) {
-                return null;
-            } else {
-                if (qtdReservas < livro.getQtdEstoque()) {
-                    livro.setId(idLivro);
-                    livro.setQtdReservas(qtdReservas + 1);
-                    repository.save(livro);
 
-                    usuario.setLivrosReservados(usuario.getLivrosReservados() + 1);
-                    repositoryUsuario.save(usuario);
-                    criaResgistro(livro.getId(), usuario.getId(), "Reserva");
+        Historico ultimoRegistroByUsuario = repositoryHistorico.findFirstByFkTbPerfilUsuarioOrderByIdDesc(usuario.getId());
 
-                    Historico ultimoRegistro = repositoryHistorico.findTopByOrderByIdDesc();
-                    return ultimoRegistro.getId();
-
-                } else {
+        if(usuario.getStatusAtivo()){
+            if (livro != null) {
+                if (livro.getQtdReservadoAgora() >= livro.getQtdEstoque()) {
                     return null;
-                }
-            }
-        } else {
+                } else {
+                    if (qtdReservas < livro.getQtdEstoque()) {
+                        livro.setId(idLivro);
+                        livro.setQtdReservas(qtdReservas + 1);
+                        repository.save(livro);
 
+                        usuario.setLivrosReservados(usuario.getLivrosReservados() + 1);
+                        repositoryUsuario.save(usuario);
+                        criaResgistro(livro.getId(), usuario.getId(), "Reserva");
+
+                        Historico ultimoRegistro = repositoryHistorico.findTopByOrderByIdDesc();
+                        return ultimoRegistro.getId();
+
+                    } else {
+                        return null;
+                    }
+                }
+            } else {
+
+                return null;
+            }
+        }else {
             return null;
         }
+
 
     }
 
     @Override
     public Integer locarLivro(Integer idRegistro, Integer idUsuario) {
 
-        usuario = new PerfilUsuario();
+        usuario = repositoryUsuario.findById(idUsuario).get();
         registro = repositoryHistorico.findById(idRegistro).get();
 
         livro = repository.findById(registro.getFkTbLivros()).get();
         Integer qtdReservadosAgora = livro.getQtdReservadoAgora();
 
-        if (livro != null) {
+        if(usuario.getStatusAtivo()){
+            if (livro != null) {
 
-            if (livro.getQtdReservas().equals(0)) {
-                return null;
-            } else {
-                if (livro.getQtdReservas() >= livro.getQtdEstoque()) {
-                    livro.setId(registro.getFkTbLivros());
-                    livro.setStatusLivro("Indisponivel");
-                    repository.save(livro);
+                if (livro.getQtdReservas().equals(0)) {
                     return null;
                 } else {
-                    if (qtdReservadosAgora.equals(livro.getQtdReservas())) {
+                    if (livro.getQtdReservas() >= livro.getQtdEstoque()) {
                         livro.setId(registro.getFkTbLivros());
                         livro.setStatusLivro("Indisponivel");
                         repository.save(livro);
                         return null;
                     } else {
-
-                        if (livro.getQtdReservadoAgora() >= livro.getQtdEstoque()) {
+                        if (qtdReservadosAgora.equals(livro.getQtdReservas())) {
                             livro.setId(registro.getFkTbLivros());
                             livro.setStatusLivro("Indisponivel");
                             repository.save(livro);
                             return null;
-                        }
+                        } else {
 
-                        //alterar verificação para se o registro existe ao invéz de se o registro com aquele ID existe pois a segunda opção está redundante
-                        if (registro.getId().equals(idRegistro)) {
-
-                            livro.setId(registro.getFkTbLivros());
-                            livro.setQtdReservadoAgora(qtdReservadosAgora + 1);
-                            livro.setQtdReservas(livro.getQtdReservas() - 1);
-
-                            if(livro.getQtdReservadoAgora().equals(livro.getQtdEstoque())){
+                            if (livro.getQtdReservadoAgora() >= livro.getQtdEstoque()) {
+                                livro.setId(registro.getFkTbLivros());
                                 livro.setStatusLivro("Indisponivel");
-                            }else {
-                                livro.setStatusLivro("Disponivel");
+                                repository.save(livro);
+                                return null;
                             }
 
-                            repository.save(livro);
-                            criaResgistroComIdRegistro(idRegistro, registro.getFkTbLivros(), idUsuario, "Retirada");
+                            //alterar verificação para se o registro existe ao invéz de se o registro com aquele ID existe pois a segunda opção está redundante
+                            if (registro.getId().equals(idRegistro)) {
 
-                            Historico ultimoRegistro = repositoryHistorico.findTopByOrderByIdDesc();
-                            return ultimoRegistro.getId();
-                        } else {
-                            return null;
+                                livro.setId(registro.getFkTbLivros());
+                                livro.setQtdReservadoAgora(qtdReservadosAgora + 1);
+                                livro.setQtdReservas(livro.getQtdReservas() - 1);
+
+                                if (livro.getQtdReservadoAgora().equals(livro.getQtdEstoque())) {
+                                    livro.setStatusLivro("Indisponivel");
+                                } else {
+                                    livro.setStatusLivro("Disponivel");
+                                }
+
+                                repository.save(livro);
+                                criaResgistroComIdRegistro(idRegistro, registro.getFkTbLivros(), idUsuario, "Retirada");
+
+                                Historico ultimoRegistro = repositoryHistorico.findTopByOrderByIdDesc();
+                                return ultimoRegistro.getId();
+                            } else {
+                                return null;
+                            }
+
                         }
-
                     }
                 }
-            }
 
-        } else {
+            } else {
+                return null;
+            }
+        }else {
             return null;
         }
 
@@ -212,19 +218,23 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
         Historico registro = repositoryHistorico.findById(idRegistro).get();
 
-        if (registro.getFkTbPerfilUsuario().equals(idUsuario)) {
-            if (registro.getAcao().equals("Retirada")) {
+        if(usuario.getStatusAtivo()){
+            if (registro.getFkTbPerfilUsuario().equals(idUsuario)) {
+                if (registro.getAcao().equals("Retirada")) {
 
 
-                criaResgistroComIdRegistro(idRegistro, registro.getFkTbLivros(), idUsuario, "Renovacao");
+                    criaResgistroComIdRegistro(idRegistro, registro.getFkTbLivros(), idUsuario, "Renovacao");
 
-                Historico ultimoRegistro = repositoryHistorico.findTopByOrderByIdDesc();
-                return ultimoRegistro.getId();
+                    Historico ultimoRegistro = repositoryHistorico.findTopByOrderByIdDesc();
+                    return ultimoRegistro.getId();
+                } else {
+                    return null;
+                }
+
             } else {
                 return null;
             }
-
-        } else {
+        }else {
             return null;
         }
 
@@ -234,30 +244,36 @@ public class UsuarioAdmin implements Administravel, Usuario {
     public Integer devolverLivro(Integer idRegistro, Integer idUsuario) {
 
 
-        if (repositoryHistorico.existsById(idRegistro)) {
+        if(usuario.getStatusAtivo()){
+            if (repositoryHistorico.existsById(idRegistro)) {
 
-            Historico registroAntigo = repositoryHistorico.findById(idRegistro).get();
-            Integer idLivroNoRegistro = registroAntigo.getFkTbLivros();
+                Historico registroAntigo = repositoryHistorico.findById(idRegistro).get();
+                Integer idLivroNoRegistro = registroAntigo.getFkTbLivros();
 
-            livro = repository.findById(idLivroNoRegistro).get();
-            usuario = repositoryUsuario.findById(idUsuario).get();
+                livro = repository.findById(idLivroNoRegistro).get();
+                usuario = repositoryUsuario.findById(idUsuario).get();
 
-            if (!livro.getQtdReservadoAgora().equals(0)) {
-                if (registroAntigo.getAcao().equals("Renovacao") || registroAntigo.getAcao().equals("Retirada")) {
+                if (!livro.getQtdReservadoAgora().equals(0)) {
+                    if (registroAntigo.getAcao().equals("Renovacao") || registroAntigo.getAcao().equals("Retirada")) {
 
-                    livro.setId(idLivroNoRegistro);
-                    livro.setQtdReservadoAgora(livro.getQtdReservadoAgora() - 1);
+                        livro.setId(idLivroNoRegistro);
+                        livro.setQtdReservadoAgora(livro.getQtdReservadoAgora() - 1);
 
-                    usuario.setId(idUsuario);
-                    usuario.setQtdLivrosLidos(usuario.getQtdLivrosLidos()+1);
-                    usuario.setLivrosReservados(usuario.getLivrosReservados()-1);
+                        usuario.setId(idUsuario);
+                        usuario.setQtdLivrosLidos(usuario.getQtdLivrosLidos() + 1);
+                        usuario.setLivrosReservados(usuario.getLivrosReservados() - 1);
+                        usuario.setPontos(usuario.getPontos()+5);
 
-                    criaResgistro(idLivroNoRegistro, idUsuario, "Devolucao");
-                    Historico ultimoRegistro = repositoryHistorico.findTopByOrderByIdDesc();
+                        criaResgistro(idLivroNoRegistro, idUsuario, "Devolucao");
+                        Historico ultimoRegistro = repositoryHistorico.findTopByOrderByIdDesc();
 
-                    repositoryUsuario.save(usuario);
-                    repository.save(livro);
-                    return ultimoRegistro.getId();
+                        repositoryUsuario.save(usuario);
+                        repository.save(livro);
+                        return ultimoRegistro.getId();
+                    } else {
+                        return null;
+                    }
+
                 } else {
                     return null;
                 }
@@ -265,8 +281,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
             } else {
                 return null;
             }
-
-        } else {
+        }else {
             return null;
         }
     }

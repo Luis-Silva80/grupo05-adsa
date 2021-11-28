@@ -50,22 +50,22 @@ function CadastroLivro() {
         });
     }
 
-    // <td class="main_table_user_item" value={item.id} onClick={() =>localStorage.setItem('userId', item.id)} ><img class="main_table_user_about" src={loupe}/></td>
+    // <td className="main_table_user_item" value={item.id} onClick={() =>localStorage.setItem('userId', item.id)} ><img className="main_table_user_about" src={loupe}/></td>
 
     return (
         <div id="rootCadastroLivro">
             <SideBar />
-                <main class="main">
-                    <h1 class="main_title">Adicionar Livro</h1>
-                    <p class="main_parag">Preencha os campos abaixo para adicionar um novo livro ao sistema.</p>
-                    <form action="" class="main_form" id="form" onSubmit={Submit}>
-                        <input id="title" type="text" name="title" required class="main_form_input" placeholder="Título" />
-                        <input id="author" type="text" name="author" required class="main_form_input" placeholder="Autor" />
-                        <input id="editor" type="text" name="editor" required class="main_form_input" placeholder="Editora" />
-                        <input id="edition" type="text" name="edition" required class="main_form_input" placeholder="Edição" />
-                        <textarea id="desc" name="desc" required rows="5" class="main_form_textArea" placeholder="Descrição"></textarea>
-                        <input id="quantity" type="number" name="quantity" required class="main_form_input quant" placeholder="quantidade" />
-                        <input type="submit" class="main_form_button" id="formBtn" value="Cadastrar livro" />
+                <main className="main">
+                    <h1 className="main_title">Adicionar Livro</h1>
+                    <p className="main_parag">Preencha os campos abaixo para adicionar um novo livro ao sistema.</p>
+                    <form action="" className="main_form" id="form" onSubmit={Submit}>
+                        <input id="title" type="text" name="title" required className="main_form_input" placeholder="Título" />
+                        <input id="author" type="text" name="author" required className="main_form_input" placeholder="Autor" />
+                        <input id="editor" type="text" name="editor" required className="main_form_input" placeholder="Editora" />
+                        <input id="edition" type="text" name="edition" required className="main_form_input" placeholder="Edição" />
+                        <textarea id="desc" name="desc" required rows="5" className="main_form_textArea" placeholder="Descrição"></textarea>
+                        <input id="quantity" type="number" name="quantity" required className="main_form_input quant" placeholder="quantidade" />
+                        <input type="submit" className="main_form_button" id="formBtn" value="Cadastrar livro" />
                     </form>
                     <Resp  titulo={respInfo.titulo} parag={respInfo.parag} btn={respInfo.btn} link={respInfo.link} /> 
                 </main>

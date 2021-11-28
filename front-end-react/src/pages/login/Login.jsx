@@ -40,8 +40,8 @@ function Login() {
           <h1 className="main_title">Login</h1>
           <p className="main_parag">Preencha os campos abaixo para acessar a sua conta.</p>
           <form action="" className="main_form" id="form" onSubmit={Submit}>
-            <input onChange={e => setEmail(e.target.value)} type="text" id="email" name="email" required className="main_form_input" placeholder="Email: usuario.exemplo@email.com" />
-            <input onChange={e => setPassword(e.target.value)} type="password" id="password" name="password" required className="main_form_input" placeholder="Senha: *************" />
+            <input onChange={e => setEmail(e.target.value)} type="text" id="email" name="email" required className="main_form_input" placeholder="Ex: usuario.exemplo@email.com" />
+            <input onChange={e => setPassword(e.target.value)} type="password" id="password" name="password" required className="main_form_input" placeholder="*************" />
             <input type="submit" className="main_form_button" id="formBtn" value="Entrar" />
           </form>
           <a className="main_forgot" href="#">Esqueci a minha senha</a>

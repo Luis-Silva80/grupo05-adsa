@@ -9,6 +9,7 @@ import Footer from '../../components/footer/Footer';
 import SideBar from '../../components/sideBar/SideBar';
 import Loading from '../../components/loading/Loading';
 import BookCard from '../../components/bookCard/BookCard';
+import Resp from '../../components/resp/Resp';
 
 
 import indisponivel from "../../assets/fotoIndisponivel.png"
@@ -19,12 +20,24 @@ function ListaLivros() {
   Autentication();
 
   const [booksInfo, setBooksInfo] = useState([]);
+  const [respInfo, setRespInfo] = useState([]);
+
+  var bookTitle = [];
+  var bookAZ = [];
+  var bookZA = [];
 
   useEffect(async () => {
-
+    console.log("estou no use");
+    const resp = document.getElementById('respReserv');
     await api
       .get('/biblioteca')
-      .then((response) => {
+      .then(response => {
+        if (response.status === 204) {
+          setRespInfo({ titulo: "Não encontrado", parag: "Nenhum livro foi encontrado no sistema", btn: "Contato", link:"/contato" })
+          resp.classList.add("active");
+          resp.classList.add("error");
+          resp.classList.remove("success");
+        }
         setBooksInfo(response.data);
         console.log("Livros :", response.data);
       })
@@ -64,11 +77,11 @@ function ListaLivros() {
 
   //           resp.innerHTML +=
   //             `
-  //               <div class="resp_book">
-  //               <img class="resp_book_img" src="${element.volumeInfo.imageLinks ? element.volumeInfo.imageLinks.thumbnail : `${indisponivel}`}">
-  //               ${element.volumeInfo.previewLink ? `<a class="resp_book_tag" target="_blank" href='${element.volumeInfo.previewLink}'>Preview</a>` : ""}
-  //               <h3 class="resp_book_title">${element.volumeInfo.title}</h3>
-  //               <a  class="resp_book_btn" onClick={storeId(${element.id})}>Ver mais</a>
+  //               <div className="resp_book">
+  //               <img className="resp_book_img" src="${element.volumeInfo.imageLinks ? element.volumeInfo.imageLinks.thumbnail : `${indisponivel}`}">
+  //               ${element.volumeInfo.previewLink ? `<a className="resp_book_tag" target="_blank" href='${element.volumeInfo.previewLink}'>Preview</a>` : ""}
+  //               <h3 className="resp_book_title">${element.volumeInfo.title}</h3>
+  //               <a  className="resp_book_btn" onClick={storeId(${element.id})}>Ver mais</a>
   //               </div>
   //             `
   //         });
@@ -95,11 +108,11 @@ function ListaLivros() {
 
   //           resp.innerHTML +=
   //             `
-  //             <div class="resp_book">
-  //             <img class="resp_book_img" src="${element.volumeInfo.imageLinks ? element.volumeInfo.imageLinks.thumbnail : `${indisponivel}`}">
-  //             ${element.volumeInfo.previewLink ? `<a class="resp_book_tag" target="_blank" href='${element.volumeInfo.previewLink}'>Preview</a>` : ""}
-  //             <h3 class="resp_book_title">${element.volumeInfo.title}</h3>
-  //             <a href="/cadastroUsuario" class="resp_book_btn">Ver mais</a>
+  //             <div className="resp_book">
+  //             <img className="resp_book_img" src="${element.volumeInfo.imageLinks ? element.volumeInfo.imageLinks.thumbnail : `${indisponivel}`}">
+  //             ${element.volumeInfo.previewLink ? `<a className="resp_book_tag" target="_blank" href='${element.volumeInfo.previewLink}'>Preview</a>` : ""}
+  //             <h3 className="resp_book_title">${element.volumeInfo.title}</h3>
+  //             <a href="/cadastroUsuario" className="resp_book_btn">Ver mais</a>
   //             </div>
   //           `
   //         });
@@ -110,6 +123,45 @@ function ListaLivros() {
   // }
   function storeId(value) {
     localStorage.setItem('id do livro', value)
+  }
+
+  function filter() {
+    console.log("Cliquei no filtro");
+    switch (document.getElementById('filter_combo').value) {
+      case "tituloA-Z":
+        booksInfo.map(book => {
+          bookTitle.push(book.titulo)
+        });
+        bookTitle.sort();
+        bookTitle.map(title => {
+          booksInfo.map(book => {
+            if (book.titulo == title) {
+              bookAZ.push(book)
+            }
+          })
+        })
+        setBooksInfo(bookAZ)
+        break;
+      case "tituloZ-A":
+        booksInfo.map(book => {
+          bookTitle.push(book.titulo)
+        });
+        bookTitle.sort();
+        bookTitle.map(title => {
+          booksInfo.map(book => {
+            if (book.titulo == title) {
+              bookAZ.push(book)
+            }
+          })
+        })
+        for (let i = bookAZ.length -1; i >= 0; i--) {
+          bookZA.push(bookAZ[i]);
+        }
+        setBooksInfo(bookZA)
+        break;
+      default:
+          break;
+    } 
   }
 
   return (
@@ -124,18 +176,18 @@ function ListaLivros() {
           <div className="main_nav">
             <input className="main_nav_input" placeholder="Digite o nome do livro" type="text" name="name" id="name" />
             <button className="main_nav_btn" >Pesquisar</button>
-            <select className="main_nav_filter">
+            <select id="filter_combo" onChange={() => filter()} className="main_nav_filter">
               <option className="main_nav_filter_value" value="#">Filtrar por: </option>
+              <option className="main_nav_filter_value" value="tituloA-Z">Título A-Z</option>
+              <option className="main_nav_filter_value" value="tituloZ-A">Título Z-A</option>
               <option className="main_nav_filter_value" value="pendencia">Categoria</option>
-              <option className="main_nav_filter_value" value="nomeDesc">Nome Desc</option>
-              <option className="main_nav_filter_value" value="nomeAsc">Nome Asc</option>
             </select>
           </div>
           <h3 id="searchCallback" className="main_callback"></h3>
           <div id="resp" className="resp">
             {
               booksInfo.map(item => (
-                <BookCard image={imageLivro} idLivro={item.id} titulo={item.titulo} autor={item.autor} status={item.statusLivro} acao="Ver mais"/>
+                <BookCard key={item.id} image={imageLivro} idLivro={item.id} titulo={item.titulo} autor={item.autor} status={item.statusLivro} acao="Ver mais"/>
               ))
             }
 
@@ -144,6 +196,7 @@ function ListaLivros() {
 
           {/* <div id="resp" className="resp" onScroll={infiniteSearch}></div> */}
           {/* <span className='main_alert'>Digite ao menos 3 letras</span> */}
+          <Resp titulo={respInfo.titulo} parag={respInfo.parag} btn={respInfo.btn} link={respInfo.link} />
         </main>
       }
       <Footer />
