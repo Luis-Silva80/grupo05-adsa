@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -212,7 +213,7 @@ public class AlunoController {
 
     }
 
-    @PatchMapping("/alterar-nome/{idAluno}/{novoNome}")
+    @PutMapping("/alterar-nome/{idAluno}/{novoNome}")
     public ResponseEntity patchNome(@PathVariable Integer idAluno, @PathVariable String novoNome){
 
         PerfilUsuario alunoComNome = repository.findById(idAluno).get();
@@ -225,6 +226,35 @@ public class AlunoController {
 
     }
 
+
+    @PutMapping("/foto/{id}")
+    public ResponseEntity patchFoto(@PathVariable Integer id,
+                                    @RequestParam MultipartFile foto) throws IOException {
+        // não vamos validar se o carro existe
+        PerfilUsuario usuario = repository.findById(id).get();
+
+        // obtendo o conteúdo do arquivo
+        byte[] novaFoto = foto.getBytes();
+
+        // convertendo o conteúdo em texto (ex: .txt, .csv, .properties, .sql etc)
+        // String conteudoTexto = new String(foto.getBytes());
+
+        // obtendo o tamanho do arquivo em bytes
+        long tamanho = foto.getSize();
+
+        // obtendo o tipo do arquivo
+        String tipo = foto.getContentType();    
+
+        // obtendo o nome original do arquivo
+        String nomeOriginal = foto.getOriginalFilename();
+
+        usuario.setFoto(novaFoto);
+
+        repository.save(usuario);
+        return ResponseEntity.status(200).build();
+    }
+
+
     public void verificarDataInativacao(PerfilUsuario p,
                                         List<PerfilUsuario> listaDeDeletados) {
 
@@ -233,7 +263,6 @@ public class AlunoController {
 
             listaDeDeletados.add(p);
             qtdDeletados++;
-            //                repository.deleteById(p.getId());
         }
 
     }

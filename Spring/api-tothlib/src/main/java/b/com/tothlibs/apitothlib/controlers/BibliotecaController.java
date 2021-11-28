@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -294,22 +295,9 @@ public class BibliotecaController<T> {
     }
 
 
-
-    @PostMapping("/upload")
-    public void upload(@RequestParam MultipartFile file){
-
-//        LayoutArquivos lerArq = new LayoutArquivos();
-//
-//        System.out.println(file.getName());
-//
-//        lerArq.leArquivoTxt(file.getName());
-
-    }
-
-
-    @GetMapping("/lerArquivo/livro")
-    @ApiOperation(value = "Realiza a leitura de um arquivo com as informções dentro arquivo")
-    public ResponseEntity leTxt() {
+    @PatchMapping("/upload")
+    @ApiOperation(value = "Recebe um arquivo e grava suas informações no banco")
+    public ResponseEntity lerArquivo(@RequestParam MultipartFile file) throws IOException {
 
         LayoutArquivos managerLayoutArquivos = new LayoutArquivos();
 
@@ -318,7 +306,7 @@ public class BibliotecaController<T> {
 
         List<List<T>> retornoDoMetodoLerArquivo;
 
-        retornoDoMetodoLerArquivo = (managerLayoutArquivos.leArquivoTxt("Livros-2021-11-27.txt"));
+        retornoDoMetodoLerArquivo = (managerLayoutArquivos.leArquivoTxt(file.getOriginalFilename()));
 
         if(retornoDoMetodoLerArquivo.get(0).get(0) instanceof  Livros){
 
@@ -347,6 +335,17 @@ public class BibliotecaController<T> {
 
         return ResponseEntity.status(200).build();
     }
+
+//    public ResponseEntity leTxt(String nomeArq) {
+//
+//        String nomeArquivo = nomeArq;
+//
+//        LayoutArquivos trataArquivo = new LayoutArquivos();
+//
+//        trataArquivo.leArquivoTxt(nomeArquivo);
+//
+//        return ResponseEntity.status(200).build();
+//    }
 
     public Integer efetuarReserva(Integer idUsuario, Integer idLivro) {
         Integer idRegistro = admin.reservar(idLivro, idUsuario);
