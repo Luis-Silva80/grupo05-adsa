@@ -3,6 +3,7 @@ package b.com.tothlibs.apitothlib.controlers;
 import b.com.tothlibs.apitothlib.dto.Response;
 import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
 import b.com.tothlibs.apitothlib.entity.*;
+import b.com.tothlibs.apitothlib.listas.FilaObj;
 import b.com.tothlibs.apitothlib.listas.LayoutArquivos;
 import b.com.tothlibs.apitothlib.repository.*;
 import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
@@ -264,17 +265,27 @@ public class BibliotecaController<T> {
 
     @GetMapping("/favoritos")
     @ApiOperation(value = "Põe numa fila os livros mais lidos e conforme a pontuação ele vai saindo da fila")
-    public ResponseEntity livroFavorito(@RequestBody Livros livros) {
+    public ResponseEntity livroFavorito() {
 
-        Integer livroFavorito = livros.getQtdReservas();
+        try {
 
-        //List<PerfilUsuario> alunos = repository.findAlunos()
-        //      .stream()
-        //    .filter(usuario -> usuario.getUsuarioAdmin().equals(0))
-        //  .collect(Collectors.toList());
+            List<Livros> listaLivrosRanking = repository.findLivrosOrderByQtdReservas();
 
+            FilaObj<Livros> filaLivrosRanking = new FilaObj<>(listaLivrosRanking.size());
 
-        return null;
+            for (Livros l : listaLivrosRanking) {
+
+                filaLivrosRanking.insert(l);
+
+            }
+
+            return ResponseEntity.status(200).body(filaLivrosRanking);
+
+        } catch (Exception e){
+
+            return ResponseEntity.status(400).build();
+
+        }
     }
 
     @GetMapping("/gravarArqTxt/livros")
