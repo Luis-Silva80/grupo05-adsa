@@ -20,6 +20,7 @@ function CadastroUsuario() {
     const [ telefone, setTelefone ] = useState("");
     const [ senha, setSenha ] = useState("");
 
+
     function submit(event) {
         event.preventDefault();
         api
@@ -29,6 +30,7 @@ function CadastroUsuario() {
             email: email,
             telefone: telefone,
             senha: senha
+
         })
         .then(response => {
             if (response.status === 201) {
@@ -61,8 +63,9 @@ function CadastroUsuario() {
                     <input type="number" required onChange={e => setCpf(e.target.value)} className="main_form_input" placeholder="Ex: 12345678911" />
                     <input type="text" required onChange={e => setEmail(e.target.value)} className="main_form_input" placeholder="Ex: exemplo.exemplo@email.com" />
                     <input type="text" required onChange={e => setTelefone(e.target.value)} className="main_form_input" placeholder="Ex: (11)123456789" />
-                    <input type="password" required onChange={e => setSenha(e.target.value)} className="main_form_input" placeholder="*************" />
+                    <input type="password" required onChange={e => setSenha(e.target.value)} className="main_form_input" placeholder="*************" />      
                     <input type="submit" className="main_form_button" value="Cadastrar" />
+                    
                 </form>
                 <div className="main_box">
                     <p className="main_box_parag">Já tem uma conta?</p>

@@ -14,43 +14,41 @@ import SideBar from '../../components/sideBar/SideBar';
 import Resp from '../../components/resp/Resp';
 import LinkButton from '../../components/button/Button';
 import livro from '../../assets/book.png';
-
-
+let admin = undefined;
 
 
 function Livro() {
-
+    const userId = parseInt(localStorage.getItem('userId'))
     const [ isAluno, setIsAluno ] = useState(false);
     const [ isAdmin, setIsAdmin ] = useState(false);  
-     
-    useEffect(async () => {
-     await api
-         .get(`/aluno/`)
-         .then((response) => {
-             if (response.data.length === 0) {
-                 isAdmin(true);
-             }
-             response.data.map(user => {
-                 if (userId == user.id) {
-                     isAdmin(true);
-                 }     
-       })
-            if (!isAluno) {
-                 isAdmin(true);
-            }
-         })
-         .catch((err) => {
-             console.error("ops! ocorreu um erro" + err);
-        });
- }, []);
+
+    useEffect(() => {
+            api
+                .get(/aluno/)
+                .then((response) => {
+                    if (response.data.length === 0) {
+                        admin = 1;
+                    }
+                    response.data.map(user => {
+                        if (userId == user.id) {
+                            admin = 0;
+                        }
+                    })
+                    if (admin == undefined) {
+                        admin = 1;
+                    }
+                })
+                .catch((err) => {
+                    console.error("ops! ocorreu um erro" + err);
+                });
+                console.log("estou aq",admin);
+        }, []);
 
   Autentication();
 
 
 
   const bookId = parseInt(localStorage.getItem('bookId'))
-  const userId = parseInt(localStorage.getItem('userId'))
-  
   const [respInfo, setRespInfo] = useState([]);
   const [bookInfo, setBookInfo] = useState([]);
   // const [ showResp, setShowResp ] = useState(false);
@@ -91,14 +89,16 @@ function Livro() {
     });
   }
   function deleted(){
+  const resp = document.getElementById('respReserv');
 
   api
-  .delete(`/biblioteca/${userId}`)
+  .delete(`/biblioteca/${bookInfo.id}`)
   .then((response) => {
     if (response.status === 200) {
+      setRespInfo({ titulo: "Sucesso", parag: "Livro excluido, voltar a lista de livros", btn:"Lista de livros",link:"/listaLivros" })
       resp.classList.add("success");
       resp.classList.add("active");
-      localStorage.setItem("idDelete", response.data)
+      localStorage.setItem("idReserva", response.data)
     } else {
       setRespInfo({ titulo: "Ocorreu um erro", parag: "Entre em contato com o nosso time de suporte clicando no botão abaixo", btn: "Contato", link:"/contato" })
     }
@@ -155,11 +155,12 @@ function Livro() {
                 <div className="buttons">
                   
                   <button onClick={() => reserve()} className="buttons_btn" >Reservar</button>
-                  {isAdmin
-                      ? <button onClick={() => deleted()} className="buttons_btn" id="btn_deletar" >Deletar</button>
-                      : ""
-                  }
-                  {/* <LinkButton content="Reservar" onclick={() => reserve(bookInfo.id, userId)} className="main_container_downBox_button" />
+                  {admin = 1
+                  ?
+                   <button onClick={() => deleted()} className="buttons_btn" id="btn_deletar" >Deletar</button>
+                  :
+                  "" }
+                   {/* <LinkButton content="Reservar" onclick={() => reserve(bookInfo.id, userId)} className="main_container_downBox_button" />
                   <LinkButton content="Comprar" className="main_container_downBox_button" />
                   <LinkButton content="Baixar" className="main_container_downBox_button" /> */}
                 </div>

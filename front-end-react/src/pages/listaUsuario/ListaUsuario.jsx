@@ -29,7 +29,7 @@ function ListaUsuarios() {
     AutenticationAdmin();
 
     //const userData = [];
-
+    const [registroInfo, setRegistroInfo] = useState();
     const [users, setUsers] = useState([]);
     const [userInfo, setUserInfo] = useState([]);
 
@@ -64,7 +64,6 @@ function ListaUsuarios() {
                 console.error("ops! ocorreu um erro" + err);
             });
 
-
     }
 
     function ClosePopup() {
@@ -81,6 +80,24 @@ function ListaUsuarios() {
             .catch(error => {
                 console.error(error)
             })
+
+            api
+            .get(`/historico`)
+            .then((response) => {
+                response.data.map(registro => {
+                    if (registro.fkTbLivros == bookInfo.id) {
+                        if (registro.acao == "Retirada" || registro.acao == "Renovacao") {
+                            if (userInfo.id == registro.fkTbPerfilUsuario) {
+                                setRegistroInfo(registro);
+                                console.log("registro aquii", registro);
+                            }
+                        }
+                    }
+                })
+            })
+            .catch((err) => {
+                console.error("ops! ocorreu um erro" + err);
+            })    
     }
 
     // function findUser() {
@@ -193,8 +210,8 @@ function ListaUsuarios() {
                             <h4 className="popup_user_info email">Email: <b>{userInfo.email}</b></h4>
                             <h4 className="popup_user_info status">Status: <b>Ativo</b></h4>
                             <h4 className="popup_user_info bookName">Livro reservado: <b>css for babies</b></h4>
-                            <h4 className="popup_user_info reserved">Reservado em: <b>10/02/2021</b></h4>
-                            <h4 className="popup_user_info return">Devolver em: <b>20/02/2021</b></h4>
+                            <h4 className="popup_user_info reserved">Reservado em: <b>{registroInfo?.dataDevolucao}</b></h4>
+                            <h4 className="popup_user_info return">Devolver em: <b>{registroInfo?.dataG}</b></h4>
                             <div className="popup_user_box">
                                 <button className="popup_user_box_btn">Enviar email</button>
                                 <button className="popup_user_box_btn">Prorrogar</button>

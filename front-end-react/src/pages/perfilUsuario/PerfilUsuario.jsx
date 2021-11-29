@@ -40,7 +40,7 @@ function PerfilUsuario() {
 
     useEffect(async () => {
         await api
-            .get(`/aluno/${userId}`)
+            .get(`/aluno/${userInfo.id}`)
             .then((response) => {
                 setUserInfo(response.data);
                 console.log("User data:", response.data);
