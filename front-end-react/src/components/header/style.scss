@@ -63,6 +63,10 @@ $colorWhite: #FFFF;
   .header_login {
     display: flex;
     align-items: center;
+
+    &_icon {
+      width: 50px;
+    }
     
     &_button {
       padding: 5px 25px;
@@ -125,6 +129,9 @@ $colorWhite: #FFFF;
 
       &_login {
 
+        &_icon {
+          width: 50px;
+        }
 
         &_button {
           padding: 5px 15px;

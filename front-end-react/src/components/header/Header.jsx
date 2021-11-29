@@ -4,6 +4,7 @@ import logoImg from "../../assets/logoWhiteWhite.png";
 import hamburgerMenu from "../../assets/hamburgerMenu.png";
 import { Link } from 'react-router-dom';
 import { Link as Scroll } from 'react-scroll';
+import perfilIcon from '../../assets/perfilIcon.png';
 
 
 function Header() {
@@ -66,7 +67,12 @@ function Header() {
                     <li className="header_categories_category"><Scroll activeClass="active" to="contactUs_section" spy={true} smooth={true}><Link to="/" className="header_categories_category_link">Fale conosco</Link></Scroll></li>
                 </ul>
                 <div className="header_login">
-                    <Link to="/login" className="header_login_button">Login</Link>
+                    {
+                        window.localStorage.getItem("userId") != '' ? 
+                        <Link to="/perfilUsuario"><img className="header_login_icon" src={perfilIcon} /></Link> : 
+
+                        <Link to="/login" className="header_login_button">Login</Link>
+                    }
                 </div>
             </header>
 

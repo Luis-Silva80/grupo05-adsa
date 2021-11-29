@@ -23,7 +23,7 @@ $black: #07080a;
     }
     &_title {
       color: $lightBlue;
-      font-size: 3rem;
+      font-size: 40px;
 
       @media (max-width: 768px) {
         font-size: 2.5rem;
@@ -31,10 +31,9 @@ $black: #07080a;
     }
     &_parag {
       color: $lightGrey;
-      font-size: 1.3rem;
-      margin: 10px 0;
       text-align: center;
-      margin-bottom: 15px;
+      margin: 5px 0;
+      font-size: 18px;
 
       @media (max-width: 768px) {
         font-size: 16px;
@@ -47,13 +46,17 @@ $black: #07080a;
       width: 50%;
       z-index: 1;
 
+      &_label {
+        color: $lightGrey;
+        width: 100%;
+      }
       @media (max-width: 768px) {
         width: 75%;
       }
       &_input {
         border-radius: 10px;
         border: 2px solid $darkBlue;
-        padding: 5px 20px;
+        padding: 5px 0 5px 15px;
         font-size: 18px;
         width: 100%;
         margin: 5px 0;

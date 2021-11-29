@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ import java.util.logging.Logger;
 @RequestMapping("/biblioteca")
 @Api(value = "API REST")
 @CrossOrigin(origins = "*")
-public class BibliotecaController {
+public class BibliotecaController<T> {
 
     public static final Logger LOGGER = Logger.getLogger(String.valueOf(BibliotecaController.class));
 
@@ -273,6 +274,8 @@ public class BibliotecaController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String dataFormatada = dataHoje.format(formatter);
 
+
+
         String nomeArquivo = "Livros-";
         nomeArquivo += dataFormatada + ".txt";
 
@@ -286,36 +289,63 @@ public class BibliotecaController {
 
         managerLayoutArquivos.verificaTipoArquivo();
 
-        managerLayoutArquivos.leArquivoTxt(nomeArquivo);
 
         return ResponseEntity.status(200).body("Arquivo gerado com sucesso");
 
     }
 
-    @PostMapping("/upload")
-    public void upload(@RequestParam MultipartFile file){
 
-//        LayoutArquivos lerArq = new LayoutArquivos();
-//
-//        System.out.println(file.getName());
-//
-//        lerArq.leArquivoTxt(file.getName());
+    @PatchMapping("/upload")
+    @ApiOperation(value = "Recebe um arquivo e grava suas informações no banco")
+    public ResponseEntity lerArquivo(@RequestParam MultipartFile file) throws IOException {
 
-    }
+        LayoutArquivos managerLayoutArquivos = new LayoutArquivos();
 
+        List<Livros> livrosAGravar = new ArrayList<>();
+        List<Categoria> categoriasAGravar = new ArrayList<>();
 
-    @GetMapping("/lerArquivo")
-    @ApiOperation(value = "Realiza a leitura de um arquivo com as informções dentro arquivo")
-    public ResponseEntity leTxt() {
+        List<List<T>> retornoDoMetodoLerArquivo;
 
-        String nomeArquivo = "Livros-2021-11-17.txt";
+        retornoDoMetodoLerArquivo = (managerLayoutArquivos.leArquivoTxt(file.getOriginalFilename()));
 
-        LayoutArquivos trataArquivo = new LayoutArquivos();
+        if(retornoDoMetodoLerArquivo.get(0).get(0) instanceof  Livros){
 
-        trataArquivo.leArquivoTxt(nomeArquivo);
+            livrosAGravar = (List<Livros>) retornoDoMetodoLerArquivo.get(0);
+
+        }
+
+        if(retornoDoMetodoLerArquivo.get(1).get(0) instanceof  Categoria){
+
+            categoriasAGravar = (List<Categoria>) retornoDoMetodoLerArquivo.get(1);
+
+        }
+
+        for(Livros l : livrosAGravar){
+
+            repository.save(l);
+
+        }
+
+        for(Categoria c : categoriasAGravar){
+
+            repositoryCategoria.save(c);
+
+        }
+
 
         return ResponseEntity.status(200).build();
     }
+
+//    public ResponseEntity leTxt(String nomeArq) {
+//
+//        String nomeArquivo = nomeArq;
+//
+//        LayoutArquivos trataArquivo = new LayoutArquivos();
+//
+//        trataArquivo.leArquivoTxt(nomeArquivo);
+//
+//        return ResponseEntity.status(200).build();
+//    }
 
     public Integer efetuarReserva(Integer idUsuario, Integer idLivro) {
         Integer idRegistro = admin.reservar(idLivro, idUsuario);

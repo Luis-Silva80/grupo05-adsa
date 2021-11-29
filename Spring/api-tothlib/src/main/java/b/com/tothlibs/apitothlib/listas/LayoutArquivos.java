@@ -5,6 +5,7 @@ import b.com.tothlibs.apitothlib.entity.Categoria;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.CategoriaRepository;
+import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -29,12 +30,11 @@ import java.util.Optional;
 public class LayoutArquivos<T> {
 
 
-    @Autowired
-    private static CategoriaRepository categoriaRepository;
-
     private List<T> lista;
     private List<T> listaSecundaria;
     private String nomeArquivo;
+
+
 
 
     public LayoutArquivos(List<T> lista, String nomeArquivo, List<T> listaSecundaria) {
@@ -54,7 +54,7 @@ public class LayoutArquivos<T> {
     public void verificaTipoArquivo() {
 
 
-        if (this.lista.size() > 0) {
+        if (this.lista.size() > 0 && this.listaSecundaria.size() > 0) {
 
             if (this.lista.get(0) instanceof Livros && this.listaSecundaria.get(0) instanceof Categoria) {
 
@@ -152,8 +152,9 @@ public class LayoutArquivos<T> {
 
     }
 
-    public void leArquivoTxt(String nomeArq) {
+    public List<List<T>> leArquivoTxt(String nomeArq) {
 
+        List<List<T>> listasLidas = new ArrayList<>();
 
         BufferedReader entrada = null;
 
@@ -243,7 +244,7 @@ public class LayoutArquivos<T> {
                 } else if (tipoRegistro.equals("01")) {
 
                     System.out.println("Eh um registro de livro");
-                    id = Integer.valueOf(registro.substring(2, 8));
+                    id = 0;
                     titulo = registro.substring(8, 53).trim();
                     descricao = registro.substring(53, 453).trim();
                     autor = registro.substring(453, 498).trim();
@@ -255,7 +256,7 @@ public class LayoutArquivos<T> {
                     qtdEstoque = Integer.valueOf(registro.substring(617, 620));
                     qtdReservados = Integer.valueOf(registro.substring(620, 623));
                     fkTbInstituicao = Integer.valueOf(registro.substring(623, 629));
-                    linguagem = registro.substring(629, 659);
+                    linguagem = registro.substring(629, 659).trim();
 
                     Livros l = new Livros(id,
                             titulo,
@@ -275,7 +276,7 @@ public class LayoutArquivos<T> {
 
                 } else if (tipoRegistro.equals("02")) {
 
-                    id   = Integer.valueOf(registro.substring(2, 8));
+                    id   = 0;
                     nome = registro.substring(8, 53);
                     fkTbLivros = Integer.valueOf(registro.substring(53,59));
 
@@ -296,19 +297,12 @@ public class LayoutArquivos<T> {
             System.out.println("Erro ao ler arquivo: " + erro.getMessage());
         }
 
-        System.out.println("\n");
-        System.out.println("****** LIVROS LIDO NO ARQUIVO ******");
 
-        for (Livros l : listaLidaDeLivros) {
-            System.out.println(l);
-        }
 
-        System.out.println("****** CATEGORIAS LIDAS NO ARQUIVO ******");
-        for (Categoria c: listaLidaDeCategorias){
+        listasLidas.add((List<T>) listaLidaDeLivros);
+        listasLidas.add((List<T>) listaLidaDeCategorias);
 
-            System.out.println(c);
-        }
-
+        return listasLidas;
     }
 
     public static String formataRegistroLivroTipo1(String corpo, Livros l) {

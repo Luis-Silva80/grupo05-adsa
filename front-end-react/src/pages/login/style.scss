@@ -12,6 +12,16 @@ $black: #07080a;
     padding-top: 100px;
     height: 100%;
     
+    &_errorLogin {
+      display: none;
+      color: red;
+      font-size: 20px;
+      margin-top: 10px;
+
+      &.active {
+        display: block;
+      }
+    }
     &.container {
       width: 80%;
       margin: 0 auto;
@@ -32,8 +42,13 @@ $black: #07080a;
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 50%;
+      width: 35%;
       z-index: 1;
+
+      &_label {
+        color: $lightGrey;
+        width: 100%;
+      }
 
       @media (max-width: 768px) {
         width: 65%;
@@ -41,7 +56,7 @@ $black: #07080a;
       &_input {
         border-radius: 10px;
         border: 2px solid $darkBlue;
-        padding: 5px 20px;
+        padding: 5px 0 5px 15px;
         font-size: 18px;
         width: 100%;
         margin: 15px 0;

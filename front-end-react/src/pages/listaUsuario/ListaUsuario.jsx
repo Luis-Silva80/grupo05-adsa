@@ -106,6 +106,7 @@ function ListaUsuarios() {
                 setUsers(userAZ)
                 break;
             case "nomeZ-A":
+                let finalUserZAFilter = [];
                 users.map(user => {
                     userName.push(user.nome)
                 });
@@ -118,9 +119,9 @@ function ListaUsuarios() {
                     })
                 })
                 for (let i = userAZ.length -1; i >= 0; i--) {
-                    userZA.push(userAZ[i]);
+                    finalUserZAFilter.push(userAZ[i]);
                 }
-                setUsers(userZA)
+                setUsers(finalUserZAFilter)
                 break;
             default:
                 break;
