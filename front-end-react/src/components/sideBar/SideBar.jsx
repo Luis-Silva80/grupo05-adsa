@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState, useCallback } from "react";
 import "./style.scss";
 import { Link } from 'react-router-dom';
@@ -11,6 +12,7 @@ import logoutIcon from "../../assets/logout.png";
 import addLivro from "../../assets/addLivro.png";
 import listUser from "../../assets/group.png";
 import email from "../../assets/email.png";
+import ranking from "../../assets/trophy.png";
 import hamburgerMenu from "../../assets/hamburgerMenu.png";
 import logoImg from "../../assets/logoWhiteWhite.png";
 
