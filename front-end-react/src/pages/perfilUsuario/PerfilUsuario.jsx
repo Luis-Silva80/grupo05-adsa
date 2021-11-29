@@ -203,7 +203,7 @@ function PerfilUsuario() {
                         <div className="main_perfilInfo_perfilGame">
                             <p className="main_perfilInfo_perfilGame_level">Usuário Nível<span className="main_perfilInfo_perfilGame_level_number" id="perfilLevel">10</span></p>
 
-                            <div className="main_perfilInfo_perfilGame_progressBarGrey"><div className="main_perfilInfo_perfilGame_progressBarBlue"></div></div>
+                            <div className="main_perfilInfo_perfilGame_progressBarGrey"><div className="main_perfilInfo_perfilGame_progressBarBlue" id="barLevel"></div></div>
 
                             <div className="main_perfilInfo_perfilGame_status">
                                 <div className="main_perfilInfo_perfilGame_status_box">
