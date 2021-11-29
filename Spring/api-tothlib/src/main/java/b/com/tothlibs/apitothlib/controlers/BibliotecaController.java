@@ -2,10 +2,7 @@ package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.dto.Response;
 import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
-import b.com.tothlibs.apitothlib.entity.Categoria;
-import b.com.tothlibs.apitothlib.entity.Historico;
-import b.com.tothlibs.apitothlib.entity.Livros;
-import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
+import b.com.tothlibs.apitothlib.entity.*;
 import b.com.tothlibs.apitothlib.listas.LayoutArquivos;
 import b.com.tothlibs.apitothlib.repository.*;
 import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
@@ -27,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/biblioteca")
@@ -57,9 +55,9 @@ public class BibliotecaController<T> {
 
         List<Livros> livros = admin.consultaListaLivros();
 
-        if(!livros.isEmpty()){
+        if (!livros.isEmpty()) {
             return ResponseEntity.status(200).body(livros);
-        }else {
+        } else {
             return ResponseEntity.status(204).build();
         }
 
@@ -264,6 +262,21 @@ public class BibliotecaController<T> {
 
     }
 
+    @GetMapping("/favoritos")
+    @ApiOperation(value = "Põe numa fila os livros mais lidos e conforme a pontuação ele vai saindo da fila")
+    public ResponseEntity livroFavorito(@RequestBody Livros livros) {
+
+        Integer livroFavorito = livros.getQtdReservas();
+
+        //List<PerfilUsuario> alunos = repository.findAlunos()
+        //      .stream()
+        //    .filter(usuario -> usuario.getUsuarioAdmin().equals(0))
+        //  .collect(Collectors.toList());
+
+
+        return null;
+    }
+
     @GetMapping("/gravarArqTxt/livros")
     @ApiOperation(value = "Retorna um arquivo com os livros da biblioteca")
     public ResponseEntity gravaTxt() {
@@ -273,7 +286,6 @@ public class BibliotecaController<T> {
         LocalDateTime dataHoje = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String dataFormatada = dataHoje.format(formatter);
-
 
 
         String nomeArquivo = "Livros-";
@@ -308,25 +320,25 @@ public class BibliotecaController<T> {
 
         retornoDoMetodoLerArquivo = (managerLayoutArquivos.leArquivoTxt(file.getOriginalFilename()));
 
-        if(retornoDoMetodoLerArquivo.get(0).get(0) instanceof  Livros){
+        if (retornoDoMetodoLerArquivo.get(0).get(0) instanceof Livros) {
 
             livrosAGravar = (List<Livros>) retornoDoMetodoLerArquivo.get(0);
 
         }
 
-        if(retornoDoMetodoLerArquivo.get(1).get(0) instanceof  Categoria){
+        if (retornoDoMetodoLerArquivo.get(1).get(0) instanceof Categoria) {
 
             categoriasAGravar = (List<Categoria>) retornoDoMetodoLerArquivo.get(1);
 
         }
 
-        for(Livros l : livrosAGravar){
+        for (Livros l : livrosAGravar) {
 
             repository.save(l);
 
         }
 
-        for(Categoria c : categoriasAGravar){
+        for (Categoria c : categoriasAGravar) {
 
             repositoryCategoria.save(c);
 
