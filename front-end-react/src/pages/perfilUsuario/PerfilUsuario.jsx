@@ -37,12 +37,15 @@ function PerfilUsuario() {
     const [bookInfo, setBookInfo] = useState([]);
     const [respInfo, setRespInfo] = useState([]);
     const [registroInfo, setRegistroInfo] = useState();
+    const [userName, setUserName] = useState();
 
-    useEffect(async () => {
-        await api
+    useEffect(() => {
+        api
             .get(`/aluno/${userId}`)
             .then((response) => {
                 setUserInfo(response.data);
+                setUserName(response.data.nome);
+                console.log(userName);
                 console.log("User data:", response.data);
             })
             .catch((err) => {
@@ -112,7 +115,7 @@ function PerfilUsuario() {
 
     function ReturnBook() {
         const resp = document.getElementById('respReserv');
-        let idReserva = localStorage.getItem("idReserva")
+        let idReserva = localStorage.getItem("idReserva");
         
         api
         .put(`/biblioteca/devolver/${Number(idReserva)}/${userInfo.id}`)
@@ -178,6 +181,20 @@ function PerfilUsuario() {
         popup.classList.remove("active")
     }
 
+    function editName() {
+        let nameElement = document.getElementById("perfilName").value;
+        api
+        .put(`/aluno/alterar-nome/${userId}/${nameElement}`)
+        .then(response => {
+            console.log("response do put aqui", response);
+        })
+        .catch(err => {
+            console.error("ops! ocorreu um erro" + err);
+        })
+        console.log("nameElement", nameElement);
+    }
+
+
     return (
         <div id="rootPerfilUsuario">
             <SideBar />
@@ -189,7 +206,9 @@ function PerfilUsuario() {
                         <div className="main_perfilInfo_box">
                             <img src={perfilIcon} className="main_perfilInfo_box_icon" />
                             <div className="main_perfilInfo_box_content">
-                                <h3 className="main_perfilInfo_box_content_name">{userInfo.nome}<img src={pencil} className="main_perfilInfo_box_content_name_icon" /></h3>
+                                <div>
+                                    <input id="perfilName" value={userName} onChange={e => setUserName(e.target.value)} className="main_perfilInfo_box_content_name"/><img src={pencil} onClick={() => editName()} className="main_perfilInfo_box_content_name_icon" />
+                                </div>
                                 <p className="main_perfilInfo_box_content_email">{userInfo.email}</p>
                                 <div className="main_perfilInfo_box_content_box">
                                     <p className="main_perfilInfo_box_content_box_ra">RA: 01202084</p>
@@ -238,7 +257,7 @@ function PerfilUsuario() {
                                 </div>
                                 :
                                 userInfo.livrosLidos.map(item => (
-                                    <div className="book">
+                                    <div key={item.id} className="book">
                                         <Link to="./livro" className="book_link">
                                             <img src={imageLivro} className="book_link_img" alt="book preview" />
                                         </Link>

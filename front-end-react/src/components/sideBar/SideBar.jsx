@@ -14,35 +14,36 @@ import email from "../../assets/email.png";
 import hamburgerMenu from "../../assets/hamburgerMenu.png";
 import logoImg from "../../assets/logoWhiteWhite.png";
 
+let admin = undefined;
 
 function SideBarComponent() {
-
+    
     const history = useHistory();
     const [ headerIsSelect, setHeaderIsSelect ] = useState(window.screen.width < 767 ? false : true);
-    const [ isAdmin, setIsAdmin ] = useState(false);
     const userId = parseInt(localStorage.getItem('userId'))
-    const [ isAluno, setIsAluno ] = useState(false);
+    
 
-    useEffect(async () => {
-        await api
+    useEffect(() => {
+        api
             .get(`/aluno/`)
             .then((response) => {
                 if (response.data.length === 0) {
-                    setIsAdmin(true);
+                    admin = 1;
                 }
                 response.data.map(user => {
                     if (userId == user.id) {
-                        setIsAluno(true);
+                        admin = 0;
                     }
                 })
-                if (!isAluno) {
-                    setIsAdmin(true);
+                if (admin == undefined) {
+                    admin = 1;
                 }
             })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
             });
     }, []);
+
     
     useEffect(() => {
         switch (window.location.pathname) {
@@ -101,10 +102,8 @@ function SideBarComponent() {
         .delete(`/autenticacao/` + localStorage.getItem('userId'))
         .then((response) => {
             console.log(response.data);
-                if(response.status === 204) {
-                    localStorage.setItem('userId', '')
-                    history.push("/");
-                }    
+                localStorage.setItem('userId', '')
+                history.push("/");
             })
         .catch((err) => {
             console.error("ops! ocorreu um erro" + err);
@@ -136,7 +135,7 @@ function SideBarComponent() {
                         <p className="sideBar_containerCategory_link_desc">Perguntas frequentes</p>
                     </Link>
                     {
-                        isAdmin
+                        admin == 1
                         ? 
                         <Link to="/listaUsuarios" className="sideBar_containerCategory_link" id="listaUsuarios">
                             <img src={listUser} className="sideBar_containerCategory_link_icon" />
@@ -146,7 +145,7 @@ function SideBarComponent() {
                         ""
                     }
                     {
-                        isAdmin
+                        admin == 1
                         ? 
                         <Link to="/cadastroLivro" className="sideBar_containerCategory_link" id="cadastroLivro">
                             <img src={addLivro} className="sideBar_containerCategory_link_icon" />

@@ -21,13 +21,60 @@ function ListaLivros() {
 
   const [booksInfo, setBooksInfo] = useState([]);
   const [respInfo, setRespInfo] = useState([]);
+  const [ googleBooks, setGoogleBooks ] = useState();
+  const [ springBooks, setSpringBooks ] = useState();
 
-  var bookTitle = [];
-  var bookAZ = [];
-  var bookZA = [];
+  let bookTitleFilter = [];
+  let bookAZFilter = [];
+  let bookZAFilter = [];
+  let getBooksSearch = [];
+
+
+  function storeId(value) {
+    localStorage.setItem('id do livro', value)
+  }
+
+  function filter() {
+    console.log("Cliquei no filtro");
+    switch (document.getElementById('filter_combo').value) {
+      case "tituloA-Z":
+        booksInfo.map(book => {
+          bookTitleFilter.push(book.titulo)
+        });
+        bookTitleFilter.sort();
+        bookTitleFilter.map(title => {
+          booksInfo.map(book => {
+            if (book.titulo === title) {
+              bookAZFilter.push(book)
+            }
+          })
+        })
+        setBooksInfo(bookAZFilter)
+        break;
+      case "tituloZ-A":
+        let finalBookZAFilter = [];
+        booksInfo.map(book => {
+          bookTitleFilter.push(book.titulo)
+        });
+        bookTitleFilter.sort();
+        bookTitleFilter.map(title => {
+          booksInfo.map(book => {
+            if (book.titulo == title) {
+              bookZAFilter.push(book)
+            }
+          })
+        })
+        for (let i = bookZAFilter.length -1; i >= 0; i--) {
+          finalBookZAFilter.push(bookZAFilter[i]);
+        }
+        setBooksInfo(finalBookZAFilter)
+        break;
+      default:
+          break;
+    } 
+  }
 
   useEffect(async () => {
-    console.log("estou no use");
     const resp = document.getElementById('respReserv');
     await api
       .get('/biblioteca')
@@ -47,135 +94,107 @@ function ListaLivros() {
   }, []);
 
 
-  // --------------------- função responsavel por pesquisar na api do google books
-  // const options = {
-  //   method: 'GET',
-  //   headers: { 'Content-Type': 'application/json', Accept: 'application/vnd.vtex.ds.v10+json' }
-  // };
-  // let index = 0
-  // function search() {
-  //   // let alert = document.getElementById('alert')
-  //   let searchCallback = document.getElementById('searchCallback')
-  //   let resp = document.getElementById('resp')
-  //   let bookName = document.getElementById('name').value
-  //   if (bookName.length < 3) {
-  //     // alert.classList.add('show')
-  //   } else {
-  //     // alert.classList.remove('show')
-  //     resp.innerHTML = ""
-  //     // alterar os valores do index para implementar o scroll infinito    &startIndex=1
-  //     fetch(`https://codeby-cors.integrationby.com.br/https://www.googleapis.com/books/v1/volumes?q=intitle:${bookName}&maxResults=40&startIndex=${index}`, options)
-  //       .then(response => response.text())
-  //       .then(result => {
-  //         let data = JSON.parse(result)
-  //         // index += 40
-  //         console.log("data: ",data);
+  // async function getBooksOnLoad () {
 
-  //         searchCallback.innerHTML = `<h3>Exibindo ${data.totalItems} resultados encontrados para: ${bookName}</h3>`
-
-  //         data.items.forEach(element => {
-
-  //           resp.innerHTML +=
-  //             `
-  //               <div className="resp_book">
-  //               <img className="resp_book_img" src="${element.volumeInfo.imageLinks ? element.volumeInfo.imageLinks.thumbnail : `${indisponivel}`}">
-  //               ${element.volumeInfo.previewLink ? `<a className="resp_book_tag" target="_blank" href='${element.volumeInfo.previewLink}'>Preview</a>` : ""}
-  //               <h3 className="resp_book_title">${element.volumeInfo.title}</h3>
-  //               <a  className="resp_book_btn" onClick={storeId(${element.id})}>Ver mais</a>
-  //               </div>
-  //             `
-  //         });
+  //       await api
+  //       .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:`)
+  //       .then(response => {
+  //         setGoogleBooks(response.data.items);
   //       })
-  //       .catch(err => console.error(err));
-  //   }
+    
+  //       await api
+  //       .get('/biblioteca')
+  //       .then(response => {
+  //         setSpringBooks(response.data);
+  //       })
+  //       .catch((err) => {
+  //         console.error("ops! ocorreu um erro" + err);
+  //       });
+  //       googleBooks?.map(book => {
+  //         springBooks?.map(springBook => {
+  //           const bookTitleLower = book.volumeInfo.title.toLowerCase();
+  //           const springBookTitleLower = springBook.titulo.toLowerCase();
+    
+  //           const googlePublisherLower = book.volumeInfo.publisher?.toLowerCase();
+  //           const springPublisherLower = springBook.editora.toLowerCase();
+  
+  //           if (bookTitleLower == springBookTitleLower && springPublisherLower == googlePublisherLower) {
+  //             getBooksSearch.push({
+  //               ...book,
+  //               ...springBook
+  //             });
+  //             console.log("É parecido", getBooksSearch);
+  //           }
+  //         })
+  //       });
+        
+  //       if (getBooksSearch.length != 0) {
+  //         setBooksInfo(getBooksSearch);
+  //       }
+        
+  //       console.log("BooksInfo aquii", booksInfo);
+        
+  //       console.log("googleBooks aquii", googleBooks);
+  //       console.log("SpringBooks aquii", springBooks);
+    
   // }
 
-  // function infiniteSearch() {
-  //   // alterar os valores do index para implementar o scroll infinito    &startIndex=1
-  //   let resp = document.getElementById('resp')
-  //   let bookName = document.getElementById('name').value
+  async function getBooks() {
+    let bookSearch = document.getElementById('name').value.toLowerCase();
+    
+    await api
+    .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${bookSearch}&maxResults=40`)
+    .then(response => {
+      setGoogleBooks(response.data.items);
+    })
 
-  //   console.log(window.scrollY);
+    await api
+    .get('/biblioteca')
+    .then(response => {
+      setSpringBooks(response.data);
+    })
+    .catch((err) => {
+      console.error("ops! ocorreu um erro" + err);
+    });
 
-  //   if (window.scrollY > 6000) {
+    googleBooks?.map(book => {
+      springBooks?.map(springBook => {
+        const bookTitleLower = book.volumeInfo.title.toLowerCase();
+        const springBookTitleLower = springBook.titulo.toLowerCase();
 
-  //     let index = 41;
-  //     fetch(`https://codeby-cors.integrationby.com.br/https://www.googleapis.com/books/v1/volumes?q=intitle:${bookName}&maxResults=40&startIndex=${index}`, options)
-  //       .then(response => response.text())
-  //       .then(result => {
-  //         let data = JSON.parse(result)
-  //         data.items.forEach(element => {
+        if (bookTitleLower.includes(bookSearch) && springBookTitleLower.includes(bookSearch)) {
+          const googlePublisherLower = book.volumeInfo.publisher?.toLowerCase();
+          const springPublisherLower = springBook.editora.toLowerCase();
 
-  //           resp.innerHTML +=
-  //             `
-  //             <div className="resp_book">
-  //             <img className="resp_book_img" src="${element.volumeInfo.imageLinks ? element.volumeInfo.imageLinks.thumbnail : `${indisponivel}`}">
-  //             ${element.volumeInfo.previewLink ? `<a className="resp_book_tag" target="_blank" href='${element.volumeInfo.previewLink}'>Preview</a>` : ""}
-  //             <h3 className="resp_book_title">${element.volumeInfo.title}</h3>
-  //             <a href="/cadastroUsuario" className="resp_book_btn">Ver mais</a>
-  //             </div>
-  //           `
-  //         });
-  //       })
-  //       .catch(err => console.error(err));
-
-  //   }
-  // }
-  function storeId(value) {
-    localStorage.setItem('id do livro', value)
-  }
-
-  function filter() {
-    console.log("Cliquei no filtro");
-    switch (document.getElementById('filter_combo').value) {
-      case "tituloA-Z":
-        booksInfo.map(book => {
-          bookTitle.push(book.titulo)
-        });
-        bookTitle.sort();
-        bookTitle.map(title => {
-          booksInfo.map(book => {
-            if (book.titulo == title) {
-              bookAZ.push(book)
-            }
-          })
-        })
-        setBooksInfo(bookAZ)
-        break;
-      case "tituloZ-A":
-        booksInfo.map(book => {
-          bookTitle.push(book.titulo)
-        });
-        bookTitle.sort();
-        bookTitle.map(title => {
-          booksInfo.map(book => {
-            if (book.titulo == title) {
-              bookAZ.push(book)
-            }
-          })
-        })
-        for (let i = bookAZ.length -1; i >= 0; i--) {
-          bookZA.push(bookAZ[i]);
+          if (bookTitleLower == springBookTitleLower && springPublisherLower == googlePublisherLower) {
+            getBooksSearch.push({
+              ...book,
+              ...springBook
+            });
+          }
         }
-        setBooksInfo(bookZA)
-        break;
-      default:
-          break;
-    } 
+      })
+    });
+
+    if (getBooksSearch.length != 0) {
+      setBooksInfo(getBooksSearch);
+    }
   }
 
   return (
     <div id="rootListaLivro">
       <SideBar />
-
+      {/* {
+        booksInfo.length != 0 ? <span></span> : getBooksOnLoad(), <span></span>
+      } */}
       {booksInfo.length === 0 ?
-        <Loading /> :
+        <Loading /> : 
         <main className="main" >
           <h1 className="main_title">Livros cadastrados</h1>
 
           <div className="main_nav">
             <input className="main_nav_input" placeholder="Digite o nome do livro" type="text" name="name" id="name" />
-            <button className="main_nav_btn" >Pesquisar</button>
+            <button className="main_nav_btn" onClick={() => getBooks()} >Pesquisar</button>
             <select id="filter_combo" onChange={() => filter()} className="main_nav_filter">
               <option className="main_nav_filter_value" value="#">Filtrar por: </option>
               <option className="main_nav_filter_value" value="tituloA-Z">Título A-Z</option>
@@ -187,7 +206,7 @@ function ListaLivros() {
           <div id="resp" className="resp">
             {
               booksInfo.map(item => (
-                <BookCard key={item.id} image={imageLivro} idLivro={item.id} titulo={item.titulo} autor={item.autor} status={item.statusLivro} acao="Ver mais"/>
+                <BookCard key={item.id} image={item.volumeInfo?.imageLinks.thumbnail ? item.volumeInfo?.imageLinks.thumbnail : indisponivel} idLivro={item.id} titulo={item.titulo} autor={item.autor} status={item.statusLivro} acao="Ver mais"/>
               ))
             }
 
