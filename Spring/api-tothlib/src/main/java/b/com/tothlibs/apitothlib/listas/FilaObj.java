@@ -60,16 +60,20 @@ public class FilaObj<T> {
     }
 
     // Exibe os elementos da fila
-    public void exibe() {
+    public T[] exibe() {
         if (isEmpty()) {
-            System.out.println("Fila vazia");
+            return null;
         } else {
             for (int i = 0; i < tamanho; i++) {
                 System.out.println(fila[i]);
             }
+             return fila;
         }
     }
 
+    public int getTamanho() {
+        return tamanho;
+    }
 }
 
 

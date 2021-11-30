@@ -2,10 +2,8 @@ package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.dto.Response;
 import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
-import b.com.tothlibs.apitothlib.entity.Categoria;
-import b.com.tothlibs.apitothlib.entity.Historico;
-import b.com.tothlibs.apitothlib.entity.Livros;
-import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
+import b.com.tothlibs.apitothlib.entity.*;
+import b.com.tothlibs.apitothlib.listas.FilaObj;
 import b.com.tothlibs.apitothlib.listas.LayoutArquivos;
 import b.com.tothlibs.apitothlib.repository.*;
 import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
@@ -27,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/biblioteca")
@@ -57,9 +56,9 @@ public class BibliotecaController<T> {
 
         List<Livros> livros = admin.consultaListaLivros();
 
-        if(!livros.isEmpty()){
+        if (!livros.isEmpty()) {
             return ResponseEntity.status(200).body(livros);
-        }else {
+        } else {
             return ResponseEntity.status(204).build();
         }
 
@@ -275,7 +274,6 @@ public class BibliotecaController<T> {
         String dataFormatada = dataHoje.format(formatter);
 
 
-
         String nomeArquivo = "Livros-";
         nomeArquivo += dataFormatada + ".txt";
 
@@ -308,25 +306,25 @@ public class BibliotecaController<T> {
 
         retornoDoMetodoLerArquivo = (managerLayoutArquivos.leArquivoTxt(file.getOriginalFilename()));
 
-        if(retornoDoMetodoLerArquivo.get(0).get(0) instanceof  Livros){
+        if (retornoDoMetodoLerArquivo.get(0).get(0) instanceof Livros) {
 
             livrosAGravar = (List<Livros>) retornoDoMetodoLerArquivo.get(0);
 
         }
 
-        if(retornoDoMetodoLerArquivo.get(1).get(0) instanceof  Categoria){
+        if (retornoDoMetodoLerArquivo.get(1).get(0) instanceof Categoria) {
 
             categoriasAGravar = (List<Categoria>) retornoDoMetodoLerArquivo.get(1);
 
         }
 
-        for(Livros l : livrosAGravar){
+        for (Livros l : livrosAGravar) {
 
             repository.save(l);
 
         }
 
-        for(Categoria c : categoriasAGravar){
+        for (Categoria c : categoriasAGravar) {
 
             repositoryCategoria.save(c);
 
@@ -335,6 +333,39 @@ public class BibliotecaController<T> {
 
         return ResponseEntity.status(200).build();
     }
+
+
+    @GetMapping("/favoritos")
+    @ApiOperation(value = "Põe numa fila os livros mais lidos e conforme a pontuação ele vai saindo da fila")
+    public ResponseEntity livroFavorito() {
+
+        try {
+
+            List<Livros> listaLivrosRanking = repository.findLivrosOrderByQtdReservas();
+
+            FilaObj<Livros> filaLivrosRanking = new FilaObj<>(listaLivrosRanking.size());
+
+            for (Livros l : listaLivrosRanking) {
+
+                filaLivrosRanking.insert(l);
+
+            }
+
+            List<Livros> listOrganizados = new ArrayList<>();
+
+            for (int i = 0; i<=filaLivrosRanking.getTamanho();i++){
+                listOrganizados.add(filaLivrosRanking.poll());
+            }
+
+            return ResponseEntity.status(200).body(listOrganizados);
+
+        } catch (Exception e){
+
+            return ResponseEntity.status(400).build();
+
+        }
+    }
+
 
 //    public ResponseEntity leTxt(String nomeArq) {
 //

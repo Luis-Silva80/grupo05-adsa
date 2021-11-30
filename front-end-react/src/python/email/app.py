@@ -1,3 +1,4 @@
+from logging import info
 from flask import Flask, json, request, jsonify
 from flask_cors import CORS, cross_origin
 from flask_api import status
@@ -23,7 +24,29 @@ def send_user_validation_email():  # put application's code here
     
     conteudo = request.get_json()
 
-    print(conteudo)
+    email_message =  MIMEMultipart()
+  
+    if(conteudo['tipo_operacao'] == 'validacaoEmail'):
+
+        corpo  = f'''<p><b>Olá {conteudo['nome_usuario']}, tudo bem?</b></p><br>
+         <p>Aqui está o seu código para validação da sua conta: </p> 
+         <span style= "color:blue;"> {conteudo['info']} </span>'''
+        email_message['To'] = email_user
+        email_message['Subject'] = "Validação de novo usuário!"
+
+    elif(conteudo['tipo_operacao'] == 'contatarEquipe'):
+
+        
+        corpo = f'''
+        <p>O usuário <b>{conteudo['nome_usuario']}</b> está nos contatando!!</p>
+        <p>{conteudo['info']}</p>
+        <p>Telefone do usuário: {conteudo['telefone']}</p>
+        <p>Email do usuário: {conteudo['email_user']}</p>
+        '''
+        email_message['Subject'] = conteudo['subject']
+        email_message['To'] = conteudo['email']
+       
+        
 
     #  nome_usuario = "Hanan"
 
@@ -38,8 +61,6 @@ def send_user_validation_email():  # put application's code here
 
     login = "212-3a-grupo4@bandtec.com.br"
 
-    email_user = conteudo['email']
-
     senha = "#Gfgrupo4"
 
     server = smtplib.SMTP(host,port)
@@ -51,14 +72,12 @@ def send_user_validation_email():  # put application's code here
 
     # 2 --> CONSTRUIR UM EMAIL DO TIPO MIME
 
-    corpo  = f'''<p><b>Olá {conteudo['nome_usuario']}, tudo bem?</b></p><br>
-    <p>Aqui está o seu código para validação da sua conta: </p> 
-    <span style= "color:blue;"> {conteudo['numero_codigo']} </span>'''
+ 
 
-    email_message =  MIMEMultipart()
+    
     email_message['From'] = login
-    email_message['To'] = email_user
-    email_message['Subject'] = "Validação de novo usuário!"
+  
+  
     email_message.attach(MIMEText(corpo,'html'))
 
     # 3 --> ENVIAR O EMAIL DO TIPO MIME NO SERVIDOR SMTP
@@ -67,7 +86,9 @@ def send_user_validation_email():  # put application's code here
 
     server.quit()
 
-    return app.response_class(response=json.dumps(conteudo), status=201)
+   # return app.response_class(response=json.dumps(conteudo), status=201)
+    
+    return app.response_class(status=201)
 
 
 if __name__ == '__main__':
