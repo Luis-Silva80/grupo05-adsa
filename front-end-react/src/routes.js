@@ -14,6 +14,7 @@ import Login from "./pages/login/Login";
 import NotFound from "./pages/notFound/NotFound";
 import CadastroLivro from "./pages/cadastroLivro/CadastroLivro";
 import RankingUsuarios from "./pages/rankingUsuarios/RankingUsuarios";
+import Graficos from "./pages/graficos/Graficos";
 import NotAllowed from "./pages/notAllowed/NotAllowed";
 
 import testePython from  "./pages/cadastroUsuario/testePython";
@@ -34,6 +35,7 @@ export default function Routes() {
                 <Route path="/contato" exact component={Contato} />
                 <Route path="/faq" exact component={Faq} />
                 <Route path="/cadastroLivro" exact component={CadastroLivro}/>
+                <Route path="/graficos" exact component={Graficos}/>
                 <Route path="/notAllowed" exact component={NotAllowed}/>
 
                 <Route path="/teste" exact component={testePython}/>

@@ -1,0 +1,85 @@
+$lightBlue: #32b9cd;
+$darkBlue: #04378f;
+$lightGrey: #636a70;
+$white: #ffffff;
+$black: #07080a;
+
+#rootRanking {
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-height: 90vh;
+    width: 80%;
+    margin: 0 auto;
+    &_title {
+      color: $lightBlue;
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    
+    &_table {
+      width: 100%;
+      border-spacing: 0px 10px;
+      // border-collapse: collapse;
+      &_label {
+        position: sticky;
+        top: 50px;
+        background: white;
+        &_element {
+          font-size: 25px;
+        }
+      }
+      &_user {
+        &_item {
+          text-align: center;
+          border-top: 2px solid $darkBlue;
+          border-bottom: 2px solid $darkBlue;
+          font-size: 20px;
+          max-width: 300px;
+          &.name {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          &.email {
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          &.inactive {
+            font-weight: 700;
+            color: #dd0606;
+          }
+          &.frst {
+            border-left: 2px solid $darkBlue;
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+          }
+          &.lst {
+            border-right: 2px solid $darkBlue;
+            border-bottom-right-radius: 25px;
+            border-top-right-radius: 25px;
+          }
+          button {
+            background-color: transparent;
+            border: none;
+          }
+        }
+        &_img {
+          margin-top: 5px;
+          height: 50px;
+        }        
+      }
+    }
+
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $darkBlue;
+    border-radius: 10px;
+  }
+}
