@@ -29,7 +29,6 @@ function ListaLivros() {
   let bookZAFilter = [];
   let getBooksSearch = [];
 
-
   function storeId(value) {
     localStorage.setItem('id do livro', value)
   }
@@ -93,50 +92,50 @@ function ListaLivros() {
       });
   }, []);
 
-  // useEffect(async () => {
+  useEffect(async () => {
 
-  //     await api
-  //     .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:`)
-  //     .then(response => {
-  //       setGoogleBooks(response.data.items);
-  //     })
+      await api
+      .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:`)
+      .then(response => {
+        setGoogleBooks(response.data.items);
+      })
   
-  //     await api
-  //     .get('/biblioteca')
-  //     .then(response => {
-  //       setSpringBooks(response.data);
-  //     })
-  //     .catch((err) => {
-  //       console.error("ops! ocorreu um erro" + err);
-  //     });
-  //     googleBooks?.map(book => {
-  //       springBooks?.map(springBook => {
-  //         const bookTitleLower = book.volumeInfo.title.toLowerCase();
-  //         const springBookTitleLower = springBook.titulo.toLowerCase();
+      await api
+      .get('/biblioteca')
+      .then(response => {
+        setSpringBooks(response.data);
+      })
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+      googleBooks?.map(book => {
+        springBooks?.map(springBook => {
+          const bookTitleLower = book.volumeInfo.title.toLowerCase();
+          const springBookTitleLower = springBook.titulo.toLowerCase();
   
-  //         const googlePublisherLower = book.volumeInfo.publisher?.toLowerCase();
-  //         const springPublisherLower = springBook.editora.toLowerCase();
+          const googlePublisherLower = book.volumeInfo.publisher?.toLowerCase();
+          const springPublisherLower = springBook.editora.toLowerCase();
 
-  //         if (bookTitleLower == springBookTitleLower && springPublisherLower == googlePublisherLower) {
-  //           getBooksSearch.push({
-  //             ...book,
-  //             ...springBook
-  //           });
-  //           console.log("É parecido", getBooksSearch);
-  //         }
-  //       })
-  //     });
+          if (bookTitleLower == springBookTitleLower && springPublisherLower == googlePublisherLower) {
+            getBooksSearch.push({
+              ...book,
+              ...springBook
+            });
+            console.log("É parecido", getBooksSearch);
+          }
+        })
+      });
       
-  //     if (getBooksSearch.length != 0) {
-  //       await setBooksInfo(getBooksSearch);
-  //     }
+      if (getBooksSearch.length != 0) {
+        await setBooksInfo(getBooksSearch);
+      }
       
-  //     console.log("BooksInfo aquii", booksInfo);
+      console.log("BooksInfo aquii", booksInfo);
       
-  //     console.log("googleBooks aquii", googleBooks);
-  //     console.log("SpringBooks aquii", springBooks);
+      console.log("googleBooks aquii", googleBooks);
+      console.log("SpringBooks aquii", springBooks);
 
-  // },[])
+  },[])
 
   async function getBooks() {
     let bookSearch = document.getElementById('name').value.toLowerCase();
@@ -205,7 +204,7 @@ function ListaLivros() {
           <div id="resp" className="resp">
             {
               booksInfo.map(item => (
-                <BookCard key={item.id} image={item.volumeInfo?.imageLinks.thumbnail ? item.volumeInfo?.imageLinks.thumbnail : indisponivel} idLivro={item.id} titulo={item.volumeInfo?.title} autor={item.autor} status={item.statusLivro} acao="Ver mais"/>
+                <BookCard key={item.id} image={item.volumeInfo?.imageLinks.thumbnail ? item.volumeInfo?.imageLinks.thumbnail : indisponivel} idLivro={item.id} titulo={item.volumeInfo?.title ? item.volumeInfo?.title : item.titulo} autor={item.autor} status={item.statusLivro} acao="Ver mais"/>
               ))
             }
 

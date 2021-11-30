@@ -26,6 +26,7 @@ function SideBarComponent() {
     
 
     useEffect(() => {
+        console.log("admin aquii", admin);
         api
             .get(`/aluno/`)
             .then((response) => {

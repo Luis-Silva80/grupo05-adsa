@@ -32,26 +32,25 @@ function Livro() {
   const [bookInfoApi, setBookInfoApi] = useState([]);
 
 
-  useEffect(() => {
-    api
-      .get(/aluno/)
-      .then((response) => {
-        if (response.data.length === 0) {
-          admin = 1;
-        }
-        response.data.map(user => {
-          if (userId == user.id) {
-            admin = 0;
-          }
-        })
-        if (admin == undefined) {
-          admin = 1;
+  useEffect(async() => {
+    await api
+    .get("/aluno")
+    .then((response) => {
+      if (response.data.length === 0) {
+        admin = 1;
+      }
+      response.data.map(user => {
+        if (userId == user.id) {
+          admin = 0;
         }
       })
-      .catch((err) => {
+      if (admin == undefined) {
+        admin = 1;
+      }
+    })
+    .catch((err) => {
           console.error("ops! ocorreu um erro" + err);
       });
-      console.log("estou aq",admin);
   }, []);
 
   useEffect(async () => {
@@ -103,7 +102,7 @@ function Livro() {
   const resp = document.getElementById('respReserv');
 
   api
-  .delete(`/biblioteca/${bookInfo.id}`)
+  .delete(`/biblioteca/${bookInfoApi.id}`)
   .then((response) => {
     if (response.status === 200) {
       setRespInfo({ titulo: "Sucesso", parag: "Livro excluido, voltar a lista de livros", btn:"Lista de livros",link:"/listaLivros" })
@@ -145,11 +144,11 @@ function Livro() {
                     </div>
                     <div className="main_container_upBox_content_main_left_paragraph">
                       <p className="main_container_upBox_content_main_left_paragraph_pTitle">Data publicação:</p>
-                      <p className="main_container_upBox_content_main_left_paragraph_pContent">{bookInfoGoogle.volumeInfo?.publishedDate.replaceAll("-", "/")}</p>
+                      <p className="main_container_upBox_content_main_left_paragraph_pContent">{bookInfoGoogle.volumeInfo?.publishedDate?.replaceAll("-", "/")}</p>
                     </div>
                     <div className="main_container_upBox_content_main_left_paragraph">
-                      <p className="main_container_upBox_content_main_left_paragraph_pTitle">Proço do mercado</p>
-                      <p className="main_container_upBox_content_main_left_paragraph_pContent">R$: {bookInfoGoogle.saleInfo?.listPrice.amount}</p>
+                      <p className="main_container_upBox_content_main_left_paragraph_pTitle">Preço do mercado</p>
+                      <p className="main_container_upBox_content_main_left_paragraph_pContent">R$: {bookInfoGoogle.saleInfo?.listPrice?.amount ? bookInfoGoogle.saleInfo?.listPrice?.amount : "00.00"}</p>
                     </div>
                     {/* <div className="main_container_upBox_content_main_left_paragraph">
                       <p className="main_container_upBox_content_main_left_paragraph_pTitle">Valor: </p>
@@ -172,12 +171,14 @@ function Livro() {
                   <button onClick={() => reserve()} className="buttons_btn" >Reservar</button>
                   {/* <LinkButton content="Reservar" onclick={() => reserve()} className="main_container_downBox_button" /> */}
                   <a href={bookInfoGoogle.volumeInfo?.infoLink} target="_blank" className="main_container_downBox_button" >Comprar</a>
-                  <a href={bookInfoGoogle.accessInfo.pdf.acsTokenLink} target="_blank" className="main_container_downBox_button" >Baixar</a>
-                  {admin = 1
+                  <a href={bookInfoGoogle.accessInfo?.pdf.acsTokenLink} target="_blank" className="main_container_downBox_button" >Baixar</a>
+                  {
+                  admin == 1
                   ?
                    <button onClick={() => deleted()} className="buttons_btn" id="btn_deletar" >Deletar</button>
                   :
-                  "" }
+                  "" 
+                  }
                    {/* <LinkButton content="Reservar" onclick={() => reserve(bookInfo.id, userId)} className="main_container_downBox_button" />
                   <LinkButton content="Comprar" className="main_container_downBox_button" />
                   <LinkButton content="Baixar" className="main_container_downBox_button" /> */}
@@ -188,7 +189,7 @@ function Livro() {
           </div>
           <div className="main_description">
             <h3>Descrição</h3>
-            <p>{bookInfoGoogle.volumeInfo?.description}</p>
+            <p>{bookInfoGoogle.volumeInfo?.description ? bookInfoGoogle.volumeInfo?.description : bookInfoApi.descricao}</p>
           </div>
         </main>
       }

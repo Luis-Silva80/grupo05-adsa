@@ -71,33 +71,46 @@ function ListaUsuarios() {
         popup.classList.remove("active")
     }
 
-    function Pendentes() {
+    function Pendentes(id) {
+        setRegistroInfo(null);
         api
-            .get("historico/pendentes")
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.error(error)
+        .get("historico/pendentes")
+        .then(response => {
+            console.log(response.data, "histórico aquii", id);
+            let count = 0;
+            const idUsuario = id;
+            response.data.map(registro => {
+                count++;
+                if (count == response.data.length && idUsuario == registro.fkTbPerfilUsuario) {
+                    setRegistroInfo(registro);
+                }
             })
 
-            api
-            .get(`/historico`)
-            .then((response) => {
-                response.data.map(registro => {
-                    if (registro.fkTbLivros == bookInfo.id) {
-                        if (registro.acao == "Retirada" || registro.acao == "Renovacao") {
-                            if (userInfo.id == registro.fkTbPerfilUsuario) {
-                                setRegistroInfo(registro);
-                                console.log("registro aquii", registro);
-                            }
-                        }
-                    }
-                })
-            })
-            .catch((err) => {
-                console.error("ops! ocorreu um erro" + err);
-            })    
+
+        })
+        .catch(error => {
+            console.error(error)
+        })
+
+            // api
+            // .get(`/historico`)
+            // .then((response) => {
+            //     console.log("Sou o response do histórico", response);
+            //     response.data.map(registro => {
+            //         if (registro.fkTbLivros == bookInfo.id) {
+            //             if (registro.acao == "Retirada" || registro.acao == "Renovacao") {
+            //                 if (userInfo.id == registro.fkTbPerfilUsuario) {
+            //                     console.log("Sou o registro certo", registro);
+            //                     setRegistroInfo(registro);
+            //                     console.log("registro aquii", registro);
+            //                 }
+            //             }
+            //         }
+            //     })
+            // })
+            // .catch((err) => {
+            //     console.error("ops! ocorreu um erro" + err);
+            // })    
     }
 
     // function findUser() {
@@ -131,12 +144,12 @@ function ListaUsuarios() {
                 userName.map(name => {
                     users.map(user => {
                         if (user.nome == name) {
-                            userAZ.push(user)
+                            userZA.push(user)
                         }
                     })
                 })
-                for (let i = userAZ.length -1; i >= 0; i--) {
-                    finalUserZAFilter.push(userAZ[i]);
+                for (let i = userZA.length -1; i >= 0; i--) {
+                    finalUserZAFilter.push(userZA[i]);
                 }
                 setUsers(finalUserZAFilter)
                 break;
@@ -186,9 +199,9 @@ function ListaUsuarios() {
                                 <td className="main_table_user_item frst"><img className="main_table_user_img" src={usuarioImg} alt="user img" /></td>
                                 <td className="main_table_user_item name">{item.nome}</td>
                                 <td className="main_table_user_item email">{item.email}</td>
-                                {item.status === "Inativo"
-                                    ? (<td className='main_table_user_item inactive'>{item.status}</td>)
-                                    : (<td className='main_table_user_item'>{item.status}</td>)
+                                {item.statusAtivo
+                                    ? (<td className='main_table_user_item'>{item.statusAtivo}</td>)
+                                    : (<td className='main_table_user_item inactive'>{item.statusAtivo}</td>)
                                 }
                                 {item.pendencia == null
                                     ? (<td className='main_table_user_item'>nenhuma</td>)
@@ -196,7 +209,7 @@ function ListaUsuarios() {
                                 }
                                 {/* <td className="main_table_user_item"  onClick={() => storeId(item.id)} > */}
                                 <td className="main_table_user_item" >
-                                    <button value={item.id} onClick={() => CallPopup(item.id)} ><img className="main_table_user_about" src={loupe} /></button>
+                                    <button value={item.id} onClick={() => {Pendentes(item.id), CallPopup(item.id)}} ><img className="main_table_user_about" src={loupe} /></button>
                                 </td>
                                 <td className="main_table_user_item lst"><img className="main_table_user_trash" src={trash} /></td>
                             </tr>
@@ -210,9 +223,9 @@ function ListaUsuarios() {
                             <h2 className="popup_user_info name">{userInfo.nome}</h2>
                             <h4 className="popup_user_info email">Email: <b>{userInfo.email}</b></h4>
                             <h4 className="popup_user_info status">Status: <b>Ativo</b></h4>
-                            <h4 className="popup_user_info bookName">Livro reservado: <b>css for babies</b></h4>
-                            <h4 className="popup_user_info reserved">Reservado em: <b>{registroInfo?.dataDevolucao}</b></h4>
-                            <h4 className="popup_user_info return">Devolver em: <b>{registroInfo?.dataG}</b></h4>
+                            <h4 className="popup_user_info bookName">Livro reservado: <b>{registroInfo?.nomeLivro ? registroInfo?.nomeLivro : "Nenhum"}</b></h4>
+                            <h4 className="popup_user_info reserved">Reservado em: <b>{registroInfo?.dataLivroHistorico ? registroInfo?.dataLivroHistorico : ""}</b></h4>
+                            <h4 className="popup_user_info return">Devolver em: <b>{registroInfo?.dataDevolucao ? registroInfo?.dataDevolucao : ""}</b></h4>
                             <div className="popup_user_box">
                                 <button className="popup_user_box_btn">Enviar email</button>
                                 <button className="popup_user_box_btn">Prorrogar</button>
