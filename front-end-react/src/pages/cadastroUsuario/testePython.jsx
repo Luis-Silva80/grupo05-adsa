@@ -24,6 +24,7 @@ function CadastroUsuario() {
 
    }
 
+
     return (
       
         <button onClick = {teste}>Testar</button>
