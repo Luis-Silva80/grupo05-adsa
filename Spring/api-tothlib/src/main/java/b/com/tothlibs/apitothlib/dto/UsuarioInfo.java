@@ -4,7 +4,6 @@ import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 
-import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.List;
 

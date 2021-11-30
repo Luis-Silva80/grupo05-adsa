@@ -15,22 +15,44 @@ import Resp from '../../components/resp/Resp';
 import indisponivel from "../../assets/fotoIndisponivel.png"
 import LinkButton from '../../components/button/Button';
 import livro from '../../assets/book.png';
+let admin = undefined;
+
 
 function Livro() {
-
+    
   Autentication();
 
-
-
+  const userId = parseInt(localStorage.getItem('userId'))
+  const [ isAluno, setIsAluno ] = useState(false);
+  const [ isAdmin, setIsAdmin ] = useState(false);  
   const bookId = parseInt(localStorage.getItem('bookId'));
-  const bookName = localStorage.getItem('bookName');
-  const userId = parseInt(localStorage.getItem('userId'));
-
-  console.log("bookName aqui", bookName);
-  
+  const bookName = localStorage.getItem('bookName');  
   const [respInfo, setRespInfo] = useState([]);
   const [bookInfoGoogle, setBookInfoGoogle] = useState([]);
   const [bookInfoApi, setBookInfoApi] = useState([]);
+
+
+  useEffect(() => {
+    api
+      .get(/aluno/)
+      .then((response) => {
+        if (response.data.length === 0) {
+          admin = 1;
+        }
+        response.data.map(user => {
+          if (userId == user.id) {
+            admin = 0;
+          }
+        })
+        if (admin == undefined) {
+          admin = 1;
+        }
+      })
+      .catch((err) => {
+          console.error("ops! ocorreu um erro" + err);
+      });
+      console.log("estou aq",admin);
+  }, []);
 
   useEffect(async () => {
     setRespInfo({ titulo: "Sucesso", parag: "Entre em seu perfil para verificar o livro clicando no botão abaixo"})
@@ -77,6 +99,28 @@ function Livro() {
       console.error("ops! ocorreu um erro" + err);
     });
   }
+  function deleted(){
+  const resp = document.getElementById('respReserv');
+
+  api
+  .delete(`/biblioteca/${bookInfo.id}`)
+  .then((response) => {
+    if (response.status === 200) {
+      setRespInfo({ titulo: "Sucesso", parag: "Livro excluido, voltar a lista de livros", btn:"Lista de livros",link:"/listaLivros" })
+      resp.classList.add("success");
+      resp.classList.add("active");
+      localStorage.setItem("idReserva", response.data)
+    } else {
+      setRespInfo({ titulo: "Ocorreu um erro", parag: "Entre em contato com o nosso time de suporte clicando no botão abaixo", btn: "Contato", link:"/contato" })
+    }
+  })
+  .catch((err) => {
+    setRespInfo({ titulo: "Ocorreu um erro", parag: "Entre em contato com o nosso time de suporte clicando no botão abaixo", btn: "Contato", link:"/contato" })
+    resp.classList.add("error");
+    resp.classList.add("active");
+    console.error("ops! ocorreu um erro" + err);
+  });
+}
 
   return (
     <div id="rootLivro">
@@ -124,10 +168,19 @@ function Livro() {
                   </div>  
                 </div>
                 <div className="buttons">
+                  
                   <button onClick={() => reserve()} className="buttons_btn" >Reservar</button>
                   {/* <LinkButton content="Reservar" onclick={() => reserve()} className="main_container_downBox_button" /> */}
                   <a href={bookInfoGoogle.volumeInfo?.infoLink} target="_blank" className="main_container_downBox_button" >Comprar</a>
                   <a href={bookInfoGoogle.accessInfo.pdf.acsTokenLink} target="_blank" className="main_container_downBox_button" >Baixar</a>
+                  {admin = 1
+                  ?
+                   <button onClick={() => deleted()} className="buttons_btn" id="btn_deletar" >Deletar</button>
+                  :
+                  "" }
+                   {/* <LinkButton content="Reservar" onclick={() => reserve(bookInfo.id, userId)} className="main_container_downBox_button" />
+                  <LinkButton content="Comprar" className="main_container_downBox_button" />
+                  <LinkButton content="Baixar" className="main_container_downBox_button" /> */}
                 </div>
               </div>
             </div>

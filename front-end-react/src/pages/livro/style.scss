@@ -100,11 +100,13 @@ $secundaryColor: #32b9cd;
                             cursor: pointer;
                         }
                     }
+                    #btn_deletar{
+                        background-color: #cc0000;
+                    }
                 }
             }
-
-            
         }
+       
         &_description {
             width: 60%;
             margin: 35px 0;

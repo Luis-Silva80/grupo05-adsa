@@ -26,6 +26,7 @@ function CadastroUsuario() {
 
     let numero_aleatorio;
 
+
     function submit(event) {
         event.preventDefault();
         api
@@ -35,6 +36,7 @@ function CadastroUsuario() {
             email: email,
             telefone: telefone,
             senha: senha
+
         })
         .then(response => {
             if (response.status === 201) {

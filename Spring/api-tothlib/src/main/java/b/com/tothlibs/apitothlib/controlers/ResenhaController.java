@@ -1,8 +1,6 @@
 package b.com.tothlibs.apitothlib.controlers;
 
-import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.Resenha;
-import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import b.com.tothlibs.apitothlib.repository.ResenhaRepository;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

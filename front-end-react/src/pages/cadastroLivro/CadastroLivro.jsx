@@ -13,6 +13,7 @@ function CadastroLivro() {
     const userId = parseInt(localStorage.getItem('userId'))
     const [respInfo, setRespInfo] = useState([]);
 
+
     Autentication();
     AutenticationAdmin();
 
@@ -27,7 +28,8 @@ function CadastroLivro() {
             editora: document.getElementById("editor").value,
             edicao: document.getElementById("edition").value,
             descricao: document.getElementById("desc").value,
-            qtdEstoque: document.getElementById("quantity").value
+            qtdEstoque: document.getElementById("quantity").value,
+            linguagem: document.getElementById("language").value
         };
 
         console.log(formData);
@@ -64,8 +66,14 @@ function CadastroLivro() {
                         <input id="editor" type="text" name="editor" required className="main_form_input" placeholder="Editora" />
                         <input id="edition" type="text" name="edition" required className="main_form_input" placeholder="Edição" />
                         <textarea id="desc" name="desc" required rows="5" className="main_form_textArea" placeholder="Descrição"></textarea>
+                        <select id="language" name="language" className="main_form_input" >
+                            <option value="">IDIOMA</option>
+                            <option value="portugues">PT/BR</option>
+                            <option value="ingles">ENG</option>
+                        </select>
                         <input id="quantity" type="number" name="quantity" required className="main_form_input quant" placeholder="quantidade" />
                         <input type="submit" className="main_form_button" id="formBtn" value="Cadastrar livro" />
+                        
                     </form>
                     <Resp  titulo={respInfo.titulo} parag={respInfo.parag} btn={respInfo.btn} link={respInfo.link} /> 
                 </main>

@@ -3,28 +3,16 @@ package b.com.tothlibs.apitothlib.listas;
 import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
 import b.com.tothlibs.apitothlib.entity.Categoria;
 import b.com.tothlibs.apitothlib.entity.Livros;
-import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.CategoriaRepository;
 import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import java.io.*;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 
 public class LayoutArquivos<T> {
