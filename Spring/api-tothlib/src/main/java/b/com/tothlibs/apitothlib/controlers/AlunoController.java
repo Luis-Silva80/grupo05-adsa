@@ -174,12 +174,14 @@ public class AlunoController {
 
             alteraStatus(pilhaUsuariosDeletados.peek(), "desfazer");
 
+            PerfilUsuario alunoDesfeito = pilhaUsuariosDeletados.peek();
+
             listaTemporariaDeletados.remove(pilhaUsuariosDeletados.peek());
 
             pilhaUsuariosDeletados.pop();
             pilhaUsuariosDeletados.exibe();
 
-            return ResponseEntity.status(200).build();
+            return ResponseEntity.status(200).body(alunoDesfeito);
 
         }
 

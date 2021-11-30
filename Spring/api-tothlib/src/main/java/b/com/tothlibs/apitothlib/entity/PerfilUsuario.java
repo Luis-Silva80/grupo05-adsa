@@ -31,7 +31,7 @@ public class PerfilUsuario {
     @Column(name = "telefone", length = 14)
     private String telefone;
 
-    @JsonIgnoreProperties
+    @JsonIgnore
     @Column(name = "senha", length = 35)
     private String senha;
 
@@ -59,7 +59,7 @@ public class PerfilUsuario {
     @Column(name = "data_inativacao")
     private LocalDate dataInativacao;
 
-    @JsonIgnoreProperties  // esta anotação indica que o campo não será exibido no JSON
+    @JsonIgnore  // esta anotação indica que o campo não será exibido no JSON
     @Column(name = "foto", length = 20_000_000) // tamanho de 20Mb
     private byte[] foto;
 

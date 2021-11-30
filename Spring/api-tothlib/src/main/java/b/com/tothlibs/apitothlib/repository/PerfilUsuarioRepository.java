@@ -20,6 +20,7 @@ public interface PerfilUsuarioRepository extends JpaRepository<PerfilUsuario, In
     @Query("SELECT u FROM PerfilUsuario u WHERE u.usuarioAdmin = 0")
     public List<PerfilUsuario> findAlunos();
 
+
     @Query("SELECT u FROM PerfilUsuario u WHERE u.usuarioAdmin = 0 and u.statusAtivo = false ")
     public List<PerfilUsuario> findAlunosInativos();
 
