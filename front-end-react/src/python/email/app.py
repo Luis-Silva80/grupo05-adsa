@@ -31,7 +31,7 @@ def send_user_validation_email():  # put application's code here
         corpo  = f'''<p><b>Olá {conteudo['nome_usuario']}, tudo bem?</b></p><br>
          <p>Aqui está o seu código para validação da sua conta: </p> 
          <span style= "color:blue;"> {conteudo['info']} </span>'''
-        email_message['To'] = email_user
+        email_message['To'] = conteudo['email_user']
         email_message['Subject'] = "Validação de novo usuário!"
 
     elif(conteudo['tipo_operacao'] == 'contatarEquipe'):

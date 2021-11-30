@@ -22,8 +22,9 @@ function CadastroUsuario() {
     const [ email, setEmail ] = useState("");
     const [ telefone, setTelefone ] = useState("");
     const [ senha, setSenha ] = useState("");
-    const [ numero_aleatorio, setNumero_aleatorio ] = useState();
     const [ respInfo, setRespInfo ] = useState([]);
+
+    let numero_aleatorio;
 
     function submit(event) {
         event.preventDefault();
@@ -57,25 +58,23 @@ function CadastroUsuario() {
 
     function sendEmail(){
     
-        setNumero_aleatorio((Math.random(1000000, 9999999) * 1000000).toFixed(0));
-
-        console.log("numero_aleatorio no send email", numero_aleatorio);
-
-        apiPython.post("/sendEmail",
-        {
-            nome_usuario : nome,
-            email : email,
-            numero_codigo : numero_aleatorio,
-            tipo_operacao: "validacaoEmail"
-
-        }).then((resposta) => {
-            if (resposta.status === 201) {
+        apiPython
+        .post("/sendEmail", {
+            nome_usuario  : nome,
+            email_user    : email,
+            telefone      : telefone,
+            email         : "212-3a-grupo4@bandtec.com.br",
+            subject       : "Teste",
+            info          : numero_aleatorio,
+            tipo_operacao : "validacaoEmail" 
+        })
+        .then(response => {
+            if (response.status === 201) {
                 document.getElementById("submitButton").style.display = "block";
-                alert(resposta.data)
-
             }
-        }).catch((erro) => {
-            console.log(erro);
+        })
+        .catch(err => {
+            console.error(err);
         })
     }
 
@@ -83,10 +82,7 @@ function CadastroUsuario() {
 
         const resp = document.getElementById('respReserv');
 
-        console.log("numero_aleatorio aqui", numero_aleatorio);
-        console.log("confirmationValue aqui", document.getElementById("confirmationValue").value);
         if (document.getElementById("confirmationValue").value == numero_aleatorio) {
-            console.log("Deu certo, são iguais");
             setRespInfo({ titulo: "Sucesso", parag: "Retirada feita com sucesso" })
             resp.classList.add("active");
             resp.classList.remove("error");
@@ -100,6 +96,9 @@ function CadastroUsuario() {
     }
 
     function openPopup() {
+
+        numero_aleatorio = (Math.random(1000000, 9999999) * 1000000).toFixed(0);
+
         sendEmail();
 
         document.querySelector(".main_confirmationPopup").classList.add("active");

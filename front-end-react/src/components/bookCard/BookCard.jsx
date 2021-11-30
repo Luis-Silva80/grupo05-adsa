@@ -3,8 +3,9 @@ import './style.scss';
 
 import { Link } from 'react-router-dom';
 
-function storeId(value) {
-    localStorage.setItem('bookId', parseInt(value))
+function storeId(bookId, bookName) {
+    localStorage.setItem('bookId', parseInt(bookId))
+    localStorage.setItem('bookName', bookName)
 }
 
 function BookCard( props ) {
@@ -23,7 +24,7 @@ function BookCard( props ) {
                     ? <p className="book_infos_info available">{props?.status}</p> 
                     : <p className="book_infos_info unavailable">{props?.status}</p>}
                     {/* <Link onClick={() => storeId(props.idLivro)} to="/livro"  className="book_info_btn">Ver Mais</Link> */}
-                    <Link onClick={() => storeId(props?.idLivro)}  to="/livro"  className="book_infos_info_btn">Ver Mais</Link>
+                    <Link onClick={() => storeId(props?.idLivro, props?.titulo)}  to="/livro"  className="book_infos_info_btn">Ver Mais</Link>
                 </div>
             </div>
 

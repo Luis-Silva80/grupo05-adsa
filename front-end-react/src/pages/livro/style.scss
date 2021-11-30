@@ -6,7 +6,6 @@ $secundaryColor: #32b9cd;
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 90vh;
 
         @media (max-width: 768px) {
             height: auto;
@@ -89,7 +88,8 @@ $secundaryColor: #32b9cd;
                         display: flex;
                         justify-content: space-between;
                         margin-top: 40px;
-                        button{
+
+                        .main_container_downBox_button, button {
                             background: #04378f;
                             color: white;
                             border: none;
@@ -107,7 +107,7 @@ $secundaryColor: #32b9cd;
         }
         &_description {
             width: 60%;
-            margin-top: 35px;
+            margin: 35px 0;
 
             @media (max-width: 768px) {
                 width: auto;
