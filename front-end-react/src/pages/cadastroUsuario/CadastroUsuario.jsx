@@ -6,10 +6,13 @@ import "./style.scss";
 // import components
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
+import Resp from '../../components/resp/Resp';
 
 // import api and links
 import api from "../../services/api";
 import { Link } from 'react-router-dom';
+import apiPython from "../../services/apiPython"
+import closeButton from "../../assets/close.png";
 
 function CadastroUsuario() {
 
@@ -19,6 +22,8 @@ function CadastroUsuario() {
     const [ email, setEmail ] = useState("");
     const [ telefone, setTelefone ] = useState("");
     const [ senha, setSenha ] = useState("");
+    const [ numero_aleatorio, setNumero_aleatorio ] = useState();
+    const [ respInfo, setRespInfo ] = useState([]);
 
     function submit(event) {
         event.preventDefault();
@@ -50,6 +55,60 @@ function CadastroUsuario() {
         });
     }, []);
 
+    function sendEmail(){
+    
+        setNumero_aleatorio((Math.random(1000000, 9999999) * 1000000).toFixed(0));
+
+        console.log("numero_aleatorio no send email", numero_aleatorio);
+
+        apiPython.post("/sendEmail",
+        {
+            nome_usuario : nome,
+            email : email,
+            numero_codigo : numero_aleatorio,
+            tipo_operacao: "validacaoEmail"
+
+        }).then((resposta) => {
+            if (resposta.status === 201) {
+                document.getElementById("submitButton").style.display = "block";
+                alert(resposta.data)
+
+            }
+        }).catch((erro) => {
+            console.log(erro);
+        })
+    }
+
+    function verifyConfirmation() {
+
+        const resp = document.getElementById('respReserv');
+
+        console.log("numero_aleatorio aqui", numero_aleatorio);
+        console.log("confirmationValue aqui", document.getElementById("confirmationValue").value);
+        if (document.getElementById("confirmationValue").value == numero_aleatorio) {
+            console.log("Deu certo, são iguais");
+            setRespInfo({ titulo: "Sucesso", parag: "Retirada feita com sucesso" })
+            resp.classList.add("active");
+            resp.classList.remove("error");
+            resp.classList.add("success");
+            document.getElementById("submitButton").classList.add("active");
+            document.getElementById("validationButton").classList.add("noActive");
+        } else {
+            document.querySelector(".main_confirmationPopup_content_response").classList.add("active");
+        }
+
+    }
+
+    function openPopup() {
+        sendEmail();
+
+        document.querySelector(".main_confirmationPopup").classList.add("active");
+    }
+
+    function closePopup() {
+        document.querySelector(".main_confirmationPopup").classList.remove("active");
+    }
+
     return (
         <div id="rootCadastroUsuario">
             <Header />
@@ -71,12 +130,29 @@ function CadastroUsuario() {
                     <label className="main_form_label">Senha:</label>
                     <input type="password" required onChange={e => setSenha(e.target.value)} className="main_form_input" placeholder="*************" />
                     
-                    <input type="submit" className="main_form_button" value="Cadastrar" />
+                    <button type="button" id="validationButton" onClick={openPopup} className="main_form_button">Cadastrar</button>
+                    <input type="submit" className="main_form_button" id="submitButton" value="Cadastrar" />
                 </form>
                 <div className="main_box">
                     <p className="main_box_parag">Já tem uma conta?</p>
                     <Link className="main_box_link" to="/login">Logar</Link>
                 </div>
+                <div className="main_confirmationPopup">
+                    <div className="main_confirmationPopup_content">
+                        <h3 className="main_confirmationPopup_content_title" >Confirmação de e-mail</h3>
+                        <p className="main_confirmationPopup_content_parag">Enviamos um e-mail para o e-mail informado anteriormente, coloque o código enviado para confirmar</p>
+                        <input className="main_confirmationPopup_content_input" id="confirmationValue" type="text" />
+
+                        <p className="main_confirmationPopup_content_response">Número informado incorreto</p>
+
+                        <div className="main_confirmationPopup_content_box">
+                            <button className="main_confirmationPopup_content_box_button" onClick={verifyConfirmation}>Confirmar</button>
+                            <button className="main_confirmationPopup_content_box_button" onClick={sendEmail}>Enviar e-amail novamente</button>
+                        </div>
+                        <button onClick={closePopup} className="main_confirmationPopup_content_close"><img src={closeButton} /></button>
+                    </div>
+                </div>
+                <Resp titulo={respInfo.titulo} parag={respInfo.parag} btn={respInfo.btn} link={respInfo.link} /> 
             </main>
             <Footer />
         </div>

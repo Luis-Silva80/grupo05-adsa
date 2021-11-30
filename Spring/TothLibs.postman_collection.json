@@ -18,7 +18,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Thais\",\r\n    \"cpf\": \"455555555\",\r\n    \"email\":\"thais.silva@bandte.com\",\r\n    \"telefone\":\"11464654645\",\r\n    \"senha\":\"thaisBandtec\",\r\n    \"fkTbInstituicao\":\"1\"\r\n\r\n}",
+									"raw": "{\r\n    \"nome\": \"Tais\",\r\n    \"cpf\": \"455555555\",\r\n    \"email\":\"thais.silva@bandtec.com\",\r\n    \"telefone\":\"11464654645\",\r\n    \"senha\":\"taisBandtec\",\r\n    \"fkTbInstituicao\":\"1\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -45,13 +45,33 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/admin",
+									"raw": "localhost:8080/admin/14",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"admin"
+										"admin",
+										"14"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete admin",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/admin/{idAdmin}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin",
+										"{idAdmin}"
 									]
 								}
 							},
@@ -67,7 +87,213 @@
 							"request": {
 								"method": "GET",
 								"header": [],
+								"url": {
+									"raw": "localhost:8080/aluno",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"aluno"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "consulta usuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/aluno",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"aluno"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cadastro aluno",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Vini\",\r\n    \"cpf\": \"41646565\",\r\n    \"email\":\"vini.silva@bandtec.com\",\r\n    \"telefone\":\"11952004411\",\r\n    \"senha\":\"dog123\",\r\n    \"fkTbInstituicao\":\"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/aluno",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"aluno"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "consultar um aluno",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/aluno/14",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"aluno",
+										"14"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "alterar dados usuario",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Alencar\",\r\n    \"cpf\": \"477744111\",\r\n    \"email\":\"alencar.silva@bandtec.com\",\r\n    \"telefone\":\"11958445210\",\r\n    \"senha\":\"alencar123\",\r\n    \"fkTbInstituicao\":\"1\",\r\n    \"usuarioAdmin\": \"0\",\r\n    \"pontos\": \"0\",\r\n    \"qtdLivrosLidos\": \"0\",\r\n    \"qtdResenhas\": 0,\r\n    \"livrosReservados\": \"0\",\r\n    \"statusAtivo\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/aluno/15",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"aluno",
+										"15"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deletar aluno",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/aluno/15",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"aluno",
+										"15"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "desfazer delete",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/aluno/desfazer",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"aluno",
+										"desfazer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "alterar nome",
+							"request": {
+								"method": "GET",
+								"header": [],
 								"url": null
+							},
+							"response": []
+						},
+						{
+							"name": "alterar foto",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "foto",
+											"type": "file",
+											"src": "/C:/Users/Luis/Pictures/my-Avatar.jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8080/aluno/foto/56",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"aluno",
+										"foto",
+										"56"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "retornar foto do usuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": null
+							},
+							"response": []
+						},
+						{
+							"name": "verificar favoritos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/biblioteca/favoritos",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"biblioteca",
+										"favoritos"
+									]
+								}
 							},
 							"response": []
 						}
@@ -78,7 +304,17 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "localhost:8080/autenticacao/usuariosLogados",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"autenticacao",
+								"usuariosLogados"
+							]
+						}
 					},
 					"response": []
 				},
@@ -88,15 +324,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/usuarios/autenticacao/Luis",
+							"raw": "localhost:8080/autenticacao/13",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios",
 								"autenticacao",
-								"Luis"
+								"13"
 							]
 						}
 					},
@@ -108,63 +343,15 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/usuarios//autenticacao//{senha}",
+							"raw": "localhost:8080/autenticacao/dudu.sales@bandte.com/dudu123",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios",
-								"",
 								"autenticacao",
-								"",
-								"{senha}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "cadastro aluno",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Nicole\",\r\n    \"cpf\": \"100720\",\r\n    \"email\":\"nicole.silva@bandte.com\",\r\n    \"telefone\":\"nickz\",\r\n    \"senha\":\"morto123\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/aluno/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"aluno",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "consulta usuario",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/aluno",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"aluno"
+								"dudu.sales@bandte.com",
+								"dudu123"
 							]
 						}
 					},
@@ -199,7 +386,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/biblioteca/retirar/31/7",
+							"raw": "localhost:8080/biblioteca/retirar/151/55",
 							"host": [
 								"localhost"
 							],
@@ -207,8 +394,8 @@
 							"path": [
 								"biblioteca",
 								"retirar",
-								"31",
-								"7"
+								"151",
+								"55"
 							]
 						}
 					},
@@ -240,7 +427,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Java Programin I\",\r\n    \"descricao\": \"Esse livro é para certificação java\",\r\n    \"autor\":\"Guilherme Silveira\",\r\n    \"edicao\":\"10\",\r\n    \"editora\":\"Caleum\",\r\n    \"qtdEstoque\":\"15\"\r\n}",
+							"raw": "{\r\n    \"titulo\": \"Novo\",\r\n    \"descricao\": \"teste cadastro\",\r\n    \"autor\":\"Luis Gustavo\",\r\n    \"edicao\":\"100\",\r\n    \"editora\":\"Var\",\r\n    \"qtdEstoque\":\"15\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -248,14 +435,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/biblioteca/1",
+							"raw": "localhost:8080/biblioteca/14",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"biblioteca",
-								"1"
+								"14"
 							]
 						}
 					},
@@ -268,7 +455,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Nome alterado\",\r\n    \"descricao\": \"esse livro foi alterado pelo postman\",\r\n    \"autor\":\"Luis\",\r\n    \"edicao\":\"2525\",\r\n    \"editora\":\"records\",\r\n    \"qtdEstoque\":\"20\"\r\n}",
+							"raw": "{\r\n    \"titulo\": \"Javinha\",\r\n    \"descricao\": \"esse livro foi alterado pelo postman2\",\r\n    \"autor\":\"Matheus\",\r\n    \"edicao\":\"2525\",\r\n    \"editora\":\"records\",\r\n    \"qtdEstoque\":\"8\",\r\n    \"qtdReservas\": \"0\",\r\n    \"qtdResenhas\": \"0\",\r\n    \"statusLivro\": \"disponivel\",\r\n    \"qtdReservadoAgora\": \"0\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -276,14 +463,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/biblioteca/1",
+							"raw": "localhost:8080/biblioteca/30",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"biblioteca",
-								"1"
+								"30"
 							]
 						}
 					},
@@ -295,14 +482,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/biblioteca/3",
+							"raw": "localhost:8080/biblioteca/27",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"biblioteca",
-								"3"
+								"27"
 							]
 						}
 					},
@@ -314,7 +501,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/biblioteca/reservar/6/7",
+							"raw": "localhost:8080/biblioteca/reservar/55/29",
 							"host": [
 								"localhost"
 							],
@@ -322,8 +509,8 @@
 							"path": [
 								"biblioteca",
 								"reservar",
-								"6",
-								"7"
+								"55",
+								"29"
 							]
 						}
 					},
@@ -335,7 +522,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/biblioteca/renovar/30/3",
+							"raw": "localhost:8080/biblioteca/renovar/2/13",
 							"host": [
 								"localhost"
 							],
@@ -343,8 +530,149 @@
 							"path": [
 								"biblioteca",
 								"renovar",
-								"30",
-								"3"
+								"2",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "devolver",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/biblioteca/devolver/9/15",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"devolver",
+								"9",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "arquivo livros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/biblioteca/gravarArqTxt/livros",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"gravarArqTxt",
+								"livros"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "grava arquivo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/biblioteca/gravarArqTxt/livros",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblioteca",
+								"gravarArqTxt",
+								"livros"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ler arquivo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Historico",
+			"item": [
+				{
+					"name": "verificar pendentes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/historico/pendentes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"historico",
+								"pendentes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "historico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/historico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"historico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exportacao",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/historico/teste-exportacao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"historico",
+								"teste-exportacao"
 							]
 						}
 					},
