@@ -263,31 +263,6 @@ public class BibliotecaController<T> {
 
     }
 
-    @GetMapping("/favoritos")
-    @ApiOperation(value = "Põe numa fila os livros mais lidos e conforme a pontuação ele vai saindo da fila")
-    public ResponseEntity livroFavorito() {
-
-        try {
-
-            List<Livros> listaLivrosRanking = repository.findLivrosOrderByQtdReservas();
-
-            FilaObj<Livros> filaLivrosRanking = new FilaObj<>(listaLivrosRanking.size());
-
-            for (Livros l : listaLivrosRanking) {
-
-                filaLivrosRanking.insert(l);
-
-            }
-
-            return ResponseEntity.status(200).body(filaLivrosRanking);
-
-        } catch (Exception e){
-
-            return ResponseEntity.status(400).build();
-
-        }
-    }
-
     @GetMapping("/gravarArqTxt/livros")
     @ApiOperation(value = "Retorna um arquivo com os livros da biblioteca")
     public ResponseEntity gravaTxt() {
@@ -358,6 +333,39 @@ public class BibliotecaController<T> {
 
         return ResponseEntity.status(200).build();
     }
+
+
+    @GetMapping("/favoritos")
+    @ApiOperation(value = "Põe numa fila os livros mais lidos e conforme a pontuação ele vai saindo da fila")
+    public ResponseEntity livroFavorito() {
+
+        try {
+
+            List<Livros> listaLivrosRanking = repository.findLivrosOrderByQtdReservas();
+
+            FilaObj<Livros> filaLivrosRanking = new FilaObj<>(listaLivrosRanking.size());
+
+            for (Livros l : listaLivrosRanking) {
+
+                filaLivrosRanking.insert(l);
+
+            }
+
+            List<Livros> listOrganizados = new ArrayList<>();
+
+            for (int i = 0; i<=filaLivrosRanking.getTamanho();i++){
+                listOrganizados.add(filaLivrosRanking.poll());
+            }
+
+            return ResponseEntity.status(200).body(listOrganizados);
+
+        } catch (Exception e){
+
+            return ResponseEntity.status(400).build();
+
+        }
+    }
+
 
 //    public ResponseEntity leTxt(String nomeArq) {
 //

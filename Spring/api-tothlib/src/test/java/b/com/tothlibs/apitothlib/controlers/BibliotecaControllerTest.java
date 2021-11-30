@@ -49,7 +49,7 @@ class BibliotecaControllerTest {
 
         when(usuario.consultaListaLivros()).thenReturn(listaFrutasMock);
 
-       
+
         ResponseEntity resposta = controller.listaLivros();
 
         // Verificações

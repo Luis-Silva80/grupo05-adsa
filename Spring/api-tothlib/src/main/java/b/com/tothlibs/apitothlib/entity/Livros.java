@@ -172,4 +172,23 @@ public class Livros {
         this.fkTbBiblioteca = fkTbBiblioteca;
         this.linguagem = linguagem;
     }
+
+    @Override
+    public String toString() {
+        return "Livros{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", autor='" + autor + '\'' +
+                ", edicao='" + edicao + '\'' +
+                ", editora='" + editora + '\'' +
+                ", statusLivro='" + statusLivro + '\'' +
+                ", qtdResenhas=" + qtdResenhas +
+                ", qtdReservas=" + qtdReservas +
+                ", qtdEstoque=" + qtdEstoque +
+                ", qtdReservadosAgora=" + qtdReservadosAgora +
+                ", fkTbBiblioteca=" + fkTbBiblioteca +
+                ", linguagem='" + linguagem + '\'' +
+                '}';
+    }
 }
