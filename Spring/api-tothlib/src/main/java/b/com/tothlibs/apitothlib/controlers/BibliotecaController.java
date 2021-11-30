@@ -279,6 +279,8 @@ public class BibliotecaController<T> {
 
             }
 
+            System.out.println(filaLivrosRanking);
+
             return ResponseEntity.status(200).body(filaLivrosRanking);
 
         } catch (Exception e){
