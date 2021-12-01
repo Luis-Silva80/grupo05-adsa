@@ -42,8 +42,41 @@ function Gamification(points) {
       level.innerText = 6
       bar.style.width = "0%"
       break;
+    case 55:
+      level.innerText = 6
+      bar.style.width = "50%"
+      break;  
+    case 60:
+      level.innerText = 7
+      bar.style.width = "0%"
+      break;  
+    case 65:
+      level.innerText = 7
+      bar.style.width = "50%"
+      break;
+    case 70:
+      level.innerText = 8
+      bar.style.width = "0%"
+      break;    
+    case 75:
+      level.innerText = 8
+      bar.style.width = "50%"
+      break;      
+    case 80:
+      level.innerText = 9
+      bar.style.width = "0%"
+      break;      
+    case 85:
+    level.innerText = 9
+    bar.style.width = "50%"
+    break;      
+    case 90:
+      level.innerText = 10
+      bar.style.width = "100%"
+      break;      
     default:
       level.innerText = 0
+      bar.style.width = "0%"
       break;
   }
 }

@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './style.scss';
 import icon from '../../assets/perfilIcon.png'
 import closed from '../../assets/close.png'
@@ -32,7 +33,11 @@ function ListaUsuarios() {
     const [registroInfo, setRegistroInfo] = useState();
     const [users, setUsers] = useState([]);
     const [userInfo, setUserInfo] = useState([]);
-
+    // const [userDeletado, setUserDeletado] = useState([]);
+    
+    const userDeletado = localStorage.getItem('userDeletado')
+    
+    
 
     var userName = [];
     var userAZ = [];
@@ -69,6 +74,23 @@ function ListaUsuarios() {
     function ClosePopup() {
         let popup = document.getElementById("popup")
         popup.classList.remove("active")
+    }
+    function CallPopupDelete(id) {
+        let popupDelete = document.getElementById("popupDelete")
+        popupDelete.classList.add("active")
+        api
+        .get(`/aluno/${id}`)
+        .then((response) => {
+            setUserInfo(response.data);
+            console.log("Usuário retornado:", response.data);
+        })
+        .catch((err) => {
+            console.error("ops! ocorreu um erro" + err);
+        });
+    }
+    function ClosePopupDelete() {
+        let popupDelete = document.getElementById("popupDelete")
+        popupDelete.classList.remove("active")
     }
 
     function Pendentes(id) {
@@ -118,6 +140,33 @@ function ListaUsuarios() {
     //         console.log( "Usuário aqui: " , element );
     //     });
     // }
+    function deleteUser(id) {
+        api
+        .patch(`/aluno/${id}`)
+        .then((response) => {
+            console.log("Usuário deletado:", response.data.nome);
+            localStorage.setItem("userDeletado", response.data.nome)
+            window.location.reload(false);
+        })
+        .catch((err) => {
+            console.error("ops! ocorreu um erro" + err);
+        });
+        
+    }
+    function desfazer() {
+        api
+        .post("/aluno/desfazer", {
+        })
+        .then(response => {
+            console.log(response);
+            if (response.status === 200) {
+                window.location.reload(false);
+            }
+        })
+        .catch(err => {
+            console.error(err);
+        })
+    }
 
     function filtro() {
         switch (filter_combo.value) {
@@ -180,6 +229,9 @@ function ListaUsuarios() {
 
                     <div className="main_excel">
                         <a href="http://localhost:8080/historico/export-pendentes" className="main_excel_button">Extrair excel</a>
+                        {
+                        console.log(userDeletado)}
+                        <button className="main_excel_btn" onClick={() => desfazer()}>Desfazer Exclusão</button>
                     </div>
 
                     <table className="main_table" id="table">
@@ -199,9 +251,9 @@ function ListaUsuarios() {
                                 <td className="main_table_user_item frst"><img className="main_table_user_img" src={usuarioImg} alt="user img" /></td>
                                 <td className="main_table_user_item name">{item.nome}</td>
                                 <td className="main_table_user_item email">{item.email}</td>
-                                {item.statusAtivo
-                                    ? (<td className='main_table_user_item'>{item.statusAtivo}</td>)
-                                    : (<td className='main_table_user_item inactive'>{item.statusAtivo}</td>)
+                                {item.statusAtivo === false
+                                    ? (<td className='main_table_user_item inactive'>Inativo</td>)
+                                    : (<td className='main_table_user_item'>Ativo</td>)
                                 }
                                 {item.pendencia == null
                                     ? (<td className='main_table_user_item'>nenhuma</td>)
@@ -211,7 +263,10 @@ function ListaUsuarios() {
                                 <td className="main_table_user_item" >
                                     <button value={item.id} onClick={() => {Pendentes(item.id), CallPopup(item.id)}} ><img className="main_table_user_about" src={loupe} /></button>
                                 </td>
-                                <td className="main_table_user_item lst"><img className="main_table_user_trash" src={trash} /></td>
+                                {item.statusAtivo === false
+                                    ? (<td className='main_table_user_item lst'></td>)
+                                    : <td className="main_table_user_item lst"><img onClick={() => CallPopupDelete(item.id)} className="main_table_user_trash" src={trash} /></td>
+                                }
                             </tr>
                         ))}
 
@@ -230,6 +285,13 @@ function ListaUsuarios() {
                                 <button className="popup_user_box_btn">Enviar email</button>
                                 <button className="popup_user_box_btn">Prorrogar</button>
                             </div>
+                        </div>
+                    </section>
+                    <section id="popupDelete" className="popupDelete">
+                        <h3 className="popupDelete_title">Tem certeza que deseja deletar o usuário <b>{userInfo.nome}</b>?</h3>
+                        <div className="popupDelete_box">
+                            <button className="popupDelete_box_btn" onClick={() => ClosePopupDelete()}>Voltar</button>
+                            <button className="popupDelete_box_btn" onClick={() => deleteUser(userInfo.id)}>Deletar</button>
                         </div>
                     </section>
                 </main>
