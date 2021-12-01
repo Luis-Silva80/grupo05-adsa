@@ -10,7 +10,6 @@ $black: #07080a;
     flex-direction: column;
     align-items: center;
     position: relative;
-    height: 90vh;
 
     @media (max-width: 768px) {
       height: auto;
@@ -97,6 +96,83 @@ $black: #07080a;
         color: $lightGrey;
         font-size: 20px;
       } 
+    }
+
+    &_registerBox {
+      width: 99vw;
+      height: 87vh;
+      position: absolute;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+
+      &.active {
+        display: flex;
+      }
+
+      &_content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 30%;
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 20px;
+        border: 3px solid $darkBlue;
+        position: relative;
+
+        &_title {
+          text-align: center;
+          color: #32b9cd;
+          font-size: 2rem;
+        }
+
+        &_parag {
+          color: #636a70;
+          font-size: 16px;
+          text-align: center;
+        }
+  
+        &_input {
+          font-size: 16px;
+          margin: 15px;
+        }
+
+        &_button {
+          border-radius: 5px;
+          border: none;
+          margin: 10px;
+          padding: 5px 45px;
+          background: $darkBlue;
+          color: #ffffff;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: 0.5s;
+          box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.55);
+
+          &:hover{
+            padding: 5.5px 50px;
+            box-shadow: 2px 5px 5px 0px rgba(0, 0, 0,0.75);
+          }
+        }
+
+        &_close {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          img {
+            border: 1px solid black;
+            border-radius: 50%;
+            width: 15px;
+            padding: 5px;
+          }
+        }
+      }
+
     }
   }
 }

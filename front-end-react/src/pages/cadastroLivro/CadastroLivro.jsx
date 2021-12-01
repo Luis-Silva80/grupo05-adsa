@@ -4,6 +4,7 @@ import SideBar from '../../components/sideBar/SideBar';
 import Footer from "../../components/footer/Footer";
 import Autentication from "../../services/autentication";
 import AutenticationAdmin from "../../services/autenticationAdmin";
+import closeButton from "../../assets/close.png";
 import Resp from '../../components/resp/Resp';
 
 import api from "../../services/api";
@@ -52,6 +53,33 @@ function CadastroLivro() {
         });
     }
 
+    function multRegister() {
+        const userFile = document.getElementById("files").value;
+        console.log("Cadastrando", userFile);
+
+        api
+        .patch(`/biblioteca/upload`, {
+            data: userFile
+        })
+        .then((response) => {
+            if (response.status === 200) {
+                alert("Livros cadastrados com sucesso")
+            }
+        })
+        .catch((err) => {
+            console.error("ops! ocorreu um erro" + err);
+        });
+
+    }
+
+    function openPopup() {
+        document.querySelector(".main_registerBox").classList.add("active");
+    }
+
+    function closePopup() {
+        document.querySelector(".main_registerBox").classList.remove("active");
+    }
+
     // <td className="main_table_user_item" value={item.id} onClick={() =>localStorage.setItem('userId', item.id)} ><img className="main_table_user_about" src={loupe}/></td>
 
     return (
@@ -73,8 +101,19 @@ function CadastroLivro() {
                         </select>
                         <input id="quantity" type="number" name="quantity" required className="main_form_input quant" placeholder="quantidade" />
                         <input type="submit" className="main_form_button" id="formBtn" value="Cadastrar livro" />
-                        
+                        <button type="button" onClick={openPopup} className="main_form_button">Cadastrar multiplos livros</button>
                     </form>
+
+                    <div className="main_registerBox">
+                        <div className="main_registerBox_content">
+                            <h1 className="main_registerBox_content_title">Cadastrar multiplos livros</h1>
+                            <p className="main_registerBox_content_parag">Escolha um arquivo .txt(bloco de notas) no padrão do arquivo de layout para cadastrar</p>
+                            <input className="main_registerBox_content_input" type="file" id="files" name="files" multiple />
+                            <button className="main_registerBox_content_button" onClick={multRegister}>Cadastrar</button>
+                            <button onClick={closePopup} className="main_registerBox_content_close"><img src={closeButton} /></button>
+                        </div>
+                    </div>
+
                     <Resp  titulo={respInfo.titulo} parag={respInfo.parag} btn={respInfo.btn} link={respInfo.link} /> 
                 </main>
             <Footer />
