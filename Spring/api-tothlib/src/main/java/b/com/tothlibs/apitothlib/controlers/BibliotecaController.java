@@ -12,13 +12,19 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -287,13 +293,27 @@ public class BibliotecaController<T> {
 
         managerLayoutArquivos.verificaTipoArquivo();
 
+        try {
+            var file = new File(nomeArquivo);
+            var path = Paths.get(file.getAbsolutePath());
+            var resource = new ByteArrayResource(Files.readAllBytes(path));
 
-        return ResponseEntity.status(200).body("Arquivo gerado com sucesso");
+
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.parseMediaType("multipart/form-data"))
+                    .contentLength(file.length())
+                    .body(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
+
 
     }
 
 
-    @PatchMapping("/upload")
+    @PutMapping("/upload")
     @ApiOperation(value = "Recebe um arquivo e grava suas informações no banco")
     public ResponseEntity lerArquivo(@RequestParam MultipartFile file) throws IOException {
 
@@ -334,7 +354,7 @@ public class BibliotecaController<T> {
         return ResponseEntity.status(200).build();
     }
 
-    @PatchMapping("/upload2")
+    @PutMapping("/upload2")
     @ApiOperation(value = "Recebe um arquivo e grava suas informações no banco")
     public ResponseEntity lerArquivo2(@RequestParam MultipartFile file) throws IOException {
 
