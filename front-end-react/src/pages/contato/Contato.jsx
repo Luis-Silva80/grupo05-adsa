@@ -53,10 +53,7 @@ function Contato() {
                         Sugestões de livros, melhorias, críticas...
                     </p>
                     <p>
-                        Preencha o formulário abaixo para entrar em contato com
-                    </p>
-                    <p>
-                        a nossa equipe de atendimento!
+                        Preencha o formulário abaixo para entrar em contato com a nossa equipe de atendimento!
                     </p>
                 </div>
                 <form onSubmit={submit} action="" className="main_form">
@@ -64,12 +61,13 @@ function Contato() {
                     <input required onChange={e => setNome(e.target.value)} className="main_input" type="text" placeholder="Informe o seu nome" />
                     <input required onChange={e => setTelefone(e.target.value)} className="main_input" type="text" placeholder="Informe o seu telefone" />
                     <input required onChange={e => setEmail(e.target.value)} className="main_input" type="text" placeholder="Informe o seu email" />
-                    <textarea required onChange={e => setInfo(e.target.value)} className="main_textarea" placeholder="Descrição" name="" id="" cols="30" rows="6"></textarea>
-                    <input type="submit" content="Enviar" className="main_box_button" />
+                    <textarea required onChange={e => setInfo(e.target.value)} className="main_textarea" placeholder="Descrição" name="" id="" cols="30" rows="5"></textarea>
+                    <input type="submit" content="Enviar" className="main_form_button" />
                 </form>
-                <div className="main_box">
+                <p className="main_prazo">O prazo de resposta é de até 48 horas!</p>
+                <div >
                     <label className="main_box_label">
-                        O prazo de resposta é de até 48 horas!
+                        
                     </label>
                 </div>
             </main>
