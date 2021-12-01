@@ -39,6 +39,7 @@ function PerfilUsuario() {
     const [respInfo, setRespInfo] = useState([]);
     const [registroInfo, setRegistroInfo] = useState();
     const [userName, setUserName] = useState();
+    const [historicoLivro, setHistoricoLivro] = useState();
 
     useEffect(() => {
         api
@@ -177,6 +178,33 @@ function PerfilUsuario() {
         })
     }
 
+    function GetHistoricoDoLivro() {
+        api
+        .get(`/historico`)
+        .then((response) => {
+            let count = 0;
+            let infoHistoricos = []
+            response.data.map(registro => {
+                count++;
+                console.log("count aqui", count);
+                if (registro.fkTbLivros == bookInfo.id) {
+                    if (userInfo.id == registro.fkTbPerfilUsuario) {
+                        console.log("response.data.length aqui", response.data.length);
+                        // if (count == response.data.length) {
+                            infoHistoricos.push(registro)
+                            console.log("infoHistoricos aqui",infoHistoricos);
+                            setHistoricoLivro(infoHistoricos[0]);
+                            console.log("registro histórico aquii", infoHistoricos[0]);
+                        // }
+                    }
+                }
+            })
+        })
+        .catch((err) => {
+            console.error("ops! ocorreu um erro" + err);
+        })
+    }
+
     function ClosePopup() {
         let popup = document.getElementById("popup")
         popup.classList.remove("active")
@@ -266,7 +294,7 @@ function PerfilUsuario() {
                                             <span id="bookId" className="book_infos_info_id">{item.id}</span>
                                             <h4 className="book_infos_info_title">{item.titulo}</h4>
                                             {/* chamar a função do modal, e o endpoint de livro por id, passando item.id como param */}
-                                            <button onClick={() => CallPopup(item.id)} className="book_infos_info_btn">Ver Mais</button>
+                                            <button onClick={() => (GetHistoricoDoLivro(), CallPopup(item.id))} className="book_infos_info_btn">Ver Mais</button>
                                         </div>
                                     </div>
                                 ))
@@ -278,7 +306,15 @@ function PerfilUsuario() {
                         <img className="popup_close"  onClick={() => ClosePopup()}  src={closeButton} alt="close popup" />
                         <div className="popup_user">
                             <h2 className="popup_user_info name">{bookInfo.titulo}</h2>
-                            <h4 className="popup_user_info email">Status: <b>{bookInfo.statusLivro}</b></h4>
+                            <h4 className="popup_user_info email">Status: 
+                                {
+                                    historicoLivro?.acao.toLowerCase() == "reserva" ?
+                                    <b>Reservado</b> : historicoLivro?.acao.toLowerCase() == "retirada" ?
+                                    <b>Retirado</b> : historicoLivro?.acao.toLowerCase() == "renovacao" ?
+                                    <b>Renovado</b> : historicoLivro?.acao.toLowerCase() == "devolucao" ?
+                                    <b>Devolvido</b> : "Nada"
+                                }
+                            </h4>
                             <h4 className="popup_user_info return">Devolver até: <b>{registroInfo?.dataDevolucao}</b></h4>
                             <h4 className="popup_user_info reserved">Reservado em: <b>{registroInfo?.dataLivroHistorico}</b></h4>
                             <div className="popup_user_box">

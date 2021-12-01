@@ -1,6 +1,5 @@
 package b.com.tothlibs.apitothlib.repository;
 
-import b.com.tothlibs.apitothlib.entity.Categoria;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.listas.FilaObj;
 import org.springframework.data.jpa.repository.JpaRepository;

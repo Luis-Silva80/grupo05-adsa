@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Button({ path, content }) {
     return(
         <>
-            <Link className="button_link"to={path}>{content}</Link>
+            <Link className="button_link" to={path}>{content}</Link>
         </>
     );
 }
