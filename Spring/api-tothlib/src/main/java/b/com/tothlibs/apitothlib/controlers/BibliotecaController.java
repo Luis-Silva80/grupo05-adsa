@@ -334,6 +334,48 @@ public class BibliotecaController<T> {
         return ResponseEntity.status(200).build();
     }
 
+    @PatchMapping("/upload2")
+    @ApiOperation(value = "Recebe um arquivo e grava suas informações no banco")
+    public ResponseEntity lerArquivo2(@RequestParam MultipartFile file) throws IOException {
+
+        LayoutArquivos managerLayoutArquivos = new LayoutArquivos();
+
+        List<Livros> livrosAGravar = new ArrayList<>();
+        List<Categoria> categoriasAGravar = new ArrayList<>();
+
+        FilaObj<List<T>> retornoDoMetodoLerArquivo;
+
+        retornoDoMetodoLerArquivo = (managerLayoutArquivos.leArquivoTxt2(file.getOriginalFilename()));
+
+        retornoDoMetodoLerArquivo.exibe();
+
+        if (retornoDoMetodoLerArquivo.peek().get(0) instanceof Livros) {
+
+            livrosAGravar = (List<Livros>) retornoDoMetodoLerArquivo.poll();
+
+        }
+
+        if (retornoDoMetodoLerArquivo.peek().get(0) instanceof Categoria) {
+
+            categoriasAGravar = (List<Categoria>) retornoDoMetodoLerArquivo.poll();
+
+        }
+
+        for (Livros l : livrosAGravar) {
+
+            repository.save(l);
+
+        }
+
+        for (Categoria c : categoriasAGravar) {
+
+            repositoryCategoria.save(c);
+
+        }
+
+
+        return ResponseEntity.status(200).build();
+    }
 
     @GetMapping("/favoritos")
     @ApiOperation(value = "Põe numa fila os livros mais lidos e conforme a pontuação ele vai saindo da fila")
