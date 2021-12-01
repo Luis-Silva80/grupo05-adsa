@@ -249,8 +249,8 @@ public class LayoutArquivos<T> {
                     descricao = registro.substring(53, 453).trim();
                     autor = registro.substring(453, 498).trim();
                     edicao = registro.substring(498, 543).trim();
-                    editora = registro.substring(543, 588);
-                    statusLivro = registro.substring(588, 608);
+                    editora = registro.substring(543, 588).trim();
+                    statusLivro = registro.substring(588, 608).trim();
                     qtdResenhas = Integer.valueOf(registro.substring(608, 614));
                     qtdReservas = Integer.valueOf(registro.substring(614, 617));
                     qtdEstoque = Integer.valueOf(registro.substring(617, 620));
