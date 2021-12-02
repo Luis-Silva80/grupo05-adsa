@@ -131,7 +131,7 @@ function CadastroUsuario() {
                     <label className="main_form_label">Senha:</label>
                     <input type="password" required onChange={e => setSenha(e.target.value)} className="main_form_input" placeholder="*************" />
                     
-                    <button type="button" id="validationButton" onClick={openPopup} className="main_form_button">Cadastrar</button>
+                    <button type="button" id="validationButton" onClick={openPopup} className="main_form_button">Confirmar e-mail</button>
                     <input type="submit" className="main_form_button" id="submitButton" value="Cadastrar" />
                 </form>
                 <div className="main_box">

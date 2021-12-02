@@ -54,13 +54,24 @@ function CadastroLivro() {
     }
 
     function multRegister() {
-        const userFile = document.getElementById("files").value;
+        const userFile = document.getElementById("files");
         const resp = document.getElementById('respReserv');
         console.log("Cadastrando", userFile);
 
-        api
-        .put(`/biblioteca/upload`, {
-            file: userFile
+        let form = new FormData();
+        form.append("file", userFile.files[0]);
+
+        // const config ={
+        //     headers: {
+        //         "Content-Type": "application/"}
+        //     }
+        api 
+        .put(`/biblioteca/upload`, form, {
+
+            headers: {
+                "Content-Type": "multpart/form-data",
+            }
+            
         })
         .then((response) => {
             if (response.status === 200) {
@@ -112,7 +123,7 @@ function CadastroLivro() {
                         <div className="main_registerBox_content">
                             <h1 className="main_registerBox_content_title">Cadastrar multiplos livros</h1>
                             <p className="main_registerBox_content_parag">Escolha um arquivo .txt(bloco de notas) no padrão do arquivo de layout para cadastrar</p>
-                            <input className="main_registerBox_content_input" type="file" id="files" name="files" multiple />
+                            <input className="main_registerBox_content_input" type="file" id="files" name="files" />
                             <button className="main_registerBox_content_button" onClick={multRegister}>Cadastrar</button>
                             <button onClick={closePopup} className="main_registerBox_content_close"><img src={closeButton} /></button>
                             <a className="main_registerBox_content_button" href="https://thothlibs.azurewebsites.net/biblioteca/gravarArqTxt/livros">Arquivo exemplo</a>
