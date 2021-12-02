@@ -30,8 +30,7 @@ public class PerfilUsuario {
 
     @Column(name = "telefone", length = 14)
     private String telefone;
-
-    @JsonIgnore
+    
     @Column(name = "senha", length = 35)
     private String senha;
 
