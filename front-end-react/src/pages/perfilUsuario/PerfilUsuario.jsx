@@ -40,6 +40,7 @@ function PerfilUsuario() {
     const [registroInfo, setRegistroInfo] = useState();
     const [userName, setUserName] = useState();
     const [historicoLivro, setHistoricoLivro] = useState();
+    const [hasImage, setHasImage] = useState();
 
     useEffect(() => {
         api
@@ -53,6 +54,18 @@ function PerfilUsuario() {
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
             });
+
+            api
+            .get(`https://thothlibs.azurewebsites.net/aluno/foto/${userId}`)
+            .then(response => {
+                console.log(response);
+                if (response.data == '') {
+                    setHasImage(false);
+                } else {
+                    setHasImage(true);
+                }
+            })
+    
     }, []);
 
     function WithdrawBook() {
@@ -233,7 +246,7 @@ function PerfilUsuario() {
                 <main className="main" >
                     <div className="main_perfilInfo">
                         <div className="main_perfilInfo_box">
-                            <img src={`https://thothlibs.azurewebsites.net/aluno/foto/${userId}`} className="main_perfilInfo_box_icon" />
+                            <img src={hasImage ? `https://thothlibs.azurewebsites.net/aluno/foto/${userId}` : perfilIcon} className="main_perfilInfo_box_icon" />
                             <div className="main_perfilInfo_box_content">
                                 <div>
                                     <input id="perfilName" value={userName} onChange={e => setUserName(e.target.value)} className="main_perfilInfo_box_content_name"/><img src={pencil} onClick={() => editName()} className="main_perfilInfo_box_content_name_icon" />
@@ -288,7 +301,7 @@ function PerfilUsuario() {
                                 userInfo.livrosLidos.map(item => (
                                     <div key={item.id} className="book">
                                         <Link to="./livro" className="book_link">
-                                            <img src={`https://thothlibs.azurewebsites.net/aluno/foto/${item.id}`} className="book_link_img" alt="book preview" />
+                                            <img src={imageLivro} className="book_link_img" alt="book preview" />
                                         </Link>
                                         <div className="book_infos_info">
                                             <span id="bookId" className="book_infos_info_id">{item.id}</span>

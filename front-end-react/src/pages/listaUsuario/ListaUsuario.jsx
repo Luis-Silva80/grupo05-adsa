@@ -228,7 +228,7 @@ function ListaUsuarios() {
                     </div>
 
                     <div className="main_excel">
-                        <a href="http://localhost:8080/historico/export-pendentes" className="main_excel_button">Extrair excel</a>
+                        <a href="https://thothlibs.azurewebsites.net/historico/export-pendentes" className="main_excel_button">Extrair excel</a>
                         {
                         console.log(userDeletado)}
                         <button className="main_excel_btn" onClick={() => desfazer()}>Desfazer Exclusão</button>
