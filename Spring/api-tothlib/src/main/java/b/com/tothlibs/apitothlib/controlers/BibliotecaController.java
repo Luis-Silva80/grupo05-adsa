@@ -13,6 +13,9 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,10 +23,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -269,9 +273,9 @@ public class BibliotecaController<T> {
 
     }
 
-    @GetMapping("/gravarArqTxt/livros")
+    @GetMapping(value = "/gravarArqTxt/livros", produces = "text/text")
     @ApiOperation(value = "Retorna um arquivo com os livros da biblioteca")
-    public ResponseEntity gravaTxt() {
+    public ResponseEntity<?> export() throws IOException {
 
         List<Livros> listaDeLivros = repository.findAll();
         List<Categoria> listaDeCategorias = repositoryCategoria.findAll();
@@ -279,9 +283,7 @@ public class BibliotecaController<T> {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String dataFormatada = dataHoje.format(formatter);
 
-
-        String nomeArquivo = "Livros-";
-        nomeArquivo += dataFormatada + ".txt";
+        String filename = String.format("Livros-" + dataFormatada + ".txt");
 
         if (listaDeLivros.isEmpty()) {
 
@@ -289,26 +291,36 @@ public class BibliotecaController<T> {
 
         }
 
-        LayoutArquivos managerLayoutArquivos = new LayoutArquivos(listaDeLivros, nomeArquivo, listaDeCategorias);
+        LayoutArquivos managerLayoutArquivos = new LayoutArquivos(listaDeLivros, filename, listaDeCategorias);
 
         managerLayoutArquivos.verificaTipoArquivo();
 
         try {
-            var file = new File(nomeArquivo);
-            var path = Paths.get(file.getAbsolutePath());
-            var resource = new ByteArrayResource(Files.readAllBytes(path));
 
+            File file = new File(filename);
+            Path path = Paths.get(file.getAbsolutePath());
+            ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+            HttpHeaders header = new HttpHeaders();
+
+            System.out.println(path);
+
+            header.add(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=" + filename);
+            header.add("Cache-Control" , "no-cache, no-store,must-revalidate");
+            header.add("Pragma","no-cache");
+            header.add("Expires","0");
 
             return ResponseEntity
                     .ok()
-                    .contentType(MediaType.parseMediaType("multipart/form-data"))
                     .contentLength(file.length())
+                    .headers(header)
+                    .contentType(MediaType.parseMediaType("application/octet-stream"))
                     .body(resource);
-        } catch (IOException e) {
+        }catch (IOException e){
+
             e.printStackTrace();
             return ResponseEntity.notFound().build();
-        }
 
+        }
 
     }
 
