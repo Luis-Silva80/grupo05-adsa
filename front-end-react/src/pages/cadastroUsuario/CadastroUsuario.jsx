@@ -85,7 +85,7 @@ function CadastroUsuario() {
         const resp = document.getElementById('respReserv');
 
         if (document.getElementById("confirmationValue").value == numero_aleatorio) {
-            setRespInfo({ titulo: "Sucesso", parag: "Retirada feita com sucesso" })
+            setRespInfo({ titulo: "Sucesso", parag: "Validação feita com sucesso" })
             resp.classList.add("active");
             resp.classList.remove("error");
             resp.classList.add("success");

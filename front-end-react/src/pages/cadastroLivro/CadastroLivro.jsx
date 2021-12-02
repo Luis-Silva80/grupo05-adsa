@@ -55,14 +55,18 @@ function CadastroLivro() {
 
     function multRegister() {
         const userFile = document.getElementById("files").value;
+        const resp = document.getElementById('respReserv');
         console.log("Cadastrando", userFile);
 
         api
-        .patch(`/biblioteca/upload`, {
-            data: userFile
+        .put(`/biblioteca/upload`, {
+            file: userFile
         })
         .then((response) => {
             if (response.status === 200) {
+                setRespInfo({ titulo: "Sucesso", parag: "Livro cadastrado com sucesso, clique no botão abaixo para verificar", btn: "Lista dos livros", link:"/listaLivros" })
+                resp.classList.add("active");
+                resp.classList.add("success");
                 alert("Livros cadastrados com sucesso")
             }
         })
@@ -111,6 +115,7 @@ function CadastroLivro() {
                             <input className="main_registerBox_content_input" type="file" id="files" name="files" multiple />
                             <button className="main_registerBox_content_button" onClick={multRegister}>Cadastrar</button>
                             <button onClick={closePopup} className="main_registerBox_content_close"><img src={closeButton} /></button>
+                            <a className="main_registerBox_content_button" href="https://thothlibs.azurewebsites.net/biblioteca/gravarArqTxt/livros">Arquivo exemplo</a>
                         </div>
                     </div>
 
