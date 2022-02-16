@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="138a9052-f229-4f22-afe8-51aa3117e171" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Documentação/EngenhariaDeSoftware/Mod_Status_Report-PI20202.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/../../Documentação/EngenhariaDeSoftware/Mod_Status_Report-PI20202.pptx" afterDir="false" />
-    </list>
+    <list default="true" id="138a9052-f229-4f22-afe8-51aa3117e171" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,6 +117,7 @@
       <workItem from="1635536347763" duration="7323000" />
       <workItem from="1635600446243" duration="155000" />
       <workItem from="1635600624522" duration="201000" />
+      <workItem from="1644928862120" duration="6000" />
     </task>
     <servers />
   </component>
@@ -135,6 +134,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
