@@ -1,0 +1,29 @@
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 500;
+  list-style-type: none;
+}
+
+// criar variáveis de cores tamanhos e oq mais for necessário aqui
+$fontWhite: #ffffff;
+$fontBlack: #000000;
+$bgWhite: #ffffff;
+$bgBlack: #000000;
+$fontSize16: 16px;
+$fontSize18: 18px;
+
+$lightBlue: #32b9cd;
+$darkBlue: #04378f;
+$lightGrey: #636a70;
+$white: #ffffff;
+$black: #07080a;
+
+
+.container {
+  width: 85%;
+  padding: 10px 7.5%;
+}
+

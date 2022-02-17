@@ -1,0 +1,129 @@
+$bgBlacksideBar: #2C2C2C;
+$iconSize: 32px;
+
+#rootSideBar {
+    position: fixed;
+    background-color: $bgBlacksideBar;
+    height: 100vh;
+    width: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 7;
+    transition: 0.5s;
+    overflow: hidden;
+
+    // @media (max-width: 768px) {
+    //     left: -300px;
+    // }
+
+    .sideBar_containerCategory {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5vh;
+
+        @media (max-width: 768px) {
+            padding-top: 64px;
+        }
+
+        &_link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            position: relative;
+            transition: 0.2s;
+
+            &_icon {
+                width: $iconSize;
+                padding: 18px 23px;
+            }
+
+            &_desc {
+                font-size: 20px;
+                width: auto;
+                white-space: nowrap;
+                position: relative;
+            }
+
+            &:hover {
+                background-color: #32B9CD;
+
+                .sideBar_containerCategory_link_desc {
+                    color: #2C2C2C;
+                }
+            }
+
+        }
+    }
+
+    .sideBar_containerOptions {
+        display: flex;
+        flex-direction: column;
+
+        &_link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            position: relative;
+            transition: 0.2s;
+
+            &_icon {
+                width: $iconSize;
+                padding: 18px 23px;
+            }
+            &_desc {
+                font-size: 20px;
+                width: auto;
+                white-space: nowrap;
+                position: relative;
+            }
+
+            &:hover {
+                background-color: #cc2222;
+
+                .sideBar_containerCategory_link_desc {
+                    color: #2C2C2C;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    #headerMobileSide {
+        display: none;
+    }    
+}
+
+@media (max-width: 768px) {
+    #headerMobileSide {
+        background-color: #2C2C2C;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        position: fixed;
+        z-index: 23;
+
+        .headerMobile_hamburger {
+            width: 12%;
+        }
+
+        .headerMobile_logo {
+            width: 30%;
+        }
+    }
+}
+
+.currentPage {
+    background-color: #32B9CD;
+
+    .sideBar_containerCategory_link_desc {
+        color: #2C2C2C;
+    }
+}
+
+#rootSideBar.sideOpen {
+    width: 280px;
+}

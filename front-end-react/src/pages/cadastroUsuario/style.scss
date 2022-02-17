@@ -1,0 +1,261 @@
+$lightBlue: #32b9cd;
+$darkBlue: #04378f;
+$lightGrey: #636a70;
+$white: #ffffff;
+$black: #07080a;
+
+#rootCadastroUsuario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+
+    &.container {
+      width: 80%;
+      margin: 0 auto;
+    }
+    &_title {
+      color: $lightBlue;
+      font-size: 40px;
+
+      @media (max-width: 768px) {
+        font-size: 2.5rem;
+      }
+    }
+    &_parag {
+      color: $lightGrey;
+      text-align: center;
+      margin: 5px 0;
+      font-size: 18px;
+
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
+    }
+    &_form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 50%;
+      z-index: 1;
+
+      &_label {
+        color: $lightGrey;
+        width: 100%;
+      }
+      @media (max-width: 768px) {
+        width: 75%;
+      }
+      &_input {
+        border-radius: 10px;
+        border: 2px solid $darkBlue;
+        padding: 5px 0 5px 15px;
+        font-size: 18px;
+        width: 100%;
+        margin: 5px 0;
+        box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.4);
+      }
+      &_button {
+        border-radius: 5px;
+        border: none;
+        margin: 10px;
+        padding: 5px 55px;
+        background: #04378f;
+        color: #ffffff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: 0.5s;
+        box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.55);
+        display: none;
+
+        &.active {
+          display: block;
+        }
+
+        &:hover {
+          padding: 5.5px 60px;
+          box-shadow: 2px 5px 5px 0px rgba(0, 0, 0, 0.75);
+        }
+      }
+      #validationButton {
+        display: block;
+
+        &.noActive {
+          display: none;
+        }
+      }
+    }
+    &_forgot {
+      margin: 15px 0;
+      text-decoration: none;
+      color: $lightGrey;
+    }
+    &_box {
+      display: flex;
+      justify-content: space-around;
+      width: 270px;
+      &_link {
+        color: $darkBlue;
+        font-size: 20px;
+      }
+      &_parag {
+        color: $lightGrey;
+        font-size: 20px;
+      }
+    }
+    .resp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 20%;
+      border: 2px solid $black;
+      border-radius: 15px;
+      background: $white;
+      max-width: 500px;
+      opacity: 0;
+      z-index: 0;
+      padding: 50px;
+      transition: 0.5s;
+      &.active {
+        opacity: 1;
+        z-index: 2;
+      }
+      &_title {
+        color: $lightBlue;
+        font-size: 30px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      &_text {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      &_link {
+        font-size: 20px;
+        text-align: center;
+      }
+      &_ctto {
+        font-size: 20px;
+        text-align: center;
+        background: $darkBlue;
+        color: $white;
+        border: none;
+        border-radius: 10px;
+        padding: 5px 10px;
+      }
+      &_img {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 25px;
+        cursor: pointer;
+      }
+    }
+  
+    &_confirmationPopup {
+      width: 99vw;
+      height: 87vh;
+      position: absolute;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+
+      &_content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 30%;
+        background-color: $white;
+        padding: 20px;
+        border-radius: 20px;
+        border: 3px solid $darkBlue;
+        position: relative;
+
+        &_close {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          img {
+            border: 1px solid black;
+            border-radius: 50%;
+            width: 15px;
+            padding: 5px;
+          }
+        }
+
+        &_title {
+          color: $darkBlue;
+          text-align: center;
+          font-size: 26px;
+        }
+  
+        &_parag {
+          color: $lightGrey;
+          text-align: center;
+        }
+  
+        &_input {
+          border-radius: 10px;
+          border: 2px solid $darkBlue;
+          padding: 5px 0 5px 15px;
+          font-size: 18px;
+          width: 50%;
+          margin: 15px 0;
+          box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.4);
+        }
+  
+        &_response {
+          color: red;
+          display: none;
+
+          &.active {
+            display: block;
+          }
+        }
+  
+        &_box {
+  
+  
+          &_button {
+            border-radius: 5px;
+            border: none;
+            margin: 10px;
+            padding: 5px 15px;
+            background: #04378f;
+            color: #ffffff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.5s;
+            box-shadow: 1px 3px 3px 0px rgb(0 0 0 / 55%);
+
+            &:hover {
+              padding: 5.5px 15.5px;
+              box-shadow: 2px 5px 5px 0px rgba(0, 0, 0, 0.75);
+            }
+          }
+        }
+      }
+
+      &.active {
+        display: flex;
+      }
+    }
+  }
+  .footer {
+    position: absolute;
+    bottom: 0;
+  }
+}

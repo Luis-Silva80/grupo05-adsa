@@ -1,0 +1,66 @@
+$fontWhite: #ffffff;
+$fontBlack: #000000;
+$bgWhite: #ffffff;
+$bgBlack: #000000;
+$fontSize16: 16px;
+$fontSize18: 18px;
+
+$lightBlue: #32b9cd;
+$darkBlue: #04378f;
+$lightGrey: #636a70;
+$white: #ffffff;
+$black: #07080a;
+
+.book {
+  border-radius: 10px;
+  border: 2px solid #7c7c7c;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: $white;
+  position: relative;
+  padding-top: 15px;
+  margin-bottom: 20px;
+  &_link {
+   &_img{
+     width: 200px;
+
+    }
+    
+  }
+  &_tag {
+    position: absolute;
+    background: $darkBlue;
+    color: white;
+    border-radius: 10px;
+    top: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    text-decoration: none;
+  }
+  &_info {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center ;
+    &_title {
+      margin: 0 5px;
+      font-size: 20px;
+      text-transform: capitalize;
+      font-weight: 600;
+      text-align: center;
+    }
+    &_btn {
+      padding: 5px 10px;
+      background: $darkBlue;
+      color: $white;
+      border-radius: 10px;
+      border: none;
+      font-size: 18px;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+  }
+}

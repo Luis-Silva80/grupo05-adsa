@@ -1,11 +1,8 @@
 package br.thotlibs.entregavelpi.entity;
 
-import br.thotlibs.entregavelpi.interfaces.Utilizavel;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class UsuarioAluno extends Usuario {
 

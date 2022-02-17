@@ -1,0 +1,46 @@
+$bgBlackHeader: #2C2C2C;
+$colorWhite: #FFFF;
+
+#rootFooter {
+    display: flex;
+    background-color: $bgBlackHeader;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+    height: 10vh;
+
+    @media (max-width: 768px) {
+        height: 20vh;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 5px 0;
+    }
+    
+    .footer_imageContainer{
+        &_link {
+            &_imageLogo {
+                width: 135px;
+            }
+        }
+    }
+
+    .footer_textContainer {
+        display: flex;
+        align-items: center;
+
+        &_text {
+            color: $colorWhite;
+        }
+    }
+
+    .footer_icons {
+        display: flex;
+        align-items: center;
+
+        &_link {
+            &_image {
+                padding: 10px;
+            }
+        }
+    }
+}

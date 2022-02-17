@@ -1,0 +1,91 @@
+// criar variáveis de cores tamanhos e oq mais for necessário aqui
+$fontWhite: #ffffff;
+$fontBlack: #000000;
+$bgWhite: #ffffff;
+$bgBlack: #000000;
+$fontSize16: 16px;
+$fontSize18: 18px;
+
+$lightBlue: #32b9cd;
+$darkBlue: #04378f;
+$lightGrey: #636a70;
+$white: #ffffff;
+$black: #07080a;
+
+
+#rootContato {
+  .main {
+
+    @media (max-width: 768px) {
+    height: auto;
+    }
+
+    &_title {
+      color: $lightBlue;
+      text-align: center;
+      font-size: 3rem;
+      padding-top: 20px;
+
+      @media (max-width: 768px) {
+        padding-top: 90px;
+      }
+    }
+    &_text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+
+      @media (max-width: 768px) {
+        text-align: center;
+      }      
+    }
+    &_form {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      &_button{
+        padding: 5px 50px;
+        font-size: 18px;
+        color: white;
+        background: $darkBlue;
+        border-radius: 5px;
+        border: 2px solid $darkBlue;
+        margin: 15px 0;
+        letter-spacing: 1px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+    &_input {
+      border-radius: 5px;
+      border: 2px solid $darkBlue;
+      width: 45%;
+      padding: 5px 12px;
+      margin: 0 0 15px 0;
+      font-size: 20px;
+
+      @media (max-width: 768px) {
+        width: 80%;
+      }
+    }
+    &_textarea {
+      border-radius: 5px;
+      border: 2px solid $darkBlue;
+      width: 45%;
+      padding: 5px 12px;
+      font-size: 20px;
+
+      @media (max-width: 768px) {
+        width: 80%;
+      }
+    }
+    &_prazo {
+      color: gray;
+      font-size: 15px;
+      text-align: center;
+    }
+  }
+}
