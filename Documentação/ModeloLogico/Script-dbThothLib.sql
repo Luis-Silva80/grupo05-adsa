@@ -32,6 +32,10 @@ pontos bigint,
 qtd_livros_lidos int,
 qtd_resenhas int,
 fk_tb_instituicao int,
+livros_reservados int,
+status_ativo boolean,
+data_inativacao date,
+foto varchar(20000000000),
 foreign key (fk_tb_instituicao) references tbInstituicao(id)
 );
 
@@ -49,11 +53,13 @@ descricao varchar(120),
 autor varchar(45),
 edicao varchar(45),
 editora varchar(45),
-status_livro varchar(15),
+linguagem varchar(45),
+cor_etiqueta varchar(45),
+info_prateleira varchar(45),
 qtd_resenhas int,
 qtd_reservas int,
+qtd_disponiveis int,
 qtd_estoque int,
-qtd_reservado_agora int,
 fk_tb_biblioteca int,
 foreign key (fk_tb_biblioteca) references tbBiblioteca(id)
 );
@@ -67,15 +73,30 @@ foreign key (fk_tb_livros) references tbLivros(id)
 
 
 create table tbHistorico (
-fk_tb_livros int,
-fk_tb_perfil_usuario int,
-foreign key(fk_tb_livros) references tbLivros(id),
-foreign key(fk_tb_perfil_usuario) references tbPerfilUsuario(id),
 id int primary key auto_increment,
-data_livro_historico datetime,
 nome_livro varchar(70),
-nome_perfil_usuario varchar(70),
-acao varchar(15)
+tombo varchar(60),
+nr_exemplar int,
+acao varchar(15),
+nome_aluno varchar(70),
+data_registro date,
+data_prev_devolucao date,
+data_devolvido date,
+fk_tb_exemplar int,
+fk_tb_perfil_usuario int,
+foreign key(fk_tb_exemplar) references tbExemplar(id),
+foreign key(fk_tb_perfil_usuario) references tbPerfilUsuario(id)
+);
+
+create table tbExemplar(
+	id int primary key auto_increment,
+    nr_exemplar int,
+    tombo varchar(60),
+    reservado boolean,
+    retirado boolean,
+    devolvido boolean,
+    fk_tb_livro int,
+    foreign key(fk_tb_livro) references tbLivros(id)
 );
 
 
