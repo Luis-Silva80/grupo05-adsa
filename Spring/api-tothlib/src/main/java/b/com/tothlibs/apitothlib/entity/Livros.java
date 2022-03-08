@@ -27,8 +27,8 @@ public class Livros {
     @Column(name = "editora", length = 45)
     private String editora;
 
-    @Column(name = "status_livro", length = 15)
-    private String statusLivro;
+    @Column(name = "info_prateleira", length = 50)
+    private String infoPrateleira;
 
     @Column(name = "qtd_resenhas")
     private Integer qtdResenhas;
@@ -36,17 +36,60 @@ public class Livros {
     @Column(name = "qtd_reservas")
     private Integer qtdReservas;
 
+    @Column(name = "qtd_disponiveis")
+    private Integer qtdDisponiveis;
+
     @Column(name = "qtd_estoque")
     private Integer qtdEstoque;
-
-    @Column(name = "qtd_reservados_agora")
-    private Integer qtdReservadosAgora;
 
     @Column(name = "fk_tb_biblioteca")
     private Integer fkTbBiblioteca;
 
     @Column(name = "linguagem")
     private String linguagem;
+
+    @Column( name = "cor_etiqueta" )
+    private String corEtiqueta;
+
+    public String getInfoPrateleira() {
+        return infoPrateleira;
+    }
+
+    public void setInfoPrateleira(String infoPrateleira) {
+        this.infoPrateleira = infoPrateleira;
+    }
+
+    public Integer getQtdDisponiveis() {
+        return qtdDisponiveis;
+    }
+
+    public void setQtdDisponiveis(Integer qtdDisponiveis) {
+        this.qtdDisponiveis = qtdDisponiveis;
+    }
+
+    public Integer getQtdReservadosAgora() {
+        return qtdReservadosAgora;
+    }
+
+    public void setQtdReservadosAgora(Integer qtdReservadosAgora) {
+        this.qtdReservadosAgora = qtdReservadosAgora;
+    }
+
+    public Integer getFkTbBiblioteca() {
+        return fkTbBiblioteca;
+    }
+
+    public void setFkTbBiblioteca(Integer fkTbBiblioteca) {
+        this.fkTbBiblioteca = fkTbBiblioteca;
+    }
+
+    public String getCorEtiqueta() {
+        return corEtiqueta;
+    }
+
+    public void setCorEtiqueta(String corEtiqueta) {
+        this.corEtiqueta = corEtiqueta;
+    }
 
     public String getLinguagem() {
         return linguagem;

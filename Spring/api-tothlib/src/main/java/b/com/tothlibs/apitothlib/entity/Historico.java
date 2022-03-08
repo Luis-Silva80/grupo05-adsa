@@ -16,14 +16,11 @@ public class Historico {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "fk_tb_livros")
-    private Integer fkTbLivros;
+    @Column(name = "fk_tb_exemplar")
+    private Integer fkTbExemplar;
 
     @Column(name = "fk_tb_perfil_usuario")
     private Integer fkTbPerfilUsuario;
-
-    @Column(name = "data_livro_historico")
-    private LocalDate dataLivroHistorico;
 
     @Column(name = "nome_livro", length = 70)
     private String nomeLivro;
@@ -34,10 +31,20 @@ public class Historico {
     @Column(name = "acao", length = 15)
     private String acao;
 
+    @Column(name = "tombo")
+    private String tombo;
 
+    @Column(name = "nr_exemplar")
+    private String nrExemplar;
 
-    @Column(name = "data_devolucao")
-    private LocalDate dataDevolucao;
+    @Column(name = "data_registro")
+    private LocalDate dataRegistro;
+
+    @Column(name = "data_prev_devolucao")
+    private LocalDate dataPrevDevolucao;
+
+    @Column(name = "data_devolvido")
+    private LocalDate dataDevolvido;
 
     public String getAcao() {
         return acao;
