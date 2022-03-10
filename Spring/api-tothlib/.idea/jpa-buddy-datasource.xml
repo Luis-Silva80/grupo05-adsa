@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="f9b0ce3b-b272-41cf-a36d-3040ad9997e3" name="dbThothLibs" url="jdbc:mysql://localhost/dbThothLib?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=UTC" driverClass="com.mysql.jdbc.Driver" />
+      <data-source id="5f90b23a-c0b9-4760-acdd-904714f46940" name="Grupo04_Thothlibs" url="jdbc:sqlserver://thothlibs.database.windows.net;databaseName=Grupo04_Thothlibs" driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+    </data-sources>
+  </component>
+</project>
