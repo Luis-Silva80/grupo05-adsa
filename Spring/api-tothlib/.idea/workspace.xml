@@ -5,24 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7adb6435-d1f1-4539-9707-2ee10b132e15" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Exemplar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/ExemplarRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy-datasource.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy-datasource.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-tothlib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/api-tothlib.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-tothlib.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Historico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Historico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Livros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Livros.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/Autenticacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/Autenticacao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/BibliotecaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/BibliotecaController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/HistoricoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/HistoricoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/dto/UsuarioDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/dto/UsuarioDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/listas/GravaArquivos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/listas/GravaArquivos.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/listas/ListaDeObjetos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/listas/ListaDeObjetos.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/services/UsuarioAdmin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/services/UsuarioAdmin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/Autenticacao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/BibliotecaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/HistoricoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/dto/UsuarioDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/listas/ListaDeObjetos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/services/UsuarioAdmin.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +52,9 @@
         <entry key="JPA Inspector" value="true" />
         <entry key="JPA Palette" value="true" />
         <entry key="JPA Structure" value="true" />
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
     <option name="myId2Visible">
@@ -65,6 +62,9 @@
         <entry key="JPA Inspector" value="false" />
         <entry key="JPA Palette" value="false" />
         <entry key="JPA Structure" value="true" />
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
   </component>
@@ -85,6 +85,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="azure" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -162,6 +163,7 @@
       <workItem from="1635536347763" duration="7323000" />
       <workItem from="1635600446243" duration="155000" />
       <workItem from="1635600624522" duration="201000" />
+      <workItem from="1646965669261" duration="1105000" />
     </task>
     <servers />
   </component>

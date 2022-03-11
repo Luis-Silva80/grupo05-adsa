@@ -46,52 +46,8 @@ public class Historico {
     @Column(name = "data_devolvido")
     private LocalDate dataDevolvido;
 
-    public String getAcao() {
-        return acao;
-    }
+    public Historico() {
 
-    public void setAcao(String acao) {
-        this.acao = acao;
-    }
-
-    public String getNomePerfilUsuario() {
-        return nomePerfilUsuario;
-    }
-
-    public void setNomePerfilUsuario(String nomePerfilUsuario) {
-        this.nomePerfilUsuario = nomePerfilUsuario;
-    }
-
-    public String getNomeLivro() {
-        return nomeLivro;
-    }
-
-    public void setNomeLivro(String nomeLivro) {
-        this.nomeLivro = nomeLivro;
-    }
-
-    public LocalDate getDataLivroHistorico() {
-        return dataLivroHistorico;
-    }
-
-    public void setDataLivroHistorico(LocalDate dataLivroHistorico) {
-        this.dataLivroHistorico = dataLivroHistorico;
-    }
-
-    public Integer getFkTbPerfilUsuario() {
-        return fkTbPerfilUsuario;
-    }
-
-    public void setFkTbPerfilUsuario(Integer fkTbPerfilUsuario) {
-        this.fkTbPerfilUsuario = fkTbPerfilUsuario;
-    }
-
-    public Integer getFkTbLivros() {
-        return fkTbLivros;
-    }
-
-    public void setFkTbLivros(Integer fkTbLivros) {
-        this.fkTbLivros = fkTbLivros;
     }
 
     public Integer getId() {
@@ -102,24 +58,123 @@ public class Historico {
         this.id = id;
     }
 
-    public LocalDate getDataDevolucao() {
-        return dataDevolucao;
+    public Integer getFkTbExemplar() {
+        return fkTbExemplar;
     }
 
-    public void setDataDevolucao(LocalDate dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public void setFkTbExemplar(Integer fkTbExemplar) {
+        this.fkTbExemplar = fkTbExemplar;
+    }
+
+    public Integer getFkTbPerfilUsuario() {
+        return fkTbPerfilUsuario;
+    }
+
+    public void setFkTbPerfilUsuario(Integer fkTbPerfilUsuario) {
+        this.fkTbPerfilUsuario = fkTbPerfilUsuario;
+    }
+
+    public String getNomeLivro() {
+        return nomeLivro;
+    }
+
+    public void setNomeLivro(String nomeLivro) {
+        this.nomeLivro = nomeLivro;
+    }
+
+    public String getNomePerfilUsuario() {
+        return nomePerfilUsuario;
+    }
+
+    public void setNomePerfilUsuario(String nomePerfilUsuario) {
+        this.nomePerfilUsuario = nomePerfilUsuario;
+    }
+
+    public String getAcao() {
+        return acao;
+    }
+
+    public void setAcao(String acao) {
+        this.acao = acao;
+    }
+
+    public String getTombo() {
+        return tombo;
+    }
+
+    public void setTombo(String tombo) {
+        this.tombo = tombo;
+    }
+
+    public String getNrExemplar() {
+        return nrExemplar;
+    }
+
+    public void setNrExemplar(String nrExemplar) {
+        this.nrExemplar = nrExemplar;
+    }
+
+    public LocalDate getDataRegistro() {
+        return dataRegistro;
+    }
+
+    public void setDataRegistro(LocalDate dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+
+    public LocalDate getDataPrevDevolucao() {
+        return dataPrevDevolucao;
+    }
+
+    public void setDataPrevDevolucao(LocalDate dataPrevDevolucao) {
+        this.dataPrevDevolucao = dataPrevDevolucao;
+    }
+
+    public LocalDate getDataDevolvido() {
+        return dataDevolvido;
+    }
+
+    public void setDataDevolvido(LocalDate dataDevolvido) {
+        this.dataDevolvido = dataDevolvido;
+    }
+
+    public Historico(Integer id,
+                     Integer fkTbExemplar,
+                     Integer fkTbPerfilUsuario,
+                     String nomeLivro,
+                     String nomePerfilUsuario,
+                     String acao, String tombo,
+                     String nrExemplar,
+                     LocalDate dataRegistro,
+                     LocalDate dataPrevDevolucao,
+                     LocalDate dataDevolvido) {
+        this.id = id;
+        this.fkTbExemplar = fkTbExemplar;
+        this.fkTbPerfilUsuario = fkTbPerfilUsuario;
+        this.nomeLivro = nomeLivro;
+        this.nomePerfilUsuario = nomePerfilUsuario;
+        this.acao = acao;
+        this.tombo = tombo;
+        this.nrExemplar = nrExemplar;
+        this.dataRegistro = dataRegistro;
+        this.dataPrevDevolucao = dataPrevDevolucao;
+        this.dataDevolvido = dataDevolvido;
     }
 
     @Override
     public String toString() {
         return "Historico{" +
                 "id=" + id +
-                ", fkTbLivros=" + fkTbLivros +
+                ", fkTbExemplar=" + fkTbExemplar +
                 ", fkTbPerfilUsuario=" + fkTbPerfilUsuario +
-                ", dataLivroHistorico=" + dataLivroHistorico +
                 ", nomeLivro='" + nomeLivro + '\'' +
                 ", nomePerfilUsuario='" + nomePerfilUsuario + '\'' +
                 ", acao='" + acao + '\'' +
+                ", tombo='" + tombo + '\'' +
+                ", nrExemplar='" + nrExemplar + '\'' +
+                ", dataRegistro=" + dataRegistro +
+                ", dataPrevDevolucao=" + dataPrevDevolucao +
+                ", dataDevolvido=" + dataDevolvido +
                 '}';
     }
 }
