@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7adb6435-d1f1-4539-9707-2ee10b132e15" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-tothlib.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Historico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Historico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Livros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Livros.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/Autenticacao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/BibliotecaController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/controlers/HistoricoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/dto/UsuarioDto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/listas/ListaDeObjetos.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/services/UsuarioAdmin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/BibliotecaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/BibliotecaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/HistoricoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/HistoricoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/dto/UsuariosPendentesDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/dto/UsuariosPendentesDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/LivrosRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/LivrosRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/Administravel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/Administravel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/UsuarioAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/UsuarioAdmin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,6 +159,7 @@
       <workItem from="1635600446243" duration="155000" />
       <workItem from="1635600624522" duration="201000" />
       <workItem from="1646965669261" duration="1105000" />
+      <workItem from="1647039294836" duration="5428000" />
     </task>
     <servers />
   </component>

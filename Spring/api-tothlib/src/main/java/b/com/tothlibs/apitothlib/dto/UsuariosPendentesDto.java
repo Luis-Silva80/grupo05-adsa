@@ -9,25 +9,25 @@ public class UsuariosPendentesDto {
 
 
     private Integer id;
-    private Integer fkTbLivros;
+    private Integer fkTbExemplar;
     private Integer fkTbPerfilUsuario;
-    private LocalDate dataLivroHistorico;
+    private LocalDate dataRegistro;
     private String nomeLivro;
     private String nomePerfilUsuario;
     private String acao;
-    private LocalDate dataDevolucao;
+    private LocalDate dataPrevDevolucao;
     private Integer livrosReservados;
 
     public UsuariosPendentesDto(Historico historico,
                                 Integer livrosReservados) {
         this.id = historico.getId();
-        this.fkTbLivros = historico.getFkTbLivros();
+        this.fkTbExemplar = historico.getFkTbExemplar();
         this.fkTbPerfilUsuario = historico.getFkTbPerfilUsuario();
-        this.dataLivroHistorico = historico.getDataLivroHistorico();
+        this.dataRegistro = historico.getDataRegistro();
         this.nomeLivro = historico.getNomeLivro();
         this.nomePerfilUsuario = historico.getNomePerfilUsuario();
         this.acao = historico.getAcao();
-        this.dataDevolucao = historico.getDataDevolucao();
+        this.dataPrevDevolucao = historico.getDataPrevDevolucao();
         this.livrosReservados = livrosReservados;
     }
 
@@ -39,12 +39,12 @@ public class UsuariosPendentesDto {
         this.id = id;
     }
 
-    public Integer getFkTbLivros() {
-        return fkTbLivros;
+    public Integer getFkTbExemplar() {
+        return fkTbExemplar;
     }
 
-    public void setFkTbLivros(Integer fkTbLivros) {
-        this.fkTbLivros = fkTbLivros;
+    public void setFkTbExemplar(Integer fkTbExemplar) {
+        this.fkTbExemplar = fkTbExemplar;
     }
 
     public Integer getFkTbPerfilUsuario() {
@@ -55,12 +55,12 @@ public class UsuariosPendentesDto {
         this.fkTbPerfilUsuario = fkTbPerfilUsuario;
     }
 
-    public LocalDate getDataLivroHistorico() {
-        return dataLivroHistorico;
+    public LocalDate getDataRegistro() {
+        return dataRegistro;
     }
 
-    public void setDataLivroHistorico(LocalDate dataLivroHistorico) {
-        this.dataLivroHistorico = dataLivroHistorico;
+    public void setDataRegistro(LocalDate dataRegistro) {
+        this.dataRegistro = dataRegistro;
     }
 
     public String getNomeLivro() {
@@ -87,12 +87,12 @@ public class UsuariosPendentesDto {
         this.acao = acao;
     }
 
-    public LocalDate getDataDevolucao() {
-        return dataDevolucao;
+    public LocalDate getDataPrevDevolucao() {
+        return dataPrevDevolucao;
     }
 
-    public void setDataDevolucao(LocalDate dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public void setDataPrevDevolucao(LocalDate dataPrevDevolucao) {
+        this.dataPrevDevolucao = dataPrevDevolucao;
     }
 
     public Integer getLivrosReservados() {
@@ -107,13 +107,13 @@ public class UsuariosPendentesDto {
     public String toString() {
         return "UsuariosPendentesDto{" +
                 "id=" + id +
-                ", fkTbLivros=" + fkTbLivros +
+                ", fkTbExemplar=" + fkTbExemplar +
                 ", fkTbPerfilUsuario=" + fkTbPerfilUsuario +
-                ", dataLivroHistorico=" + dataLivroHistorico +
+                ", dataRegistro=" + dataRegistro +
                 ", nomeLivro='" + nomeLivro + '\'' +
                 ", nomePerfilUsuario='" + nomePerfilUsuario + '\'' +
                 ", acao='" + acao + '\'' +
-                ", dataDevolucao=" + dataDevolucao +
+                ", dataPrevDevolucao=" + dataPrevDevolucao +
                 ", livrosReservados=" + livrosReservados +
                 '}';
     }

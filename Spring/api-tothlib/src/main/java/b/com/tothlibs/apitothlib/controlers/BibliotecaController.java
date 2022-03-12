@@ -79,14 +79,13 @@ public class BibliotecaController<T> {
     public ResponseEntity cadastrarLivro(@PathVariable Integer idAdmin, @RequestBody Livros idLivro) {
 
         Integer admin = repositoryUsuario.findAdminById(idAdmin);
+        Integer qtdEstoque = repository.findQtdEstoqueById(idAdmin);
 
         if (admin.equals(1)) {
 
             idLivro.setQtdResenhas(0);
             idLivro.setQtdReservas(0);
-            idLivro.setQtdReservadoAgora(0);
-            idLivro.setStatusLivro("disponivel");
-            idLivro.setFkTbbiblioteca(2);
+            idLivro.setQtdDisponiveis(qtdEstoque > 0 ? qtdEstoque : 0);
 
             repository.save(idLivro);
             return ResponseEntity.status(201).build();

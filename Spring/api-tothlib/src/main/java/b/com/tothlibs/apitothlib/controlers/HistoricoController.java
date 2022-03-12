@@ -132,13 +132,13 @@ public class HistoricoController {
                 // Gravo os dados desse objeto no arquivo
                 // Separando cada campo por um ;
                 saida.format("%d;%d;%d;%s;%s;%s;%s;%s;%d\n", pendentes.getId(),
-                        pendentes.getFkTbLivros(),
+                        pendentes.getFkTbExemplar(),
                         pendentes.getFkTbPerfilUsuario(),
-                        pendentes.getDataLivroHistorico().toString(),
+                        pendentes.getDataRegistro().toString(),
                         pendentes.getNomeLivro(),
                         pendentes.getNomePerfilUsuario(),
                         pendentes.getAcao(),
-                        pendentes.getDataDevolucao(),
+                        pendentes.getDataPrevDevolucao(),
                         pendentes.getLivrosReservados());
 
                 return saida;

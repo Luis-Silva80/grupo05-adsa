@@ -34,21 +34,6 @@ public class UsuarioAdmin implements Administravel, Usuario {
     private HistoricoRepository repositoryHistorico;
 
     @Override
-    public Livros cadastrarLivro(Livros livro) {
-
-        livro.setQtdResenhas(0);
-        livro.setQtdReservas(0);
-        livro.setQtdReservadoAgora(0);
-        livro.setFkTbbiblioteca(1);
-        livro.setStatusLivro("disponivel");
-
-        repository.save(livro);
-
-        return livro;
-
-    }
-
-    @Override
     public Response excluirLivro(Integer id) {
 
 
@@ -68,7 +53,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
         if (repository.existsById(id)) {
             livroAtualizado.setId(id);
-            livroAtualizado.setFkTbbiblioteca(1);
+            livroAtualizado.setFkTbBiblioteca(1);
             repository.save(livroAtualizado);
             return new Response(00,"Livro atualizado");
         } else {
@@ -223,7 +208,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
                 if (registro.getAcao().equals("Retirada")) {
 
 
-                    criaResgistroComIdRegistro(idRegistro, registro.getFkTbLivros(), idUsuario, "Renovacao");
+                    criaResgistroComIdRegistro(idRegistro, registro.getFkTbExemplar(), idUsuario, "Renovacao");
 
                     Historico ultimoRegistro = repositoryHistorico.findTopByOrderByIdDesc();
                     return ultimoRegistro.getId();
@@ -248,12 +233,12 @@ public class UsuarioAdmin implements Administravel, Usuario {
             if (repositoryHistorico.existsById(idRegistro)) {
 
                 Historico registroAntigo = repositoryHistorico.findById(idRegistro).get();
-                Integer idLivroNoRegistro = registroAntigo.getFkTbLivros();
+                Integer idLivroNoRegistro = registroAntigo.getFkTbExemplar();
 
                 livro = repository.findById(idLivroNoRegistro).get();
                 usuario = repositoryUsuario.findById(idUsuario).get();
 
-                if (!livro.getQtdReservadoAgora().equals(0)) {
+                if (!livro.get().equals(0)) {
                     if (registroAntigo.getAcao().equals("Renovacao") || registroAntigo.getAcao().equals("Retirada")) {
 
                         livro.setId(idLivroNoRegistro);
@@ -295,11 +280,11 @@ public class UsuarioAdmin implements Administravel, Usuario {
         usuario = repositoryUsuario.findById(idUsuario).get();
 
         registro.setFkTbPerfilUsuario(usuario.getId());
-        registro.setFkTbLivros(idLivro);
+        registro.setFkTbExemplar(idLivro);
         registro.setAcao(tipoRegistro);
         registro.setNomePerfilUsuario(usuario.getNome());
         registro.setNomeLivro(livro.getTitulo());
-        registro.setDataLivroHistorico(LocalDate.now());
+        registro.setDataRegistro(LocalDate.now());
 
         repositoryHistorico.save(registro);
 
@@ -316,16 +301,16 @@ public class UsuarioAdmin implements Administravel, Usuario {
         LocalDate dataAntiga = repositoryHistorico.findDataDevolucao(idRegistro);
 
         registro.setFkTbPerfilUsuario(usuario.getId());
-        registro.setFkTbLivros(idLivro);
+        registro.setNrExemplar(idLivro.toString());
         registro.setAcao(tipoRegistro);
         registro.setNomePerfilUsuario(usuario.getNome());
         registro.setNomeLivro(livro.getTitulo());
-        registro.setDataLivroHistorico(LocalDate.now());
+        registro.setDataRegistro(LocalDate.now());
 
         if (tipoRegistro.equals("Retirada")) {
-            registro.setDataDevolucao(LocalDate.now().plusDays(10));
+            registro.setDataPrevDevolucao(LocalDate.now().plusDays(10));
         } else {
-            registro.setDataDevolucao(dataAntiga.plusDays(10));
+            registro.setDataPrevDevolucao(dataAntiga.plusDays(10));
         }
 
         repositoryHistorico.save(registro);
