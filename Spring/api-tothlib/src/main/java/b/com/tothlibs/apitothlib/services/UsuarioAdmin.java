@@ -83,6 +83,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
     @Override
     public Integer reservar(Integer idLivro, Integer idUsuario) {
+
         livro = new Livros();
         usuario = new PerfilUsuario();
 

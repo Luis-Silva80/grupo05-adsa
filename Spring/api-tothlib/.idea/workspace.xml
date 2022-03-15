@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7adb6435-d1f1-4539-9707-2ee10b132e15" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/BibliotecaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/BibliotecaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/HistoricoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/HistoricoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/dto/UsuariosPendentesDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/dto/UsuariosPendentesDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/LivrosRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/LivrosRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/Administravel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/Administravel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/listas/LayoutArquivos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/listas/LayoutArquivos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/UsuarioAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/UsuarioAdmin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +59,9 @@
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -116,6 +116,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ApiTothlibApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="api-tothlib" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="b.com.tothlibs.apitothlib.ApiTothlibApplication" />
@@ -160,6 +171,8 @@
       <workItem from="1635600624522" duration="201000" />
       <workItem from="1646965669261" duration="1105000" />
       <workItem from="1647039294836" duration="5428000" />
+      <workItem from="1647303447708" duration="136000" />
+      <workItem from="1647303613876" duration="827000" />
     </task>
     <servers />
   </component>
@@ -176,6 +189,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

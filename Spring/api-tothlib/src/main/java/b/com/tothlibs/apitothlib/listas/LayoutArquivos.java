@@ -177,7 +177,7 @@ public class LayoutArquivos<T> {
         int qtdReservas;
         int qtdEstoque;
         int qtdReservados;
-        int fkTbInstituicao;
+        int fkTbBiblioteca;
         String linguagem;
 
         // PARA TIPO REGISTRO 02 --CATEGORIA
@@ -255,7 +255,7 @@ public class LayoutArquivos<T> {
                     qtdReservas = Integer.valueOf(registro.substring(614, 617));
                     qtdEstoque = Integer.valueOf(registro.substring(617, 620));
                     qtdReservados = Integer.valueOf(registro.substring(620, 623));
-                    fkTbInstituicao = Integer.valueOf(registro.substring(623, 629));
+                    fkTbBiblioteca = Integer.valueOf(registro.substring(623, 629));
                     linguagem = registro.substring(629, 659).trim();
 
                     Livros l = new Livros(id,
@@ -268,7 +268,7 @@ public class LayoutArquivos<T> {
                             qtdResenhas,
                             qtdReservas,
                             qtdEstoque,
-                            qtdReservados, fkTbInstituicao, linguagem);
+                            qtdReservados, fkTbBiblioteca, linguagem);
 
                     qtdRegistroTipo1++;
 
