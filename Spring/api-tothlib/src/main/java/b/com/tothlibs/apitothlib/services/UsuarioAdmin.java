@@ -4,6 +4,7 @@ import b.com.tothlibs.apitothlib.dto.Response;
 import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
+import b.com.tothlibs.apitothlib.repository.ExemplarRepository;
 import b.com.tothlibs.apitothlib.repository.HistoricoRepository;
 import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
@@ -25,7 +26,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
     PerfilUsuario usuario = null;
 
     @Autowired
-    private LivrosRepository repository;
+    private LivrosRepository repositoryLivros;
 
     @Autowired
     private PerfilUsuarioRepository repositoryUsuario;
@@ -33,12 +34,15 @@ public class UsuarioAdmin implements Administravel, Usuario {
     @Autowired
     private HistoricoRepository repositoryHistorico;
 
+    @Autowired
+    private ExemplarRepository repositoryExemplar;
+
     @Override
     public Response excluirLivro(Integer id) {
 
 
-        if (repository.existsById(id)) {
-            repository.deleteById(id);
+        if (repositoryLivros.existsById(id)) {
+            repositoryLivros.deleteById(id);
 
             return new Response(00,"Livro Deletado com sucesso");
 
@@ -51,10 +55,10 @@ public class UsuarioAdmin implements Administravel, Usuario {
     @Override
     public Response alterarLivro(Integer id, Livros livroAtualizado) {
 
-        if (repository.existsById(id)) {
+        if (repositoryLivros.existsById(id)) {
             livroAtualizado.setId(id);
             livroAtualizado.setFkTbBiblioteca(1);
-            repository.save(livroAtualizado);
+            repositoryLivros.save(livroAtualizado);
             return new Response(00,"Livro atualizado");
         } else {
             return new Response(02,"Livro não encontrado");
@@ -68,7 +72,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
     @Override
     public Optional<Livros> buscarLivro(Integer id) {
 
-        Optional<Livros> livro = repository.findById(id);
+        Optional<Livros> livro = repositoryLivros.findById(id);
 
         return livro;
     }
@@ -76,18 +80,18 @@ public class UsuarioAdmin implements Administravel, Usuario {
     @Override
     public List<Livros> consultaListaLivros() {
 
-        List<Livros> livros = repository.findAll();
+        List<Livros> livros = repositoryLivros.findAll();
         return livros;
 
     }
 
     @Override
-    public Integer reservar(Integer idLivro, Integer idUsuario) {
+    public Integer reservar(Integer , Integer idUsuario) {
 
         livro = new Livros();
         usuario = new PerfilUsuario();
 
-        livro = repository.findById(idLivro).get();
+        livro = repositoryLivros.findById(idLivro).get();
 
         Integer qtdReservas = livro.getQtdReservas();
 
@@ -98,7 +102,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
         if(usuario.getStatusAtivo()){
             if (livro != null) {
-                if (livro.getQtdReservadoAgora() >= livro.getQtdEstoque()) {
+                if (livro.getQtdReservados() >= livro.getQtdEstoque()) {
                     return null;
                 } else {
                     if (qtdReservas < livro.getQtdEstoque()) {
@@ -134,7 +138,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
         usuario = repositoryUsuario.findById(idUsuario).get();
         registro = repositoryHistorico.findById(idRegistro).get();
 
-        livro = repository.findById(registro.getFkTbLivros()).get();
+        livro = repository;
         Integer qtdReservadosAgora = livro.getQtdReservadoAgora();
 
         if(usuario.getStatusAtivo()){

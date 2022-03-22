@@ -28,44 +28,15 @@ public class Exemplar {
     @Column(name = "fk_tb_livro")
     private Integer fkTbLivro;
 
-    public Integer getFkTbLivro() {
-        return fkTbLivro;
+    @Column(name = "renovado")
+    private Boolean renovado;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setFkTbLivro(Integer fkTbLivro) {
-        this.fkTbLivro = fkTbLivro;
-    }
-
-    public Boolean getDevolvido() {
-        return devolvido;
-    }
-
-    public void setDevolvido(Boolean devolvido) {
-        this.devolvido = devolvido;
-    }
-
-    public Boolean getRetirado() {
-        return retirado;
-    }
-
-    public void setRetirado(Boolean retirado) {
-        this.retirado = retirado;
-    }
-
-    public Boolean getReservado() {
-        return reservado;
-    }
-
-    public void setReservado(Boolean reservado) {
-        this.reservado = reservado;
-    }
-
-    public String getTombo() {
-        return tombo;
-    }
-
-    public void setTombo(String tombo) {
-        this.tombo = tombo;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getNrExemplar() {
@@ -76,11 +47,83 @@ public class Exemplar {
         this.nrExemplar = nrExemplar;
     }
 
-    public Integer getId() {
-        return id;
+    public String getTombo() {
+        return tombo;
     }
 
-    public void setId(Integer id) {
+    public void setTombo(String tombo) {
+        this.tombo = tombo;
+    }
+
+    public Boolean getReservado() {
+        return reservado;
+    }
+
+    public void setReservado(Boolean reservado) {
+        this.reservado = reservado;
+    }
+
+    public Boolean getRetirado() {
+        return retirado;
+    }
+
+    public void setRetirado(Boolean retirado) {
+        this.retirado = retirado;
+    }
+
+    public Boolean getDevolvido() {
+        return devolvido;
+    }
+
+    public void setDevolvido(Boolean devolvido) {
+        this.devolvido = devolvido;
+    }
+
+    public Integer getFkTbLivro() {
+        return fkTbLivro;
+    }
+
+    public void setFkTbLivro(Integer fkTbLivro) {
+        this.fkTbLivro = fkTbLivro;
+    }
+
+    public Boolean getRenovado() {
+        return renovado;
+    }
+
+    public void setRenovado(Boolean renovado) {
+        this.renovado = renovado;
+    }
+
+    public Exemplar(Integer id,
+                    Integer nrExemplar,
+                    String tombo,
+                    Boolean reservado,
+                    Boolean retirado,
+                    Boolean devolvido,
+                    Integer fkTbLivro,
+                    Boolean renovado) {
         this.id = id;
+        this.nrExemplar = nrExemplar;
+        this.tombo = tombo;
+        this.reservado = reservado;
+        this.retirado = retirado;
+        this.devolvido = devolvido;
+        this.fkTbLivro = fkTbLivro;
+        this.renovado = renovado;
+    }
+
+    @Override
+    public String toString() {
+        return "Exemplar{" +
+                "id=" + id +
+                ", nrExemplar=" + nrExemplar +
+                ", tombo='" + tombo + '\'' +
+                ", reservado=" + reservado +
+                ", retirado=" + retirado +
+                ", devolvido=" + devolvido +
+                ", fkTbLivro=" + fkTbLivro +
+                ", renovado=" + renovado +
+                '}';
     }
 }

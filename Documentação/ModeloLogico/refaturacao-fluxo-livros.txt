@@ -1,0 +1,63 @@
+Fluxo de reserva
+
+- O que precisa passar pro metodo?
+
+metodo reservarLivro(Integer tombo, Integer idUsuario){
+
+	encontrar livro(exemplar) pelo nro do tombo
+
+	validar disponibilidade do exemplar (reservado e retirado = 0)
+	
+	se disponivel (setar reservado true)
+	
+	adicionar +1 qtd_reservados_agora e qtd_reservados_total (tbLivros)
+	
+	diminui qtd_disponiveis(tbLivros)
+	
+	criar registro de reserva do livro na tabela Historico
+
+	finaliza
+}
+
+metodo retirarLivro(Integer tombo, Integer idUsuario){
+	
+	busca registro na tabela historico, onde deverá conter id do livro e id do Usuario
+	
+	valida se o ultimo registro gerado com o idUsuario é registro de ação "reservar";
+	
+	
+	se for true, então gerar novo registro na tb Historico com a ação = "retirar";
+	
+	setar prazo para devolução do livro no registro da tb Historico;
+	
+
+}
+
+
+metodo renovarLivro(Integer tombo, Integer idUsuario){
+
+	Validar se o último registro da tb Historico com o idUsuario foi de retirada;
+	
+	Se renovado = true, então cancelar renovação do Livro;
+	
+	Se renovado = false, então criar registro na tb Historico de renovação;
+	
+	Setar renovado = true;
+	
+	atualizar data de devolução do livro;
+	
+	
+
+}
+
+metodo devolverLivro(Integer tombo, Integer idUsuario){
+
+	validar se ultimo registro na tb Historico é uma renovação ou retirada
+	
+	se sim, então setar (renovado, devolvido, reservado, retirado = 0)
+	
+	acrescenta +1 qtd_disponiveis
+	
+	diminui -1 qtd_reservados_agora
+
+}

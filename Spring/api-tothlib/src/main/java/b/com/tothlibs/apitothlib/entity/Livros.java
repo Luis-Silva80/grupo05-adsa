@@ -33,8 +33,8 @@ public class Livros {
     @Column(name = "qtd_resenhas")
     private Integer qtdResenhas;
 
-    @Column(name = "qtd_reservas")
-    private Integer qtdReservas;
+    @Column(name = "qtd_reservados_agora")
+    private Integer qtdReservadosAgora;
 
     @Column(name = "qtd_disponiveis")
     private Integer qtdDisponiveis;
@@ -50,6 +50,9 @@ public class Livros {
 
     @Column( name = "cor_etiqueta" )
     private String corEtiqueta;
+
+    @Column(name = "qtd_reservados_total")
+    private Integer qtdReservadosTotal;
 
     public Integer getId() {
         return id;
@@ -115,12 +118,12 @@ public class Livros {
         this.qtdResenhas = qtdResenhas;
     }
 
-    public Integer getQtdReservas() {
-        return qtdReservas;
+    public Integer getQtdReservadosAgora() {
+        return qtdReservadosAgora;
     }
 
-    public void setQtdReservas(Integer qtdReservas) {
-        this.qtdReservas = qtdReservas;
+    public void setQtdReservadosAgora(Integer qtdReservadosAgora) {
+        this.qtdReservadosAgora = qtdReservadosAgora;
     }
 
     public Integer getQtdDisponiveis() {
@@ -163,22 +166,45 @@ public class Livros {
         this.corEtiqueta = corEtiqueta;
     }
 
-    public Livros() {
+    public Integer getQtdReservadosTotal() {
+        return qtdReservadosTotal;
     }
 
-    public Livros(Integer id, String titulo, String descricao, String autor, String edicao, String editora, Integer qtdResenhas, Integer qtdReservas, Integer qtdEstoque,
-                  Integer fkTbBiblioteca, String linguagem) {
+    public void setQtdReservadosTotal(Integer qtdReservadosTotal) {
+        this.qtdReservadosTotal = qtdReservadosTotal;
+    }
+
+    public Livros(Integer id,
+                  String titulo,
+                  String descricao,
+                  String autor,
+                  String edicao,
+                  String editora,
+                  String infoPrateleira,
+                  Integer qtdResenhas,
+                  Integer qtdReservadosAgora,
+                  Integer qtdDisponiveis,
+                  Integer qtdEstoque,
+                  Integer fkTbBiblioteca,
+                  String linguagem,
+                  String corEtiqueta,
+                  Integer qtdReservadosTotal) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
         this.autor = autor;
         this.edicao = edicao;
         this.editora = editora;
+        this.infoPrateleira = infoPrateleira;
         this.qtdResenhas = qtdResenhas;
-        this.qtdReservas = qtdReservas;
+        this.qtdReservadosAgora = qtdReservadosAgora;
+        this.qtdDisponiveis = qtdDisponiveis;
         this.qtdEstoque = qtdEstoque;
         this.fkTbBiblioteca = fkTbBiblioteca;
         this.linguagem = linguagem;
+        this.corEtiqueta = corEtiqueta;
+        this.qtdReservadosTotal = qtdReservadosTotal;
+
     }
 
     @Override
@@ -192,12 +218,13 @@ public class Livros {
                 ", editora='" + editora + '\'' +
                 ", infoPrateleira='" + infoPrateleira + '\'' +
                 ", qtdResenhas=" + qtdResenhas +
-                ", qtdReservas=" + qtdReservas +
+                ", qtdReservadosAgora=" + qtdReservadosAgora +
                 ", qtdDisponiveis=" + qtdDisponiveis +
                 ", qtdEstoque=" + qtdEstoque +
                 ", fkTbBiblioteca=" + fkTbBiblioteca +
                 ", linguagem='" + linguagem + '\'' +
                 ", corEtiqueta='" + corEtiqueta + '\'' +
+                ", qtdReservadosTotal=" + qtdReservadosTotal +
                 '}';
     }
 }

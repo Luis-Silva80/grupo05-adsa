@@ -7,7 +7,11 @@
     <list default="true" id="7adb6435-d1f1-4539-9707-2ee10b132e15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Exemplar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Exemplar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Livros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Livros.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/listas/LayoutArquivos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/listas/LayoutArquivos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/ExemplarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/ExemplarRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/HistoricoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/HistoricoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/UsuarioAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/UsuarioAdmin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,6 +71,7 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -116,17 +121,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ApiTothlibApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="api-tothlib" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="b.com.tothlibs.apitothlib.ApiTothlibApplication" />
@@ -172,7 +166,9 @@
       <workItem from="1646965669261" duration="1105000" />
       <workItem from="1647039294836" duration="5428000" />
       <workItem from="1647303447708" duration="136000" />
-      <workItem from="1647303613876" duration="827000" />
+      <workItem from="1647303613876" duration="1428000" />
+      <workItem from="1647817376663" duration="1467000" />
+      <workItem from="1647907140313" duration="3467000" />
     </task>
     <servers />
   </component>
@@ -189,5 +185,20 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/Exemplar.java</url>
+          <line>37</line>
+          <properties class="b.com.tothlibs.apitothlib.entity.Exemplar" method="setId">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
