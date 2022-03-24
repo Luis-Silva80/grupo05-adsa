@@ -95,6 +95,9 @@ public class Exemplar {
         this.renovado = renovado;
     }
 
+    public Exemplar() {
+    }
+
     public Exemplar(Integer id,
                     Integer nrExemplar,
                     String tombo,

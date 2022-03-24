@@ -18,10 +18,10 @@ public interface HistoricoRepository extends JpaRepository<Historico, Integer> {
             " where h.acao = 'Retirada' or h.acao = 'Renovacao' and p.livrosReservados > 0 order by h.id desc")
     public List<UsuariosPendentesDto> findUserPendencia();
 
-    @Query("SELECT h.dataLivroHistorico FROM Historico h where h.id = :id")
+    @Query("SELECT h.dataRegistro FROM Historico h where h.id = :id")
     public LocalDate findDataRegistro(@Param("id") Integer id);
 
-    @Query("SELECT h.dataDevolucao FROM Historico h where h.id = :id")
+    @Query("SELECT h.dataPrevDevolucao FROM Historico h where h.id = :id")
     public LocalDate findDataDevolucao(@Param("id") Integer id);
 
     @Query("SELECT h.fkTbPerfilUsuario FROM Historico h where h.fkTbPerfilUsuario = :id")
@@ -29,7 +29,7 @@ public interface HistoricoRepository extends JpaRepository<Historico, Integer> {
 
     public Historico findTopByOrderByIdDesc();
 
-    public Historico findTopByFkTbPerfilUsuarioAndFkTbLivrosOrderByIdDesc(Integer idUsuario, Integer idLivro);
+    public Historico findTopByFkTbPerfilUsuarioAndFkTbExemplarOrderByIdDesc(Integer idUsuario, Integer idLivro);
 
     public List<Historico> findAllByOrderByIdDesc();
 
@@ -38,6 +38,6 @@ public interface HistoricoRepository extends JpaRepository<Historico, Integer> {
 //    @Query("SELECT h FROM Historico h where h.id = :id"
 //    public List<UsuariosPendentesDto> findUserPendenciaById(@Param("id") Integer id);
 
-    @Query("SELECT h.fkTbLivros FROM Historico h where h.fkTbPerfilUsuario = :idUsuario")
-    public List<Integer> findFkLivrosByIdUsuario(@Param("idUsuario") Integer idUsuario);
+    @Query("SELECT h.fkTbExemplar FROM Historico h where h.fkTbPerfilUsuario = :idUsuario")
+    public List<Integer> findFkExemplarByIdUsuario(@Param("idUsuario") Integer idUsuario);
 }

@@ -16,8 +16,9 @@ public interface LivrosRepository extends JpaRepository<Livros, Integer> {
     @Query("Select l from Livros l where l.id = :id")
     public Livros findLivroById(@Param("id") Integer id);
 
-    @Query("Select l from Livros l order by qtdReservas desc")
+    @Query("Select l from Livros l order by l.qtdReservadosAgora desc")
     public List<Livros> findLivrosOrderByQtdReservas();
+
 
     @Query("Select l.qtdEstoque from Livros l where l.id = :id")
     public Integer findQtdEstoqueById(@Param("id") Integer id);

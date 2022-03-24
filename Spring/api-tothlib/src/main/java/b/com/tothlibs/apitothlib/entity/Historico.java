@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Table(name = "tbhistorico", indexes = {
         @Index(name = "fk_tb_perfil_usuario", columnList = "fk_tb_perfil_usuario"),
-        @Index(name = "fk_tb_livros", columnList = "fk_tb_livros")
+        @Index(name = "fk_tb_exemplar", columnList = "fk_tb_exemplar")
 })
 @Entity
 public class Historico {

@@ -8,17 +8,17 @@ import java.util.List;
 
 public interface ExemplarRepository extends JpaRepository<Exemplar, Integer> {
 
-    public Exemplar getExemplarById();
-
     @Query("select e from Exemplar e where " +
            " e.reservado = false and "       +
            " e.retirado  = false and "       +
            " (e.devolvido = false or e.devolvido = true)")
     public List<Exemplar> getExemplaresReservadosAgora();
 
-    @Query("select count e from Exemplar e where "  +
+    @Query("select count(e) from Exemplar e where "  +
            " e.reservado = false and  "             +
            " e.retirado  = false and "              +
            " (e.devolvido = false or e.devolvido = true) ")
     public Integer getQtdExemplaresReservadosAgora();
+
+    public Exemplar findByTombo(String tombo);
 }
