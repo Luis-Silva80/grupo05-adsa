@@ -2,7 +2,9 @@ package b.com.tothlibs.apitothlib.entity;
 
 import javax.persistence.*;
 
-@Table(name = "tbExemplar")
+@Table(name = "tbexemplar", indexes = {
+        @Index(name = "fk_tb_livro", columnList = "fk_tb_livro")
+})
 @Entity
 public class Exemplar {
     @Id
@@ -95,38 +97,4 @@ public class Exemplar {
         this.renovado = renovado;
     }
 
-    public Exemplar() {
-    }
-
-    public Exemplar(Integer id,
-                    Integer nrExemplar,
-                    String tombo,
-                    Boolean reservado,
-                    Boolean retirado,
-                    Boolean devolvido,
-                    Integer fkTbLivro,
-                    Boolean renovado) {
-        this.id = id;
-        this.nrExemplar = nrExemplar;
-        this.tombo = tombo;
-        this.reservado = reservado;
-        this.retirado = retirado;
-        this.devolvido = devolvido;
-        this.fkTbLivro = fkTbLivro;
-        this.renovado = renovado;
-    }
-
-    @Override
-    public String toString() {
-        return "Exemplar{" +
-                "id=" + id +
-                ", nrExemplar=" + nrExemplar +
-                ", tombo='" + tombo + '\'' +
-                ", reservado=" + reservado +
-                ", retirado=" + retirado +
-                ", devolvido=" + devolvido +
-                ", fkTbLivro=" + fkTbLivro +
-                ", renovado=" + renovado +
-                '}';
-    }
 }

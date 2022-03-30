@@ -29,7 +29,7 @@ public interface HistoricoRepository extends JpaRepository<Historico, Integer> {
 
     public Historico findTopByOrderByIdDesc();
 
-    public Historico findTopByFkTbPerfilUsuarioAndFkTbExemplarOrderByIdDesc(Integer idUsuario, Integer idLivro);
+    public Historico findTopByFkTbPerfilUsuarioAndFkTbExemplarOrderByIdDesc(Integer idUsuario, String tombo);
 
     public List<Historico> findAllByOrderByIdDesc();
 

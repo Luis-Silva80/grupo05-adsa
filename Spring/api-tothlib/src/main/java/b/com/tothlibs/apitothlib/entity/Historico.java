@@ -35,7 +35,7 @@ public class Historico {
     private String tombo;
 
     @Column(name = "nr_exemplar")
-    private String nrExemplar;
+    private Integer nrExemplar;
 
     @Column(name = "data_registro")
     private LocalDate dataRegistro;
@@ -106,11 +106,11 @@ public class Historico {
         this.tombo = tombo;
     }
 
-    public String getNrExemplar() {
+    public Integer getNrExemplar() {
         return nrExemplar;
     }
 
-    public void setNrExemplar(String nrExemplar) {
+    public void setNrExemplar(Integer nrExemplar) {
         this.nrExemplar = nrExemplar;
     }
 
@@ -135,29 +135,6 @@ public class Historico {
     }
 
     public void setDataDevolvido(LocalDate dataDevolvido) {
-        this.dataDevolvido = dataDevolvido;
-    }
-
-    public Historico(Integer id,
-                     Integer fkTbExemplar,
-                     Integer fkTbPerfilUsuario,
-                     String nomeLivro,
-                     String nomePerfilUsuario,
-                     String acao, String tombo,
-                     String nrExemplar,
-                     LocalDate dataRegistro,
-                     LocalDate dataPrevDevolucao,
-                     LocalDate dataDevolvido) {
-        this.id = id;
-        this.fkTbExemplar = fkTbExemplar;
-        this.fkTbPerfilUsuario = fkTbPerfilUsuario;
-        this.nomeLivro = nomeLivro;
-        this.nomePerfilUsuario = nomePerfilUsuario;
-        this.acao = acao;
-        this.tombo = tombo;
-        this.nrExemplar = nrExemplar;
-        this.dataRegistro = dataRegistro;
-        this.dataPrevDevolucao = dataPrevDevolucao;
         this.dataDevolvido = dataDevolvido;
     }
 

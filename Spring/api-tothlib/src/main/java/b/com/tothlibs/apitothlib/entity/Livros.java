@@ -174,39 +174,6 @@ public class Livros {
         this.qtdReservadosTotal = qtdReservadosTotal;
     }
 
-    public Livros(Integer id,
-                  String titulo,
-                  String descricao,
-                  String autor,
-                  String edicao,
-                  String editora,
-                  String infoPrateleira,
-                  Integer qtdResenhas,
-                  Integer qtdReservadosAgora,
-                  Integer qtdDisponiveis,
-                  Integer qtdEstoque,
-                  Integer fkTbBiblioteca,
-                  String linguagem,
-                  String corEtiqueta,
-                  Integer qtdReservadosTotal) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.autor = autor;
-        this.edicao = edicao;
-        this.editora = editora;
-        this.infoPrateleira = infoPrateleira;
-        this.qtdResenhas = qtdResenhas;
-        this.qtdReservadosAgora = qtdReservadosAgora;
-        this.qtdDisponiveis = qtdDisponiveis;
-        this.qtdEstoque = qtdEstoque;
-        this.fkTbBiblioteca = fkTbBiblioteca;
-        this.linguagem = linguagem;
-        this.corEtiqueta = corEtiqueta;
-        this.qtdReservadosTotal = qtdReservadosTotal;
-
-    }
-
     @Override
     public String toString() {
         return "Livros{" +

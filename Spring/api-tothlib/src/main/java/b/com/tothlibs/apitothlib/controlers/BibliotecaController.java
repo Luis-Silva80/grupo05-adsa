@@ -155,10 +155,9 @@ public class BibliotecaController<T> {
     @ApiOperation(value = "Realiza a reserva de um livro que esteja disponivel na biblioteca")
     public ResponseEntity reservarLivro(@PathVariable Integer idUsuario, @PathVariable String tombo) {
 
-     Integer codigoReserva = admin.reservarLivro(tombo, idUsuario);
+     Integer codigoReserva = admin.reservar(tombo, idUsuario);
 
      return ResponseEntity.status(200).body(codigoReserva);
-
 
     }
 //
