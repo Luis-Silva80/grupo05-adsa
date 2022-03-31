@@ -7,10 +7,9 @@
     <list default="true" id="7adb6435-d1f1-4539-9707-2ee10b132e15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/BibliotecaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/BibliotecaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/PerfilUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/entity/PerfilUsuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/HistoricoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/HistoricoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/UsuarioAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/UsuarioAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/repository/HistoricoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/repository/HistoricoRepository.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,6 +184,7 @@
       <workItem from="1648520875381" duration="2740000" />
       <workItem from="1648611721144" duration="1780000" />
       <workItem from="1648679705412" duration="5677000" />
+      <workItem from="1648685555935" duration="1062000" />
     </task>
     <servers />
   </component>
@@ -217,13 +217,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/UsuarioAdmin.java</url>
-          <line>177</line>
+          <line>178</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/services/UsuarioAdmin.java</url>
-          <line>119</line>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

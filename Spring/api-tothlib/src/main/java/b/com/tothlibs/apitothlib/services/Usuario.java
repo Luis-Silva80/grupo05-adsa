@@ -10,7 +10,7 @@ public interface Usuario {
     abstract public Optional<Livros> buscarLivro(Integer id);
     abstract public List<Livros> consultaListaLivros();
     abstract public Integer reservar(String tombo, Integer idUsuario);
-    abstract public Integer locarLivro(Integer idRegistro, Integer idUsuario);
+    abstract public Integer locarLivro(String tombo, Integer idUsuario);
     abstract public Integer renovarAlocacao(Integer id, Integer idUsuario);
     abstract public Integer devolverLivro(Integer idRegistro, Integer idUsuario);
 

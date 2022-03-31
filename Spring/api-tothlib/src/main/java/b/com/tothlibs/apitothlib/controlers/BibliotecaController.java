@@ -214,20 +214,20 @@ public class BibliotecaController<T> {
 //        return ResponseEntity.status(200).body(listaDeLivrosEncontrados);
 //    }
 //
-//    @PutMapping("retirar/{idRegistro}/{idUsuario}")
-//    @ApiOperation(value = "Realiza a retirada de um livro que esteja reservado pelo usuario")
-//    public ResponseEntity retirarLivro(@PathVariable Integer idRegistro, @PathVariable Integer idUsuario) {
-//
-//
-//        Integer novoRegistro = admin.locarLivro(idRegistro, idUsuario);
-//
-//        if (novoRegistro != null) {
-//            return ResponseEntity.status(200).body(novoRegistro);
-//        } else {
-//            return ResponseEntity.status(400).body("Retirada não concluida");
-//        }
-//
-//    }
+    @PutMapping("retirar/{tombo}/{idUsuario}")
+    @ApiOperation(value = "Realiza a retirada de um livro que esteja reservado pelo usuario")
+    public ResponseEntity retirarLivro(@PathVariable String tombo, @PathVariable Integer idUsuario) {
+
+
+        Integer novoRegistro = admin.locarLivro(tombo, idUsuario);
+
+        if (novoRegistro != null) {
+            return ResponseEntity.status(200).body(novoRegistro);
+        } else {
+            return ResponseEntity.status(400).body("Retirada não concluida");
+        }
+
+    }
 //
 //    @PutMapping("renovar/{idRegistro}/{idUsuario}")
 //    @ApiOperation(value = "Realiza a renovação do tempo de alocação do livro por 10 dias")
