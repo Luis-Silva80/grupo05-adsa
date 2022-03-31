@@ -58,6 +58,9 @@ public class PerfilUsuario {
     @Column(name = "data_inativacao")
     private LocalDate dataInativacao;
 
+    @Column(name = "qtd_reservados_agora")
+    private Integer qtdReservadosAgora;
+
       // esta anotação indica que o campo não será exibido no JSON
     @JsonIgnore
     @Column(name = "foto", length = 20_000_000) // tamanho de 20Mb
@@ -144,11 +147,6 @@ public class PerfilUsuario {
         this.usuarioAdmin = usuarioAdmin;
     }
 
-//    public String getSenha() {
-//        return senha;
-//    }
-
-
     public String retornaSenha() {
         return this.senha;
     }
@@ -197,13 +195,19 @@ public class PerfilUsuario {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "PerfilUsuario{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", statusAtivo=" + statusAtivo +
-                ", dataInativacao=" + dataInativacao +
-                '}';
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setDataInativacao(LocalDate dataInativacao) {
+        this.dataInativacao = dataInativacao;
+    }
+
+    public Integer getQtdReservadosAgora() {
+        return qtdReservadosAgora;
+    }
+
+    public void setQtdReservadosAgora(Integer qtdReservadosAgora) {
+        this.qtdReservadosAgora = qtdReservadosAgora;
     }
 }

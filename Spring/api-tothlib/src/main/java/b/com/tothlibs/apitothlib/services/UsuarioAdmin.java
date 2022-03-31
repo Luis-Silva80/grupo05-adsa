@@ -109,29 +109,34 @@ public class UsuarioAdmin implements Administravel, Usuario {
         PerfilUsuario usuario = repositoryUsuario.findById(idUsuario).get();
         Livros livro;
 
-        if(!exemplar.getId().equals(null)){
+        if(!exemplar.getId().equals(null) && !exemplar.getId().equals(0)){
             livro = repositoryLivros.findLivroById(exemplar.getFkTbLivro());
         }else {
             return 0;
         }
 
-        if(exemplar.getReservado().equals(0) && exemplar.getRetirado().equals(0)){
+        if(exemplar.getReservado().equals(false) && exemplar.getRetirado().equals(false)){
 
-            exemplar.setReservado(true);
-            livro.setQtdReservadosAgora(livro.getQtdReservadosAgora() + 1);
-            livro.setQtdReservadosTotal(livro.getQtdReservadosTotal() + 1);
+            if(usuario.getQtdReservadosAgora() <= 2){
+                exemplar.setReservado(true);
+                livro.setQtdReservadosAgora(livro.getQtdReservadosAgora() + 1);
+                livro.setQtdReservadosTotal(livro.getQtdReservadosTotal() + 1);
+                livro.setQtdDisponiveis(livro.getQtdDisponiveis() -1);
 
-            repositoryLivros.save(livro);
-            repositoryExemplar.save(exemplar);
+                repositoryLivros.save(livro);
+                repositoryExemplar.save(exemplar);
 
-            criaResgistroDeReserva(tombo, exemplar.getNrExemplar(), idUsuario, "RESERVA");
+                criaResgistroDeReserva(exemplar, usuario, livro,"RESERVA");
 
+            }else {
+                return 0;
+            }
+        }else {
+            return 0;
         }
 
         Historico u = repositoryHistorico.
-                findTopByFkTbPerfilUsuarioAndFkTbExemplarOrderByIdDesc(idUsuario, tombo);
-
-        System.out.println("teste");
+                findTopByFkTbPerfilUsuarioAndTomboOrderByIdDesc(idUsuario, tombo);
 
         return u.getId();
 
@@ -348,23 +353,25 @@ public class UsuarioAdmin implements Administravel, Usuario {
 //    }
 
 
-    public void criaResgistroDeReserva(String tombo, Integer nrExemplar,  Integer idUsuario, String tipoRegistro) {
+    public void criaResgistroDeReserva(Exemplar exemplar, PerfilUsuario usuario, Livros livro, String tipoRegistro) {
 
         registro = new Historico();
+//
+//
+//        exemplar = repositoryExemplar.findByTombo(tombo);
+//
+//        usuario = repositoryUsuario.findById(idUsuario).get();
+//
+//        livro = repositoryLivros.findById(exemplar.getFkTbLivro()).get();
 
-
-//        livro = repositoryLivros.findById(idLivro).get();
-
-        exemplar = repositoryExemplar.findByTombo(tombo);
-
-        usuario = repositoryUsuario.findById(idUsuario).get();
 
         registro.setFkTbPerfilUsuario(usuario.getId());
-        registro.setTombo(tombo);
-        registro.setNrExemplar(nrExemplar);
+        registro.setTombo(exemplar.getTombo());
+        registro.setNrExemplar(exemplar.getNrExemplar());
         registro.setAcao(tipoRegistro);
         registro.setNomePerfilUsuario(usuario.getNome());
         registro.setNomeLivro(livro.getTitulo());
+        registro.setFkTbExemplar(exemplar.getId());
         registro.setDataRegistro(LocalDate.now());
 
         repositoryHistorico.save(registro);

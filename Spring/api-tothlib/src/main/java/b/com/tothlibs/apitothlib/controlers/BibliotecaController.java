@@ -157,6 +157,10 @@ public class BibliotecaController<T> {
 
      Integer codigoReserva = admin.reservar(tombo, idUsuario);
 
+     if(codigoReserva.equals(0)){
+         return ResponseEntity.status(400).body(0);
+     }
+
      return ResponseEntity.status(200).body(codigoReserva);
 
     }

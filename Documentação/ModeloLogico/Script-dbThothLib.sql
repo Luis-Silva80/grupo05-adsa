@@ -35,6 +35,7 @@ fk_tb_instituicao int,
 livros_reservados int,
 status_ativo boolean,
 data_inativacao date,
+qtd_reservados_agora int,
 foto varchar(20000000000),
 foreign key (fk_tb_instituicao) references tbInstituicao(id)
 );
