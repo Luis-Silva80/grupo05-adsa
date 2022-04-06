@@ -235,6 +235,10 @@ public class AlunoController {
         // não vamos validar se o carro existe
         PerfilUsuario usuario = repository.findById(id).get();
 
+        if(usuario == null){
+            return ResponseEntity.status(404).body("Usuario não encontrado");
+        }
+
         // obtendo o conteúdo do arquivo
         byte[] novaFoto = foto.getBytes();
 

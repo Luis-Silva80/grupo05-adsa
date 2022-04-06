@@ -67,20 +67,20 @@ public class BibliotecaController<T> {
     @Autowired
     UsuarioAdmin admin;
 
-//    @GetMapping
-//    @ApiOperation(value = "Retorna uma lista de livros")
+    @GetMapping
+    @ApiOperation(value = "Retorna uma lista de livros")
 
-//    public ResponseEntity listaLivros() {
-//
-//        List<Livros> livros = admin.consultaListaLivros();
-//
-//        if (!livros.isEmpty()) {
-//            return ResponseEntity.status(200).body(livros);
-//        } else {
-//            return ResponseEntity.status(204).build();
-//        }
-//
-//    }
+    public ResponseEntity listaLivros() {
+
+        List<Livros> livros = admin.consultaListaLivros();
+
+        if (!livros.isEmpty()) {
+            return ResponseEntity.status(200).body(livros);
+        } else {
+            return ResponseEntity.status(204).build();
+        }
+
+    }
 
     @PostMapping("/{idAdmin}")
     @ApiOperation(value = "Realiza um cadastro de um livro")
@@ -106,65 +106,81 @@ public class BibliotecaController<T> {
         return ResponseEntity.status(400).build();
 
     }
-//
-//    @GetMapping("/{idLivro}")
-//    @ApiOperation(value = "Retorna um livro por um ID especifico")
-//    public ResponseEntity exibeLivroById(@PathVariable Integer idLivro) {
-//
-//        LOGGER.info("Retornando usuario desejado...");
-//        return ResponseEntity.of(admin.buscarLivro(idLivro));
-//
-//    }
-//
-//    @PutMapping("/{id}")
-//    @ApiOperation(value = "Realiza uma alteração no cadastro de livros")
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 200, message = "Alteração bem sucedida"),
-//            @ApiResponse(code = 404, message = "Livro não encontrado")})
-//    public ResponseEntity alteraLivro(@PathVariable Integer id, @RequestBody Livros livroAtualizado) {
-//
-//
-//        Response resp = admin.alterarLivro(id, livroAtualizado);
-//
-//        if (resp.getCodigo().equals(00)) {
-//            return ResponseEntity.status(200).body(resp);
-//        } else {
-//            return ResponseEntity.status(404).body(resp);
-//        }
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    @ApiOperation(value = "Remove um livro pelo ID")
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 200, message = "Livro removido com sucesso"),
-//            @ApiResponse(code = 404, message = "Livro não encontrado")})
-//    public ResponseEntity deletaPorId(@PathVariable Integer id) {
-//
-//        Response resp = admin.excluirLivro(id);
-//
-//        if (resp.getCodigo().equals(00)) {
-//            return ResponseEntity.status(200).body(resp);
-//        } else {
-//            return ResponseEntity.status(404).body(resp);
-//        }
-//
-//
-//    }
+
+    @GetMapping("/exemplar/{tombo}")
+    public ResponseEntity<Exemplar> getExemplarByTombo(@PathVariable String tombo) {
+
+        Exemplar exemplar = exemplarRepository.findByTombo(tombo);
+
+        if (exemplar == null) {
+            return ResponseEntity.status(404).build();
+        }
+
+        return ResponseEntity.status(200).body(exemplar);
+    }
+
+
+    @GetMapping("/{idLivro}")
+    @ApiOperation(value = "Retorna um livro por um ID especifico")
+    public ResponseEntity exibeLivroById(@PathVariable Integer idLivro) {
+
+        LOGGER.info("Retornando usuario desejado...");
+        return ResponseEntity.of(admin.buscarLivro(idLivro));
+
+    }
+
+    @PutMapping("/{id}")
+    @ApiOperation(value = "Realiza uma alteração no cadastro de livros")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Alteração bem sucedida"),
+            @ApiResponse(code = 404, message = "Livro não encontrado")})
+    public ResponseEntity alteraLivro(@PathVariable Integer id, @RequestBody Livros livroAtualizado) {
+
+
+        Response resp = admin.alterarLivro(id, livroAtualizado);
+
+        if (resp.getCodigo().equals(00)) {
+            return ResponseEntity.status(200).body(resp);
+        } else {
+            return ResponseEntity.status(404).body(resp);
+        }
+    }
+
+
+
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "Remove um livro pelo ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Livro removido com sucesso"),
+            @ApiResponse(code = 404, message = "Livro não encontrado")})
+    public ResponseEntity deletaPorId(@PathVariable Integer id) {
+
+        Response resp = admin.excluirLivro(id);
+
+        if (resp.getCodigo().equals(00)) {
+            return ResponseEntity.status(200).body(resp);
+        } else {
+            return ResponseEntity.status(404).body(resp);
+        }
+
+
+    }
 //
     @PutMapping("reservar/{idUsuario}/{tombo}")
     @ApiOperation(value = "Realiza a reserva de um livro que esteja disponivel na biblioteca")
     public ResponseEntity reservarLivro(@PathVariable Integer idUsuario, @PathVariable String tombo) {
 
-     Integer codigoReserva = admin.reservar(tombo, idUsuario);
+        Integer codigoReserva = admin.reservar(tombo, idUsuario);
 
-     if(codigoReserva.equals(0)){
-         return ResponseEntity.status(400).body(0);
-     }
+        if (codigoReserva.equals(0)) {
+            return ResponseEntity.status(400).body(0);
+        }
 
-     return ResponseEntity.status(200).body(codigoReserva);
+        return ResponseEntity.status(200).body(codigoReserva);
 
     }
-//
+
+    //
 //    @GetMapping("/buscarLivrosReservados/{idUsuario}")
 //    @ApiOperation(value = "Busca os livros que estão reservados agora para o usuário")
 //    public ResponseEntity buscarLivrosLidos(@PathVariable Integer idUsuario) {
@@ -228,34 +244,34 @@ public class BibliotecaController<T> {
         }
 
     }
-//
-//    @PutMapping("renovar/{idRegistro}/{idUsuario}")
-//    @ApiOperation(value = "Realiza a renovação do tempo de alocação do livro por 10 dias")
-//    public ResponseEntity renovarLivro(@PathVariable Integer idRegistro, @PathVariable Integer idUsuario) {
-//
-//        Integer novoCodRegistro = admin.renovarAlocacao(idRegistro, idUsuario);
-//
-//        if (idRegistro != null || idRegistro.equals(0)) {
-//            return ResponseEntity.status(200).body(novoCodRegistro);
-//        } else {
-//            return ResponseEntity.status(400).body("Renovação não concluida");
-//        }
-//
-//    }
-//
-//    @PutMapping("devolver/{idRegistro}/{idUsuario}")
-//    @ApiOperation(value = "Realiza a devolução do livro que está com o usuario")
-//    public ResponseEntity devolverLivro(@PathVariable Integer idRegistro, @PathVariable Integer idUsuario) {
-//
-//        Integer novoCodRegistro = admin.devolverLivro(idRegistro, idUsuario);
-//
-//        if (novoCodRegistro != null) {
-//            return ResponseEntity.status(200).body(novoCodRegistro);
-//        } else {
-//            return ResponseEntity.status(404).body("Registro de retirada não encontrado!!");
-//        }
-//
-//    }
+
+    @PutMapping("renovar/{tombo}/{idUsuario}")
+    @ApiOperation(value = "Realiza a renovação do tempo de alocação do livro por 10 dias")
+    public ResponseEntity renovarLivro(@PathVariable String tombo, @PathVariable Integer idUsuario) {
+
+        Integer novoCodRegistro = admin.renovarAlocacao(tombo, idUsuario);
+
+        if (tombo != null || tombo.equals(0)) {
+            return ResponseEntity.status(200).body(novoCodRegistro);
+        } else {
+            return ResponseEntity.status(400).body("Renovação não concluida");
+        }
+
+    }
+
+    @PutMapping("devolver/{tombo}/{idUsuario}")
+    @ApiOperation(value = "Realiza a devolução do livro que está com o usuario")
+    public ResponseEntity devolverLivro(@PathVariable String tombo, @PathVariable Integer idUsuario) {
+
+        Integer novoCodRegistro = admin.devolverLivro(tombo, idUsuario);
+
+        if (novoCodRegistro != null) {
+            return ResponseEntity.status(200).body(novoCodRegistro);
+        } else {
+            return ResponseEntity.status(404).body("Registro de retirada não encontrado!!");
+        }
+
+    }
 //
 //    @GetMapping(value = "/gravarArqTxt/livros", produces = "text/text")
 //    @ApiOperation(value = "Retorna um arquivo com os livros da biblioteca")
@@ -435,6 +451,81 @@ public class BibliotecaController<T> {
 ////
 ////        return ResponseEntity.status(200).build();
 ////    }
+
+
+
+    @PostMapping("/cadastraExemplar/{fkTbLivro}/{idUsuario}")
+    @ApiOperation(value = "Realiza o cadastro de um ou muitos exemplares")
+    public ResponseEntity postAluno(@RequestParam List<String> listaDeTombo,
+                                    @PathVariable Integer fkTbLivro,
+                                    @PathVariable Integer idUsuario) {
+
+        Integer resultado = cadastraExemplar(listaDeTombo,fkTbLivro, idUsuario);
+
+        if(!resultado.equals(0)){
+            return  ResponseEntity.status(200).body(resultado);
+        }
+        return ResponseEntity.status(400).build();
+    }
+
+
+    public Integer cadastraExemplar(List<String> listaDeTombo, Integer fkTbLivro, Integer idUsuario){
+
+        PerfilUsuario usuario = repositoryUsuario.findById(idUsuario).get();
+
+        if(usuario.equals(null)){
+            return 0;
+        }
+
+        if(listaDeTombo.isEmpty()){
+
+            return 0;
+        }
+
+        if(usuario.getStatusAtivo()){
+            if(!repository.existsById(fkTbLivro)){
+
+                return 0;
+            }
+
+            Integer ultimoNrExemplar     = exemplarRepository
+                    .findTopByFkTbLivroOrderByIdDesc(fkTbLivro)
+                    .getNrExemplar();
+            Integer qtdLivrosCadastrados = 0;
+            Integer nrExemplar           = ultimoNrExemplar + 1;
+            Exemplar e;
+
+
+            for(Integer c = 0; c <= listaDeTombo.size() - 1; c++){
+
+                System.out.println(listaDeTombo.get(c));
+
+                e = new Exemplar();
+                e.setFkTbLivro(fkTbLivro);
+                e.setReservado(false);
+                e.setRetirado(false);
+                e.setDevolvido(false);
+                e.setRenovado(false);
+                e.setNrExemplar(nrExemplar);
+                e.setTombo(listaDeTombo.get(c));
+                qtdLivrosCadastrados += 1;
+                nrExemplar           += 1;
+                exemplarRepository.save(e);
+            }
+
+            Livros livroReferencia = repository.findLivroById(fkTbLivro);
+            livroReferencia.setQtdDisponiveis(livroReferencia.getQtdDisponiveis() + qtdLivrosCadastrados);
+            livroReferencia.setQtdEstoque(livroReferencia.getQtdEstoque() + qtdLivrosCadastrados);
+            repository.save(livroReferencia);
+
+            return qtdLivrosCadastrados;
+
+        }
+
+        return 0;
+    }
+
+
 //
 //    public Integer efetuarReserva(Integer idUsuario, Integer idLivro) {
 //        Integer idRegistro = admin.reservar(idLivro, idUsuario);
