@@ -108,6 +108,7 @@ public class BibliotecaController<T> {
     }
 
     @GetMapping("/exemplar/{tombo}")
+    @ApiOperation(value = "Retorna um exemplar pelo tombo")
     public ResponseEntity<Exemplar> getExemplarByTombo(@PathVariable String tombo) {
 
         Exemplar exemplar = exemplarRepository.findByTombo(tombo);
@@ -117,6 +118,20 @@ public class BibliotecaController<T> {
         }
 
         return ResponseEntity.status(200).body(exemplar);
+    }
+
+    @GetMapping("/exemplar/all")
+    @ApiOperation(value = "Retorna uma lista de exemplares pelo id do Livro")
+    public ResponseEntity<List<Exemplar>> getListExemplarByIdLivro(){
+
+        List<Exemplar> listExemplares = exemplarRepository.findAll();
+
+        if(listExemplares.isEmpty() || listExemplares == null){
+            return ResponseEntity.status(404).build();
+        }
+
+        return ResponseEntity.status(200).body(listExemplares);
+
     }
 
 
