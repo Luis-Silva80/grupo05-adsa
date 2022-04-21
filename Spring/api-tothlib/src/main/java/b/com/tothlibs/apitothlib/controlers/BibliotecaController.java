@@ -1,6 +1,7 @@
 package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.dto.Response;
+import b.com.tothlibs.apitothlib.dto.ResponseLivroMobile;
 import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
 import b.com.tothlibs.apitothlib.entity.*;
 import b.com.tothlibs.apitothlib.listas.FilaObj;
@@ -120,7 +121,7 @@ public class BibliotecaController<T> {
         return ResponseEntity.status(200).body(exemplar);
     }
 
-    @GetMapping("/exemplar/all")
+    @GetMapping("/exemplar/listExemplar")
     @ApiOperation(value = "Retorna uma lista de exemplares pelo id do Livro")
     public ResponseEntity<List<Exemplar>> getListExemplarByIdLivro(){
 
@@ -132,6 +133,20 @@ public class BibliotecaController<T> {
 
         return ResponseEntity.status(200).body(listExemplares);
 
+    }
+
+    @GetMapping("/livro/{idLivro}")
+    @ApiOperation(value = "Retorna uma lista de exemplares pelo id do Livro")
+    public ResponseEntity getLivroEExemplares(@PathVariable Integer idLivro){
+
+        Livros livro = repository.findLivroById(idLivro);
+        List<String> tombosDisponiveis = exemplarRepository.listExemplaresDisponiveisById(idLivro);
+
+        if(livro != null && !tombosDisponiveis.isEmpty()){
+            return ResponseEntity.status(200).body(new ResponseLivroMobile(livro, tombosDisponiveis));
+        }else {
+            return ResponseEntity.status(404).build();
+        }
     }
 
 
