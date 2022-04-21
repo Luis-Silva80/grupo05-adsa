@@ -104,23 +104,19 @@ public class UsuarioAdmin implements Administravel, Usuario {
 
 
             if (livro.getQtdDisponiveis() > 0) {
-                if (livro.getQtdReservadosAgora().equals(livro.getQtdEstoque())) {
-                    if (exemplar.getReservado().equals(false) && exemplar.getRetirado().equals(false) && exemplar.getRenovado().equals(false)) {
+                if (exemplar.getReservado().equals(false) && exemplar.getRetirado().equals(false) && exemplar.getRenovado().equals(false)) {
 
-                        if (usuario.getQtdReservadosAgora() <= 2) {
-                            exemplar.setReservado(true);
-                            livro.setQtdReservadosAgora(livro.getQtdReservadosAgora() + 1);
-                            livro.setQtdReservadosTotal(livro.getQtdReservadosTotal() + 1);
-                            livro.setQtdDisponiveis(livro.getQtdDisponiveis() - 1);
+                    if (usuario.getQtdReservadosAgora() <= 2) {
+                        exemplar.setReservado(true);
+                        livro.setQtdReservadosAgora(livro.getQtdReservadosAgora() + 1);
+                        livro.setQtdReservadosTotal(livro.getQtdReservadosTotal() + 1);
+                        livro.setQtdDisponiveis(livro.getQtdDisponiveis() - 1);
 
-                            repositoryLivros.save(livro);
-                            repositoryExemplar.save(exemplar);
+                        repositoryLivros.save(livro);
+                        repositoryExemplar.save(exemplar);
 
-                            criaResgistroDeReserva(exemplar, usuario, livro, "RESERVA");
+                        criaResgistroDeReserva(exemplar, usuario, livro, "RESERVA");
 
-                        } else {
-                            return 0;
-                        }
                     } else {
                         return 0;
                     }
@@ -318,7 +314,7 @@ public class UsuarioAdmin implements Administravel, Usuario {
             registro.setDataRegistro(LocalDate.now());
             registro.setDataPrevDevolucao(dataPrevDevolucaoAntiga.plusDays(10));
 
-        }else {
+        } else {
 
             registro = new Historico();
 

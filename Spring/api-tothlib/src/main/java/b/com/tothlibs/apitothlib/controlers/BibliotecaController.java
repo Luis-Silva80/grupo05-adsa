@@ -2,45 +2,22 @@ package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.dto.Response;
 import b.com.tothlibs.apitothlib.dto.ResponseLivroMobile;
-import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
-import b.com.tothlibs.apitothlib.entity.*;
-import b.com.tothlibs.apitothlib.listas.FilaObj;
-//import b.com.tothlibs.apitothlib.listas.LayoutArquivos;
-//import b.com.tothlibs.apitothlib.repository.*;
-//import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
+import b.com.tothlibs.apitothlib.entity.Exemplar;
+import b.com.tothlibs.apitothlib.entity.Livros;
+import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.*;
-import b.com.tothlibs.apitothlib.services.Usuario;
 import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/biblioteca")
@@ -135,9 +112,9 @@ public class BibliotecaController<T> {
 
     }
 
-    @GetMapping("/livro/{idLivro}")
+    @GetMapping("/exemplares/{idLivro}")
     @ApiOperation(value = "Retorna uma lista de exemplares pelo id do Livro")
-    public ResponseEntity getLivroEExemplares(@PathVariable Integer idLivro){
+    public ResponseEntity getLivroExemplares(@PathVariable Integer idLivro){
 
         Livros livro = repository.findLivroById(idLivro);
         List<String> tombosDisponiveis = exemplarRepository.listExemplaresDisponiveisById(idLivro);

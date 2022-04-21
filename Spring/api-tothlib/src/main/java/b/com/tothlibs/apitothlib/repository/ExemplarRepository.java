@@ -23,7 +23,7 @@ public interface ExemplarRepository extends JpaRepository<Exemplar, Integer> {
 
 
     @Query("select e.tombo from Exemplar e where "  +
-            "e.fkTbLivro = :idLivro" +
+            "e.fkTbLivro = :idLivro and" +
             " e.reservado = false and  "             +
             " e.retirado  = false and "              +
             " (e.devolvido = false or e.devolvido = true) ")
