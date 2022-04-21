@@ -28,22 +28,12 @@ public class Autenticacao {
 
 
         PerfilUsuario user = repository.findByEmail(email);
+        PerfilUsuario user2 = repository.findByEmailAndSenha(email, senha);
 
-        if(user != null){
-            UsuarioDto usuarioDto = null;
-
-            List<PerfilUsuario> listUsuarios = repository.findAll();
-
-            for (PerfilUsuario u : listUsuarios) {
-                if (u.getEmail().equals(email)) {
-                    if (u.retornaSenha().equals(senha)) {
-                        usuarioDto = new UsuarioDto(u);
-                        listAutenticados.add(usuarioDto);
-                    }
-
-                }
-            }
+        if(user2 != null){
+            listAutenticados.add(new UsuarioDto(user2));
             return ResponseEntity.status(200).body(user.getId());
+
         }else {
             return ResponseEntity.status(404).build();
         }
