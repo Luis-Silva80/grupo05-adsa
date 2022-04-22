@@ -25,6 +25,7 @@ for (const name of Object.keys(nets)) {
         netExterno.push(net)
     }
 }
+console.log(netExterno)
 
 var ipWeb2 = false
 
