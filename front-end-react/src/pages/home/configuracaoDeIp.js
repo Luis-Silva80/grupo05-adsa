@@ -47,11 +47,11 @@ export function defineNetExterno() {
 // });
 
 if(window.location.hostname === '52.22.225.56'){
-    
-    ipWeb2 = true
 
+    ipWeb2 = true
     localStorage.setItem('ipWeb2', ipWeb2)
-}
+    
+} 
 
 
 
