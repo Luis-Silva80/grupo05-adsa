@@ -26,30 +26,15 @@ public class Autenticacao {
     @ApiOperation(value = "Realiza a autenticação na plataforma")
     public ResponseEntity autenticar(@PathVariable String email, @PathVariable String senha) {
 
+        PerfilUsuario user2 = repository.findByEmailAndSenha(email, senha);
 
-        PerfilUsuario user = repository.findByEmail(email);
+        if(user2 != null){
+            listAutenticados.add(new UsuarioDto(user2));
+            return ResponseEntity.status(200).body(user2.getId());
 
-        if(user != null){
-            UsuarioDto usuarioDto = null;
-
-            List<PerfilUsuario> listUsuarios = repository.findAll();
-
-            for (PerfilUsuario u : listUsuarios) {
-                if (u.getEmail().equals(email)) {
-                    if (u.retornaSenha().equals(senha)) {
-                        usuarioDto = new UsuarioDto(u);
-                        listAutenticados.add(usuarioDto);
-                    }
-
-                }
-            }
-            return ResponseEntity.status(200).body(user.getId());
         }else {
             return ResponseEntity.status(404).build();
         }
-
-       
-
     }
 
     @GetMapping("/usuariosLogados")
