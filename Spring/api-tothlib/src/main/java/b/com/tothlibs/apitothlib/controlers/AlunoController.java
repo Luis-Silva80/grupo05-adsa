@@ -73,7 +73,7 @@ public class AlunoController {
     @ApiOperation(value = "Retorna a lista de alunos cadastrados, mais suas pendencias na biblioteca local")
     public ResponseEntity getAlunoV2() {
 
-        List<PerfilUsuario> infoAlunos = repository.findAll();
+        List<PerfilUsuario> infoAlunos = repository.findAlunos();
         List<UserInfoResponseKotlin> listUsers = new ArrayList<>();
 
         List<LocalDate> teste = new ArrayList<>();
