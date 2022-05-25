@@ -13,6 +13,9 @@ public interface PerfilUsuarioRepository extends JpaRepository<PerfilUsuario, In
     @Query("SELECT u.usuarioAdmin FROM PerfilUsuario u WHERE u.id = :id")
     public Integer findAdminById(@Param("id") Integer id);
 
+    @Query("SELECT u.id, u.email FROM PerfilUsuario u WHERE u.id = :id and u.usuarioAdmin = 0")
+    public List<Object> findEmailAndId();
+
     public PerfilUsuario findByEmailAndSenha(String email, String senha);
 
     @Query("SELECT u FROM PerfilUsuario u WHERE u.usuarioAdmin = 1")

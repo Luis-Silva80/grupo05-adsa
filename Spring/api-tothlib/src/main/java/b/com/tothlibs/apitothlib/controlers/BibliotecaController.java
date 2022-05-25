@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -49,6 +50,26 @@ public class BibliotecaController<T> {
     @ApiOperation(value = "Retorna uma lista de livros")
 
     public ResponseEntity listaLivros() {
+
+        List<Livros> livros = admin.consultaListaLivros();
+
+        if (!livros.isEmpty()) {
+            return ResponseEntity.status(200).body(livros);
+        } else {
+            return ResponseEntity.status(204).build();
+        }
+
+    }
+
+
+    @GetMapping("/v2")
+    @ApiOperation(value = "Retorna uma lista de livros para a api-v2 kotlin")
+    public ResponseEntity exibeLivroByIdV2() {
+
+//        RestTemplate restTemplate = new RestTemplate(); //1
+//        String url = "http://www.algumacoisa.com.br/api"; //2
+//        ResponseEntity<String> response
+//                = restTemplate.getForEntity(url, String.class); //3
 
         List<Livros> livros = admin.consultaListaLivros();
 

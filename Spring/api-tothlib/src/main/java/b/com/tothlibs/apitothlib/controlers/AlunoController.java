@@ -1,10 +1,12 @@
 package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.Exceptions.UsuarioNaoEncontradoException;
+import b.com.tothlibs.apitothlib.dto.UserInfoResponseKotlin;
 import b.com.tothlibs.apitothlib.dto.UsuarioInfo;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.listas.PilhaObj;
+import b.com.tothlibs.apitothlib.repository.ExemplarRepository;
 import b.com.tothlibs.apitothlib.repository.HistoricoRepository;
 import b.com.tothlibs.apitothlib.repository.LivrosRepository;
 import b.com.tothlibs.apitothlib.repository.PerfilUsuarioRepository;
@@ -16,14 +18,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.lang.reflect.GenericArrayType;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -47,6 +46,9 @@ public class AlunoController {
     @Autowired
     private LivrosRepository repositoryLivro;
 
+    @Autowired
+    private ExemplarRepository repositoryExemplar;
+
     @GetMapping
     @ApiOperation(value = "Retorna a lista de alunos cadastrados")
     public ResponseEntity getAluno() {
@@ -65,6 +67,27 @@ public class AlunoController {
             LOGGER.info("Retornando lista de usuarios");
             return ResponseEntity.status(200).body(alunos);
         }
+    }
+
+    @GetMapping("/v2-usuarios")
+    @ApiOperation(value = "Retorna a lista de alunos cadastrados, mais suas pendencias na biblioteca local")
+    public ResponseEntity getAlunoV2() {
+
+        List<PerfilUsuario> infoAlunos = repository.findAll();
+        List<UserInfoResponseKotlin> listUsers = new ArrayList<>();
+
+        List<LocalDate> teste = new ArrayList<>();
+
+        for(PerfilUsuario p : infoAlunos){
+
+            List<LocalDate> listTemp = repositoryHistorico.findDevolucaoByUser(p.getId());
+            teste = listTemp;
+            listUsers.add(new UserInfoResponseKotlin(p.getId(), p.getEmail(), teste));
+
+        }
+
+        System.out.println("Teste: " + listUsers);
+        return ResponseEntity.status(200).body(listUsers);
     }
 
     @PostMapping()
@@ -305,4 +328,24 @@ public class AlunoController {
     public boolean containsName(final List<Livros> list, final Integer id) {
         return list.stream().map(Livros::getId).filter(id::equals).findFirst().isPresent();
     }
+
+
+    public int remove_Duplicate_Elements(int arr[], int n){
+        if (n==0 || n==1){
+            return n;
+        }
+        int[] tempA = new int[n];
+        int j = 0;
+        for (int i=0; i<n-1; i++){
+            if (arr[i] != arr[i+1]){
+                tempA[j++] = arr[i];
+            }
+        }
+        tempA[j++] = arr[n-1];
+        for (int i=0; i<j; i++){
+            arr[i] = tempA[i];
+        }
+        return j;
+    }
+
 }
