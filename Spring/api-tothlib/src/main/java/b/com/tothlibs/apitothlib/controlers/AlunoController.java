@@ -2,8 +2,10 @@ package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.Exceptions.UsuarioNaoEncontradoException;
 import b.com.tothlibs.apitothlib.dto.UserInfoResponseKotlin;
+import b.com.tothlibs.apitothlib.dto.UserModalResponse;
 import b.com.tothlibs.apitothlib.dto.UsuarioInfo;
 import b.com.tothlibs.apitothlib.entity.Exemplar;
+import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.listas.PilhaObj;
@@ -77,13 +79,21 @@ public class AlunoController {
         List<PerfilUsuario> infoAlunos = repository.findAlunos();
         List<UserInfoResponseKotlin> listUsers = new ArrayList<>();
 
-        List<LocalDate> teste = new ArrayList<>();
+        List<UserModalResponse> teste = new ArrayList<>();
 
         for(PerfilUsuario p : infoAlunos){
 
-            List<LocalDate> listTemp = repositoryHistorico.findDevolucaoByUser(p.getId());
-            teste = listTemp;
-            listUsers.add(new UserInfoResponseKotlin(p.getId(), p.getEmail(), teste));
+            List<Historico> listTemp = repositoryHistorico.findByFkTbPerfilUsuario(p.getId());
+
+            List<UserModalResponse> listTemp2 = new ArrayList<>();
+
+            for(int i =0;i < listTemp.size();i++){
+                listTemp2.add(new UserModalResponse(listTemp.get(i)));
+            }
+
+            teste = listTemp2;
+
+            listUsers.add(new UserInfoResponseKotlin(p.getId(), p.getEmail(), p.getNome(), p.getStatusAtivo(), teste));
 
         }
 

@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7adb6435-d1f1-4539-9707-2ee10b132e15" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/dto/UserModalResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/api_tothlib_jar/api-tothlib.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/api_tothlib_jar/api-tothlib.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/AlunoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/AlunoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/dto/UserInfoResponseKotlin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/dto/UserInfoResponseKotlin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/HistoricoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/HistoricoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/repository/HistoricoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/b/com/tothlibs/apitothlib/repository/HistoricoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +99,7 @@
       <recent name="b.com.tothlibs.apitothlib.listas" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ApiTothlibApplication">
+  <component name="RunManager" selected="Spring Boot.ApiTothlibApplication">
     <configuration name="ApiTothlibApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="b.com.tothlibs.apitothlib.ApiTothlibApplication" />
       <module name="api-tothlib" />
@@ -211,6 +212,9 @@
       <workItem from="1653252365834" duration="158000" />
       <workItem from="1653345158410" duration="9561000" />
       <workItem from="1653428074734" duration="8413000" />
+      <workItem from="1653580580071" duration="228000" />
+      <workItem from="1653580828716" duration="146000" />
+      <workItem from="1653582205724" duration="1889000" />
     </task>
     <servers />
   </component>
@@ -227,6 +231,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -242,7 +247,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/AlunoController.java</url>
-          <line>124</line>
+          <line>134</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>

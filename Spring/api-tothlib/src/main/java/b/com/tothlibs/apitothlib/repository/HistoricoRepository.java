@@ -3,6 +3,7 @@ package b.com.tothlibs.apitothlib.repository;
 import b.com.tothlibs.apitothlib.dto.UsuariosPendentesDto;
 import b.com.tothlibs.apitothlib.entity.Historico;
 import b.com.tothlibs.apitothlib.entity.Livros;
+import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -30,6 +31,9 @@ public interface HistoricoRepository extends JpaRepository<Historico, Integer> {
 
     @Query("SELECT h.dataPrevDevolucao FROM Historico h where h.fkTbPerfilUsuario = :id and h.dataPrevDevolucao <> '' ")
     public List<LocalDate> findDevolucaoByUser(@Param("id") Integer id);
+
+    @Query("SELECT h FROM Historico h where h.fkTbPerfilUsuario = :id and h.dataPrevDevolucao <> '' ")
+    public List<Historico> findByFkTbPerfilUsuario(@Param("id") Integer id);
 
     public Historico findTopByOrderByIdDesc();
 

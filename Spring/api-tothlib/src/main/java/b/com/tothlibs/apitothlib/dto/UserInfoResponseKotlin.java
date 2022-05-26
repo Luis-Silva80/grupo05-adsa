@@ -9,11 +9,15 @@ public class UserInfoResponseKotlin {
 
     private Integer id;
     private String email;
-    private List<LocalDate> pendencias;
+    private String nomeUser;
+    private Boolean statusAtivo;
+    private List<UserModalResponse> pendencias;
 
-    public UserInfoResponseKotlin(Integer id, String email, List<LocalDate> pendencias) {
+    public UserInfoResponseKotlin(Integer id, String email, String nomeUser, Boolean statusAtivo, List<UserModalResponse> pendencias) {
         this.id = id;
         this.email = email;
+        this.nomeUser = nomeUser;
+        this.statusAtivo = statusAtivo;
         this.pendencias = pendencias;
     }
 
@@ -36,20 +40,27 @@ public class UserInfoResponseKotlin {
         this.email = email;
     }
 
-    public List<LocalDate> getPendencias() {
+    public String getNomeUser() {
+        return nomeUser;
+    }
+
+    public void setNomeUser(String nomeUser) {
+        this.nomeUser = nomeUser;
+    }
+
+    public Boolean getStatusAtivo() {
+        return statusAtivo;
+    }
+
+    public void setStatusAtivo(Boolean statusAtivo) {
+        this.statusAtivo = statusAtivo;
+    }
+
+    public List<UserModalResponse> getPendencias() {
         return pendencias;
     }
 
-    public void setPendencias(List<LocalDate> pendencias) {
+    public void setPendencias(List<UserModalResponse> pendencias) {
         this.pendencias = pendencias;
-    }
-
-    @Override
-    public String toString() {
-        return "UserInfoResponseKotlin{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", pendencias=" + pendencias +
-                '}';
     }
 }
