@@ -3,6 +3,7 @@ package b.com.tothlibs.apitothlib.controlers;
 import b.com.tothlibs.apitothlib.Exceptions.UsuarioNaoEncontradoException;
 import b.com.tothlibs.apitothlib.dto.UserInfoResponseKotlin;
 import b.com.tothlibs.apitothlib.dto.UsuarioInfo;
+import b.com.tothlibs.apitothlib.entity.Exemplar;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.listas.PilhaObj;
@@ -102,6 +103,7 @@ public class AlunoController {
         novoAluno.setLivrosReservados(0);
         novoAluno.setFkTbInstituicao(2);
         novoAluno.setStatusAtivo(true);
+        novoAluno.setQtdReservadosAgora(0);
 
         repository.save(novoAluno);
 
@@ -116,14 +118,18 @@ public class AlunoController {
 
         PerfilUsuario usuario = repository.findById(idUsuario).get();
 
-        List<Integer> listId = repositoryHistorico.findLivrosByUser(idUsuario);
+        List<String> listTombos = repositoryHistorico.findExemplaresByUser(idUsuario);
         UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
 
-        for (Integer l : listId) {
-            Livros livro = repositoryLivro.findById(l).get();
-            if (!usuarioInfo.getLivrosLidos().contains(livro)) {
-                usuarioInfo.getLivrosLidos().add(repositoryLivro.findById(l).get());
+        for (String l : listTombos) {
+            Exemplar exemplar = repositoryExemplar.findByTombo(l);
+            if(exemplar != null){
+                Livros livro = repositoryLivro.findLivroById(exemplar.getId());
+                if (!usuarioInfo.getLivrosLidos().contains(livro)) {
+                    usuarioInfo.getLivrosLidos().add(repositoryLivro.findById(livro.getId()).get());
+                }
             }
+
         }
 
         LOGGER.info("Retornando usuario desejado...");

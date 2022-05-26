@@ -64,31 +64,31 @@ public class AdminController {
         return ResponseEntity.status(201).build();
     }
 
-    @GetMapping("/{idAdmin}")
-    @ApiOperation(value = "Retorna um administrador com ID especifico")
-    public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idAdmin) {
-
-        PerfilUsuario usuario = repository.findById(idAdmin).get();
-
-        List<Integer> listId = repositoryHistorico.findLivrosByUser(idAdmin);
-
-        UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
-
-        for(Integer l : listId){
-            usuarioInfo.getLivrosLidos().add(repositoryLivro.findById(l).get());
-        }
-
-        LOGGER.info("Retornando usuario desejado...");
-
-        if(usuarioInfo != null){
-            if(usuario.getUsuarioAdmin().equals(1)){
-                return ResponseEntity.status(200).body(usuarioInfo);
-            }else {
-                return ResponseEntity.status(204).build();
-            }
-        }else {
-            return ResponseEntity.status(404).build();
-        }
-
-    }
+//    @GetMapping("/{idAdmin}")
+//    @ApiOperation(value = "Retorna um administrador com ID especifico")
+//    public ResponseEntity exibeUsuarioAdmin(@PathVariable Integer idAdmin) {
+//
+//        PerfilUsuario usuario = repository.findById(idAdmin).get();
+//
+//        List<Integer> listId = repositoryHistorico.findLivrosByUser(idAdmin);
+//
+//        UsuarioInfo usuarioInfo = new UsuarioInfo(usuario);
+//
+//        for(Integer l : listId){
+//            usuarioInfo.getLivrosLidos().add(repositoryLivro.findById(l).get());
+//        }
+//
+//        LOGGER.info("Retornando usuario desejado...");
+//
+//        if(usuarioInfo != null){
+//            if(usuario.getUsuarioAdmin().equals(1)){
+//                return ResponseEntity.status(200).body(usuarioInfo);
+//            }else {
+//                return ResponseEntity.status(204).build();
+//            }
+//        }else {
+//            return ResponseEntity.status(404).build();
+//        }
+//
+//    }
 }
