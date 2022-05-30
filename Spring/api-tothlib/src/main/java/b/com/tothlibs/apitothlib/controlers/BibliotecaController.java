@@ -2,21 +2,28 @@ package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.dto.Response;
 import b.com.tothlibs.apitothlib.dto.ResponseLivroMobile;
+import b.com.tothlibs.apitothlib.dto.ResponseLivroModal;
 import b.com.tothlibs.apitothlib.entity.Exemplar;
 import b.com.tothlibs.apitothlib.entity.Livros;
 import b.com.tothlibs.apitothlib.entity.PerfilUsuario;
 import b.com.tothlibs.apitothlib.repository.*;
 import b.com.tothlibs.apitothlib.services.UsuarioAdmin;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.google.gson.Gson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -300,6 +307,104 @@ public class BibliotecaController<T> {
         }
 
     }
+
+    @GetMapping("/listLivrosKotlin")
+    @ApiOperation(value = "Retorna uma lista de livros para o padrão mobile")
+    public ResponseEntity responseMobileList(@RequestParam(value = "name", required = true) String name) {
+
+        Livros livro = repository.findByTitulo(name);
+
+        if (livro == null) {
+            return ResponseEntity.status(204).build();
+        } else {
+
+            List<ResponseLivroModal> listResponseLivroModal = new ArrayList<>();
+
+            RestTemplate restTemplate = new RestTemplate();
+            String url = "https://www.googleapis.com/books/v1/volumes?q=" + name;
+            String response
+                    = restTemplate.getForObject(url, String.class);
+
+            JSONObject json = new JSONObject(response);
+            JSONObject json2 = json.getJSONArray("items").getJSONObject(0);
+            JSONArray arrayItems = json.getJSONArray("items");
+            JSONObject volumeInfo = json2.getJSONObject("volumeInfo");
+            JSONObject saleInfo = json2.getJSONObject("saleInfo");
+            JSONObject accessInfo = json2.getJSONObject("accessInfo");
+            JSONObject listPrice = saleInfo.getJSONObject("listPrice");
+            JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
+
+
+            try {
+                for (int i = 0; i < arrayItems.length(); i++) {
+                    JSONObject jsonFinal = json.getJSONArray("items").getJSONObject(i);
+
+                    System.out.println("obj: " + jsonFinal);
+
+                    JSONObject volumeInfoFinal = jsonFinal.getJSONObject("volumeInfo");
+                    JSONObject saleInfoFinal = jsonFinal.getJSONObject("saleInfo");
+                    JSONObject accessInfoFinal = jsonFinal.getJSONObject("accessInfo");
+                    System.out.println("listPrice = : " + saleInfoFinal.has("listPrice"));
+                    System.out.println("saleability = : " + saleInfoFinal.has("saleability"));
+                    JSONObject listPriceFinal;
+                    String saleability = "FOR_SALE";
+                    Double amountFinal = 0.00;
+                    String publishedDateFinal = "";
+
+
+                    if (saleInfoFinal.has("listPrice")) {
+                        listPriceFinal = saleInfoFinal.getJSONObject("listPrice");
+                        amountFinal = listPriceFinal.getDouble("amount");
+                    } else {
+                        System.out.println("saleabilityteste: " + saleInfoFinal.getString("saleability"));
+                        saleability = saleInfoFinal.getString("saleability");
+                    }
+
+                    if (volumeInfoFinal.has("publishedDate")) {
+                        publishedDateFinal = volumeInfoFinal.getString("publishedDate");
+                    }
+
+
+                    JSONObject imageLinksFinal = volumeInfo.getJSONObject("imageLinks");
+
+                    String titleFinal = volumeInfoFinal.getString("title");
+                    System.out.println("\n\nPUBLISHDATE: " + volumeInfoFinal.getString("publishedDate") + "\n\n");
+                    String descriptionFinal = volumeInfoFinal.getString("description");
+                    String capaFinal = accessInfoFinal.getString("webReaderLink");
+
+                    String smallThumbnailFinal = imageLinksFinal.getString("smallThumbnail");
+                    String thumbnailFinal = imageLinksFinal.getString("thumbnail");
+                    String autorFinal = volumeInfoFinal.getJSONArray("authors").getString(0);
+
+                    ResponseLivroModal t = new ResponseLivroModal(titleFinal,
+                            publishedDateFinal,
+                            descriptionFinal,
+                            amountFinal,
+                            capaFinal,
+                            smallThumbnailFinal,
+                            thumbnailFinal,
+                            autorFinal,
+                            "disponivel",
+                            "10/10",
+                            saleability);
+
+
+                    System.out.println("------AQUI: " + t);
+                    System.out.println("--------------------------------------");
+                    listResponseLivroModal.add(t);
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return ResponseEntity.status(200).body(listResponseLivroModal);
+        }
+
+
+
+    }
+
 //
 //    @GetMapping(value = "/gravarArqTxt/livros", produces = "text/text")
 //    @ApiOperation(value = "Retorna um arquivo com os livros da biblioteca")
