@@ -13,6 +13,7 @@ public class ResponseLivroModal {
     String disponivel;
     String avaliacao;
     String forSale;
+    Integer idLivro;
 
     public ResponseLivroModal(String title,
                               String publishedDate,
@@ -24,7 +25,8 @@ public class ResponseLivroModal {
                               String autor,
                               String disponivel,
                               String avaliacao,
-                              String forSale) {
+                              String forSale,
+                              Integer idLivro) {
         this.title = title;
         this.publishedDate = publishedDate;
         this.description = description;
@@ -36,6 +38,7 @@ public class ResponseLivroModal {
         this.disponivel = disponivel;
         this.avaliacao = avaliacao;
         this.forSale = forSale;
+        this.idLivro = idLivro;
     }
 
     public ResponseLivroModal() {
@@ -129,6 +132,14 @@ public class ResponseLivroModal {
         this.forSale = forSale;
     }
 
+    public Integer getIdLivro() {
+        return idLivro;
+    }
+
+    public void setIdLivro(Integer idLivro) {
+        this.idLivro = idLivro;
+    }
+
     @Override
     public String toString() {
         return  "\ntitle='" + title +
@@ -141,6 +152,7 @@ public class ResponseLivroModal {
                 "\nautor='" + autor +
                 "\ndisponivel='" + disponivel +
                 "\navaliacao='" + avaliacao +
-                "\nFor sale='" + forSale;
+                "\nFor sale='" + forSale +
+                "\nidLivro='" + idLivro;
     }
 }

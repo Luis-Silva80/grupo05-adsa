@@ -328,11 +328,6 @@ public class BibliotecaController<T> {
             JSONObject json = new JSONObject(response);
             JSONObject json2 = json.getJSONArray("items").getJSONObject(0);
             JSONArray arrayItems = json.getJSONArray("items");
-            JSONObject volumeInfo = json2.getJSONObject("volumeInfo");
-            JSONObject saleInfo = json2.getJSONObject("saleInfo");
-            JSONObject accessInfo = json2.getJSONObject("accessInfo");
-            JSONObject listPrice = saleInfo.getJSONObject("listPrice");
-            JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
 
 
             try {
@@ -350,7 +345,8 @@ public class BibliotecaController<T> {
                     String saleability = "FOR_SALE";
                     Double amountFinal = 0.00;
                     String publishedDateFinal = "";
-
+                    String smallThumbnailFinal = "";
+                    String thumbnailFinal = "";
 
                     if (saleInfoFinal.has("listPrice")) {
                         listPriceFinal = saleInfoFinal.getJSONObject("listPrice");
@@ -364,16 +360,17 @@ public class BibliotecaController<T> {
                         publishedDateFinal = volumeInfoFinal.getString("publishedDate");
                     }
 
+                    if(volumeInfoFinal.has("imageLinks")){
+                        JSONObject imageLinksFinal = volumeInfoFinal.getJSONObject("imageLinks");
 
-                    JSONObject imageLinksFinal = volumeInfo.getJSONObject("imageLinks");
+                        smallThumbnailFinal = imageLinksFinal.getString("smallThumbnail");
+                        thumbnailFinal = imageLinksFinal.getString("thumbnail");
+                    }
 
                     String titleFinal = volumeInfoFinal.getString("title");
                     System.out.println("\n\nPUBLISHDATE: " + volumeInfoFinal.getString("publishedDate") + "\n\n");
                     String descriptionFinal = volumeInfoFinal.getString("description");
                     String capaFinal = accessInfoFinal.getString("webReaderLink");
-
-                    String smallThumbnailFinal = imageLinksFinal.getString("smallThumbnail");
-                    String thumbnailFinal = imageLinksFinal.getString("thumbnail");
                     String autorFinal = volumeInfoFinal.getJSONArray("authors").getString(0);
 
                     ResponseLivroModal t = new ResponseLivroModal(titleFinal,
@@ -384,13 +381,10 @@ public class BibliotecaController<T> {
                             smallThumbnailFinal,
                             thumbnailFinal,
                             autorFinal,
-                            "disponivel",
+                            livro.getQtdDisponiveis() > 0 ? "disponivel" : "indisponivel",
                             "10/10",
-                            saleability);
-
-
-                    System.out.println("------AQUI: " + t);
-                    System.out.println("--------------------------------------");
+                            saleability,
+                            livro.getId());
                     listResponseLivroModal.add(t);
 
                 }
