@@ -33,5 +33,6 @@ public interface ExemplarRepository extends JpaRepository<Exemplar, Integer> {
             "e.tombo = :tombo")
     public Exemplar findByTombo(String tombo);
 
-    public Exemplar findTopByFkTbLivroOrderByIdDesc(Integer fkTbLivro);
+    @Query("select count (e) from Exemplar e where e.fkTbLivro = :fkTbLivro")
+    public Long findTopByFkTbLivroOrderByIdDesc(Integer fkTbLivro);
 }

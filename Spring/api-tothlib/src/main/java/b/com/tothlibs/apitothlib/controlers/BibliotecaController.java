@@ -621,11 +621,8 @@ public class BibliotecaController<T> {
                 return 0;
             }
 
-            Integer ultimoNrExemplar     = exemplarRepository
-                    .findTopByFkTbLivroOrderByIdDesc(fkTbLivro)
-                    .getNrExemplar();
+
             Integer qtdLivrosCadastrados = 0;
-            Integer nrExemplar           = ultimoNrExemplar + 1;
             Exemplar e;
 
 
@@ -633,22 +630,28 @@ public class BibliotecaController<T> {
 
                 System.out.println(listaDeTombo.get(c));
 
-                e = new Exemplar();
-                e.setFkTbLivro(fkTbLivro);
-                e.setReservado(false);
-                e.setRetirado(false);
-                e.setDevolvido(false);
-                e.setRenovado(false);
-                e.setNrExemplar(nrExemplar);
-                e.setTombo(listaDeTombo.get(c));
-                qtdLivrosCadastrados += 1;
-                nrExemplar           += 1;
-                exemplarRepository.save(e);
+                Long ultimoNrExemplar     = exemplarRepository
+                        .findTopByFkTbLivroOrderByIdDesc(fkTbLivro);
+
+                Integer nrExemplar = ultimoNrExemplar.intValue() + 1;
+
+                exemplarRepository.save(new Exemplar(nrExemplar,
+                        listaDeTombo.get(c),
+                        false,
+                        false,
+                        false,
+                        fkTbLivro,
+                        false));
+
+                qtdLivrosCadastrados ++;
             }
 
+            Integer somaQtdExemplares = exemplarRepository
+                    .findTopByFkTbLivroOrderByIdDesc(fkTbLivro).intValue();
+
             Livros livroReferencia = repository.findLivroById(fkTbLivro);
-            livroReferencia.setQtdDisponiveis(livroReferencia.getQtdDisponiveis() + qtdLivrosCadastrados);
-            livroReferencia.setQtdEstoque(livroReferencia.getQtdEstoque() + qtdLivrosCadastrados);
+            livroReferencia.setQtdDisponiveis(livroReferencia.getQtdDisponiveis() + somaQtdExemplares);
+            livroReferencia.setQtdEstoque(livroReferencia.getQtdEstoque() + somaQtdExemplares);
             repository.save(livroReferencia);
 
             return qtdLivrosCadastrados;

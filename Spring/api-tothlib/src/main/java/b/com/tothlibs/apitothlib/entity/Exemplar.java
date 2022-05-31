@@ -33,8 +33,21 @@ public class Exemplar {
     @Column(name = "renovado")
     private Boolean renovado;
 
+    public Exemplar() {
+    }
+
     public Integer getId() {
         return id;
+    }
+
+    public Exemplar(Integer nrExemplar, String tombo, Boolean reservado, Boolean retirado, Boolean devolvido, Integer fkTbLivro, Boolean renovado) {
+        this.nrExemplar = nrExemplar;
+        this.tombo = tombo;
+        this.reservado = reservado;
+        this.retirado = retirado;
+        this.devolvido = devolvido;
+        this.fkTbLivro = fkTbLivro;
+        this.renovado = renovado;
     }
 
     public void setId(Integer id) {
