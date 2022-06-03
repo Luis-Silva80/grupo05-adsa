@@ -22,7 +22,7 @@ public class UsuarioInfo {
     private Integer qtdResenhas;
     private Integer fkTbInstituicao;
     private Integer livrosReservados;
-    private List<Livros> livrosLidos;
+    private List<UserLivrosDto> livrosLidos;
     private Historico dadosLivros;
 
     public UsuarioInfo(PerfilUsuario usuario) {
@@ -146,11 +146,11 @@ public class UsuarioInfo {
         this.livrosReservados = livrosReservados;
     }
 
-    public List<Livros> getLivrosLidos() {
+    public List<UserLivrosDto> getLivrosLidos() {
         return livrosLidos;
     }
 
-    public void setLivrosLidos(List<Livros> livrosLidos) {
+    public void setLivrosLidos(List<UserLivrosDto> livrosLidos) {
         this.livrosLidos = livrosLidos;
     }
 }

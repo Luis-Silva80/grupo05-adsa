@@ -2,6 +2,7 @@ package b.com.tothlibs.apitothlib.controlers;
 
 import b.com.tothlibs.apitothlib.Exceptions.UsuarioNaoEncontradoException;
 import b.com.tothlibs.apitothlib.dto.UserInfoResponseKotlin;
+import b.com.tothlibs.apitothlib.dto.UserLivrosDto;
 import b.com.tothlibs.apitothlib.dto.UserModalResponse;
 import b.com.tothlibs.apitothlib.dto.UsuarioInfo;
 import b.com.tothlibs.apitothlib.entity.Exemplar;
@@ -134,9 +135,14 @@ public class AlunoController {
         for (String l : listTombos) {
             Exemplar exemplar = repositoryExemplar.findByTombo(l);
             if(exemplar != null){
-                Livros livro = repositoryLivro.findLivroById(exemplar.getId());
+                Livros livro = repositoryLivro.findLivroById(exemplar.getFkTbLivro());
+
+                String status = exemplar.getReservado() ? "RESERVADO" : exemplar.getRetirado() ? "RETIRADO" : exemplar.getRenovado() ? "RENOVADO" : "DEVOLVIDO" ;
+
+                UserLivrosDto dto = new UserLivrosDto(exemplar.getTombo(), status, livro);
+
                 if (!usuarioInfo.getLivrosLidos().contains(livro)) {
-                    usuarioInfo.getLivrosLidos().add(repositoryLivro.findById(livro.getId()).get());
+                    usuarioInfo.getLivrosLidos().add(dto);
                 }
             }
 
