@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7adb6435-d1f1-4539-9707-2ee10b132e15" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/dto/UserLivrosDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/AlunoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/controlers/AlunoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/dto/UsuarioInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/dto/UsuarioInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/HistoricoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/b/com/tothlibs/apitothlib/repository/HistoricoRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +93,7 @@
       <recent name="b.com.tothlibs.apitothlib.listas" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.api-tothlib [package]">
+  <component name="RunManager" selected="Spring Boot.ApiTothlibApplication">
     <configuration name="ApiTothlibApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="b.com.tothlibs.apitothlib.ApiTothlibApplication" />
       <module name="api-tothlib" />
@@ -248,6 +244,7 @@
       <workItem from="1653958160584" duration="1424000" />
       <workItem from="1654210744135" duration="1521000" />
       <workItem from="1654219171901" duration="4360000" />
+      <workItem from="1654224384036" duration="78000" />
     </task>
     <servers />
   </component>
